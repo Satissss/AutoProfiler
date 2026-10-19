@@ -1,0 +1,14 @@
+AutoProfiler re-implements several published methods as baselines on a shared
+evaluation stack. Their prompt wording and method structure are adapted with attribution:
+
+- CudaForge (Zhang et al.), MIT License. Judge/Coder prompts and the fixed Nsight
+  Compute metric set in autoprofiler/methods/cudaforge.py and autoprofiler/components/.
+- AutoKernel (RightNow AI), MIT License. Keep/revert experiment protocol and the
+  optimisation playbook in autoprofiler/methods/autokernel.py.
+- KernelAgent (Meta), Apache License 2.0. The Triton generation + roofline-analysis
+  structure used for the `kernelagent` method.
+- KernelBench (Ouyang et al.), MIT License. The 250 benchmark problems in
+  data/benchmarks/kernelbench and the evaluation protocol.
+- KernelMem: the upstream repository carries no licence, so no code or prompt text was
+  copied. `kernelmem` is written from its public README description (memory of tried
+  methods + knowledge notes + extended NCU metrics); see docs/baselines.md.

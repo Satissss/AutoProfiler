@@ -1,0 +1,316 @@
+{
+  "routing_round": 20,
+  "bounds": [
+    "memory",
+    "latency",
+    "compute",
+    "algorithm"
+  ],
+  "steps": [],
+  "updates": [
+    {
+      "action": "free_carve",
+      "leaf_id": "460f36cf",
+      "proposal": {
+        "leaf_id": "460f36cf",
+        "inherited": [
+          "sm__throughput.avg.pct_of_peak_sustained_elapsed",
+          "dram__throughput.avg.pct_of_peak_sustained_elapsed",
+          "l1tex__t_sector_hit_rate.pct",
+          "lts__t_sector_hit_rate.pct",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct"
+        ],
+        "old_owned": [],
+        "new_owned": [
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct",
+          "smsp__warps_active.avg.pct_of_peak_sustained_active"
+        ],
+        "added": [
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct",
+          "smsp__warps_active.avg.pct_of_peak_sustained_active"
+        ],
+        "blind_spot": "The current metrics cannot distinguish high DRAM traffic caused by long-latency memory stalls from low occupancy or from traffic that should simply be eliminated.",
+        "rationale": {
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct": "HIGH -> fuse or reuse global-memory accesses and improve tiling/coalescing to reduce long-latency dependencies / LOW -> avoid extra latency-hiding resources and simplify or vectorize the kernel to reduce instruction and memory-operation overhead",
+          "smsp__warps_active.avg.pct_of_peak_sustained_active": "HIGH -> preserve occupancy and focus on eliminating DRAM traffic rather than increasing parallelism / LOW -> reduce register usage or block size and retune the launch to admit more resident warps"
+        },
+        "rejected": [],
+        "prompt_version": "metric_rewrite_v1"
+      },
+      "probe": {
+        "accepted": false,
+        "margin": 0.0,
+        "epsilon": 0.037500000000000006,
+        "incumbent_mean": null,
+        "candidate_mean": null,
+        "time_cost": 0.0,
+        "n_scorable_incumbent": 0,
+        "n_scorable_candidate": 0,
+        "compile_fail_delta": 0.25,
+        "reason": "compile_fail_rate_up:0.250",
+        "guard_ids": [],
+        "regressed_guards": [],
+        "per_sample": {
+          "4f8b943deae3626d": {
+            "kernel_id": "4f8b943deae3626d",
+            "outcome": "win",
+            "reward": 0.3764,
+            "rel_speedup": 1.3763570911017866,
+            "latency_ms": 5.167052149772644,
+            "profile_ms": 8494.065571576357,
+            "kernel_ms": 7.111708866432309,
+            "child_kernel_id": ""
+          },
+          "5e1d5b6be6828113": {
+            "kernel_id": "5e1d5b6be6828113",
+            "outcome": "compile_fail",
+            "reward": null,
+            "rel_speedup": null,
+            "latency_ms": null,
+            "profile_ms": 7421.1202673614025,
+            "kernel_ms": 8.491524029523134,
+            "child_kernel_id": ""
+          },
+          "68cebcd30c5194a1": {
+            "kernel_id": "68cebcd30c5194a1",
+            "outcome": "win",
+            "reward": 0.1539,
+            "rel_speedup": 1.1539222577032267,
+            "latency_ms": 2.402319572865963,
+            "profile_ms": 6862.711176276207,
+            "kernel_ms": 2.7720900252461433,
+            "child_kernel_id": ""
+          },
+          "a75a30865d36b834": {
+            "kernel_id": "a75a30865d36b834",
+            "outcome": "win",
+            "reward": 0.5898,
+            "rel_speedup": 1.5897541109459348,
+            "latency_ms": 4.731208086013794,
+            "profile_ms": 7134.270479902625,
+            "kernel_ms": 7.521457504481077,
+            "child_kernel_id": ""
+          },
+          "b9795af037350e5a": {
+            "kernel_id": "b9795af037350e5a",
+            "outcome": "regressed",
+            "reward": -0.363,
+            "rel_speedup": 0.6370384132351558,
+            "latency_ms": 4.591777920722961,
+            "profile_ms": 6087.215289473534,
+            "kernel_ms": 2.925138920545578,
+            "child_kernel_id": ""
+          },
+          "c14eeb3c6ce44ace": {
+            "kernel_id": "c14eeb3c6ce44ace",
+            "outcome": "regressed",
+            "reward": -0.3195,
+            "rel_speedup": 0.6805066544415717,
+            "latency_ms": 6.344371475279331,
+            "profile_ms": 7542.512591928244,
+            "kernel_ms": 4.317387007176876,
+            "child_kernel_id": ""
+          },
+          "ca36d4a92709255b": {
+            "kernel_id": "ca36d4a92709255b",
+            "outcome": "compile_fail",
+            "reward": null,
+            "rel_speedup": null,
+            "latency_ms": null,
+            "profile_ms": 8869.975412264466,
+            "kernel_ms": 14.014367945492268,
+            "child_kernel_id": ""
+          },
+          "cd214084914c1e60": {
+            "kernel_id": "cd214084914c1e60",
+            "outcome": "win",
+            "reward": 0.4446,
+            "rel_speedup": 1.4445540004145578,
+            "latency_ms": 11.407949961721897,
+            "profile_ms": 12993.145013228059,
+            "kernel_ms": 16.47939975373447,
+            "child_kernel_id": ""
+          },
+          "d663edec2548abe1": {
+            "kernel_id": "d663edec2548abe1",
+            "outcome": "win",
+            "reward": 0.6369,
+            "rel_speedup": 1.6369330372863824,
+            "latency_ms": 14.2574617639184,
+            "profile_ms": 13446.02095335722,
+            "kernel_ms": 23.338510189205408,
+            "child_kernel_id": ""
+          },
+          "ee0f7f01ccbc03c1": {
+            "kernel_id": "ee0f7f01ccbc03c1",
+            "outcome": "win",
+            "reward": 0.4359,
+            "rel_speedup": 1.4359045665577082,
+            "latency_ms": 1.239103265106678,
+            "profile_ms": 7099.324092268944,
+            "kernel_ms": 1.7792340368032455,
+            "child_kernel_id": ""
+          },
+          "fb7c5f8d7dd03d81": {
+            "kernel_id": "fb7c5f8d7dd03d81",
+            "outcome": "compile_fail",
+            "reward": null,
+            "rel_speedup": null,
+            "latency_ms": null,
+            "profile_ms": 7247.713202610612,
+            "kernel_ms": 7.72603414952755,
+            "child_kernel_id": ""
+          },
+          "fc176878c1f26172": {
+            "kernel_id": "fc176878c1f26172",
+            "outcome": "no_speedup",
+            "reward": -0.0035,
+            "rel_speedup": 0.9965248861410122,
+            "latency_ms": 18.416400998830795,
+            "profile_ms": 11346.31965495646,
+            "kernel_ms": 18.35240190848708,
+            "child_kernel_id": ""
+          }
+        }
+      },
+      "search_reason": "found",
+      "condition": {
+        "subset": [
+          "dram__throughput.avg.pct_of_peak_sustained_elapsed",
+          "l1tex__t_sector_hit_rate.pct"
+        ],
+        "thresholds": {
+          "dram__throughput.avg.pct_of_peak_sustained_elapsed": 81.671085,
+          "l1tex__t_sector_hit_rate.pct": 11.775899
+        },
+        "gain": 0.16667,
+        "branch_sizes": {
+          "0": 0,
+          "1": 3,
+          "2": 6,
+          "3": 3
+        }
+      },
+      "validation": {
+        "accepted": false,
+        "margin": 0.0,
+        "epsilon": 0.015,
+        "incumbent_mean": 0.6435,
+        "pooled_mean": 0.6435,
+        "time_cost": 0.0,
+        "reason": "all_branches_fell_back",
+        "branches": [
+          {
+            "index": 0,
+            "metrics": [],
+            "fallback": true,
+            "n_samples": 0,
+            "mean_reward": null
+          },
+          {
+            "index": 1,
+            "metrics": [],
+            "fallback": true,
+            "n_samples": 3,
+            "mean_reward": 0.8895333333333334
+          },
+          {
+            "index": 2,
+            "metrics": [],
+            "fallback": true,
+            "n_samples": 6,
+            "mean_reward": 0.2953
+          },
+          {
+            "index": 3,
+            "metrics": [],
+            "fallback": true,
+            "n_samples": 3,
+            "mean_reward": 1.0937333333333334
+          }
+        ]
+      },
+      "accepted": false,
+      "protected_branches": [
+        0,
+        1,
+        2
+      ]
+    }
+  ],
+  "n_retired_pool": 0,
+  "n_steps": 0,
+  "pool_size": 801,
+  "diagnostics": {
+    "outcome_counts": {},
+    "slow_share": 0.0,
+    "compile_fail_rate": 0.0,
+    "mean_profile_time_ratio": null,
+    "reward_sources": {
+      "n_positive_reward": 0,
+      "from_real_speedup": 0,
+      "from_failure_to_success": 0,
+      "real_speedup_share": null
+    },
+    "tree": {
+      "n_leaves": 7,
+      "depth": 2,
+      "branching": [
+        4,
+        4
+      ]
+    },
+    "store": {
+      "n_kernels": 1313,
+      "n_origins": 998,
+      "n_routes": 481,
+      "by_status": {
+        "pending": 801,
+        "optimization_failed": 121,
+        "terminal": 113,
+        "advanced": 258,
+        "slow": 20
+      },
+      "max_hop": 1
+    },
+    "origin_coverage": {
+      "total": 998,
+      "attempted": 512,
+      "remaining": 486,
+      "ratio": 0.5130260521042084
+    },
+    "gpu_queue": {
+      "submitted": 69,
+      "completed": 69,
+      "failed": 0,
+      "queue_depth": 0,
+      "active": false,
+      "busy_time_s": 860.5323453741148,
+      "utilization": 0.22267201836227227,
+      "journal_done": 42
+    },
+    "branch_share_alerts": [
+      {
+        "node_id": "root",
+        "child_id": "70f21b3a",
+        "label": "sm=high,dram=low",
+        "share": 0.0229,
+        "n": 11
+      },
+      {
+        "node_id": "root",
+        "child_id": "64953ed1",
+        "label": "sm=high,dram=high",
+        "share": 0.0021,
+        "n": 1
+      },
+      {
+        "node_id": "00dcb62e",
+        "child_id": "7eca260d",
+        "label": "lts=low,smsp=low",
+        "share": 0.0321,
+        "n": 8
+      }
+    ]
+  }
+}

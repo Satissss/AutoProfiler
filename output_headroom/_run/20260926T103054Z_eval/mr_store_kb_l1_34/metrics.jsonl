@@ -1,0 +1,7 @@
+{"kernel_id": "9325140d26ecc919", "metrics": {"sm__throughput.avg.pct_of_peak_sustained_elapsed": 15.498050391555452, "dram__throughput.avg.pct_of_peak_sustained_elapsed": 94.47502312045613}, "profile_ms": 72552.66064195894}
+{"kernel_id": "9325140d26ecc919", "metrics": {"l1tex__t_sector_hit_rate.pct": 43.779525292413666, "lts__t_sector_hit_rate.pct": 40.103499169200454, "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct": 85.97228870978546}, "profile_ms": 69768.4777120594}
+{"kernel_id": "9325140d26ecc919", "metrics": {"dram__bytes_read.sum": 1878959452.691085, "dram__bytes_write.sum": 1470989698.6083899}, "profile_ms": 18179.221383994445}
+{"kernel_id": "9325140d26ecc919", "metrics": {"smsp__sass_average_data_bytes_per_sector_mem_global_op_st.pct": 75.0, "launch__waves_per_multiprocessor": 768.002142857143}, "profile_ms": 18144.361946033314}
+{"kernel_id": "cb9a76b4170f34dc", "metrics": {"sm__throughput.avg.pct_of_peak_sustained_elapsed": 6.86, "dram__throughput.avg.pct_of_peak_sustained_elapsed": 90.41}, "profile_ms": 25229.746606084518}
+{"kernel_id": "cb9a76b4170f34dc", "metrics": {"l1tex__t_sector_hit_rate.pct": 21.73, "lts__t_sector_hit_rate.pct": 33.35, "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct": 100.0}, "profile_ms": 23916.018033982255}
+{"kernel_id": "cb9a76b4170f34dc", "metrics": {"dram__bytes_read.sum": 15030129280.0, "dram__bytes_write.sum": 7481227136.0}, "profile_ms": 19573.210918926634}

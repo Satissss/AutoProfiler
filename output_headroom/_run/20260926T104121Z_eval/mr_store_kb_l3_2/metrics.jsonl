@@ -1,0 +1,7 @@
+{"kernel_id": "cff108c22ecaa9ff", "metrics": {"sm__throughput.avg.pct_of_peak_sustained_elapsed": 67.24690616307159, "dram__throughput.avg.pct_of_peak_sustained_elapsed": 65.55454501413179}, "profile_ms": 64886.85589004308}
+{"kernel_id": "cff108c22ecaa9ff", "metrics": {"sm__warps_active.avg.pct_of_peak_sustained_active": 32.70579159126056}, "profile_ms": 32595.957091078162}
+{"kernel_id": "49541c2cee33469a", "metrics": {"sm__throughput.avg.pct_of_peak_sustained_elapsed": 67.11175851318245, "dram__throughput.avg.pct_of_peak_sustained_elapsed": 65.82448248502223}, "profile_ms": 61706.2788780313}
+{"kernel_id": "49541c2cee33469a", "metrics": {"sm__warps_active.avg.pct_of_peak_sustained_active": 32.692556888862946}, "profile_ms": 34245.825465070084}
+{"kernel_id": "45e95e3f467dec93", "metrics": {"sm__throughput.avg.pct_of_peak_sustained_elapsed": 67.05594849309432, "dram__throughput.avg.pct_of_peak_sustained_elapsed": 65.67141950313142}, "profile_ms": 63791.9543919852}
+{"kernel_id": "45e95e3f467dec93", "metrics": {"sm__warps_active.avg.pct_of_peak_sustained_active": 32.70541578313172}, "profile_ms": 34181.67044594884}
+{"kernel_id": "c71505cce2423ff4", "metrics": {"sm__throughput.avg.pct_of_peak_sustained_elapsed": 61.1428719015131, "dram__throughput.avg.pct_of_peak_sustained_elapsed": 71.74907219872097}, "profile_ms": 63045.27877504006}

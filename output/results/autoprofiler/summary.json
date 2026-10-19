@@ -1,0 +1,89 @@
+{
+  "config": {
+    "name": "autoprofiler",
+    "benchmark": "kernelbench",
+    "groups": [
+      "level1",
+      "level2",
+      "level3"
+    ],
+    "ids": null,
+    "limit": 3,
+    "methods": {
+      "autoprofiler": {
+        "seeder": {
+          "type": "llm_port",
+          "language": "triton",
+          "attempts": 4
+        },
+        "profiler": {
+          "type": "tree",
+          "path": "output/trees/autoprofiler.json"
+        },
+        "optimizer": {
+          "type": "leaf",
+          "strong": true,
+          "n_samples": 2,
+          "max_repair": 2
+        }
+      }
+    },
+    "llm": {
+      "model": "qwen-plus",
+      "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "api_key_env": "QWEN_API_KEY"
+    },
+    "backend": "configs/backends/k8s.yaml",
+    "rounds": 2,
+    "fast": [
+      3,
+      10
+    ],
+    "final": [
+      10,
+      100
+    ],
+    "output": "output/results"
+  },
+  "methods": {
+    "autoprofiler": {
+      "all": {
+        "n": 3,
+        "correct": 1.0,
+        "fast_1": 0.6666666666666666,
+        "fast_1_ci": [
+          0.0,
+          1.0
+        ],
+        "geomean": 1.3823306057081155,
+        "geomean_all": 1.3823306057081155,
+        "geomean_all_ci": [
+          0.8888084533879236,
+          2.1019571922689733
+        ],
+        "mean_llm_tokens": 83712.66666666667,
+        "mean_llm_calls": 20.666666666666668,
+        "mean_gpu_seconds": 131.49
+      },
+      "level1": {
+        "n": 3,
+        "correct": 1.0,
+        "fast_1": 0.6666666666666666,
+        "fast_1_ci": [
+          0.0,
+          1.0
+        ],
+        "geomean": 1.3823306057081155,
+        "geomean_all": 1.3823306057081155,
+        "geomean_all_ci": [
+          0.8888084533879236,
+          2.1019571922689733
+        ],
+        "mean_llm_tokens": 83712.66666666667,
+        "mean_llm_calls": 20.666666666666668,
+        "mean_gpu_seconds": 131.49
+      },
+      "missing": 0
+    }
+  }
+}

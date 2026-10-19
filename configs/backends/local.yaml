@@ -1,0 +1,5 @@
+# Run workers on this machine's GPU (needs CUDA; `ncu` on PATH for profiling methods).
+backend: local
+local:
+  python: ""            # empty -> the interpreter running autoprofiler
+  workdir: output/_jobs # job files are staged here

@@ -1,0 +1,809 @@
+10:34:55 [log] run log -> output_headroom/_run/20260826T023455Z/train.log
+10:34:55 [init] run_id=20260826T023455Z resume=False checkpoint=latest n_train=999 n_holdout=0 source=['triton_seed']
+[init] tree_model=deepseek-v4-flash-0731 optimize_model=deepseek-v4-flash-0731
+[init] artifacts -> output_headroom/_run/20260826T023455Z
+[init] kernel store -> output_headroom/kernels ({'n_kernels': 0, 'n_origins': 0, 'n_routes': 0, 'by_status': {}, 'max_hop': 0})
+10:34:55 [seed] pool has 998 pending kernels (998 new)
+10:34:55 [checkpoint-save] id=000001 reason=periodic resume='--resume 20260826T023455Z --checkpoint 000001'
+10:34:55 
+========== ROUTING ROUND 0 (parallel) ==========
+10:34:55 [routing-start] sync bound=latency,memory,compute,algorithm available=998 pool=998
+10:34:55   [forward-start] 5f5591ef6af99f5b hop=0 origin=syn_02632_e2e3e18a
+10:34:55   [route] 5f5591ef6af99f5b hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=29255
+10:34:55 [llm-attempt] id=fde89259 model=deepseek-v4-flash-0731 label=opt kernel=5f5591ef6af99f5b round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:35:20 [llm-done] id=fde89259 model=deepseek-v4-flash-0731 label=opt kernel=5f5591ef6af99f5b round=0 attempt=1/6 timeout_s=300 elapsed_s=25.2
+10:35:57     [opt] round 0 stage=correctness ok=False cand_ms=None
+10:35:57 [llm-attempt] id=dc5f240a model=deepseek-v4-flash-0731 label=opt kernel=5f5591ef6af99f5b round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:36:12 [llm-done] id=dc5f240a model=deepseek-v4-flash-0731 label=opt kernel=5f5591ef6af99f5b round=1 attempt=1/6 timeout_s=300 elapsed_s=15.2
+10:36:28     [opt] round 1 stage=correctness ok=False cand_ms=None
+10:36:28 [llm-attempt] id=d2a6b53e model=deepseek-v4-flash-0731 label=opt kernel=5f5591ef6af99f5b round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:36:52 [llm-done] id=d2a6b53e model=deepseek-v4-flash-0731 label=opt kernel=5f5591ef6af99f5b round=2 attempt=1/6 timeout_s=300 elapsed_s=24.3
+10:37:08     [opt] round 2 stage=run_candidate ok=False cand_ms=None
+10:37:08   [opt-failed] 5f5591ef6af99f5b outcome=compile_fail stage=run_candidate; excluded from leaf activation
+10:37:08 [progress] completed=1 available_at_start=998 advanced=0 slow=0 failed=1 pool=997 last=5f5591ef6af99f5b outcome=compile_fail
+10:37:08   [forward-start] d34f25db82e40461 hop=0 origin=syn_02179_ea5266c8
+10:37:08   [route] d34f25db82e40461 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=21039
+10:37:08 [llm-attempt] id=fbeca557 model=deepseek-v4-flash-0731 label=opt kernel=d34f25db82e40461 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:37:27 [llm-done] id=fbeca557 model=deepseek-v4-flash-0731 label=opt kernel=d34f25db82e40461 round=0 attempt=1/6 timeout_s=300 elapsed_s=18.7
+10:37:39     [opt] round 0 stage=run_candidate ok=False cand_ms=None
+10:37:39 [llm-attempt] id=d4323642 model=deepseek-v4-flash-0731 label=opt kernel=d34f25db82e40461 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:38:06 [llm-done] id=d4323642 model=deepseek-v4-flash-0731 label=opt kernel=d34f25db82e40461 round=1 attempt=1/6 timeout_s=300 elapsed_s=27.0
+10:38:22     [opt] round 1 stage=ok ok=True cand_ms=3.442171262577176
+10:38:22   [advance] d34f25db82e40461 -> 8cb64d1dac453f07 spd=1.641 wins=1
+10:38:22 [progress] completed=2 available_at_start=998 advanced=1 slow=0 failed=1 pool=997 last=d34f25db82e40461 outcome=win
+10:38:22   [forward-start] 722d7e8ae3762018 hop=0 origin=syn_05962_dcba88a2
+10:38:22   [route] 722d7e8ae3762018 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=37153
+10:38:22 [llm-attempt] id=80c73299 model=deepseek-v4-flash-0731 label=opt kernel=722d7e8ae3762018 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:38:45 [llm-done] id=80c73299 model=deepseek-v4-flash-0731 label=opt kernel=722d7e8ae3762018 round=0 attempt=1/6 timeout_s=300 elapsed_s=23.0
+10:39:03     [opt] round 0 stage=correctness ok=False cand_ms=None
+10:39:03 [llm-attempt] id=ad1361aa model=deepseek-v4-flash-0731 label=opt kernel=722d7e8ae3762018 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:39:26 [llm-done] id=ad1361aa model=deepseek-v4-flash-0731 label=opt kernel=722d7e8ae3762018 round=1 attempt=1/6 timeout_s=300 elapsed_s=23.7
+10:39:41     [opt] round 1 stage=ok ok=True cand_ms=2.9271389357745647
+10:39:41   [slow] 722d7e8ae3762018 outcome=no_speedup spd=1.0000957686331637 -> accumulates at 00dcb62e
+10:39:41 [progress] completed=3 available_at_start=998 advanced=1 slow=1 failed=1 pool=996 last=722d7e8ae3762018 outcome=no_speedup
+10:39:41   [forward-start] 0933193437f45300 hop=0 origin=syn_02692_98a013d9
+10:39:41   [route] 0933193437f45300 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=123504
+10:39:41 [llm-attempt] id=4dbda95d model=deepseek-v4-flash-0731 label=opt kernel=0933193437f45300 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:40:05 [llm-done] id=4dbda95d model=deepseek-v4-flash-0731 label=opt kernel=0933193437f45300 round=0 attempt=1/6 timeout_s=300 elapsed_s=24.5
+10:40:18     [opt] round 0 stage=ok ok=True cand_ms=2.3463969118893147
+10:40:18   [advance] 0933193437f45300 -> acecbb61bf7ff094 spd=7.002 wins=1
+10:40:18 [progress] completed=4 available_at_start=998 advanced=2 slow=1 failed=1 pool=996 last=0933193437f45300 outcome=win
+10:40:18   [forward-start] 15a650bef076308f hop=0 origin=syn_00746_2334f93b
+10:40:18   [route] 15a650bef076308f hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=56957
+10:40:18 [llm-attempt] id=00166888 model=deepseek-v4-flash-0731 label=opt kernel=15a650bef076308f round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:40:55 [llm-done] id=00166888 model=deepseek-v4-flash-0731 label=opt kernel=15a650bef076308f round=0 attempt=1/6 timeout_s=300 elapsed_s=36.4
+10:41:12     [opt] round 0 stage=correctness ok=False cand_ms=None
+10:41:12 [llm-attempt] id=59b54c00 model=deepseek-v4-flash-0731 label=opt kernel=15a650bef076308f round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:41:49 [llm-done] id=59b54c00 model=deepseek-v4-flash-0731 label=opt kernel=15a650bef076308f round=1 attempt=1/6 timeout_s=300 elapsed_s=36.8
+10:42:04     [opt] round 1 stage=correctness ok=False cand_ms=None
+10:42:04 [llm-attempt] id=2544b02e model=deepseek-v4-flash-0731 label=opt kernel=15a650bef076308f round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:42:29 [llm-done] id=2544b02e model=deepseek-v4-flash-0731 label=opt kernel=15a650bef076308f round=2 attempt=1/6 timeout_s=300 elapsed_s=24.3
+10:42:44     [opt] round 2 stage=correctness ok=False cand_ms=None
+10:42:44   [opt-failed] 15a650bef076308f outcome=incorrect stage=correctness; excluded from leaf activation
+10:42:44 [progress] completed=5 available_at_start=998 advanced=2 slow=1 failed=2 pool=995 last=15a650bef076308f outcome=incorrect
+10:42:44   [forward-start] e4ba34785dcc9a27 hop=0 origin=syn_01330_400489e8
+10:42:44   [route] e4ba34785dcc9a27 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=74384
+10:42:44 [llm-attempt] id=c30975a9 model=deepseek-v4-flash-0731 label=opt kernel=e4ba34785dcc9a27 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:43:20 [llm-done] id=c30975a9 model=deepseek-v4-flash-0731 label=opt kernel=e4ba34785dcc9a27 round=0 attempt=1/6 timeout_s=300 elapsed_s=35.6
+10:43:31     [opt] round 0 stage=ok ok=True cand_ms=1.051102764904499
+10:43:31   [slow] e4ba34785dcc9a27 outcome=win spd=1.0299963317806902 -> accumulates at 00dcb62e
+10:43:31 [progress] completed=6 available_at_start=998 advanced=2 slow=2 failed=2 pool=994 last=e4ba34785dcc9a27 outcome=win
+10:43:31   [forward-start] 46ec50de4eb3c46f hop=0 origin=syn_00707_468fd23f
+10:43:31   [route] 46ec50de4eb3c46f hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=73281
+10:43:31 [llm-attempt] id=4710ade6 model=deepseek-v4-flash-0731 label=opt kernel=46ec50de4eb3c46f round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:44:44 [llm-done] id=4710ade6 model=deepseek-v4-flash-0731 label=opt kernel=46ec50de4eb3c46f round=0 attempt=1/6 timeout_s=300 elapsed_s=72.9
+10:44:56     [opt] round 0 stage=correctness ok=False cand_ms=None
+10:44:56 [llm-attempt] id=0a1680bc model=deepseek-v4-flash-0731 label=opt kernel=46ec50de4eb3c46f round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:45:32 [llm-done] id=0a1680bc model=deepseek-v4-flash-0731 label=opt kernel=46ec50de4eb3c46f round=1 attempt=1/6 timeout_s=300 elapsed_s=35.9
+10:45:45     [opt] round 1 stage=run_candidate ok=False cand_ms=None
+10:45:45 [llm-attempt] id=f7b518d8 model=deepseek-v4-flash-0731 label=opt kernel=46ec50de4eb3c46f round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:46:17 [llm-done] id=f7b518d8 model=deepseek-v4-flash-0731 label=opt kernel=46ec50de4eb3c46f round=2 attempt=1/6 timeout_s=300 elapsed_s=31.9
+10:46:28     [opt] round 2 stage=run_candidate ok=False cand_ms=None
+10:46:28   [opt-failed] 46ec50de4eb3c46f outcome=compile_fail stage=run_candidate; excluded from leaf activation
+10:46:28 [progress] completed=7 available_at_start=998 advanced=2 slow=2 failed=3 pool=993 last=46ec50de4eb3c46f outcome=compile_fail
+10:46:28   [forward-start] 5c383f611f07a218 hop=0 origin=syn_05510_fc2e9c87
+10:46:28   [route] 5c383f611f07a218 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=18039
+10:46:28 [llm-attempt] id=22e5bd64 model=deepseek-v4-flash-0731 label=opt kernel=5c383f611f07a218 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:46:44 [llm-done] id=22e5bd64 model=deepseek-v4-flash-0731 label=opt kernel=5c383f611f07a218 round=0 attempt=1/6 timeout_s=300 elapsed_s=16.0
+10:46:44 [llm-attempt] id=8e218acf model=deepseek-v4-flash-0731 label=opt kernel=5c383f611f07a218 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:47:35 [llm-done] id=8e218acf model=deepseek-v4-flash-0731 label=opt kernel=5c383f611f07a218 round=1 attempt=1/6 timeout_s=300 elapsed_s=51.4
+10:47:36 [llm-attempt] id=132e7038 model=deepseek-v4-flash-0731 label=opt kernel=5c383f611f07a218 round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:48:03 [llm-done] id=132e7038 model=deepseek-v4-flash-0731 label=opt kernel=5c383f611f07a218 round=2 attempt=1/6 timeout_s=300 elapsed_s=27.3
+10:48:15     [opt] round 2 stage=run_candidate ok=False cand_ms=None
+10:48:15   [opt-failed] 5c383f611f07a218 outcome=compile_fail stage=run_candidate; excluded from leaf activation
+10:48:15 [progress] completed=8 available_at_start=998 advanced=2 slow=2 failed=4 pool=992 last=5c383f611f07a218 outcome=compile_fail
+10:48:15   [forward-start] e54fde0a25a14873 hop=0 origin=syn_05625_b253ea3d
+10:48:15   [route] e54fde0a25a14873 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=18476
+10:48:15 [llm-attempt] id=54ff966a model=deepseek-v4-flash-0731 label=opt kernel=e54fde0a25a14873 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:49:25 [llm-done] id=54ff966a model=deepseek-v4-flash-0731 label=opt kernel=e54fde0a25a14873 round=0 attempt=1/6 timeout_s=300 elapsed_s=69.9
+10:49:37     [opt] round 0 stage=ok ok=True cand_ms=5.372747080400586
+10:49:37   [slow] e54fde0a25a14873 outcome=no_speedup spd=1.0001600813112523 -> accumulates at 00dcb62e
+10:49:37 [progress] completed=9 available_at_start=998 advanced=2 slow=3 failed=4 pool=991 last=e54fde0a25a14873 outcome=no_speedup
+10:49:37   [forward-start] a24bdb00e4965510 hop=0 origin=syn_04598_76751eb1
+10:49:37   [route] a24bdb00e4965510 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=19913
+10:49:37 [llm-attempt] id=da75ec6c model=deepseek-v4-flash-0731 label=opt kernel=a24bdb00e4965510 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:50:04 [llm-done] id=da75ec6c model=deepseek-v4-flash-0731 label=opt kernel=a24bdb00e4965510 round=0 attempt=1/6 timeout_s=300 elapsed_s=26.8
+10:50:19     [opt] round 0 stage=correctness ok=False cand_ms=None
+10:50:19 [llm-attempt] id=f626966d model=deepseek-v4-flash-0731 label=opt kernel=a24bdb00e4965510 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:50:38 [llm-done] id=f626966d model=deepseek-v4-flash-0731 label=opt kernel=a24bdb00e4965510 round=1 attempt=1/6 timeout_s=300 elapsed_s=19.2
+10:50:54     [opt] round 1 stage=correctness ok=False cand_ms=None
+10:50:54 [llm-attempt] id=5cb86af2 model=deepseek-v4-flash-0731 label=opt kernel=a24bdb00e4965510 round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:51:22 [llm-done] id=5cb86af2 model=deepseek-v4-flash-0731 label=opt kernel=a24bdb00e4965510 round=2 attempt=1/6 timeout_s=300 elapsed_s=28.9
+10:52:14     [opt] round 2 stage=correctness ok=False cand_ms=None
+10:52:14   [opt-failed] a24bdb00e4965510 outcome=incorrect stage=correctness; excluded from leaf activation
+10:52:14 [progress] completed=10 available_at_start=998 advanced=2 slow=3 failed=5 pool=990 last=a24bdb00e4965510 outcome=incorrect
+10:52:14   [forward-start] 6d3f92e729097711 hop=0 origin=syn_01300_d8a7aa94
+10:52:14   [route] 6d3f92e729097711 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=150238
+10:52:14 [llm-attempt] id=03f79919 model=deepseek-v4-flash-0731 label=opt kernel=6d3f92e729097711 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:52:32 [llm-done] id=03f79919 model=deepseek-v4-flash-0731 label=opt kernel=6d3f92e729097711 round=0 attempt=1/6 timeout_s=300 elapsed_s=17.6
+10:52:45     [opt] round 0 stage=ok ok=True cand_ms=5.669755628332496
+10:52:45   [advance] 6d3f92e729097711 -> 275999b3dddf4b86 spd=4.818 wins=2
+10:52:45 [progress] completed=11 available_at_start=998 advanced=3 slow=3 failed=5 pool=990 last=6d3f92e729097711 outcome=win
+10:52:45   [forward-start] 2c67ba61db19b3a6 hop=0 origin=syn_01526_b683876c
+10:52:45   [route] 2c67ba61db19b3a6 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=15631
+10:52:45 [llm-attempt] id=07c209d1 model=deepseek-v4-flash-0731 label=opt kernel=2c67ba61db19b3a6 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:53:50 [llm-done] id=07c209d1 model=deepseek-v4-flash-0731 label=opt kernel=2c67ba61db19b3a6 round=0 attempt=1/6 timeout_s=300 elapsed_s=64.8
+10:54:02     [opt] round 0 stage=ok ok=True cand_ms=2.996689174324274
+10:54:02   [advance] 2c67ba61db19b3a6 -> ef0b72567dcc3055 spd=1.561 wins=2
+10:54:02 [progress] completed=12 available_at_start=998 advanced=4 slow=3 failed=5 pool=990 last=2c67ba61db19b3a6 outcome=win
+10:54:02   [forward-start] d1247e2d3ff053bd hop=0 origin=syn_05880_859378f1
+10:54:02   [route] d1247e2d3ff053bd hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=17005
+10:54:02 [llm-attempt] id=772ec0cc model=deepseek-v4-flash-0731 label=opt kernel=d1247e2d3ff053bd round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:54:29 [llm-done] id=772ec0cc model=deepseek-v4-flash-0731 label=opt kernel=d1247e2d3ff053bd round=0 attempt=1/6 timeout_s=300 elapsed_s=26.8
+10:54:42     [opt] round 0 stage=ok ok=True cand_ms=11.335104936733842
+10:54:42   [slow] d1247e2d3ff053bd outcome=no_speedup spd=1.000445711986333 -> accumulates at 9c244a15
+10:54:42 [progress] completed=13 available_at_start=998 advanced=4 slow=4 failed=5 pool=989 last=d1247e2d3ff053bd outcome=no_speedup
+10:54:42   [forward-start] e1615faafe32d37a hop=0 origin=syn_02262_162a8ce3
+10:54:42   [route] e1615faafe32d37a hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=15782
+10:54:42 [llm-attempt] id=045d1537 model=deepseek-v4-flash-0731 label=opt kernel=e1615faafe32d37a round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:55:15 [llm-done] id=045d1537 model=deepseek-v4-flash-0731 label=opt kernel=e1615faafe32d37a round=0 attempt=1/6 timeout_s=300 elapsed_s=32.2
+10:56:11     [opt] round 0 stage=ok ok=True cand_ms=6.06269552372396
+10:56:11   [slow] e1615faafe32d37a outcome=regressed spd=0.9351213228394137 -> accumulates at 00dcb62e
+10:56:11 [progress] completed=14 available_at_start=998 advanced=4 slow=5 failed=5 pool=988 last=e1615faafe32d37a outcome=regressed
+10:56:11   [forward-start] 12fbf795d9ccab89 hop=0 origin=syn_02217_6256ff57
+10:56:11   [route] 12fbf795d9ccab89 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=13814
+10:56:11 [llm-attempt] id=138e89bf model=deepseek-v4-flash-0731 label=opt kernel=12fbf795d9ccab89 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:56:39 [llm-done] id=138e89bf model=deepseek-v4-flash-0731 label=opt kernel=12fbf795d9ccab89 round=0 attempt=1/6 timeout_s=300 elapsed_s=27.6
+10:57:38     [opt] round 0 stage=run_candidate ok=False cand_ms=None
+10:57:38 [llm-attempt] id=53b4ec8f model=deepseek-v4-flash-0731 label=opt kernel=12fbf795d9ccab89 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:57:58 [llm-done] id=53b4ec8f model=deepseek-v4-flash-0731 label=opt kernel=12fbf795d9ccab89 round=1 attempt=1/6 timeout_s=300 elapsed_s=19.7
+10:58:08     [opt] round 1 stage=run_candidate ok=False cand_ms=None
+10:58:08 [llm-attempt] id=825e90e3 model=deepseek-v4-flash-0731 label=opt kernel=12fbf795d9ccab89 round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:58:24 [llm-done] id=825e90e3 model=deepseek-v4-flash-0731 label=opt kernel=12fbf795d9ccab89 round=2 attempt=1/6 timeout_s=300 elapsed_s=16.2
+10:58:34     [opt] round 2 stage=run_candidate ok=False cand_ms=None
+10:58:34   [opt-failed] 12fbf795d9ccab89 outcome=compile_fail stage=run_candidate; excluded from leaf activation
+10:58:34 [progress] completed=15 available_at_start=998 advanced=4 slow=5 failed=6 pool=987 last=12fbf795d9ccab89 outcome=compile_fail
+10:58:35   [forward-start] 3447d3153538e4b6 hop=0 origin=syn_00389_3e948621
+10:58:35   [route] 3447d3153538e4b6 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=14546
+10:58:35 [llm-attempt] id=0d9591a9 model=deepseek-v4-flash-0731 label=opt kernel=3447d3153538e4b6 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:59:04 [llm-done] id=0d9591a9 model=deepseek-v4-flash-0731 label=opt kernel=3447d3153538e4b6 round=0 attempt=1/6 timeout_s=300 elapsed_s=29.8
+10:59:15     [opt] round 0 stage=run_candidate ok=False cand_ms=None
+10:59:15 [llm-attempt] id=7b8a2da7 model=deepseek-v4-flash-0731 label=opt kernel=3447d3153538e4b6 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+10:59:29 [llm-done] id=7b8a2da7 model=deepseek-v4-flash-0731 label=opt kernel=3447d3153538e4b6 round=1 attempt=1/6 timeout_s=300 elapsed_s=14.8
+10:59:40     [opt] round 1 stage=correctness ok=False cand_ms=None
+10:59:40 [llm-attempt] id=57998882 model=deepseek-v4-flash-0731 label=opt kernel=3447d3153538e4b6 round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:00:03 [llm-done] id=57998882 model=deepseek-v4-flash-0731 label=opt kernel=3447d3153538e4b6 round=2 attempt=1/6 timeout_s=300 elapsed_s=23.4
+11:00:15     [opt] round 2 stage=ok ok=True cand_ms=5.167005583643913
+11:00:15   [slow] 3447d3153538e4b6 outcome=regressed spd=0.7319123634875803 -> accumulates at 00dcb62e
+11:00:15 [progress] completed=16 available_at_start=998 advanced=4 slow=6 failed=6 pool=986 last=3447d3153538e4b6 outcome=regressed
+11:00:15   [forward-start] 38f7e8f79f891910 hop=0 origin=syn_00944_c495ee3b
+11:00:15   [route] 38f7e8f79f891910 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=203650
+11:00:15 [llm-attempt] id=3cce20ba model=deepseek-v4-flash-0731 label=opt kernel=38f7e8f79f891910 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:00:38 [llm-done] id=3cce20ba model=deepseek-v4-flash-0731 label=opt kernel=38f7e8f79f891910 round=0 attempt=1/6 timeout_s=300 elapsed_s=23.2
+11:00:49     [opt] round 0 stage=correctness ok=False cand_ms=None
+11:00:49 [llm-attempt] id=d9441398 model=deepseek-v4-flash-0731 label=opt kernel=38f7e8f79f891910 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:01:32 [llm-done] id=d9441398 model=deepseek-v4-flash-0731 label=opt kernel=38f7e8f79f891910 round=1 attempt=1/6 timeout_s=300 elapsed_s=43.1
+11:01:32 [llm-attempt] id=086710cc model=deepseek-v4-flash-0731 label=opt kernel=38f7e8f79f891910 round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:02:08 [llm-done] id=086710cc model=deepseek-v4-flash-0731 label=opt kernel=38f7e8f79f891910 round=2 attempt=1/6 timeout_s=300 elapsed_s=35.9
+11:02:53     [opt] round 2 stage=ok ok=True cand_ms=14.615013496950269
+11:02:53   [advance] 38f7e8f79f891910 -> 49c35c40c0b1469d spd=1.863 wins=3
+11:02:53 [progress] completed=17 available_at_start=998 advanced=5 slow=6 failed=6 pool=986 last=38f7e8f79f891910 outcome=win
+11:02:53   [forward-start] b888250fc1e7389b hop=0 origin=syn_02263_c70ed1d3
+11:02:53   [route] b888250fc1e7389b hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=14175
+11:02:53 [llm-attempt] id=ca89405f model=deepseek-v4-flash-0731 label=opt kernel=b888250fc1e7389b round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:03:19 [llm-done] id=ca89405f model=deepseek-v4-flash-0731 label=opt kernel=b888250fc1e7389b round=0 attempt=1/6 timeout_s=300 elapsed_s=25.9
+11:03:32     [opt] round 0 stage=ok ok=True cand_ms=1.3950963038951159
+11:03:32   [advance] b888250fc1e7389b -> c7e6ece2a9a51cf5 spd=1.666 wins=4
+11:03:32 [progress] completed=18 available_at_start=998 advanced=6 slow=6 failed=6 pool=986 last=b888250fc1e7389b outcome=win
+11:03:32   [forward-start] 021cecb8849fb681 hop=0 origin=syn_00145_14c93423
+11:03:32   [route] 021cecb8849fb681 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=14816
+11:03:32 [llm-attempt] id=0ce47169 model=deepseek-v4-flash-0731 label=opt kernel=021cecb8849fb681 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:04:03 [llm-done] id=0ce47169 model=deepseek-v4-flash-0731 label=opt kernel=021cecb8849fb681 round=0 attempt=1/6 timeout_s=300 elapsed_s=30.5
+11:04:14     [opt] round 0 stage=ok ok=True cand_ms=1.4546462334692478
+11:04:14   [slow] 021cecb8849fb681 outcome=no_speedup spd=0.9977388326953877 -> accumulates at 9c244a15
+11:04:14 [progress] completed=19 available_at_start=998 advanced=6 slow=7 failed=6 pool=985 last=021cecb8849fb681 outcome=no_speedup
+11:04:14   [forward-start] 27a559bcc5f0f472 hop=0 origin=syn_03261_73ca01eb
+11:04:14   [route] 27a559bcc5f0f472 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=14713
+11:04:14 [llm-attempt] id=dbd53068 model=deepseek-v4-flash-0731 label=opt kernel=27a559bcc5f0f472 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:04:39 [llm-done] id=dbd53068 model=deepseek-v4-flash-0731 label=opt kernel=27a559bcc5f0f472 round=0 attempt=1/6 timeout_s=300 elapsed_s=25.7
+11:04:50     [opt] round 0 stage=ok ok=True cand_ms=3.9985100738704205
+11:04:50   [advance] 27a559bcc5f0f472 -> 36b3483a68c96884 spd=1.289 wins=3
+11:04:50 [progress] completed=20 available_at_start=998 advanced=7 slow=7 failed=6 pool=985 last=27a559bcc5f0f472 outcome=win
+11:04:50 [checkpoint] forwards=20 advanced=7 slow=7 failed=6 pool=985; routing continues
+11:04:50 [checkpoint-save] id=000002 reason=forward_interval resume='--resume 20260826T023455Z --checkpoint 000002'
+11:04:50   [forward-start] 698853e5e136280d hop=0 origin=syn_04976_e1e9e6dc
+11:04:50   [route] 698853e5e136280d hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=59687
+11:04:50 [llm-attempt] id=660e5ad2 model=deepseek-v4-flash-0731 label=opt kernel=698853e5e136280d round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:05:15 [llm-done] id=660e5ad2 model=deepseek-v4-flash-0731 label=opt kernel=698853e5e136280d round=0 attempt=1/6 timeout_s=300 elapsed_s=25.5
+11:05:28     [opt] round 0 stage=correctness ok=False cand_ms=None
+11:05:28 [llm-attempt] id=f9b2b00f model=deepseek-v4-flash-0731 label=opt kernel=698853e5e136280d round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:06:19 [llm-done] id=f9b2b00f model=deepseek-v4-flash-0731 label=opt kernel=698853e5e136280d round=1 attempt=1/6 timeout_s=300 elapsed_s=51.4
+11:07:11     [opt] round 1 stage=correctness ok=False cand_ms=None
+11:07:11 [llm-attempt] id=9187b627 model=deepseek-v4-flash-0731 label=opt kernel=698853e5e136280d round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:08:03 [llm-done] id=9187b627 model=deepseek-v4-flash-0731 label=opt kernel=698853e5e136280d round=2 attempt=1/6 timeout_s=300 elapsed_s=52.1
+11:08:17     [opt] round 2 stage=correctness ok=False cand_ms=None
+11:08:17   [opt-failed] 698853e5e136280d outcome=incorrect stage=correctness; excluded from leaf activation
+11:08:17 [progress] completed=21 available_at_start=998 advanced=7 slow=7 failed=7 pool=984 last=698853e5e136280d outcome=incorrect
+11:08:17   [forward-start] 78512014af2161ef hop=0 origin=syn_04546_980ff5c3
+11:08:17   [route] 78512014af2161ef hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=101962
+11:08:17 [llm-attempt] id=9b74aa34 model=deepseek-v4-flash-0731 label=opt kernel=78512014af2161ef round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:08:46 [llm-done] id=9b74aa34 model=deepseek-v4-flash-0731 label=opt kernel=78512014af2161ef round=0 attempt=1/6 timeout_s=300 elapsed_s=29.3
+11:13:54     [opt] round 0 stage=timeout ok=False cand_ms=None
+11:13:54 [llm-attempt] id=cd845cdd model=deepseek-v4-flash-0731 label=opt kernel=78512014af2161ef round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:14:23 [llm-done] id=cd845cdd model=deepseek-v4-flash-0731 label=opt kernel=78512014af2161ef round=1 attempt=1/6 timeout_s=300 elapsed_s=29.9
+11:14:36     [opt] round 1 stage=correctness ok=False cand_ms=None
+11:14:36 [llm-attempt] id=2c88f451 model=deepseek-v4-flash-0731 label=opt kernel=78512014af2161ef round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:15:13 [llm-done] id=2c88f451 model=deepseek-v4-flash-0731 label=opt kernel=78512014af2161ef round=2 attempt=1/6 timeout_s=300 elapsed_s=37.7
+11:15:27     [opt] round 2 stage=ok ok=True cand_ms=37.36229916103184
+11:15:27   [advance] 78512014af2161ef -> cbb87bf7b50ac79b spd=1.682 wins=4
+11:15:27 [progress] completed=22 available_at_start=998 advanced=8 slow=7 failed=7 pool=984 last=78512014af2161ef outcome=win
+11:15:27   [forward-start] 3cf7980b2dcae112 hop=0 origin=syn_04316_e2d1fd24
+11:15:27   [route] 3cf7980b2dcae112 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=16526
+11:15:27 [llm-attempt] id=9ff2e372 model=deepseek-v4-flash-0731 label=opt kernel=3cf7980b2dcae112 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:16:16 [llm-done] id=9ff2e372 model=deepseek-v4-flash-0731 label=opt kernel=3cf7980b2dcae112 round=0 attempt=1/6 timeout_s=300 elapsed_s=49.0
+11:16:27     [opt] round 0 stage=ok ok=True cand_ms=1.9194136839359999
+11:16:27   [slow] 3cf7980b2dcae112 outcome=regressed spd=0.9521294681506229 -> accumulates at 00dcb62e
+11:16:27 [progress] completed=23 available_at_start=998 advanced=8 slow=8 failed=7 pool=983 last=3cf7980b2dcae112 outcome=regressed
+11:16:27   [forward-start] cc35d39d1b8856bc hop=0 origin=syn_02728_d049e647
+11:16:27   [route] cc35d39d1b8856bc hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=137025
+11:16:27 [llm-attempt] id=1d833b58 model=deepseek-v4-flash-0731 label=opt kernel=cc35d39d1b8856bc round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:16:49 [llm-done] id=1d833b58 model=deepseek-v4-flash-0731 label=opt kernel=cc35d39d1b8856bc round=0 attempt=1/6 timeout_s=300 elapsed_s=21.7
+11:17:00     [opt] round 0 stage=ok ok=True cand_ms=6.1443757731467485
+11:17:00   [advance] cc35d39d1b8856bc -> 617e55b090fe2bc0 spd=4.657 wins=5
+11:17:00 [progress] completed=24 available_at_start=998 advanced=9 slow=8 failed=7 pool=983 last=cc35d39d1b8856bc outcome=win
+11:17:00   [forward-start] 48aa0df6513f45d2 hop=0 origin=syn_04434_766b5352
+11:17:00   [route] 48aa0df6513f45d2 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=21770
+11:17:00 [llm-attempt] id=63609261 model=deepseek-v4-flash-0731 label=opt kernel=48aa0df6513f45d2 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:17:22 [llm-done] id=63609261 model=deepseek-v4-flash-0731 label=opt kernel=48aa0df6513f45d2 round=0 attempt=1/6 timeout_s=300 elapsed_s=22.2
+11:17:32     [opt] round 0 stage=ok ok=True cand_ms=3.3563768956810236
+11:17:32   [advance] 48aa0df6513f45d2 -> 4acb5fd93795166b spd=1.185 wins=5
+11:17:32 [progress] completed=25 available_at_start=998 advanced=10 slow=8 failed=7 pool=983 last=48aa0df6513f45d2 outcome=win
+11:17:32   [forward-start] aba154a9800b72bc hop=0 origin=syn_05001_f05c2b18
+11:17:32   [route] aba154a9800b72bc hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=40919
+11:17:32 [llm-attempt] id=0882191d model=deepseek-v4-flash-0731 label=opt kernel=aba154a9800b72bc round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:18:40 [llm-done] id=0882191d model=deepseek-v4-flash-0731 label=opt kernel=aba154a9800b72bc round=0 attempt=1/6 timeout_s=300 elapsed_s=68.0
+11:18:58     [opt] round 0 stage=ok ok=True cand_ms=17.994529334828258
+11:18:58   [advance] aba154a9800b72bc -> a1eb07da6a7f6931 spd=1.489 wins=6
+11:18:58 [progress] completed=26 available_at_start=998 advanced=11 slow=8 failed=7 pool=983 last=aba154a9800b72bc outcome=win
+11:18:58   [forward-start] d406126212a72f53 hop=0 origin=syn_00300_3294b2f0
+11:18:58   [route] d406126212a72f53 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=13273
+11:18:58 [llm-attempt] id=03d77fc1 model=deepseek-v4-flash-0731 label=opt kernel=d406126212a72f53 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:19:19 [llm-done] id=03d77fc1 model=deepseek-v4-flash-0731 label=opt kernel=d406126212a72f53 round=0 attempt=1/6 timeout_s=300 elapsed_s=20.7
+11:19:19 [llm-attempt] id=37e2153f model=deepseek-v4-flash-0731 label=opt kernel=d406126212a72f53 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:19:48 [llm-done] id=37e2153f model=deepseek-v4-flash-0731 label=opt kernel=d406126212a72f53 round=1 attempt=1/6 timeout_s=300 elapsed_s=29.1
+11:20:00     [opt] round 1 stage=ok ok=True cand_ms=0.9158516768366098
+11:20:00   [advance] d406126212a72f53 -> 7747fc8c49819f9f spd=1.500 wins=6
+11:20:00 [progress] completed=27 available_at_start=998 advanced=12 slow=8 failed=7 pool=983 last=d406126212a72f53 outcome=win
+11:20:00   [forward-start] 8e88f9bc5c4d2fec hop=0 origin=syn_04714_efac83e2
+11:20:00   [route] 8e88f9bc5c4d2fec hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=18277
+11:20:00 [llm-attempt] id=f6789f66 model=deepseek-v4-flash-0731 label=opt kernel=8e88f9bc5c4d2fec round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:20:34 [llm-done] id=f6789f66 model=deepseek-v4-flash-0731 label=opt kernel=8e88f9bc5c4d2fec round=0 attempt=1/6 timeout_s=300 elapsed_s=34.0
+11:20:44     [opt] round 0 stage=run_candidate ok=False cand_ms=None
+11:20:44 [llm-attempt] id=97c6c8bf model=deepseek-v4-flash-0731 label=opt kernel=8e88f9bc5c4d2fec round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:21:25 [llm-done] id=97c6c8bf model=deepseek-v4-flash-0731 label=opt kernel=8e88f9bc5c4d2fec round=1 attempt=1/6 timeout_s=300 elapsed_s=41.1
+11:21:39     [opt] round 1 stage=ok ok=True cand_ms=2.2759782150387764
+11:21:39   [advance] 8e88f9bc5c4d2fec -> 00e417e7b5ef87fd spd=1.753 wins=7
+11:21:39 [progress] completed=28 available_at_start=998 advanced=13 slow=8 failed=7 pool=983 last=8e88f9bc5c4d2fec outcome=win
+11:21:39   [forward-start] 18da5bf7919a781d hop=0 origin=syn_00470_d6b3f192
+11:21:39   [route] 18da5bf7919a781d hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=12414
+11:21:39 [llm-attempt] id=4f200ad6 model=deepseek-v4-flash-0731 label=opt kernel=18da5bf7919a781d round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:21:51 [llm-done] id=4f200ad6 model=deepseek-v4-flash-0731 label=opt kernel=18da5bf7919a781d round=0 attempt=1/6 timeout_s=300 elapsed_s=12.0
+11:22:03     [opt] round 0 stage=ok ok=True cand_ms=2.1621885243803263
+11:22:03   [advance] 18da5bf7919a781d -> 5f47141d2c36fdd0 spd=1.206 wins=8
+11:22:03 [progress] completed=29 available_at_start=998 advanced=14 slow=8 failed=7 pool=983 last=18da5bf7919a781d outcome=win
+11:22:03   [forward-start] 2848fb8770b4adff hop=0 origin=syn_03903_87f67f13
+11:22:03   [route] 2848fb8770b4adff hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=16778
+11:22:03 [llm-attempt] id=75a8e833 model=deepseek-v4-flash-0731 label=opt kernel=2848fb8770b4adff round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:22:23 [llm-done] id=75a8e833 model=deepseek-v4-flash-0731 label=opt kernel=2848fb8770b4adff round=0 attempt=1/6 timeout_s=300 elapsed_s=19.3
+11:22:32     [opt] round 0 stage=ok ok=True cand_ms=1.9460194744169712
+11:22:32   [advance] 2848fb8770b4adff -> 90d83b80d864bfe4 spd=1.287 wins=9
+11:22:32 [progress] completed=30 available_at_start=998 advanced=15 slow=8 failed=7 pool=983 last=2848fb8770b4adff outcome=win
+11:22:32   [forward-start] d12e7f53261f5cb3 hop=0 origin=syn_02481_cd687bd7
+11:22:32   [route] d12e7f53261f5cb3 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=18557
+11:22:32 [llm-attempt] id=64426d61 model=deepseek-v4-flash-0731 label=opt kernel=d12e7f53261f5cb3 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:23:39 [llm-done] id=64426d61 model=deepseek-v4-flash-0731 label=opt kernel=d12e7f53261f5cb3 round=0 attempt=1/6 timeout_s=300 elapsed_s=67.0
+11:23:51     [opt] round 0 stage=ok ok=True cand_ms=2.9831696301698685
+11:23:51   [advance] d12e7f53261f5cb3 -> 204876e481ed4007 spd=3.285 wins=10
+11:23:51 [progress] completed=31 available_at_start=998 advanced=16 slow=8 failed=7 pool=983 last=d12e7f53261f5cb3 outcome=win
+11:23:51   [forward-start] 9ab42220df93d140 hop=0 origin=syn_02024_a7070162
+11:23:51   [route] 9ab42220df93d140 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=14167
+11:23:51 [llm-attempt] id=3f1d6902 model=deepseek-v4-flash-0731 label=opt kernel=9ab42220df93d140 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:24:07 [llm-done] id=3f1d6902 model=deepseek-v4-flash-0731 label=opt kernel=9ab42220df93d140 round=0 attempt=1/6 timeout_s=300 elapsed_s=15.4
+11:24:18     [opt] round 0 stage=correctness ok=False cand_ms=None
+11:24:18 [llm-attempt] id=c8dba3e9 model=deepseek-v4-flash-0731 label=opt kernel=9ab42220df93d140 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:24:33 [llm-done] id=c8dba3e9 model=deepseek-v4-flash-0731 label=opt kernel=9ab42220df93d140 round=1 attempt=1/6 timeout_s=300 elapsed_s=15.4
+11:24:44     [opt] round 1 stage=correctness ok=False cand_ms=None
+11:24:44 [llm-attempt] id=31cf6763 model=deepseek-v4-flash-0731 label=opt kernel=9ab42220df93d140 round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:25:04 [llm-done] id=31cf6763 model=deepseek-v4-flash-0731 label=opt kernel=9ab42220df93d140 round=2 attempt=1/6 timeout_s=300 elapsed_s=19.2
+11:25:14     [opt] round 2 stage=correctness ok=False cand_ms=None
+11:25:14   [opt-failed] 9ab42220df93d140 outcome=incorrect stage=correctness; excluded from leaf activation
+11:25:14 [progress] completed=32 available_at_start=998 advanced=16 slow=8 failed=8 pool=982 last=9ab42220df93d140 outcome=incorrect
+11:25:14   [forward-start] 158d915ee3ce9223 hop=0 origin=syn_05701_6a115ccd
+11:25:14   [route] 158d915ee3ce9223 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=16988
+11:25:14 [llm-attempt] id=0aa19e44 model=deepseek-v4-flash-0731 label=opt kernel=158d915ee3ce9223 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:25:48 [llm-done] id=0aa19e44 model=deepseek-v4-flash-0731 label=opt kernel=158d915ee3ce9223 round=0 attempt=1/6 timeout_s=300 elapsed_s=34.1
+11:25:59     [opt] round 0 stage=run_candidate ok=False cand_ms=None
+11:25:59 [llm-attempt] id=7c91b2f9 model=deepseek-v4-flash-0731 label=opt kernel=158d915ee3ce9223 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:26:18 [llm-done] id=7c91b2f9 model=deepseek-v4-flash-0731 label=opt kernel=158d915ee3ce9223 round=1 attempt=1/6 timeout_s=300 elapsed_s=18.7
+11:26:29     [opt] round 1 stage=ok ok=True cand_ms=4.745626589283347
+11:26:29   [slow] 158d915ee3ce9223 outcome=no_speedup spd=1.015650874917962 -> accumulates at 00dcb62e
+11:26:29 [progress] completed=33 available_at_start=998 advanced=16 slow=9 failed=8 pool=981 last=158d915ee3ce9223 outcome=no_speedup
+11:26:29   [forward-start] 3703d6ca556f6b3b hop=0 origin=syn_04684_b21bee19
+11:26:29   [route] 3703d6ca556f6b3b hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=20551
+11:26:29 [llm-attempt] id=6adb9d4b model=deepseek-v4-flash-0731 label=opt kernel=3703d6ca556f6b3b round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:26:50 [llm-done] id=6adb9d4b model=deepseek-v4-flash-0731 label=opt kernel=3703d6ca556f6b3b round=0 attempt=1/6 timeout_s=300 elapsed_s=20.9
+11:27:01     [opt] round 0 stage=ok ok=True cand_ms=8.135323179885745
+11:27:01   [advance] 3703d6ca556f6b3b -> 2e0353c4ee5b9cc2 spd=1.143 wins=11
+11:27:01 [progress] completed=34 available_at_start=998 advanced=17 slow=9 failed=8 pool=981 last=3703d6ca556f6b3b outcome=win
+11:27:01   [forward-start] aed3c271ac6d9d67 hop=0 origin=syn_02649_8039e5b8
+11:27:01   [route] aed3c271ac6d9d67 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=15214
+11:27:01 [llm-attempt] id=df3eeb54 model=deepseek-v4-flash-0731 label=opt kernel=aed3c271ac6d9d67 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:27:23 [llm-done] id=df3eeb54 model=deepseek-v4-flash-0731 label=opt kernel=aed3c271ac6d9d67 round=0 attempt=1/6 timeout_s=300 elapsed_s=22.4
+11:28:12     [opt] round 0 stage=ok ok=True cand_ms=5.268600536510348
+11:28:12   [advance] aed3c271ac6d9d67 -> d8192324a1baba6f spd=2.734 wins=7
+11:28:12 [progress] completed=35 available_at_start=998 advanced=18 slow=9 failed=8 pool=981 last=aed3c271ac6d9d67 outcome=win
+11:28:12   [forward-start] 2276764c3f1ffe3d hop=0 origin=syn_04797_d51f7a40
+11:28:12   [route] 2276764c3f1ffe3d hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=16422
+11:28:12 [llm-attempt] id=5caee21f model=deepseek-v4-flash-0731 label=opt kernel=2276764c3f1ffe3d round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:28:31 [llm-done] id=5caee21f model=deepseek-v4-flash-0731 label=opt kernel=2276764c3f1ffe3d round=0 attempt=1/6 timeout_s=300 elapsed_s=18.7
+11:29:16     [opt] round 0 stage=ok ok=True cand_ms=4.546266980469227
+11:29:17   [advance] 2276764c3f1ffe3d -> 9549f9cbd86d0e85 spd=1.236 wins=12
+11:29:17 [progress] completed=36 available_at_start=998 advanced=19 slow=9 failed=8 pool=981 last=2276764c3f1ffe3d outcome=win
+11:29:17   [forward-start] a94c4b1cd23c93de hop=0 origin=syn_02886_6b821819
+11:29:17   [route] a94c4b1cd23c93de hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=48578
+11:29:17 [llm-attempt] id=2d43eb2c model=deepseek-v4-flash-0731 label=opt kernel=a94c4b1cd23c93de round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:29:39 [llm-done] id=2d43eb2c model=deepseek-v4-flash-0731 label=opt kernel=a94c4b1cd23c93de round=0 attempt=1/6 timeout_s=300 elapsed_s=22.8
+11:29:52     [opt] round 0 stage=run_candidate ok=False cand_ms=None
+11:29:52 [llm-attempt] id=a8fc0efc model=deepseek-v4-flash-0731 label=opt kernel=a94c4b1cd23c93de round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:30:19 [llm-done] id=a8fc0efc model=deepseek-v4-flash-0731 label=opt kernel=a94c4b1cd23c93de round=1 attempt=1/6 timeout_s=300 elapsed_s=26.9
+11:30:29     [opt] round 1 stage=run_candidate ok=False cand_ms=None
+11:30:29 [llm-attempt] id=426789a7 model=deepseek-v4-flash-0731 label=opt kernel=a94c4b1cd23c93de round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:31:05 [llm-done] id=426789a7 model=deepseek-v4-flash-0731 label=opt kernel=a94c4b1cd23c93de round=2 attempt=1/6 timeout_s=300 elapsed_s=35.8
+11:31:24     [opt] round 2 stage=run_candidate ok=False cand_ms=None
+11:31:24   [opt-failed] a94c4b1cd23c93de outcome=compile_fail stage=run_candidate; excluded from leaf activation
+11:31:24 [progress] completed=37 available_at_start=998 advanced=19 slow=9 failed=9 pool=980 last=a94c4b1cd23c93de outcome=compile_fail
+11:31:24   [forward-start] a9472f4a6ab55c27 hop=0 origin=syn_03970_d68bb1ab
+11:31:24   [route] a9472f4a6ab55c27 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=16133
+11:31:24 [llm-attempt] id=70971415 model=deepseek-v4-flash-0731 label=opt kernel=a9472f4a6ab55c27 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:31:52 [llm-done] id=70971415 model=deepseek-v4-flash-0731 label=opt kernel=a9472f4a6ab55c27 round=0 attempt=1/6 timeout_s=300 elapsed_s=28.2
+11:32:34     [opt] round 0 stage=run_candidate ok=False cand_ms=None
+11:32:34 [llm-attempt] id=499281c5 model=deepseek-v4-flash-0731 label=opt kernel=a9472f4a6ab55c27 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:33:02 [llm-done] id=499281c5 model=deepseek-v4-flash-0731 label=opt kernel=a9472f4a6ab55c27 round=1 attempt=1/6 timeout_s=300 elapsed_s=27.1
+11:33:13     [opt] round 1 stage=run_candidate ok=False cand_ms=None
+11:33:13 [llm-attempt] id=5b8b79d0 model=deepseek-v4-flash-0731 label=opt kernel=a9472f4a6ab55c27 round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:33:38 [llm-done] id=5b8b79d0 model=deepseek-v4-flash-0731 label=opt kernel=a9472f4a6ab55c27 round=2 attempt=1/6 timeout_s=300 elapsed_s=25.0
+11:33:48     [opt] round 2 stage=run_candidate ok=False cand_ms=None
+11:33:48   [opt-failed] a9472f4a6ab55c27 outcome=compile_fail stage=run_candidate; excluded from leaf activation
+11:33:48 [progress] completed=38 available_at_start=998 advanced=19 slow=9 failed=10 pool=979 last=a9472f4a6ab55c27 outcome=compile_fail
+11:33:48   [forward-start] f148cf4cb85aa175 hop=0 origin=syn_00129_0e410568
+11:33:48   [route] f148cf4cb85aa175 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=16788
+11:33:48 [llm-attempt] id=1706b01d model=deepseek-v4-flash-0731 label=opt kernel=f148cf4cb85aa175 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:34:12 [llm-done] id=1706b01d model=deepseek-v4-flash-0731 label=opt kernel=f148cf4cb85aa175 round=0 attempt=1/6 timeout_s=300 elapsed_s=23.7
+11:34:23     [opt] round 0 stage=correctness ok=False cand_ms=None
+11:34:23 [llm-attempt] id=ee8c3d82 model=deepseek-v4-flash-0731 label=opt kernel=f148cf4cb85aa175 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:34:52 [llm-done] id=ee8c3d82 model=deepseek-v4-flash-0731 label=opt kernel=f148cf4cb85aa175 round=1 attempt=1/6 timeout_s=300 elapsed_s=29.0
+11:35:04     [opt] round 1 stage=ok ok=True cand_ms=52.302086958661675
+11:35:04   [slow] f148cf4cb85aa175 outcome=regressed spd=0.10529279815933842 -> accumulates at 00dcb62e
+11:35:04 [progress] completed=39 available_at_start=998 advanced=19 slow=10 failed=10 pool=978 last=f148cf4cb85aa175 outcome=regressed
+11:35:04   [forward-start] 63cce872d3b679be hop=0 origin=syn_01837_f724c774
+11:35:04   [route] 63cce872d3b679be hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=68628
+11:35:04 [llm-attempt] id=8e15b5a1 model=deepseek-v4-flash-0731 label=opt kernel=63cce872d3b679be round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:35:54 [llm-done] id=8e15b5a1 model=deepseek-v4-flash-0731 label=opt kernel=63cce872d3b679be round=0 attempt=1/6 timeout_s=300 elapsed_s=50.0
+11:36:05     [opt] round 0 stage=ok ok=True cand_ms=2.681751735508442
+11:36:05   [advance] 63cce872d3b679be -> b83d8fc1869e1033 spd=3.405 wins=13
+11:36:05 [progress] completed=40 available_at_start=998 advanced=20 slow=10 failed=10 pool=978 last=63cce872d3b679be outcome=win
+11:36:05 [checkpoint] forwards=40 advanced=20 slow=10 failed=10 pool=978; routing continues
+11:36:05 [checkpoint-save] id=000003 reason=forward_interval resume='--resume 20260826T023455Z --checkpoint 000003'
+11:36:05   [forward-start] 8794607bfe7dfbad hop=0 origin=syn_00396_442e45a3
+11:36:05   [route] 8794607bfe7dfbad hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=16001
+11:36:05 [llm-attempt] id=03fa4241 model=deepseek-v4-flash-0731 label=opt kernel=8794607bfe7dfbad round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:36:25 [llm-done] id=03fa4241 model=deepseek-v4-flash-0731 label=opt kernel=8794607bfe7dfbad round=0 attempt=1/6 timeout_s=300 elapsed_s=20.3
+11:36:36     [opt] round 0 stage=correctness ok=False cand_ms=None
+11:36:36 [llm-attempt] id=4e7e1d83 model=deepseek-v4-flash-0731 label=opt kernel=8794607bfe7dfbad round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:37:09 [llm-done] id=4e7e1d83 model=deepseek-v4-flash-0731 label=opt kernel=8794607bfe7dfbad round=1 attempt=1/6 timeout_s=300 elapsed_s=32.3
+11:37:20     [opt] round 1 stage=correctness ok=False cand_ms=None
+11:37:20 [llm-attempt] id=2d5c1ebb model=deepseek-v4-flash-0731 label=opt kernel=8794607bfe7dfbad round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:37:48 [llm-done] id=2d5c1ebb model=deepseek-v4-flash-0731 label=opt kernel=8794607bfe7dfbad round=2 attempt=1/6 timeout_s=300 elapsed_s=27.2
+11:37:58     [opt] round 2 stage=correctness ok=False cand_ms=None
+11:37:58   [opt-failed] 8794607bfe7dfbad outcome=incorrect stage=correctness; excluded from leaf activation
+11:37:58 [progress] completed=41 available_at_start=998 advanced=20 slow=10 failed=11 pool=977 last=8794607bfe7dfbad outcome=incorrect
+11:37:58   [forward-start] 86acd6e0e3dd0e21 hop=0 origin=syn_04514_2152fa8d
+11:37:58   [route] 86acd6e0e3dd0e21 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=14819
+11:37:58 [llm-attempt] id=936faa4b model=deepseek-v4-flash-0731 label=opt kernel=86acd6e0e3dd0e21 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:38:23 [llm-done] id=936faa4b model=deepseek-v4-flash-0731 label=opt kernel=86acd6e0e3dd0e21 round=0 attempt=1/6 timeout_s=300 elapsed_s=24.6
+11:38:36     [opt] round 0 stage=ok ok=True cand_ms=1.9017220474779606
+11:38:36   [advance] 86acd6e0e3dd0e21 -> 68ee06867f1ec9e5 spd=1.497 wins=14
+11:38:36 [progress] completed=42 available_at_start=998 advanced=21 slow=10 failed=11 pool=977 last=86acd6e0e3dd0e21 outcome=win
+11:38:36   [forward-start] 23dad03fb82d4078 hop=0 origin=syn_00655_30d5d57d
+11:38:36   [route] 23dad03fb82d4078 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=16583
+11:38:36 [llm-attempt] id=4e14a15f model=deepseek-v4-flash-0731 label=opt kernel=23dad03fb82d4078 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:38:58 [llm-done] id=4e14a15f model=deepseek-v4-flash-0731 label=opt kernel=23dad03fb82d4078 round=0 attempt=1/6 timeout_s=300 elapsed_s=22.2
+11:39:12     [opt] round 0 stage=ok ok=True cand_ms=4.62841079570353
+11:39:12   [slow] 23dad03fb82d4078 outcome=win spd=1.0217303566454699 -> accumulates at 9c244a15
+11:39:12 [progress] completed=43 available_at_start=998 advanced=21 slow=11 failed=11 pool=976 last=23dad03fb82d4078 outcome=win
+11:39:12   [forward-start] fd296ecfd22b99ff hop=0 origin=syn_04841_1224b81c
+11:39:12   [route] fd296ecfd22b99ff hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=84396
+11:39:12 [llm-attempt] id=118a0a45 model=deepseek-v4-flash-0731 label=opt kernel=fd296ecfd22b99ff round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:39:31 [llm-done] id=118a0a45 model=deepseek-v4-flash-0731 label=opt kernel=fd296ecfd22b99ff round=0 attempt=1/6 timeout_s=300 elapsed_s=19.4
+11:39:41     [opt] round 0 stage=run_candidate ok=False cand_ms=None
+11:39:41 [llm-attempt] id=732617bf model=deepseek-v4-flash-0731 label=opt kernel=fd296ecfd22b99ff round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:40:28 [llm-done] id=732617bf model=deepseek-v4-flash-0731 label=opt kernel=fd296ecfd22b99ff round=1 attempt=1/6 timeout_s=300 elapsed_s=46.8
+11:40:38     [opt] round 1 stage=run_candidate ok=False cand_ms=None
+11:40:39 [llm-attempt] id=5c0c0ec3 model=deepseek-v4-flash-0731 label=opt kernel=fd296ecfd22b99ff round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:41:01 [llm-done] id=5c0c0ec3 model=deepseek-v4-flash-0731 label=opt kernel=fd296ecfd22b99ff round=2 attempt=1/6 timeout_s=300 elapsed_s=23.0
+11:46:07     [opt] round 2 stage=timeout ok=False cand_ms=None
+11:46:07   [opt-failed] fd296ecfd22b99ff outcome=compile_fail stage=timeout; excluded from leaf activation
+11:46:07 [progress] completed=44 available_at_start=998 advanced=21 slow=11 failed=12 pool=975 last=fd296ecfd22b99ff outcome=compile_fail
+11:46:07   [forward-start] d8cd55d2b98101a3 hop=0 origin=syn_04981_25414a43
+11:46:07   [route] d8cd55d2b98101a3 hop=0 -> leaf=70f21b3a (compute) path=root/70f21b3a measured=5 cached=0 profile_ms=15518
+11:46:07 [llm-attempt] id=9cab4015 model=deepseek-v4-flash-0731 label=opt kernel=d8cd55d2b98101a3 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:46:33 [llm-done] id=9cab4015 model=deepseek-v4-flash-0731 label=opt kernel=d8cd55d2b98101a3 round=0 attempt=1/6 timeout_s=300 elapsed_s=25.8
+11:46:42     [opt] round 0 stage=ok ok=True cand_ms=2.3597022518515587
+11:46:42   [advance] d8cd55d2b98101a3 -> d5b01669217f15b8 spd=1.367 wins=1
+11:46:42 [progress] completed=45 available_at_start=998 advanced=22 slow=11 failed=12 pool=975 last=d8cd55d2b98101a3 outcome=win
+11:46:42   [forward-start] 018034deed5ac0e9 hop=0 origin=syn_05321_462022a5
+11:46:42   [route] 018034deed5ac0e9 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=14575
+11:46:42 [llm-attempt] id=dae30265 model=deepseek-v4-flash-0731 label=opt kernel=018034deed5ac0e9 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:47:00 [llm-done] id=dae30265 model=deepseek-v4-flash-0731 label=opt kernel=018034deed5ac0e9 round=0 attempt=1/6 timeout_s=300 elapsed_s=17.1
+11:47:41     [opt] round 0 stage=ok ok=True cand_ms=2.5807199999690056
+11:47:41   [advance] 018034deed5ac0e9 -> f49ac5d2bbca740a spd=1.424 wins=15
+11:47:41 [progress] completed=46 available_at_start=998 advanced=23 slow=11 failed=12 pool=975 last=018034deed5ac0e9 outcome=win
+11:47:41   [forward-start] e3358088c586829b hop=0 origin=syn_04953_9105caf7
+11:47:41   [route] e3358088c586829b hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=16381
+11:47:41 [llm-attempt] id=d9f25e5f model=deepseek-v4-flash-0731 label=opt kernel=e3358088c586829b round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:48:09 [llm-done] id=d9f25e5f model=deepseek-v4-flash-0731 label=opt kernel=e3358088c586829b round=0 attempt=1/6 timeout_s=300 elapsed_s=27.4
+11:48:18     [opt] round 0 stage=ok ok=True cand_ms=3.5078146029263735
+11:48:18   [advance] e3358088c586829b -> d041ce49b60c27a6 spd=1.318 wins=16
+11:48:18 [progress] completed=47 available_at_start=998 advanced=24 slow=11 failed=12 pool=975 last=e3358088c586829b outcome=win
+11:48:18   [forward-start] 5f5b8f0add094f12 hop=0 origin=syn_02889_c9f35415
+11:48:18   [route] 5f5b8f0add094f12 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=13480
+11:48:18 [llm-attempt] id=d7944f90 model=deepseek-v4-flash-0731 label=opt kernel=5f5b8f0add094f12 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:48:42 [llm-done] id=d7944f90 model=deepseek-v4-flash-0731 label=opt kernel=5f5b8f0add094f12 round=0 attempt=1/6 timeout_s=300 elapsed_s=24.3
+11:48:52     [opt] round 0 stage=ok ok=True cand_ms=1.7089869361370802
+11:48:52   [slow] 5f5b8f0add094f12 outcome=no_speedup spd=1.0007524479080028 -> accumulates at 9c244a15
+11:48:52 [progress] completed=48 available_at_start=998 advanced=24 slow=12 failed=12 pool=974 last=5f5b8f0add094f12 outcome=no_speedup
+11:48:52   [forward-start] 7942a043989de6a0 hop=0 origin=syn_03262_00d6b5b1
+11:48:52   [route] 7942a043989de6a0 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=15395
+11:48:52 [llm-attempt] id=d844c842 model=deepseek-v4-flash-0731 label=opt kernel=7942a043989de6a0 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:49:08 [llm-done] id=d844c842 model=deepseek-v4-flash-0731 label=opt kernel=7942a043989de6a0 round=0 attempt=1/6 timeout_s=300 elapsed_s=16.2
+11:49:51     [opt] round 0 stage=ok ok=True cand_ms=3.398681990802288
+11:49:51   [advance] 7942a043989de6a0 -> 02745314fdf8d616 spd=1.155 wins=8
+11:49:51 [progress] completed=49 available_at_start=998 advanced=25 slow=12 failed=12 pool=974 last=7942a043989de6a0 outcome=win
+11:49:51   [forward-start] 0ab5477f7fc9eb92 hop=0 origin=syn_04642_ee537b5b
+11:49:51   [route] 0ab5477f7fc9eb92 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=17829
+11:49:51 [llm-attempt] id=1f6a0058 model=deepseek-v4-flash-0731 label=opt kernel=0ab5477f7fc9eb92 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:50:16 [llm-done] id=1f6a0058 model=deepseek-v4-flash-0731 label=opt kernel=0ab5477f7fc9eb92 round=0 attempt=1/6 timeout_s=300 elapsed_s=25.6
+11:50:26     [opt] round 0 stage=run_candidate ok=False cand_ms=None
+11:50:26 [llm-attempt] id=39a24e41 model=deepseek-v4-flash-0731 label=opt kernel=0ab5477f7fc9eb92 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:50:40 [llm-done] id=39a24e41 model=deepseek-v4-flash-0731 label=opt kernel=0ab5477f7fc9eb92 round=1 attempt=1/6 timeout_s=300 elapsed_s=14.2
+11:50:40 [llm-attempt] id=edd804ff model=deepseek-v4-flash-0731 label=opt kernel=0ab5477f7fc9eb92 round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:51:06 [llm-done] id=edd804ff model=deepseek-v4-flash-0731 label=opt kernel=0ab5477f7fc9eb92 round=2 attempt=1/6 timeout_s=300 elapsed_s=26.2
+11:51:16     [opt] round 2 stage=correctness ok=False cand_ms=None
+11:51:16   [opt-failed] 0ab5477f7fc9eb92 outcome=incorrect stage=correctness; excluded from leaf activation
+11:51:16 [progress] completed=50 available_at_start=998 advanced=25 slow=12 failed=13 pool=973 last=0ab5477f7fc9eb92 outcome=incorrect
+11:51:16   [forward-start] c0e5dd96c304ef47 hop=0 origin=syn_04035_4a8d8186
+11:51:16   [route] c0e5dd96c304ef47 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=14020
+11:51:16 [llm-attempt] id=0da926c4 model=deepseek-v4-flash-0731 label=opt kernel=c0e5dd96c304ef47 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:51:38 [llm-done] id=0da926c4 model=deepseek-v4-flash-0731 label=opt kernel=c0e5dd96c304ef47 round=0 attempt=1/6 timeout_s=300 elapsed_s=21.6
+11:51:48     [opt] round 0 stage=ok ok=True cand_ms=9.93288797326386
+11:51:48   [slow] c0e5dd96c304ef47 outcome=regressed spd=0.18869063199922348 -> accumulates at 9c244a15
+11:51:48 [progress] completed=51 available_at_start=998 advanced=25 slow=13 failed=13 pool=972 last=c0e5dd96c304ef47 outcome=regressed
+11:51:48   [forward-start] 5a53222cb40d1eb7 hop=0 origin=syn_01433_f8e90171
+11:51:48   [route] 5a53222cb40d1eb7 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=18621
+11:51:48 [llm-attempt] id=b1f810a5 model=deepseek-v4-flash-0731 label=opt kernel=5a53222cb40d1eb7 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:52:08 [llm-done] id=b1f810a5 model=deepseek-v4-flash-0731 label=opt kernel=5a53222cb40d1eb7 round=0 attempt=1/6 timeout_s=300 elapsed_s=20.9
+11:52:19     [opt] round 0 stage=ok ok=True cand_ms=7.4260474648326635
+11:52:19   [advance] 5a53222cb40d1eb7 -> 1064ed7543f4a380 spd=1.305 wins=17
+11:52:19 [progress] completed=52 available_at_start=998 advanced=26 slow=13 failed=13 pool=972 last=5a53222cb40d1eb7 outcome=win
+11:52:19   [forward-start] 0132cb9c6d2d59a6 hop=0 origin=syn_00590_8c607e17
+11:52:19   [route] 0132cb9c6d2d59a6 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=82558
+11:52:19 [llm-attempt] id=5a0d9565 model=deepseek-v4-flash-0731 label=opt kernel=0132cb9c6d2d59a6 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:52:40 [llm-done] id=5a0d9565 model=deepseek-v4-flash-0731 label=opt kernel=0132cb9c6d2d59a6 round=0 attempt=1/6 timeout_s=300 elapsed_s=20.7
+11:53:23     [opt] round 0 stage=ok ok=True cand_ms=2.3426010739058256
+11:53:23   [advance] 0132cb9c6d2d59a6 -> 62a5111b9f07303c spd=6.754 wins=9
+11:53:23 [progress] completed=53 available_at_start=998 advanced=27 slow=13 failed=13 pool=972 last=0132cb9c6d2d59a6 outcome=win
+11:53:23   [forward-start] 79ace2093ac33d3a hop=0 origin=syn_01849_e73abf88
+11:53:23   [route] 79ace2093ac33d3a hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=28436
+11:53:23 [llm-attempt] id=334a0d46 model=deepseek-v4-flash-0731 label=opt kernel=79ace2093ac33d3a round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:53:50 [llm-done] id=334a0d46 model=deepseek-v4-flash-0731 label=opt kernel=79ace2093ac33d3a round=0 attempt=1/6 timeout_s=300 elapsed_s=27.6
+11:53:59     [opt] round 0 stage=correctness ok=False cand_ms=None
+11:53:59 [llm-attempt] id=b958735d model=deepseek-v4-flash-0731 label=opt kernel=79ace2093ac33d3a round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:54:26 [llm-done] id=b958735d model=deepseek-v4-flash-0731 label=opt kernel=79ace2093ac33d3a round=1 attempt=1/6 timeout_s=300 elapsed_s=26.4
+11:54:34     [opt] round 1 stage=correctness ok=False cand_ms=None
+11:54:34 [llm-attempt] id=b3e8480e model=deepseek-v4-flash-0731 label=opt kernel=79ace2093ac33d3a round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:54:55 [llm-done] id=b3e8480e model=deepseek-v4-flash-0731 label=opt kernel=79ace2093ac33d3a round=2 attempt=1/6 timeout_s=300 elapsed_s=20.9
+11:55:04     [opt] round 2 stage=correctness ok=False cand_ms=None
+11:55:04   [opt-failed] 79ace2093ac33d3a outcome=incorrect stage=correctness; excluded from leaf activation
+11:55:04 [progress] completed=54 available_at_start=998 advanced=27 slow=13 failed=14 pool=971 last=79ace2093ac33d3a outcome=incorrect
+11:55:04   [forward-start] 1276c27d0c17263a hop=0 origin=syn_04096_e3012baf
+11:55:04   [route] 1276c27d0c17263a hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=16119
+11:55:04 [llm-attempt] id=98bd99b9 model=deepseek-v4-flash-0731 label=opt kernel=1276c27d0c17263a round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:55:33 [llm-done] id=98bd99b9 model=deepseek-v4-flash-0731 label=opt kernel=1276c27d0c17263a round=0 attempt=1/6 timeout_s=300 elapsed_s=28.5
+11:56:16     [opt] round 0 stage=ok ok=True cand_ms=1.141630345955491
+11:56:16   [advance] 1276c27d0c17263a -> 245aa93386d5c56d spd=1.244 wins=18
+11:56:16 [progress] completed=55 available_at_start=998 advanced=28 slow=13 failed=14 pool=971 last=1276c27d0c17263a outcome=win
+11:56:16   [forward-start] 4f832f0f616178b7 hop=0 origin=syn_03019_7020daf1
+11:56:16   [route] 4f832f0f616178b7 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=16188
+11:56:16 [llm-attempt] id=37c05541 model=deepseek-v4-flash-0731 label=opt kernel=4f832f0f616178b7 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:56:42 [llm-done] id=37c05541 model=deepseek-v4-flash-0731 label=opt kernel=4f832f0f616178b7 round=0 attempt=1/6 timeout_s=300 elapsed_s=25.8
+11:56:52     [opt] round 0 stage=correctness ok=False cand_ms=None
+11:56:52 [llm-attempt] id=b3d78260 model=deepseek-v4-flash-0731 label=opt kernel=4f832f0f616178b7 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:57:09 [llm-done] id=b3d78260 model=deepseek-v4-flash-0731 label=opt kernel=4f832f0f616178b7 round=1 attempt=1/6 timeout_s=300 elapsed_s=16.7
+11:57:19     [opt] round 1 stage=ok ok=True cand_ms=1.177024096250534
+11:57:19   [advance] 4f832f0f616178b7 -> e5be627bb903fdd3 spd=2.627 wins=19
+11:57:19 [progress] completed=56 available_at_start=998 advanced=29 slow=13 failed=14 pool=971 last=4f832f0f616178b7 outcome=win
+11:57:19   [forward-start] 0df6cae81a060c2d hop=0 origin=syn_02602_c98abfce
+11:57:19   [route] 0df6cae81a060c2d hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=16566
+11:57:19 [llm-attempt] id=f075abd2 model=deepseek-v4-flash-0731 label=opt kernel=0df6cae81a060c2d round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:58:07 [llm-done] id=f075abd2 model=deepseek-v4-flash-0731 label=opt kernel=0df6cae81a060c2d round=0 attempt=1/6 timeout_s=300 elapsed_s=47.9
+11:58:17     [opt] round 0 stage=ok ok=True cand_ms=3.662762464955449
+11:58:17   [slow] 0df6cae81a060c2d outcome=no_speedup spd=0.9997099440006941 -> accumulates at 00dcb62e
+11:58:17 [progress] completed=57 available_at_start=998 advanced=29 slow=14 failed=14 pool=970 last=0df6cae81a060c2d outcome=no_speedup
+11:58:17   [forward-start] 5a1fe0eb374afa6f hop=0 origin=syn_02476_58355306
+11:58:17   [route] 5a1fe0eb374afa6f hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=19466
+11:58:17 [llm-attempt] id=1a7d79c9 model=deepseek-v4-flash-0731 label=opt kernel=5a1fe0eb374afa6f round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:59:24 [llm-done] id=1a7d79c9 model=deepseek-v4-flash-0731 label=opt kernel=5a1fe0eb374afa6f round=0 attempt=1/6 timeout_s=300 elapsed_s=66.5
+11:59:24 [llm-attempt] id=3cfa6bb6 model=deepseek-v4-flash-0731 label=opt kernel=5a1fe0eb374afa6f round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+11:59:52 [llm-done] id=3cfa6bb6 model=deepseek-v4-flash-0731 label=opt kernel=5a1fe0eb374afa6f round=1 attempt=1/6 timeout_s=300 elapsed_s=28.3
+11:59:52 [llm-attempt] id=b3e69d87 model=deepseek-v4-flash-0731 label=opt kernel=5a1fe0eb374afa6f round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:00:19 [llm-done] id=b3e69d87 model=deepseek-v4-flash-0731 label=opt kernel=5a1fe0eb374afa6f round=2 attempt=1/6 timeout_s=300 elapsed_s=27.2
+12:00:19   [opt-failed] 5a1fe0eb374afa6f outcome=compile_fail stage=local_check; excluded from leaf activation
+12:00:19 [progress] completed=58 available_at_start=998 advanced=29 slow=14 failed=15 pool=969 last=5a1fe0eb374afa6f outcome=compile_fail
+12:00:19   [forward-start] 8941d1447819248d hop=0 origin=syn_01325_612b62c2
+12:00:19   [route] 8941d1447819248d hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=13129
+12:00:19 [llm-attempt] id=9f794a8d model=deepseek-v4-flash-0731 label=opt kernel=8941d1447819248d round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:00:46 [llm-done] id=9f794a8d model=deepseek-v4-flash-0731 label=opt kernel=8941d1447819248d round=0 attempt=1/6 timeout_s=300 elapsed_s=27.1
+12:00:56     [opt] round 0 stage=run_candidate ok=False cand_ms=None
+12:00:56 [llm-attempt] id=2f9d8168 model=deepseek-v4-flash-0731 label=opt kernel=8941d1447819248d round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:01:29 [llm-done] id=2f9d8168 model=deepseek-v4-flash-0731 label=opt kernel=8941d1447819248d round=1 attempt=1/6 timeout_s=300 elapsed_s=33.4
+12:07:07     [opt] round 1 stage=timeout ok=False cand_ms=None
+12:07:07 [llm-attempt] id=006537c2 model=deepseek-v4-flash-0731 label=opt kernel=8941d1447819248d round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:07:49 [llm-done] id=006537c2 model=deepseek-v4-flash-0731 label=opt kernel=8941d1447819248d round=2 attempt=1/6 timeout_s=300 elapsed_s=41.7
+12:07:57     [opt] round 2 stage=run_candidate ok=False cand_ms=None
+12:07:57   [opt-failed] 8941d1447819248d outcome=compile_fail stage=run_candidate; excluded from leaf activation
+12:07:57 [progress] completed=59 available_at_start=998 advanced=29 slow=14 failed=16 pool=968 last=8941d1447819248d outcome=compile_fail
+12:07:57   [forward-start] 8ec04aee91dd7bd2 hop=0 origin=syn_00289_eeea1290
+12:07:57   [route] 8ec04aee91dd7bd2 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=14702
+12:07:57 [llm-attempt] id=7b931119 model=deepseek-v4-flash-0731 label=opt kernel=8ec04aee91dd7bd2 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:08:47 [llm-done] id=7b931119 model=deepseek-v4-flash-0731 label=opt kernel=8ec04aee91dd7bd2 round=0 attempt=1/6 timeout_s=300 elapsed_s=49.6
+12:08:47 [llm-attempt] id=d8db8771 model=deepseek-v4-flash-0731 label=opt kernel=8ec04aee91dd7bd2 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:09:36 [llm-done] id=d8db8771 model=deepseek-v4-flash-0731 label=opt kernel=8ec04aee91dd7bd2 round=1 attempt=1/6 timeout_s=300 elapsed_s=49.2
+12:11:09     [opt] round 1 stage=ok ok=True cand_ms=0.6511399988085032
+12:11:09   [advance] 8ec04aee91dd7bd2 -> 0610669850f383ae spd=4.500 wins=20
+12:11:09 [progress] completed=60 available_at_start=998 advanced=30 slow=14 failed=16 pool=968 last=8ec04aee91dd7bd2 outcome=win
+12:11:09 [checkpoint] forwards=60 advanced=30 slow=14 failed=16 pool=968; routing continues
+12:11:09 [checkpoint-save] id=000004 reason=forward_interval resume='--resume 20260826T023455Z --checkpoint 000004'
+12:11:09   [forward-start] 9c9dfe4c374818ef hop=0 origin=syn_03675_2e4b6d53
+12:11:09   [route] 9c9dfe4c374818ef hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=15912
+12:11:09 [llm-attempt] id=c2be8928 model=deepseek-v4-flash-0731 label=opt kernel=9c9dfe4c374818ef round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:11:29 [llm-done] id=c2be8928 model=deepseek-v4-flash-0731 label=opt kernel=9c9dfe4c374818ef round=0 attempt=1/6 timeout_s=300 elapsed_s=20.1
+12:11:47     [opt] round 0 stage=correctness ok=False cand_ms=None
+12:11:47 [llm-attempt] id=787f1e40 model=deepseek-v4-flash-0731 label=opt kernel=9c9dfe4c374818ef round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:12:15 [llm-done] id=787f1e40 model=deepseek-v4-flash-0731 label=opt kernel=9c9dfe4c374818ef round=1 attempt=1/6 timeout_s=300 elapsed_s=28.1
+12:12:24     [opt] round 1 stage=correctness ok=False cand_ms=None
+12:12:24 [llm-attempt] id=915d4bd0 model=deepseek-v4-flash-0731 label=opt kernel=9c9dfe4c374818ef round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:12:52 [llm-done] id=915d4bd0 model=deepseek-v4-flash-0731 label=opt kernel=9c9dfe4c374818ef round=2 attempt=1/6 timeout_s=300 elapsed_s=28.1
+12:13:12     [opt] round 2 stage=ok ok=True cand_ms=1.1904127895832062
+12:13:12   [advance] 9c9dfe4c374818ef -> ba81a88572fa600a spd=1.190 wins=21
+12:13:12 [progress] completed=61 available_at_start=998 advanced=31 slow=14 failed=16 pool=968 last=9c9dfe4c374818ef outcome=win
+12:13:12   [forward-start] 9902311dbfa595e6 hop=0 origin=syn_00723_293162cc
+12:13:12   [route] 9902311dbfa595e6 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=14571
+12:13:12 [llm-attempt] id=00cd2052 model=deepseek-v4-flash-0731 label=opt kernel=9902311dbfa595e6 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:13:34 [llm-done] id=00cd2052 model=deepseek-v4-flash-0731 label=opt kernel=9902311dbfa595e6 round=0 attempt=1/6 timeout_s=300 elapsed_s=21.7
+12:13:43     [opt] round 0 stage=run_candidate ok=False cand_ms=None
+12:13:43 [llm-attempt] id=6c3f929b model=deepseek-v4-flash-0731 label=opt kernel=9902311dbfa595e6 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:14:20 [llm-done] id=6c3f929b model=deepseek-v4-flash-0731 label=opt kernel=9902311dbfa595e6 round=1 attempt=1/6 timeout_s=300 elapsed_s=36.1
+12:14:29     [opt] round 1 stage=ok ok=True cand_ms=0.7452440913766623
+12:14:29   [advance] 9902311dbfa595e6 -> 07eaa4ad36a82f55 spd=1.360 wins=22
+12:14:29 [progress] completed=62 available_at_start=998 advanced=32 slow=14 failed=16 pool=968 last=9902311dbfa595e6 outcome=win
+12:14:29   [forward-start] 767bc9c576ce51ad hop=0 origin=syn_00907_2508c2b4
+12:14:29   [route] 767bc9c576ce51ad hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=20092
+12:14:29 [llm-attempt] id=66520905 model=deepseek-v4-flash-0731 label=opt kernel=767bc9c576ce51ad round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:15:33 [llm-done] id=66520905 model=deepseek-v4-flash-0731 label=opt kernel=767bc9c576ce51ad round=0 attempt=1/6 timeout_s=300 elapsed_s=63.9
+12:15:42     [opt] round 0 stage=ok ok=True cand_ms=7.389112608507276
+12:15:42   [advance] 767bc9c576ce51ad -> 90204a30b77b7961 spd=1.202 wins=23
+12:15:42 [progress] completed=63 available_at_start=998 advanced=33 slow=14 failed=16 pool=968 last=767bc9c576ce51ad outcome=win
+12:15:42   [forward-start] a6992c5ede48a340 hop=0 origin=syn_02969_0ebad0c7
+12:15:42   [route] a6992c5ede48a340 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=16824
+12:15:42 [llm-attempt] id=3deea8d6 model=deepseek-v4-flash-0731 label=opt kernel=a6992c5ede48a340 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:16:12 [llm-done] id=3deea8d6 model=deepseek-v4-flash-0731 label=opt kernel=a6992c5ede48a340 round=0 attempt=1/6 timeout_s=300 elapsed_s=30.2
+12:16:23     [opt] round 0 stage=ok ok=True cand_ms=14.076889026910067
+12:16:23   [advance] a6992c5ede48a340 -> 2ccb5d3da3afc0f9 spd=2.534 wins=10
+12:16:23 [progress] completed=64 available_at_start=998 advanced=34 slow=14 failed=16 pool=968 last=a6992c5ede48a340 outcome=win
+12:16:23   [forward-start] 473074a2f050fd24 hop=0 origin=syn_02404_050a2e34
+12:16:23   [route] 473074a2f050fd24 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=15880
+12:16:23 [llm-attempt] id=bf440e58 model=deepseek-v4-flash-0731 label=opt kernel=473074a2f050fd24 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:16:51 [llm-done] id=bf440e58 model=deepseek-v4-flash-0731 label=opt kernel=473074a2f050fd24 round=0 attempt=1/6 timeout_s=300 elapsed_s=28.2
+12:17:44     [opt] round 0 stage=run_candidate ok=False cand_ms=None
+12:17:44 [llm-attempt] id=78f2e2b5 model=deepseek-v4-flash-0731 label=opt kernel=473074a2f050fd24 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:18:11 [llm-done] id=78f2e2b5 model=deepseek-v4-flash-0731 label=opt kernel=473074a2f050fd24 round=1 attempt=1/6 timeout_s=300 elapsed_s=27.7
+12:18:21     [opt] round 1 stage=run_candidate ok=False cand_ms=None
+12:18:21 [llm-attempt] id=98a57e06 model=deepseek-v4-flash-0731 label=opt kernel=473074a2f050fd24 round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:19:14 [llm-done] id=98a57e06 model=deepseek-v4-flash-0731 label=opt kernel=473074a2f050fd24 round=2 attempt=1/6 timeout_s=300 elapsed_s=53.7
+12:20:05     [opt] round 2 stage=run_candidate ok=False cand_ms=None
+12:20:05   [opt-failed] 473074a2f050fd24 outcome=compile_fail stage=run_candidate; excluded from leaf activation
+12:20:05 [progress] completed=65 available_at_start=998 advanced=34 slow=14 failed=17 pool=967 last=473074a2f050fd24 outcome=compile_fail
+12:20:05   [forward-start] aed51b4a44e7b405 hop=0 origin=syn_00713_9e77ca20
+12:20:05   [route] aed51b4a44e7b405 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=20005
+12:20:05 [llm-attempt] id=881e4d71 model=deepseek-v4-flash-0731 label=opt kernel=aed51b4a44e7b405 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:20:27 [llm-done] id=881e4d71 model=deepseek-v4-flash-0731 label=opt kernel=aed51b4a44e7b405 round=0 attempt=1/6 timeout_s=300 elapsed_s=21.8
+12:20:38     [opt] round 0 stage=run_candidate ok=False cand_ms=None
+12:20:38 [llm-attempt] id=7d77619e model=deepseek-v4-flash-0731 label=opt kernel=aed51b4a44e7b405 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:21:16 [llm-done] id=7d77619e model=deepseek-v4-flash-0731 label=opt kernel=aed51b4a44e7b405 round=1 attempt=1/6 timeout_s=300 elapsed_s=37.7
+12:21:27     [opt] round 1 stage=ok ok=True cand_ms=2.4589805398136377
+12:21:27   [advance] aed51b4a44e7b405 -> c5e4794bd50f83d7 spd=1.977 wins=24
+12:21:27 [progress] completed=66 available_at_start=998 advanced=35 slow=14 failed=17 pool=967 last=aed51b4a44e7b405 outcome=win
+12:21:27   [forward-start] 2719a614c9dd6e43 hop=0 origin=syn_04323_2657aabd
+12:21:27   [route] 2719a614c9dd6e43 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=15862
+12:21:27 [llm-attempt] id=ef054ebc model=deepseek-v4-flash-0731 label=opt kernel=2719a614c9dd6e43 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:22:03 [llm-done] id=ef054ebc model=deepseek-v4-flash-0731 label=opt kernel=2719a614c9dd6e43 round=0 attempt=1/6 timeout_s=300 elapsed_s=35.4
+12:22:13     [opt] round 0 stage=ok ok=True cand_ms=0.9188840631395578
+12:22:13   [advance] 2719a614c9dd6e43 -> bf32fb62c3f37b29 spd=1.301 wins=25
+12:22:13 [progress] completed=67 available_at_start=998 advanced=36 slow=14 failed=17 pool=967 last=2719a614c9dd6e43 outcome=win
+12:22:13   [forward-start] 44ed8204814a0d6c hop=0 origin=syn_00925_a8e92710
+12:22:13   [route] 44ed8204814a0d6c hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=16567
+12:22:13 [llm-attempt] id=4a4ae868 model=deepseek-v4-flash-0731 label=opt kernel=44ed8204814a0d6c round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:22:39 [llm-done] id=4a4ae868 model=deepseek-v4-flash-0731 label=opt kernel=44ed8204814a0d6c round=0 attempt=1/6 timeout_s=300 elapsed_s=26.3
+12:22:48     [opt] round 0 stage=correctness ok=False cand_ms=None
+12:22:48 [llm-attempt] id=0a2d81ff model=deepseek-v4-flash-0731 label=opt kernel=44ed8204814a0d6c round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:23:23 [llm-done] id=0a2d81ff model=deepseek-v4-flash-0731 label=opt kernel=44ed8204814a0d6c round=1 attempt=1/6 timeout_s=300 elapsed_s=35.1
+12:24:04     [opt] round 1 stage=ok ok=True cand_ms=1.5302104875445366
+12:24:04   [advance] 44ed8204814a0d6c -> 0866bd87349478a3 spd=6.669 wins=11
+12:24:04 [progress] completed=68 available_at_start=998 advanced=37 slow=14 failed=17 pool=967 last=44ed8204814a0d6c outcome=win
+12:24:04   [forward-start] c61b3355c313f3d1 hop=0 origin=syn_03203_26bf69fb
+12:24:04   [route] c61b3355c313f3d1 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=18274
+12:24:04 [llm-attempt] id=e3b80a94 model=deepseek-v4-flash-0731 label=opt kernel=c61b3355c313f3d1 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:24:30 [llm-done] id=e3b80a94 model=deepseek-v4-flash-0731 label=opt kernel=c61b3355c313f3d1 round=0 attempt=1/6 timeout_s=300 elapsed_s=25.8
+12:24:30 [llm-attempt] id=c83e7c04 model=deepseek-v4-flash-0731 label=opt kernel=c61b3355c313f3d1 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:25:02 [llm-done] id=c83e7c04 model=deepseek-v4-flash-0731 label=opt kernel=c61b3355c313f3d1 round=1 attempt=1/6 timeout_s=300 elapsed_s=31.8
+12:25:02 [llm-attempt] id=9e5d23ed model=deepseek-v4-flash-0731 label=opt kernel=c61b3355c313f3d1 round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:25:27 [llm-done] id=9e5d23ed model=deepseek-v4-flash-0731 label=opt kernel=c61b3355c313f3d1 round=2 attempt=1/6 timeout_s=300 elapsed_s=25.5
+12:25:27   [opt-failed] c61b3355c313f3d1 outcome=compile_fail stage=local_check; excluded from leaf activation
+12:25:27 [progress] completed=69 available_at_start=998 advanced=37 slow=14 failed=18 pool=966 last=c61b3355c313f3d1 outcome=compile_fail
+12:25:27   [forward-start] 1aed209d41e0d847 hop=0 origin=syn_05720_458a18ee
+12:25:27   [route] 1aed209d41e0d847 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=19767
+12:25:27 [llm-attempt] id=1ab9feb3 model=deepseek-v4-flash-0731 label=opt kernel=1aed209d41e0d847 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:25:59 [llm-done] id=1ab9feb3 model=deepseek-v4-flash-0731 label=opt kernel=1aed209d41e0d847 round=0 attempt=1/6 timeout_s=300 elapsed_s=31.6
+12:26:23     [opt] round 0 stage=ok ok=True cand_ms=5.0460537895560265
+12:26:23   [advance] 1aed209d41e0d847 -> 4b2a1ad33c7292c5 spd=1.118 wins=26
+12:26:23 [progress] completed=70 available_at_start=998 advanced=38 slow=14 failed=18 pool=966 last=1aed209d41e0d847 outcome=win
+12:26:23   [forward-start] 87c4b105c726193b hop=0 origin=syn_00764_a7faf15e
+12:26:23   [route] 87c4b105c726193b hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=27505
+12:26:23 [llm-attempt] id=33504ac4 model=deepseek-v4-flash-0731 label=opt kernel=87c4b105c726193b round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:28:25 [llm-done] id=33504ac4 model=deepseek-v4-flash-0731 label=opt kernel=87c4b105c726193b round=0 attempt=1/6 timeout_s=300 elapsed_s=121.5
+12:28:39     [opt] round 0 stage=correctness ok=False cand_ms=None
+12:28:39 [llm-attempt] id=64edb83f model=deepseek-v4-flash-0731 label=opt kernel=87c4b105c726193b round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:28:54 [llm-done] id=64edb83f model=deepseek-v4-flash-0731 label=opt kernel=87c4b105c726193b round=1 attempt=1/6 timeout_s=300 elapsed_s=14.9
+12:28:54 [llm-attempt] id=4dac8941 model=deepseek-v4-flash-0731 label=opt kernel=87c4b105c726193b round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:29:14 [llm-done] id=4dac8941 model=deepseek-v4-flash-0731 label=opt kernel=87c4b105c726193b round=2 attempt=1/6 timeout_s=300 elapsed_s=20.7
+12:30:00     [opt] round 2 stage=correctness ok=False cand_ms=None
+12:30:00   [opt-failed] 87c4b105c726193b outcome=incorrect stage=correctness; excluded from leaf activation
+12:30:00 [progress] completed=71 available_at_start=998 advanced=38 slow=14 failed=19 pool=965 last=87c4b105c726193b outcome=incorrect
+12:30:00   [forward-start] e386238c789e0b3c hop=0 origin=syn_01818_af1b2223
+12:30:00   [route] e386238c789e0b3c hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=12985
+12:30:00 [llm-attempt] id=85027db0 model=deepseek-v4-flash-0731 label=opt kernel=e386238c789e0b3c round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:30:23 [llm-done] id=85027db0 model=deepseek-v4-flash-0731 label=opt kernel=e386238c789e0b3c round=0 attempt=1/6 timeout_s=300 elapsed_s=22.2
+12:30:31     [opt] round 0 stage=ok ok=True cand_ms=0.48815319314599037
+12:30:31   [advance] e386238c789e0b3c -> a75c4f23baa37790 spd=1.845 wins=27
+12:30:31 [progress] completed=72 available_at_start=998 advanced=39 slow=14 failed=19 pool=965 last=e386238c789e0b3c outcome=win
+12:30:31   [forward-start] bf022408f3413090 hop=0 origin=syn_03324_bcf0a5c1
+12:30:32   [route] bf022408f3413090 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=13212
+12:30:32 [llm-attempt] id=01aa7861 model=deepseek-v4-flash-0731 label=opt kernel=bf022408f3413090 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:31:01 [llm-done] id=01aa7861 model=deepseek-v4-flash-0731 label=opt kernel=bf022408f3413090 round=0 attempt=1/6 timeout_s=300 elapsed_s=29.8
+12:31:10     [opt] round 0 stage=ok ok=True cand_ms=7.20735639333725
+12:31:10   [advance] bf022408f3413090 -> 8244925cd9bbceb8 spd=2.638 wins=12
+12:31:10 [progress] completed=73 available_at_start=998 advanced=40 slow=14 failed=19 pool=965 last=bf022408f3413090 outcome=win
+12:31:10   [forward-start] 6dada4cba3109beb hop=0 origin=syn_01924_8db8e2fe
+12:31:10   [route] 6dada4cba3109beb hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=15550
+12:31:10 [llm-attempt] id=fb37de24 model=deepseek-v4-flash-0731 label=opt kernel=6dada4cba3109beb round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:31:42 [llm-done] id=fb37de24 model=deepseek-v4-flash-0731 label=opt kernel=6dada4cba3109beb round=0 attempt=1/6 timeout_s=300 elapsed_s=31.3
+12:31:51     [opt] round 0 stage=correctness ok=False cand_ms=None
+12:31:51 [llm-attempt] id=93bb2b97 model=deepseek-v4-flash-0731 label=opt kernel=6dada4cba3109beb round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:32:17 [llm-done] id=93bb2b97 model=deepseek-v4-flash-0731 label=opt kernel=6dada4cba3109beb round=1 attempt=1/6 timeout_s=300 elapsed_s=26.2
+12:32:26     [opt] round 1 stage=correctness ok=False cand_ms=None
+12:32:26 [llm-attempt] id=6aeaa13a model=deepseek-v4-flash-0731 label=opt kernel=6dada4cba3109beb round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:33:04 [llm-done] id=6aeaa13a model=deepseek-v4-flash-0731 label=opt kernel=6dada4cba3109beb round=2 attempt=1/6 timeout_s=300 elapsed_s=38.1
+12:33:14     [opt] round 2 stage=ok ok=True cand_ms=6.134585710242391
+12:33:14   [slow] 6dada4cba3109beb outcome=regressed spd=0.3865277786475516 -> accumulates at 00dcb62e
+12:33:14 [progress] completed=74 available_at_start=998 advanced=40 slow=15 failed=19 pool=964 last=6dada4cba3109beb outcome=regressed
+12:33:14   [forward-start] 42ba93f9404100ff hop=0 origin=syn_05853_34a375ef
+12:33:14   [route] 42ba93f9404100ff hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=16758
+12:33:14 [llm-attempt] id=6b068c01 model=deepseek-v4-flash-0731 label=opt kernel=42ba93f9404100ff round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:33:45 [llm-done] id=6b068c01 model=deepseek-v4-flash-0731 label=opt kernel=42ba93f9404100ff round=0 attempt=1/6 timeout_s=300 elapsed_s=31.5
+12:33:54     [opt] round 0 stage=run_candidate ok=False cand_ms=None
+12:33:54 [llm-attempt] id=5b550fb4 model=deepseek-v4-flash-0731 label=opt kernel=42ba93f9404100ff round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:34:18 [llm-done] id=5b550fb4 model=deepseek-v4-flash-0731 label=opt kernel=42ba93f9404100ff round=1 attempt=1/6 timeout_s=300 elapsed_s=24.2
+12:34:27     [opt] round 1 stage=ok ok=True cand_ms=12.870309175923467
+12:34:27   [slow] 42ba93f9404100ff outcome=no_speedup spd=0.9993806528027279 -> accumulates at 00dcb62e
+12:34:27 [progress] completed=75 available_at_start=998 advanced=40 slow=16 failed=19 pool=963 last=42ba93f9404100ff outcome=no_speedup
+12:34:27   [forward-start] 3ed2a021f60c0628 hop=0 origin=syn_03258_c7548625
+12:34:27   [route] 3ed2a021f60c0628 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=18556
+12:34:27 [llm-attempt] id=2c8ba86a model=deepseek-v4-flash-0731 label=opt kernel=3ed2a021f60c0628 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:34:49 [llm-done] id=2c8ba86a model=deepseek-v4-flash-0731 label=opt kernel=3ed2a021f60c0628 round=0 attempt=1/6 timeout_s=300 elapsed_s=21.2
+12:34:59     [opt] round 0 stage=ok ok=True cand_ms=2.6524539571255445
+12:34:59   [advance] 3ed2a021f60c0628 -> 64028c8746a2a6cf spd=1.505 wins=28
+12:34:59 [progress] completed=76 available_at_start=998 advanced=41 slow=16 failed=19 pool=963 last=3ed2a021f60c0628 outcome=win
+12:34:59   [forward-start] 4a4fa44c57c516f6 hop=0 origin=syn_00293_69162b2c
+12:34:59   [route] 4a4fa44c57c516f6 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=21625
+12:34:59 [llm-attempt] id=2f9e6285 model=deepseek-v4-flash-0731 label=opt kernel=4a4fa44c57c516f6 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:35:42 [llm-done] id=2f9e6285 model=deepseek-v4-flash-0731 label=opt kernel=4a4fa44c57c516f6 round=0 attempt=1/6 timeout_s=300 elapsed_s=42.7
+12:35:51     [opt] round 0 stage=correctness ok=False cand_ms=None
+12:35:51 [llm-attempt] id=5fb74592 model=deepseek-v4-flash-0731 label=opt kernel=4a4fa44c57c516f6 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:36:33 [llm-done] id=5fb74592 model=deepseek-v4-flash-0731 label=opt kernel=4a4fa44c57c516f6 round=1 attempt=1/6 timeout_s=300 elapsed_s=41.6
+12:36:42     [opt] round 1 stage=correctness ok=False cand_ms=None
+12:36:42 [llm-attempt] id=b9d690f8 model=deepseek-v4-flash-0731 label=opt kernel=4a4fa44c57c516f6 round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:37:13 [llm-done] id=b9d690f8 model=deepseek-v4-flash-0731 label=opt kernel=4a4fa44c57c516f6 round=2 attempt=1/6 timeout_s=300 elapsed_s=30.9
+12:37:24     [opt] round 2 stage=correctness ok=False cand_ms=None
+12:37:24   [opt-failed] 4a4fa44c57c516f6 outcome=incorrect stage=correctness; excluded from leaf activation
+12:37:24 [progress] completed=77 available_at_start=998 advanced=41 slow=16 failed=20 pool=962 last=4a4fa44c57c516f6 outcome=incorrect
+12:37:24   [forward-start] cc0d83631a169282 hop=0 origin=syn_03916_d81789e1
+12:37:24   [route] cc0d83631a169282 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=41698
+12:37:24 [llm-attempt] id=4ab16ee7 model=deepseek-v4-flash-0731 label=opt kernel=cc0d83631a169282 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:38:05 [llm-done] id=4ab16ee7 model=deepseek-v4-flash-0731 label=opt kernel=cc0d83631a169282 round=0 attempt=1/6 timeout_s=300 elapsed_s=41.5
+12:38:22     [opt] round 0 stage=correctness ok=False cand_ms=None
+12:38:22 [llm-attempt] id=95e2116c model=deepseek-v4-flash-0731 label=opt kernel=cc0d83631a169282 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:40:21 [llm-done] id=95e2116c model=deepseek-v4-flash-0731 label=opt kernel=cc0d83631a169282 round=1 attempt=1/6 timeout_s=300 elapsed_s=119.1
+12:40:42     [opt] round 1 stage=run_candidate ok=False cand_ms=None
+12:40:42 [llm-attempt] id=24fd228b model=deepseek-v4-flash-0731 label=opt kernel=cc0d83631a169282 round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:41:08 [llm-done] id=24fd228b model=deepseek-v4-flash-0731 label=opt kernel=cc0d83631a169282 round=2 attempt=1/6 timeout_s=300 elapsed_s=25.4
+12:41:25     [opt] round 2 stage=correctness ok=False cand_ms=None
+12:41:25   [opt-failed] cc0d83631a169282 outcome=incorrect stage=correctness; excluded from leaf activation
+12:41:25 [progress] completed=78 available_at_start=998 advanced=41 slow=16 failed=21 pool=961 last=cc0d83631a169282 outcome=incorrect
+12:41:25   [forward-start] 9a9c4027ce0d25c9 hop=0 origin=syn_01947_eaf4e688
+12:41:25   [route] 9a9c4027ce0d25c9 hop=0 -> leaf=00dcb62e (memory) path=root/00dcb62e measured=5 cached=0 profile_ms=19949
+12:41:25 [llm-attempt] id=5d3652fa model=deepseek-v4-flash-0731 label=opt kernel=9a9c4027ce0d25c9 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:41:52 [llm-done] id=5d3652fa model=deepseek-v4-flash-0731 label=opt kernel=9a9c4027ce0d25c9 round=0 attempt=1/6 timeout_s=300 elapsed_s=27.7
+12:42:01     [opt] round 0 stage=ok ok=True cand_ms=4.452827386558056
+12:42:01   [slow] 9a9c4027ce0d25c9 outcome=no_speedup spd=1.000792219588985 -> accumulates at 00dcb62e
+12:42:01 [progress] completed=79 available_at_start=998 advanced=41 slow=17 failed=21 pool=960 last=9a9c4027ce0d25c9 outcome=no_speedup
+12:42:01 [update] leaf=00dcb62e (memory) op=free_carve slow=12 wins=28 stall=0
+12:42:01 [update-propose] leaf=00dcb62e (memory) slow=12
+12:42:01 [llm-attempt] id=a4115f69 model=deepseek-v4-flash-0731 label=proposal leaf=00dcb62e attempt=1/5 timeout_s=300 elapsed_s=0.0
+12:42:21 [llm-done] id=a4115f69 model=deepseek-v4-flash-0731 label=proposal leaf=00dcb62e attempt=1/5 timeout_s=300 elapsed_s=19.7
+12:42:21 [update-proposal-ready] leaf=00dcb62e (memory) elapsed_s=19.7 result={"added":["dram__bytes_read.sum","dram__bytes_write.sum"],"blind_spot":"The optimizer cannot tell whether DRAM traffic is read-dominated or write-dominated, so it cannot choose between read-reduction and write-reduction strategies.","rationale":{"dram__bytes_read.sum":"HIGH -> focus on reducing read traffic via vectorized loads, better L2 blocking, or kernel fusion; LOW -> focus on write-side optimizations instead","dram__bytes_write.sum":"HIGH -> focus on reducing write traffic via in-place updates, write-combining, or non-temporal stores; LOW -> focus on read-side optimizations like improving L2 reuse"},"rejected":[]}
+12:43:43 [llm-attempt] id=4ddd6012 model=deepseek-v4-flash-0731 label=opt kernel=0df6cae81a060c2d round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:44:22 [llm-done] id=4ddd6012 model=deepseek-v4-flash-0731 label=opt kernel=0df6cae81a060c2d round=0 attempt=1/6 timeout_s=300 elapsed_s=39.8
+12:44:32     [opt] round 0 stage=correctness ok=False cand_ms=None
+12:44:32 [llm-attempt] id=717f77b4 model=deepseek-v4-flash-0731 label=opt kernel=0df6cae81a060c2d round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:45:00 [llm-done] id=717f77b4 model=deepseek-v4-flash-0731 label=opt kernel=0df6cae81a060c2d round=1 attempt=1/6 timeout_s=300 elapsed_s=28.2
+12:45:10     [opt] round 1 stage=correctness ok=False cand_ms=None
+12:45:10 [llm-attempt] id=a216065a model=deepseek-v4-flash-0731 label=opt kernel=0df6cae81a060c2d round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:45:40 [llm-done] id=a216065a model=deepseek-v4-flash-0731 label=opt kernel=0df6cae81a060c2d round=2 attempt=1/6 timeout_s=300 elapsed_s=30.5
+12:45:50     [opt] round 2 stage=ok ok=True cand_ms=3.6623317282646894
+12:45:50 [llm-attempt] id=4cac7c5c model=deepseek-v4-flash-0731 label=opt kernel=158d915ee3ce9223 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:46:14 [llm-done] id=4cac7c5c model=deepseek-v4-flash-0731 label=opt kernel=158d915ee3ce9223 round=0 attempt=1/6 timeout_s=300 elapsed_s=23.7
+12:46:24     [opt] round 0 stage=ok ok=True cand_ms=4.737221403047442
+12:46:41 [llm-attempt] id=80e382eb model=deepseek-v4-flash-0731 label=opt kernel=3447d3153538e4b6 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:47:10 [llm-done] id=80e382eb model=deepseek-v4-flash-0731 label=opt kernel=3447d3153538e4b6 round=0 attempt=1/6 timeout_s=300 elapsed_s=29.2
+12:47:19     [opt] round 0 stage=ok ok=True cand_ms=4.08014515414834
+12:47:19 [llm-attempt] id=983e4c53 model=deepseek-v4-flash-0731 label=opt kernel=3cf7980b2dcae112 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:47:53 [llm-done] id=983e4c53 model=deepseek-v4-flash-0731 label=opt kernel=3cf7980b2dcae112 round=0 attempt=1/6 timeout_s=300 elapsed_s=33.5
+12:48:03     [opt] round 0 stage=ok ok=True cand_ms=1.9224993884563446
+12:48:51 [llm-attempt] id=cc1f9c4b model=deepseek-v4-flash-0731 label=opt kernel=42ba93f9404100ff round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:49:34 [llm-done] id=cc1f9c4b model=deepseek-v4-flash-0731 label=opt kernel=42ba93f9404100ff round=0 attempt=1/6 timeout_s=300 elapsed_s=42.8
+12:49:43     [opt] round 0 stage=ok ok=True cand_ms=11.789530050009489
+12:50:33 [llm-attempt] id=43422bf0 model=deepseek-v4-flash-0731 label=opt kernel=6dada4cba3109beb round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:50:57 [llm-done] id=43422bf0 model=deepseek-v4-flash-0731 label=opt kernel=6dada4cba3109beb round=0 attempt=1/6 timeout_s=300 elapsed_s=23.6
+12:51:06     [opt] round 0 stage=ok ok=True cand_ms=1.8146869260817766
+12:51:06 [llm-attempt] id=3f785865 model=deepseek-v4-flash-0731 label=opt kernel=722d7e8ae3762018 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:51:33 [llm-done] id=3f785865 model=deepseek-v4-flash-0731 label=opt kernel=722d7e8ae3762018 round=0 attempt=1/6 timeout_s=300 elapsed_s=27.3
+12:51:44     [opt] round 0 stage=ok ok=True cand_ms=2.917487872764468
+12:52:02 [llm-attempt] id=7b8456a3 model=deepseek-v4-flash-0731 label=opt kernel=9a9c4027ce0d25c9 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:52:49 [llm-done] id=7b8456a3 model=deepseek-v4-flash-0731 label=opt kernel=9a9c4027ce0d25c9 round=0 attempt=1/6 timeout_s=300 elapsed_s=47.8
+12:52:58     [opt] round 0 stage=correctness ok=False cand_ms=None
+12:52:58 [llm-attempt] id=464845ee model=deepseek-v4-flash-0731 label=opt kernel=9a9c4027ce0d25c9 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:53:34 [llm-done] id=464845ee model=deepseek-v4-flash-0731 label=opt kernel=9a9c4027ce0d25c9 round=1 attempt=1/6 timeout_s=300 elapsed_s=35.7
+12:53:42     [opt] round 1 stage=correctness ok=False cand_ms=None
+12:53:42 [llm-attempt] id=91ff04ff model=deepseek-v4-flash-0731 label=opt kernel=9a9c4027ce0d25c9 round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:54:22 [llm-done] id=91ff04ff model=deepseek-v4-flash-0731 label=opt kernel=9a9c4027ce0d25c9 round=2 attempt=1/6 timeout_s=300 elapsed_s=39.6
+12:54:30     [opt] round 2 stage=correctness ok=False cand_ms=None
+12:54:48 [llm-attempt] id=da19ba3a model=deepseek-v4-flash-0731 label=opt kernel=e1615faafe32d37a round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:55:15 [llm-done] id=da19ba3a model=deepseek-v4-flash-0731 label=opt kernel=e1615faafe32d37a round=0 attempt=1/6 timeout_s=300 elapsed_s=27.8
+12:55:25     [opt] round 0 stage=ok ok=True cand_ms=2.9446841217577457
+12:55:25 [llm-attempt] id=6159dc58 model=deepseek-v4-flash-0731 label=opt kernel=e4ba34785dcc9a27 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:56:01 [llm-done] id=6159dc58 model=deepseek-v4-flash-0731 label=opt kernel=e4ba34785dcc9a27 round=0 attempt=1/6 timeout_s=300 elapsed_s=35.7
+12:56:10     [opt] round 0 stage=correctness ok=False cand_ms=None
+12:56:10 [llm-attempt] id=ad7d4ddb model=deepseek-v4-flash-0731 label=opt kernel=e4ba34785dcc9a27 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:56:40 [llm-done] id=ad7d4ddb model=deepseek-v4-flash-0731 label=opt kernel=e4ba34785dcc9a27 round=1 attempt=1/6 timeout_s=300 elapsed_s=30.6
+12:56:49     [opt] round 1 stage=ok ok=True cand_ms=0.47304597683250904
+12:56:49 [llm-attempt] id=699be7c9 model=deepseek-v4-flash-0731 label=opt kernel=e54fde0a25a14873 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:57:53 [llm-done] id=699be7c9 model=deepseek-v4-flash-0731 label=opt kernel=e54fde0a25a14873 round=0 attempt=1/6 timeout_s=300 elapsed_s=64.0
+12:58:03     [opt] round 0 stage=ok ok=True cand_ms=5.357023561373353
+12:58:03 [llm-attempt] id=138fe187 model=deepseek-v4-flash-0731 label=opt kernel=f148cf4cb85aa175 round=0 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:58:39 [llm-done] id=138fe187 model=deepseek-v4-flash-0731 label=opt kernel=f148cf4cb85aa175 round=0 attempt=1/6 timeout_s=300 elapsed_s=36.2
+12:58:48     [opt] round 0 stage=run_candidate ok=False cand_ms=None
+12:58:48 [llm-attempt] id=3a91c074 model=deepseek-v4-flash-0731 label=opt kernel=f148cf4cb85aa175 round=1 attempt=1/6 timeout_s=300 elapsed_s=0.0
+12:59:31 [llm-done] id=3a91c074 model=deepseek-v4-flash-0731 label=opt kernel=f148cf4cb85aa175 round=1 attempt=1/6 timeout_s=300 elapsed_s=42.6
+12:59:31 [llm-attempt] id=3464e879 model=deepseek-v4-flash-0731 label=opt kernel=f148cf4cb85aa175 round=2 attempt=1/6 timeout_s=300 elapsed_s=0.0
+13:00:03 [llm-done] id=3464e879 model=deepseek-v4-flash-0731 label=opt kernel=f148cf4cb85aa175 round=2 attempt=1/6 timeout_s=300 elapsed_s=32.9
+13:00:13     [opt] round 2 stage=run_candidate ok=False cand_ms=None

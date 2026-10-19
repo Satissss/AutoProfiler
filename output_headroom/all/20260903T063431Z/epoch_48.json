@@ -1,0 +1,606 @@
+{
+  "routing_round": 48,
+  "bounds": [
+    "memory",
+    "latency",
+    "compute",
+    "algorithm"
+  ],
+  "steps": [],
+  "updates": [
+    {
+      "action": "update",
+      "leaf_id": "7b15f3c5",
+      "proposal": {
+        "leaf_id": "7b15f3c5",
+        "inherited": [
+          "sm__throughput.avg.pct_of_peak_sustained_elapsed",
+          "dram__throughput.avg.pct_of_peak_sustained_elapsed",
+          "l1tex__t_sector_hit_rate.pct",
+          "lts__t_sector_hit_rate.pct",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct",
+          "dram__bytes_read.sum",
+          "dram__bytes_write.sum",
+          "sm__warps_active.avg.pct_of_peak_sustained_active",
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct"
+        ],
+        "old_owned": [
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_st.pct",
+          "launch__waves_per_multiprocessor",
+          "l1tex__throughput.avg.pct_of_peak_sustained_elapsed",
+          "lts__throughput.avg.pct_of_peak_sustained_elapsed"
+        ],
+        "new_owned": [
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_st.pct",
+          "launch__waves_per_multiprocessor",
+          "l1tex__throughput.avg.pct_of_peak_sustained_elapsed",
+          "lts__throughput.avg.pct_of_peak_sustained_elapsed",
+          "smsp__warps_eligible.avg.per_cycle_active",
+          "launch__occupancy_limit_registers"
+        ],
+        "added": [
+          "smsp__warps_eligible.avg.per_cycle_active",
+          "launch__occupancy_limit_registers"
+        ],
+        "blind_spot": "Current metrics show warps stalled on memory but cannot tell whether the DRAM shortfall is a latency-hiding failure (no eligible warps, more parallelism would help) or the achievable bandwidth roof (only byte reduction helps, restructuring regresses), nor whether occupancy is register-capped.",
+        "rationale": {
+          "smsp__warps_eligible.avg.per_cycle_active": "HIGH -> latency hidden, at roof: only reduce DRAM bytes (fuse passes, fix store coalescing), do not restructure schedule / LOW -> latency-bound: add independent in-flight loads per thread and/or raise occupancy",
+          "launch__occupancy_limit_registers": "HIGH -> registers not binding: change num_warps/grid geometry to gain residency / LOW -> register-capped: shrink BLOCK_SIZE, cut live temporaries, simplify index math to fit more blocks per SM"
+        },
+        "rejected": [],
+        "prompt_version": "metric_rewrite_v1"
+      },
+      "validation": {
+        "accepted": true,
+        "margin": 0.1911,
+        "epsilon": 0.015,
+        "incumbent_mean": 0.5533,
+        "candidate_mean": 0.7443,
+        "time_cost": 0.0,
+        "n_scorable_incumbent": 24,
+        "n_scorable_candidate": 18,
+        "compile_fail_delta": 0.125,
+        "reason": "accepted",
+        "guard_ids": [
+          "9670879b25318ca7",
+          "a20ba8467425398d",
+          "0e4b9679e3100854",
+          "b2e0e37109b444c2",
+          "d7987b0048d11db1",
+          "71a492d87df3093d",
+          "186053373c0ae0dd",
+          "b5a21c6af0edb255",
+          "8bd87a84d73b0010"
+        ],
+        "regressed_guards": [],
+        "per_sample": {
+          "0e4b9679e3100854": {
+            "kernel_id": "0e4b9679e3100854",
+            "outcome": "win",
+            "reward": 0.0333,
+            "rel_speedup": 1.0333057974617237,
+            "latency_ms": 6.987093947827816,
+            "profile_ms": 7908.441126346588,
+            "kernel_ms": 7.219804683700204,
+            "child_kernel_id": ""
+          },
+          "156a8cb41d6d1cf7": {
+            "kernel_id": "156a8cb41d6d1cf7",
+            "outcome": "incorrect",
+            "reward": null,
+            "rel_speedup": null,
+            "latency_ms": null,
+            "profile_ms": 6468.256304040551,
+            "kernel_ms": 4.626633832231164,
+            "child_kernel_id": ""
+          },
+          "186053373c0ae0dd": {
+            "kernel_id": "186053373c0ae0dd",
+            "outcome": "win",
+            "reward": 0.2871,
+            "rel_speedup": 1.2870959894692389,
+            "latency_ms": 1.1313026770949364,
+            "profile_ms": 6560.707326978445,
+            "kernel_ms": 1.4560951385647058,
+            "child_kernel_id": ""
+          },
+          "1b578e8917de4489": {
+            "kernel_id": "1b578e8917de4489",
+            "outcome": "win",
+            "reward": 0.3324,
+            "rel_speedup": 1.3323907850036032,
+            "latency_ms": 2.460673451423645,
+            "profile_ms": 7312.780778855085,
+            "kernel_ms": 3.278578631579876,
+            "child_kernel_id": ""
+          },
+          "1da344629cab80e9": {
+            "kernel_id": "1da344629cab80e9",
+            "outcome": "regressed",
+            "reward": -0.46,
+            "rel_speedup": 0.44186929756826543,
+            "latency_ms": 4.550612531602383,
+            "profile_ms": 7093.906689435244,
+            "kernel_ms": 2.010775962844491,
+            "child_kernel_id": ""
+          },
+          "2ef4aae992920a07": {
+            "kernel_id": "2ef4aae992920a07",
+            "outcome": "regressed",
+            "reward": -0.46,
+            "rel_speedup": 0.26056713672040027,
+            "latency_ms": 15.475358814001083,
+            "profile_ms": 6671.273337677121,
+            "kernel_ms": 4.032369935885072,
+            "child_kernel_id": ""
+          },
+          "4047d01dd1ee1bad": {
+            "kernel_id": "4047d01dd1ee1bad",
+            "outcome": "incorrect",
+            "reward": null,
+            "rel_speedup": null,
+            "latency_ms": null,
+            "profile_ms": 7402.604542672634,
+            "kernel_ms": 5.858362186700106,
+            "child_kernel_id": ""
+          },
+          "6a4ab7030a723c49": {
+            "kernel_id": "6a4ab7030a723c49",
+            "outcome": "win",
+            "reward": 1.8736,
+            "rel_speedup": 2.873595054342933,
+            "latency_ms": 1.1999942362308502,
+            "profile_ms": 6977.552969008684,
+            "kernel_ms": 3.4482975024729967,
+            "child_kernel_id": ""
+          },
+          "71a492d87df3093d": {
+            "kernel_id": "71a492d87df3093d",
+            "outcome": "win",
+            "reward": 0.259,
+            "rel_speedup": 1.258978690389347,
+            "latency_ms": 1.5064887702465057,
+            "profile_ms": 6701.275451108813,
+            "kernel_ms": 1.8966372590512037,
+            "child_kernel_id": ""
+          },
+          "8953e3d96493c354": {
+            "kernel_id": "8953e3d96493c354",
+            "outcome": "no_speedup",
+            "reward": -0.0023,
+            "rel_speedup": 0.9976662782785034,
+            "latency_ms": 8.166505955159664,
+            "profile_ms": 7001.266591250896,
+            "kernel_ms": 8.147447602823377,
+            "child_kernel_id": ""
+          },
+          "8bd87a84d73b0010": {
+            "kernel_id": "8bd87a84d73b0010",
+            "outcome": "win",
+            "reward": 0.9429,
+            "rel_speedup": 1.9429475782596592,
+            "latency_ms": 2.4022776633501053,
+            "profile_ms": 7246.544977650046,
+            "kernel_ms": 4.66749956831336,
+            "child_kernel_id": ""
+          },
+          "9670879b25318ca7": {
+            "kernel_id": "9670879b25318ca7",
+            "outcome": "win",
+            "reward": 7.0,
+            "rel_speedup": 8.235509081339808,
+            "latency_ms": 6.846313364803791,
+            "profile_ms": 23906.60579316318,
+            "kernel_ms": 56.38287588953972,
+            "child_kernel_id": ""
+          },
+          "a06b7555d56a5c7f": {
+            "kernel_id": "a06b7555d56a5c7f",
+            "outcome": "no_speedup",
+            "reward": 0.0069,
+            "rel_speedup": 1.0068512053483079,
+            "latency_ms": 3.0118227005004883,
+            "profile_ms": 6615.176806226373,
+            "kernel_ms": 3.0324573162943125,
+            "child_kernel_id": ""
+          },
+          "a20ba8467425398d": {
+            "kernel_id": "a20ba8467425398d",
+            "outcome": "win",
+            "reward": 1.5326,
+            "rel_speedup": 2.532646247131401,
+            "latency_ms": 2.400057390332222,
+            "profile_ms": 7224.953833967447,
+            "kernel_ms": 6.078496342524886,
+            "child_kernel_id": ""
+          },
+          "a2f310fb0feeb289": {
+            "kernel_id": "a2f310fb0feeb289",
+            "outcome": "no_speedup",
+            "reward": 0.006,
+            "rel_speedup": 1.0059963341874427,
+            "latency_ms": 6.224378012120724,
+            "profile_ms": 7506.7673698067665,
+            "kernel_ms": 6.26170146279037,
+            "child_kernel_id": ""
+          },
+          "b2e0e37109b444c2": {
+            "kernel_id": "b2e0e37109b444c2",
+            "outcome": "win",
+            "reward": 0.141,
+            "rel_speedup": 1.141023022189049,
+            "latency_ms": 1.73936877399683,
+            "profile_ms": 7448.032505810261,
+            "kernel_ms": 1.9846598152071238,
+            "child_kernel_id": ""
+          },
+          "b5a21c6af0edb255": {
+            "kernel_id": "b5a21c6af0edb255",
+            "outcome": "win",
+            "reward": 0.4494,
+            "rel_speedup": 1.4494438667465284,
+            "latency_ms": 2.4038609117269516,
+            "profile_ms": 7093.635028228164,
+            "kernel_ms": 3.484261455014348,
+            "child_kernel_id": ""
+          },
+          "c3b3a8a57531b569": {
+            "kernel_id": "c3b3a8a57531b569",
+            "outcome": "regressed",
+            "reward": -0.0795,
+            "rel_speedup": 0.9205353943219673,
+            "latency_ms": 15.224067494273186,
+            "profile_ms": 9494.840847328305,
+            "kernel_ms": 14.014292974025011,
+            "child_kernel_id": ""
+          },
+          "ca1aa4e7e1327818": {
+            "kernel_id": "ca1aa4e7e1327818",
+            "outcome": "compile_fail",
+            "reward": null,
+            "rel_speedup": null,
+            "latency_ms": null,
+            "profile_ms": 7535.173170268536,
+            "kernel_ms": 3.461334854364395,
+            "child_kernel_id": ""
+          },
+          "d1045c79092e380c": {
+            "kernel_id": "d1045c79092e380c",
+            "outcome": "incorrect",
+            "reward": null,
+            "rel_speedup": null,
+            "latency_ms": null,
+            "profile_ms": 15380.742507055402,
+            "kernel_ms": 14.205553568899632,
+            "child_kernel_id": ""
+          },
+          "d7987b0048d11db1": {
+            "kernel_id": "d7987b0048d11db1",
+            "outcome": "compile_fail",
+            "reward": null,
+            "rel_speedup": null,
+            "latency_ms": null,
+            "profile_ms": 6891.955956816673,
+            "kernel_ms": 2.5103380903601646,
+            "child_kernel_id": ""
+          },
+          "e28b5771412b6cfb": {
+            "kernel_id": "e28b5771412b6cfb",
+            "outcome": "compile_fail",
+            "reward": null,
+            "rel_speedup": null,
+            "latency_ms": null,
+            "profile_ms": 6917.496537789702,
+            "kernel_ms": 6.037895334884524,
+            "child_kernel_id": ""
+          },
+          "f512ab3765e86d74": {
+            "kernel_id": "f512ab3765e86d74",
+            "outcome": "no_speedup",
+            "reward": -0.0054,
+            "rel_speedup": 0.9946475353976917,
+            "latency_ms": 6.934201344847679,
+            "profile_ms": 7918.268866837025,
+            "kernel_ms": 6.897086277604103,
+            "child_kernel_id": ""
+          },
+          "fd59aedfebc8875d": {
+            "kernel_id": "fd59aedfebc8875d",
+            "outcome": "win",
+            "reward": 1.541,
+            "rel_speedup": 2.540964275530202,
+            "latency_ms": 1.2312931939959526,
+            "profile_ms": 8163.54550793767,
+            "kernel_ms": 3.128672018647194,
+            "child_kernel_id": ""
+          }
+        }
+      },
+      "accepted": true,
+      "resolution": "rewrite"
+    }
+  ],
+  "n_retired_pool": 0,
+  "n_steps": 0,
+  "pool_size": 635,
+  "diagnostics": {
+    "outcome_counts": {},
+    "slow_share": 0.0,
+    "compile_fail_rate": 0.0,
+    "mean_profile_time_ratio": null,
+    "reward_sources": {
+      "n_positive_reward": 0,
+      "from_real_speedup": 0,
+      "from_failure_to_success": 0,
+      "real_speedup_share": null
+    },
+    "tree": {
+      "n_leaves": 36,
+      "depth": 9,
+      "branching": [
+        4,
+        2,
+        4,
+        2,
+        2,
+        4,
+        2,
+        4,
+        2,
+        4,
+        2,
+        2,
+        2,
+        2,
+        4,
+        2,
+        2,
+        2,
+        2,
+        4,
+        2
+      ]
+    },
+    "store": {
+      "n_kernels": 1611,
+      "n_origins": 998,
+      "n_routes": 933,
+      "by_status": {
+        "slow": 140,
+        "optimization_failed": 310,
+        "advanced": 399,
+        "terminal": 127,
+        "pending": 635
+      },
+      "max_hop": 1
+    },
+    "origin_coverage": {
+      "total": 998,
+      "attempted": 974,
+      "remaining": 24,
+      "ratio": 0.9759519038076152
+    },
+    "gpu_queue": {
+      "submitted": 378,
+      "completed": 378,
+      "failed": 0,
+      "queue_depth": 0,
+      "active": false,
+      "busy_time_s": 5730.88101382216,
+      "utilization": 0.21153624498140994,
+      "journal_done": 328
+    },
+    "branch_share_alerts": [
+      {
+        "node_id": "root",
+        "child_id": "fa55efca",
+        "label": "sm=high,dram=low",
+        "share": 0.0225,
+        "n": 21
+      },
+      {
+        "node_id": "root",
+        "child_id": "64953ed1",
+        "label": "sm=high,dram=high",
+        "share": 0.0043,
+        "n": 4
+      },
+      {
+        "node_id": "00dcb62e",
+        "child_id": "7eca260d",
+        "label": "lts=low,smsp=low",
+        "share": 0.0391,
+        "n": 23
+      },
+      {
+        "node_id": "00dcb62e",
+        "child_id": "834bcebe",
+        "label": "lts=high,smsp=low",
+        "share": 0.0493,
+        "n": 29
+      },
+      {
+        "node_id": "460f36cf",
+        "child_id": "fb19c5a4",
+        "label": "lts=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "2a031de2",
+        "child_id": "2bc99d41",
+        "label": "dram=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "0062e6af",
+        "child_id": "c91e0708",
+        "label": "l1tex=low,smsp=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "0062e6af",
+        "child_id": "912751f5",
+        "label": "l1tex=high,smsp=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "0062e6af",
+        "child_id": "b96021dc",
+        "label": "l1tex=high,smsp=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "9c244a15",
+        "child_id": "beea9d13",
+        "label": "dram=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "16d2e3b2",
+        "child_id": "6337de31",
+        "label": "smsp=high,smsp=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "16d2e3b2",
+        "child_id": "52acb804",
+        "label": "smsp=high,smsp=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "708026f9",
+        "child_id": "f88c6f90",
+        "label": "l1tex=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "a73fcac1",
+        "child_id": "47fd6f1d",
+        "label": "smsp=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "3aa13df1",
+        "child_id": "ab5485ae",
+        "label": "dram=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "546c4ee9",
+        "child_id": "583c88bc",
+        "label": "dram=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "15c33ae4",
+        "child_id": "3f7018f2",
+        "label": "smsp=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "8134c8f9",
+        "child_id": "ca88e62d",
+        "label": "l1tex=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "24adc724",
+        "child_id": "ff8ac540",
+        "label": "sm=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "692bb5d7",
+        "child_id": "fbc81c4a",
+        "label": "smsp=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "fa55efca",
+        "child_id": "abfa4d62",
+        "label": "sm=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "834bcebe",
+        "child_id": "43f54e0e",
+        "label": "smsp=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "425fa8d3",
+        "child_id": "101802ae",
+        "label": "sm=low,smsp=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "425fa8d3",
+        "child_id": "8abd7a2a",
+        "label": "sm=high,smsp=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "425fa8d3",
+        "child_id": "ac850a44",
+        "label": "sm=high,smsp=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "0dd9e976",
+        "child_id": "f51a6163",
+        "label": "dram=high,lts=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "0dd9e976",
+        "child_id": "899b11b7",
+        "label": "dram=high,lts=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "ed2c4309",
+        "child_id": "fe6628a0",
+        "label": "sm=low,smsp=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "ed2c4309",
+        "child_id": "9e800ffb",
+        "label": "sm=high,smsp=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "ed2c4309",
+        "child_id": "db0b62af",
+        "label": "sm=high,smsp=high",
+        "share": 0.0,
+        "n": 0
+      }
+    ]
+  }
+}

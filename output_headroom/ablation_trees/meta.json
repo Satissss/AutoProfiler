@@ -1,0 +1,6 @@
+{
+  "source_full": "/Users/satis/Desktop/AutoProfiler/output_headroom/_run/20260903T063431Z/tree.json",
+  "method": "heuristic_synthesis",
+  "split_only": "revert version>0 metrics; collapse 35% of non-root split nodes (seed=43)",
+  "rewrite_only": "collapse 18% of non-root split nodes (seed=42)"
+}

@@ -1,0 +1,9 @@
+# One LLM backbone shared by every method in an evaluation.
+# Secrets are never stored here: the key is read from the env var named below.
+model: gpt-5
+base_url: https://api.openai.com/v1
+api_style: openai
+api_key_env: OPENAI_API_KEY
+temperature: 0.2
+max_tokens: 16384
+timeout_s: 600

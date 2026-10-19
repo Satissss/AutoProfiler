@@ -1,0 +1,97 @@
+# secrets / cluster credentials: never commit
+.env
+.env.*
+!.env.example
+*kubeconfig*
+**/secrets/
+*.key
+*.pem
+credentials.json
+token.json
+*_credentials.*
+
+# API keys and configs with sensitive data
+configs/backends/k8s.yaml
+configs/llm/*_llmcenter.yaml
+!configs/llm/openai_compatible.example.yaml
+
+# Personal/internal configs
+*_internal.yaml
+*_private.yaml
+
+# python
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.DS_Store
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ipynb_checkpoints/
+.venv/
+venv/
+ENV/
+env/
+
+# data: only the benchmark and the 100-program training example are tracked.
+# The full corpus is distributed separately (see README, "Data").
+data/*
+!data/README.md
+!data/benchmarks/
+!data/train/
+data/train/*
+!data/train/example/
+
+# outputs: only released trees are tracked
+output/*
+!output/trees/
+
+# logs
+*.log
+logs/
+*.out
+*.err
+
+# local scratch
+resource/
+output_headroom/
+
+# upstream baseline checkouts from the old harness (baselines are now re-implemented in autoprofiler/baselines)
+external/
+
+# per-run caches (reproducible, not committed)
+output/_cache/
+
+# local GPU backend (cluster-specific; copy from k8s.example.yaml)
+configs/backends/k8s.yaml
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+*_backup
+.cache/

@@ -1,0 +1,32 @@
+# AutoProfiler: a trained tree picks which counters to read for each kernel.
+#
+#   scripts/eval.sh configs/eval/autoprofiler.yaml                      # the full run
+#   scripts/eval.sh configs/eval/autoprofiler.yaml --limit 3 --rounds 2 # a quick check first
+name: autoprofiler
+
+benchmark: kernelbench
+groups: [level1, level2, level3]
+
+methods:
+  autoprofiler:
+    seeder:
+      type: llm_port                        # PyTorch reference -> Triton
+      language: triton
+      attempts: 4
+    profiler:
+      type: tree                            # counters chosen per kernel by the tree
+      path: output/trees/autoprofiler.json
+    optimizer:
+      type: leaf                            # one LLM call at the leaf it routed to
+      strong: true
+      n_samples: 2
+      max_repair: 2
+
+llm:
+  model: qwen-plus
+  base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+  api_key_env: QWEN_API_KEY
+
+backend: k8s
+rounds: 1           # optimization rounds per task; the seed is round 0
+output: output/results

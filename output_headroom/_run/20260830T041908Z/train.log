@@ -1,0 +1,357 @@
+12:19:08 [log] run log -> output_headroom/_run/20260830T041908Z/train.log
+12:19:08 [init] run_id=20260830T041908Z resume=True checkpoint=000181 n_train=999 n_holdout=0 source=['triton_seed']
+[init] tree_model=gpt-5.6-sol optimize_model=gpt-5.6-sol
+[init] artifacts -> output_headroom/_run/20260830T041908Z
+[init] kernel store -> output_headroom/_run/20260830T041908Z/kernels ({'n_kernels': 1264, 'n_origins': 998, 'n_routes': 439, 'by_status': {'pending': 771, 'slow': 33, 'optimization_failed': 116, 'terminal': 112, 'advanced': 232}, 'max_hop': 1})
+12:19:08 [seed] pool has 771 pending kernels (0 new)
+12:19:08 [checkpoint-save] id=000001 reason=periodic resume='--resume 20260830T041908Z --checkpoint 000001'
+12:19:08 
+========== ROUTING ROUND 19 (parallel) ==========
+12:19:08 [routing-start] sync bound=memory,latency,compute,algorithm available=771 pool=771
+12:19:08 [update] leaf=9c244a15 (latency) op=free_carve slow=14 wins=60 stall=0
+12:19:08 [update-propose] leaf=9c244a15 (latency) slow=14
+12:19:08 [llm-attempt] id=101c80b2 model=gpt-5.6-sol label=proposal leaf=9c244a15 attempt=1/5 timeout_s=600 elapsed_s=0.0
+12:19:48 [log] run log -> output_headroom/_run/20260830T041908Z/train.log
+12:19:48 [init] run_id=20260830T041908Z resume=True checkpoint=latest n_train=999 n_holdout=0 source=['triton_seed']
+[init] tree_model=gpt-5.6-sol optimize_model=gpt-5.6-sol
+[init] artifacts -> output_headroom/_run/20260830T041908Z
+[init] kernel store -> output_headroom/kernels ({'n_kernels': 1270, 'n_origins': 998, 'n_routes': 439, 'by_status': {'pending': 791, 'optimization_failed': 116, 'terminal': 112, 'advanced': 232, 'slow': 19}, 'max_hop': 1})
+12:19:48 [seed] pool has 791 pending kernels (0 new)
+12:19:48 [checkpoint-save] id=000002 reason=periodic resume='--resume 20260830T041908Z --checkpoint 000002'
+12:19:48 
+========== ROUTING ROUND 19 (parallel) ==========
+12:19:48 [routing-start] sync bound=memory,latency,compute,algorithm available=791 pool=791
+12:19:48   [forward-start] d1247e2d3ff053bd hop=0 origin=syn_05880_859378f1
+12:19:48   [route] d1247e2d3ff053bd hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=0 cached=4 profile_ms=0
+12:19:48 [llm-attempt] id=a716a97d model=gpt-5.6-sol label=opt kernel=d1247e2d3ff053bd round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:20:42 [llm-done] id=a716a97d model=gpt-5.6-sol label=opt kernel=d1247e2d3ff053bd round=0 attempt=1/6 timeout_s=600 elapsed_s=54.5
+12:20:54     [opt] round 0 stage=ok ok=True cand_ms=7.375760935246944
+12:20:54   [advance] d1247e2d3ff053bd -> 8777e4ed48c225e4 spd=1.537 wins=61
+12:20:54 [progress] completed=1 available_at_start=791 advanced=1 slow=0 failed=0 pool=791 last=d1247e2d3ff053bd outcome=win
+12:20:54   [forward-start] 23dad03fb82d4078 hop=0 origin=syn_00655_30d5d57d
+12:20:54   [route] 23dad03fb82d4078 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=0 cached=4 profile_ms=0
+12:20:54 [llm-attempt] id=9ec76f55 model=gpt-5.6-sol label=opt kernel=23dad03fb82d4078 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:22:04 [llm-done] id=9ec76f55 model=gpt-5.6-sol label=opt kernel=23dad03fb82d4078 round=0 attempt=1/6 timeout_s=600 elapsed_s=69.6
+12:22:12     [opt] round 0 stage=ok ok=True cand_ms=3.3809300512075424
+12:22:12   [advance] 23dad03fb82d4078 -> ec55f0ff505ada4d spd=1.399 wins=62
+12:22:12 [progress] completed=2 available_at_start=791 advanced=2 slow=0 failed=0 pool=791 last=23dad03fb82d4078 outcome=win
+12:22:12   [forward-start] 5f5b8f0add094f12 hop=0 origin=syn_02889_c9f35415
+12:22:12   [route] 5f5b8f0add094f12 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=0 cached=4 profile_ms=0
+12:22:12 [llm-attempt] id=f2968613 model=gpt-5.6-sol label=opt kernel=5f5b8f0add094f12 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:22:49 [llm-done] id=f2968613 model=gpt-5.6-sol label=opt kernel=5f5b8f0add094f12 round=0 attempt=1/6 timeout_s=600 elapsed_s=36.5
+12:22:56     [opt] round 0 stage=ok ok=True cand_ms=1.8658116459846497
+12:22:56   [slow] 5f5b8f0add094f12 outcome=regressed spd=0.9166374663072776 -> accumulates at 9c244a15
+12:22:56 [progress] completed=3 available_at_start=791 advanced=2 slow=1 failed=0 pool=790 last=5f5b8f0add094f12 outcome=regressed
+12:22:56   [forward-start] c0c46e96742a2eca hop=0 origin=syn_00030_3bc21b9b
+12:22:56   [route] c0c46e96742a2eca hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=0 cached=4 profile_ms=0
+12:22:56 [llm-attempt] id=85c1ad5b model=gpt-5.6-sol label=opt kernel=c0c46e96742a2eca round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:23:38 [llm-done] id=85c1ad5b model=gpt-5.6-sol label=opt kernel=c0c46e96742a2eca round=0 attempt=1/6 timeout_s=600 elapsed_s=41.6
+12:23:38 [llm-attempt] id=09070b3b model=gpt-5.6-sol label=opt kernel=c0c46e96742a2eca round=1 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:24:10 [llm-done] id=09070b3b model=gpt-5.6-sol label=opt kernel=c0c46e96742a2eca round=1 attempt=1/6 timeout_s=600 elapsed_s=32.2
+12:24:18     [opt] round 1 stage=correctness ok=False cand_ms=None
+12:24:18 [llm-attempt] id=43041751 model=gpt-5.6-sol label=opt kernel=c0c46e96742a2eca round=2 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:24:42 [llm-done] id=43041751 model=gpt-5.6-sol label=opt kernel=c0c46e96742a2eca round=2 attempt=1/6 timeout_s=600 elapsed_s=24.5
+12:24:42   [opt-failed] c0c46e96742a2eca outcome=compile_fail stage=local_check; excluded from leaf activation
+12:24:42 [progress] completed=4 available_at_start=791 advanced=2 slow=1 failed=1 pool=789 last=c0c46e96742a2eca outcome=compile_fail
+12:24:42   [forward-start] 8d0ece7fa67cefda hop=0 origin=syn_01530_dc1bb83e
+12:24:42   [route] 8d0ece7fa67cefda hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=0 cached=4 profile_ms=0
+12:24:42 [llm-attempt] id=84d177bd model=gpt-5.6-sol label=opt kernel=8d0ece7fa67cefda round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:25:03 [llm-done] id=84d177bd model=gpt-5.6-sol label=opt kernel=8d0ece7fa67cefda round=0 attempt=1/6 timeout_s=600 elapsed_s=20.8
+12:25:03 [llm-attempt] id=e077a05b model=gpt-5.6-sol label=opt kernel=8d0ece7fa67cefda round=1 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:25:26 [llm-done] id=e077a05b model=gpt-5.6-sol label=opt kernel=8d0ece7fa67cefda round=1 attempt=1/6 timeout_s=600 elapsed_s=23.0
+12:25:26 [llm-attempt] id=3b095994 model=gpt-5.6-sol label=opt kernel=8d0ece7fa67cefda round=2 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:26:01 [llm-done] id=3b095994 model=gpt-5.6-sol label=opt kernel=8d0ece7fa67cefda round=2 attempt=1/6 timeout_s=600 elapsed_s=35.1
+12:26:01   [opt-failed] 8d0ece7fa67cefda outcome=compile_fail stage=local_check; excluded from leaf activation
+12:26:01 [progress] completed=5 available_at_start=791 advanced=2 slow=1 failed=2 pool=788 last=8d0ece7fa67cefda outcome=compile_fail
+12:26:01   [forward-start] 93f98ea75917e40b hop=0 origin=syn_01840_1d621710
+12:26:01   [route] 93f98ea75917e40b hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=0 cached=4 profile_ms=0
+12:26:01 [llm-attempt] id=f307358e model=gpt-5.6-sol label=opt kernel=93f98ea75917e40b round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:26:42 [llm-done] id=f307358e model=gpt-5.6-sol label=opt kernel=93f98ea75917e40b round=0 attempt=1/6 timeout_s=600 elapsed_s=41.0
+12:26:51     [opt] round 0 stage=ok ok=True cand_ms=0.205235555768013
+12:26:51   [advance] 93f98ea75917e40b -> ca26e07fb99e822b spd=1.172 wins=63
+12:26:51 [progress] completed=6 available_at_start=791 advanced=3 slow=1 failed=2 pool=788 last=93f98ea75917e40b outcome=win
+12:26:51   [forward-start] d2e5bd5f0821b378 hop=0 origin=syn_01154_fe6fe5b8
+12:26:51   [route] d2e5bd5f0821b378 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=0 cached=4 profile_ms=0
+12:26:51 [llm-attempt] id=9141f8a8 model=gpt-5.6-sol label=opt kernel=d2e5bd5f0821b378 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:27:14 [llm-done] id=9141f8a8 model=gpt-5.6-sol label=opt kernel=d2e5bd5f0821b378 round=0 attempt=1/6 timeout_s=600 elapsed_s=23.9
+12:27:33     [opt] round 0 stage=ok ok=True cand_ms=44.48645003139973
+12:27:33   [slow] d2e5bd5f0821b378 outcome=regressed spd=0.8852475378275051 -> accumulates at 9c244a15
+12:27:33 [progress] completed=7 available_at_start=791 advanced=3 slow=2 failed=2 pool=787 last=d2e5bd5f0821b378 outcome=regressed
+12:27:33   [forward-start] b1d32ec5c203cdf7 hop=0 origin=syn_03116_5807efaa
+12:27:33   [route] b1d32ec5c203cdf7 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=0 cached=4 profile_ms=0
+12:27:33 [llm-attempt] id=89fa60e1 model=gpt-5.6-sol label=opt kernel=b1d32ec5c203cdf7 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:28:26 [llm-done] id=89fa60e1 model=gpt-5.6-sol label=opt kernel=b1d32ec5c203cdf7 round=0 attempt=1/6 timeout_s=600 elapsed_s=52.6
+12:28:35     [opt] round 0 stage=ok ok=True cand_ms=5.306664854288101
+12:28:35   [advance] b1d32ec5c203cdf7 -> b8520172ea7894fd spd=1.103 wins=64
+12:28:35 [progress] completed=8 available_at_start=791 advanced=4 slow=2 failed=2 pool=787 last=b1d32ec5c203cdf7 outcome=win
+12:28:35   [forward-start] ab5aaab8741761e8 hop=0 origin=syn_00872_a878a81c
+12:28:35   [route] ab5aaab8741761e8 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=0 cached=4 profile_ms=0
+12:28:35 [llm-attempt] id=644b0ac5 model=gpt-5.6-sol label=opt kernel=ab5aaab8741761e8 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:29:19 [llm-done] id=644b0ac5 model=gpt-5.6-sol label=opt kernel=ab5aaab8741761e8 round=0 attempt=1/6 timeout_s=600 elapsed_s=44.2
+12:29:27     [opt] round 0 stage=ok ok=True cand_ms=5.266864784061909
+12:29:27   [advance] ab5aaab8741761e8 -> 920b5f947798c6c0 spd=1.110 wins=65
+12:29:27 [progress] completed=9 available_at_start=791 advanced=5 slow=2 failed=2 pool=787 last=ab5aaab8741761e8 outcome=win
+12:29:27   [forward-start] 3e4f4e56538ba0bc hop=0 origin=syn_01123_45e462b6
+12:29:27   [route] 3e4f4e56538ba0bc hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=0 cached=4 profile_ms=0
+12:29:27 [llm-attempt] id=5fe156d2 model=gpt-5.6-sol label=opt kernel=3e4f4e56538ba0bc round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:30:21 [llm-done] id=5fe156d2 model=gpt-5.6-sol label=opt kernel=3e4f4e56538ba0bc round=0 attempt=1/6 timeout_s=600 elapsed_s=53.5
+12:30:29     [opt] round 0 stage=run_candidate ok=False cand_ms=None
+12:30:29 [llm-attempt] id=7b9c7f40 model=gpt-5.6-sol label=opt kernel=3e4f4e56538ba0bc round=1 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:31:13 [llm-done] id=7b9c7f40 model=gpt-5.6-sol label=opt kernel=3e4f4e56538ba0bc round=1 attempt=1/6 timeout_s=600 elapsed_s=44.2
+12:31:22     [opt] round 1 stage=ok ok=True cand_ms=0.6165653467178345
+12:31:22   [advance] 3e4f4e56538ba0bc -> 850fdffabd1ac35a spd=2.911 wins=66
+12:31:22 [progress] completed=10 available_at_start=791 advanced=6 slow=2 failed=2 pool=787 last=3e4f4e56538ba0bc outcome=win
+12:31:22   [forward-start] 50f987b500cf5eca hop=0 origin=syn_04650_8d85b8f7
+12:31:22   [route] 50f987b500cf5eca hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=0 cached=4 profile_ms=0
+12:31:22 [llm-attempt] id=3142cde9 model=gpt-5.6-sol label=opt kernel=50f987b500cf5eca round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:32:02 [llm-done] id=3142cde9 model=gpt-5.6-sol label=opt kernel=50f987b500cf5eca round=0 attempt=1/6 timeout_s=600 elapsed_s=40.3
+12:32:10     [opt] round 0 stage=ok ok=True cand_ms=3.3477013930678368
+12:32:10   [slow] 50f987b500cf5eca outcome=regressed spd=0.9662719459673446 -> accumulates at 9c244a15
+12:32:10 [progress] completed=11 available_at_start=791 advanced=6 slow=3 failed=2 pool=786 last=50f987b500cf5eca outcome=regressed
+12:32:10   [forward-start] 32b148745f56d77c hop=0 origin=syn_01575_cfd38231
+12:32:10   [route] 32b148745f56d77c hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=0 cached=4 profile_ms=0
+12:32:10 [llm-attempt] id=84dd8935 model=gpt-5.6-sol label=opt kernel=32b148745f56d77c round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:33:00 [llm-done] id=84dd8935 model=gpt-5.6-sol label=opt kernel=32b148745f56d77c round=0 attempt=1/6 timeout_s=600 elapsed_s=50.1
+12:38:37     [opt] round 0 stage=timeout ok=False cand_ms=None
+12:38:37 [llm-attempt] id=09361a33 model=gpt-5.6-sol label=opt kernel=32b148745f56d77c round=1 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:39:10 [llm-done] id=09361a33 model=gpt-5.6-sol label=opt kernel=32b148745f56d77c round=1 attempt=1/6 timeout_s=600 elapsed_s=33.2
+12:39:10 [llm-attempt] id=167587af model=gpt-5.6-sol label=opt kernel=32b148745f56d77c round=2 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:39:56 [llm-done] id=167587af model=gpt-5.6-sol label=opt kernel=32b148745f56d77c round=2 attempt=1/6 timeout_s=600 elapsed_s=46.1
+12:40:06     [opt] round 2 stage=ok ok=True cand_ms=2.2102026268839836
+12:40:06   [advance] 32b148745f56d77c -> c4e51093ad7d457d spd=1.224 wins=67
+12:40:06 [progress] completed=12 available_at_start=791 advanced=7 slow=3 failed=2 pool=786 last=32b148745f56d77c outcome=win
+12:40:06   [forward-start] 5e34a5f62953ad8e hop=0 origin=syn_05140_e78e7055
+12:40:06   [route] 5e34a5f62953ad8e hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=0 cached=4 profile_ms=0
+12:40:06 [llm-attempt] id=77f457cf model=gpt-5.6-sol label=opt kernel=5e34a5f62953ad8e round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:41:02 [llm-done] id=77f457cf model=gpt-5.6-sol label=opt kernel=5e34a5f62953ad8e round=0 attempt=1/6 timeout_s=600 elapsed_s=55.6
+12:41:12     [opt] round 0 stage=correctness ok=False cand_ms=None
+12:41:12 [llm-attempt] id=27c1a18d model=gpt-5.6-sol label=opt kernel=5e34a5f62953ad8e round=1 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:42:19 [llm-done] id=27c1a18d model=gpt-5.6-sol label=opt kernel=5e34a5f62953ad8e round=1 attempt=1/6 timeout_s=600 elapsed_s=66.6
+12:42:30     [opt] round 1 stage=ok ok=True cand_ms=20.22420521825552
+12:42:30   [advance] 5e34a5f62953ad8e -> 5e49ad108aa68293 spd=1.485 wins=68
+12:42:30 [progress] completed=13 available_at_start=791 advanced=8 slow=3 failed=2 pool=786 last=5e34a5f62953ad8e outcome=win
+12:42:30   [forward-start] 179d9685fd4fdf93 hop=0 origin=syn_00936_b9a33afc
+12:42:30   [route] 179d9685fd4fdf93 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=0 cached=4 profile_ms=0
+12:42:30 [llm-attempt] id=604c7735 model=gpt-5.6-sol label=opt kernel=179d9685fd4fdf93 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:43:11 [llm-done] id=604c7735 model=gpt-5.6-sol label=opt kernel=179d9685fd4fdf93 round=0 attempt=1/6 timeout_s=600 elapsed_s=40.9
+12:43:19     [opt] round 0 stage=ok ok=True cand_ms=3.4375516697764397
+12:43:19   [slow] 179d9685fd4fdf93 outcome=no_speedup spd=1.0030443969360423 -> accumulates at 9c244a15
+12:43:19 [progress] completed=14 available_at_start=791 advanced=8 slow=4 failed=2 pool=785 last=179d9685fd4fdf93 outcome=no_speedup
+12:43:19   [forward-start] 23ead10f3612df57 hop=0 origin=syn_04959_61ba641c
+12:44:43   [route] 23ead10f3612df57 hop=0 -> leaf=460f36cf (memory) path=root/00dcb62e/460f36cf measured=3 cached=2 profile_ms=7837
+12:44:43 [llm-attempt] id=f5addc0e model=gpt-5.6-sol label=opt kernel=23ead10f3612df57 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:45:44 [llm-done] id=f5addc0e model=gpt-5.6-sol label=opt kernel=23ead10f3612df57 round=0 attempt=1/6 timeout_s=600 elapsed_s=60.6
+12:45:52     [opt] round 0 stage=ok ok=True cand_ms=3.038482740521431
+12:45:52   [advance] 23ead10f3612df57 -> d0f990ed532abebd spd=1.361 wins=78
+12:45:52 [progress] completed=15 available_at_start=791 advanced=9 slow=4 failed=2 pool=785 last=23ead10f3612df57 outcome=win
+12:45:52   [forward-start] 5610781bce738772 hop=0 origin=syn_00716_b93cd79a
+12:47:01   [route] 5610781bce738772 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=18252
+12:47:01 [llm-attempt] id=bcad8993 model=gpt-5.6-sol label=opt kernel=5610781bce738772 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:47:41 [llm-done] id=bcad8993 model=gpt-5.6-sol label=opt kernel=5610781bce738772 round=0 attempt=1/6 timeout_s=600 elapsed_s=40.1
+12:47:41 [llm-attempt] id=c7a385f5 model=gpt-5.6-sol label=opt kernel=5610781bce738772 round=1 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:48:22 [llm-done] id=c7a385f5 model=gpt-5.6-sol label=opt kernel=5610781bce738772 round=1 attempt=1/6 timeout_s=600 elapsed_s=40.5
+12:48:32     [opt] round 1 stage=ok ok=True cand_ms=7.832162082195282
+12:48:32   [advance] 5610781bce738772 -> d6b05a07a074f26c spd=1.235 wins=69
+12:48:32 [progress] completed=16 available_at_start=791 advanced=10 slow=4 failed=2 pool=785 last=5610781bce738772 outcome=win
+12:48:32   [forward-start] a065496902608333 hop=0 origin=syn_00841_c570c3e2
+12:49:26   [route] a065496902608333 hop=0 -> leaf=2a031de2 (memory) path=root/00dcb62e/2a031de2 measured=7 cached=0 profile_ms=26802
+12:49:26 [llm-attempt] id=6e8a0f87 model=gpt-5.6-sol label=opt kernel=a065496902608333 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:50:03 [llm-done] id=6e8a0f87 model=gpt-5.6-sol label=opt kernel=a065496902608333 round=0 attempt=1/6 timeout_s=600 elapsed_s=37.5
+12:50:11     [opt] round 0 stage=ok ok=True cand_ms=3.3203307539224625
+12:50:11   [advance] a065496902608333 -> 6c71defb70344ecf spd=1.323 wins=44
+12:50:11 [progress] completed=17 available_at_start=791 advanced=11 slow=4 failed=2 pool=785 last=a065496902608333 outcome=win
+12:50:11   [forward-start] f6c10d6dde9b950b hop=0 origin=syn_05178_6053e5e9
+12:51:22   [route] f6c10d6dde9b950b hop=0 -> leaf=460f36cf (memory) path=root/00dcb62e/460f36cf measured=5 cached=0 profile_ms=19816
+12:51:22 [llm-attempt] id=37778722 model=gpt-5.6-sol label=opt kernel=f6c10d6dde9b950b round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:52:17 [llm-done] id=37778722 model=gpt-5.6-sol label=opt kernel=f6c10d6dde9b950b round=0 attempt=1/6 timeout_s=600 elapsed_s=55.0
+12:52:27     [opt] round 0 stage=correctness ok=False cand_ms=None
+12:52:27 [llm-attempt] id=4c57254e model=gpt-5.6-sol label=opt kernel=f6c10d6dde9b950b round=1 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:53:00 [llm-done] id=4c57254e model=gpt-5.6-sol label=opt kernel=f6c10d6dde9b950b round=1 attempt=1/6 timeout_s=600 elapsed_s=33.3
+12:53:10     [opt] round 1 stage=ok ok=True cand_ms=4.889815114438534
+12:53:10   [advance] f6c10d6dde9b950b -> 833d3972e24fcce7 spd=2.220 wins=79
+12:53:10 [progress] completed=18 available_at_start=791 advanced=12 slow=4 failed=2 pool=785 last=f6c10d6dde9b950b outcome=win
+12:53:10   [forward-start] 57d16c2f5fcc1a08 hop=0 origin=syn_02953_d6517f8b
+12:53:45   [route] 57d16c2f5fcc1a08 hop=0 -> leaf=460f36cf (memory) path=root/00dcb62e/460f36cf measured=5 cached=0 profile_ms=15443
+12:53:45 [llm-attempt] id=746afbaa model=gpt-5.6-sol label=opt kernel=57d16c2f5fcc1a08 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:54:42 [llm-done] id=746afbaa model=gpt-5.6-sol label=opt kernel=57d16c2f5fcc1a08 round=0 attempt=1/6 timeout_s=600 elapsed_s=56.9
+12:54:50     [opt] round 0 stage=ok ok=True cand_ms=0.9065233170986176
+12:54:50   [advance] 57d16c2f5fcc1a08 -> 8b7668341b508fe5 spd=2.364 wins=80
+12:54:50 [progress] completed=19 available_at_start=791 advanced=13 slow=4 failed=2 pool=785 last=57d16c2f5fcc1a08 outcome=win
+12:54:50   [forward-start] d26e72e57dd5f50f hop=0 origin=syn_05815_3f88cd1d
+12:55:40   [route] d26e72e57dd5f50f hop=0 -> leaf=2a031de2 (memory) path=root/00dcb62e/2a031de2 measured=7 cached=0 profile_ms=23096
+12:55:40 [llm-attempt] id=85602293 model=gpt-5.6-sol label=opt kernel=d26e72e57dd5f50f round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:56:25 [llm-done] id=85602293 model=gpt-5.6-sol label=opt kernel=d26e72e57dd5f50f round=0 attempt=1/6 timeout_s=600 elapsed_s=44.3
+12:56:33     [opt] round 0 stage=ok ok=True cand_ms=2.4470817297697067
+12:56:33   [slow] d26e72e57dd5f50f outcome=no_speedup spd=0.99398247558357 -> accumulates at 2a031de2
+12:56:33 [progress] completed=20 available_at_start=791 advanced=13 slow=5 failed=2 pool=784 last=d26e72e57dd5f50f outcome=no_speedup
+12:56:33 [checkpoint] forwards=20 advanced=13 slow=5 failed=2 pool=784; routing continues
+12:56:33 [checkpoint-save] id=000003 reason=forward_interval resume='--resume 20260830T041908Z --checkpoint 000003'
+12:56:33   [forward-start] 21ebd59da3c8737e hop=0 origin=syn_00788_1ff3b61d
+12:57:19   [route] 21ebd59da3c8737e hop=0 -> leaf=2a031de2 (memory) path=root/00dcb62e/2a031de2 measured=7 cached=0 profile_ms=20527
+12:57:19 [llm-attempt] id=b2e3000e model=gpt-5.6-sol label=opt kernel=21ebd59da3c8737e round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:58:06 [llm-done] id=b2e3000e model=gpt-5.6-sol label=opt kernel=21ebd59da3c8737e round=0 attempt=1/6 timeout_s=600 elapsed_s=46.8
+12:58:46     [opt] round 0 stage=correctness ok=False cand_ms=None
+12:58:46 [llm-attempt] id=89c98cad model=gpt-5.6-sol label=opt kernel=21ebd59da3c8737e round=1 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:59:18 [llm-done] id=89c98cad model=gpt-5.6-sol label=opt kernel=21ebd59da3c8737e round=1 attempt=1/6 timeout_s=600 elapsed_s=32.1
+12:59:18 [llm-attempt] id=1b90f769 model=gpt-5.6-sol label=opt kernel=21ebd59da3c8737e round=2 attempt=1/6 timeout_s=600 elapsed_s=0.0
+12:59:39 [llm-done] id=1b90f769 model=gpt-5.6-sol label=opt kernel=21ebd59da3c8737e round=2 attempt=1/6 timeout_s=600 elapsed_s=20.1
+12:59:46     [opt] round 2 stage=correctness ok=False cand_ms=None
+12:59:46   [opt-failed] 21ebd59da3c8737e outcome=incorrect stage=correctness; excluded from leaf activation
+12:59:46 [progress] completed=21 available_at_start=791 advanced=13 slow=5 failed=3 pool=783 last=21ebd59da3c8737e outcome=incorrect
+12:59:46   [forward-start] 8ebd099f10411657 hop=0 origin=syn_02762_19366857
+13:02:45   [route] 8ebd099f10411657 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=127630
+13:02:45 [llm-attempt] id=054a3cc1 model=gpt-5.6-sol label=opt kernel=8ebd099f10411657 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:03:30 [llm-done] id=054a3cc1 model=gpt-5.6-sol label=opt kernel=8ebd099f10411657 round=0 attempt=1/6 timeout_s=600 elapsed_s=45.7
+13:03:38     [opt] round 0 stage=correctness ok=False cand_ms=None
+13:03:38 [llm-attempt] id=94f8bf16 model=gpt-5.6-sol label=opt kernel=8ebd099f10411657 round=1 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:04:18 [llm-done] id=94f8bf16 model=gpt-5.6-sol label=opt kernel=8ebd099f10411657 round=1 attempt=1/6 timeout_s=600 elapsed_s=39.1
+13:04:18 [llm-attempt] id=808a4da4 model=gpt-5.6-sol label=opt kernel=8ebd099f10411657 round=2 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:05:09 [llm-done] id=808a4da4 model=gpt-5.6-sol label=opt kernel=8ebd099f10411657 round=2 attempt=1/6 timeout_s=600 elapsed_s=51.7
+13:05:17     [opt] round 2 stage=ok ok=True cand_ms=3.099951893091202
+13:05:17   [advance] 8ebd099f10411657 -> e2b97dc0cfae3990 spd=3.915 wins=70
+13:05:17 [progress] completed=22 available_at_start=791 advanced=14 slow=5 failed=3 pool=783 last=8ebd099f10411657 outcome=win
+13:05:17   [forward-start] f9fda6bcc9fa5f8e hop=0 origin=syn_00726_481acf67
+13:06:06   [route] f9fda6bcc9fa5f8e hop=0 -> leaf=2a031de2 (memory) path=root/00dcb62e/2a031de2 measured=7 cached=0 profile_ms=21991
+13:06:06 [llm-attempt] id=f466d5f1 model=gpt-5.6-sol label=opt kernel=f9fda6bcc9fa5f8e round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:06:48 [llm-done] id=f466d5f1 model=gpt-5.6-sol label=opt kernel=f9fda6bcc9fa5f8e round=0 attempt=1/6 timeout_s=600 elapsed_s=41.7
+13:06:48 [llm-attempt] id=c97b7d47 model=gpt-5.6-sol label=opt kernel=f9fda6bcc9fa5f8e round=1 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:07:37 [llm-done] id=c97b7d47 model=gpt-5.6-sol label=opt kernel=f9fda6bcc9fa5f8e round=1 attempt=1/6 timeout_s=600 elapsed_s=49.0
+13:07:48     [opt] round 1 stage=run_candidate ok=False cand_ms=None
+13:07:48 [llm-attempt] id=d1761901 model=gpt-5.6-sol label=opt kernel=f9fda6bcc9fa5f8e round=2 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:08:59 [llm-done] id=d1761901 model=gpt-5.6-sol label=opt kernel=f9fda6bcc9fa5f8e round=2 attempt=1/6 timeout_s=600 elapsed_s=71.1
+13:09:08     [opt] round 2 stage=correctness ok=False cand_ms=None
+13:09:08   [opt-failed] f9fda6bcc9fa5f8e outcome=incorrect stage=correctness; excluded from leaf activation
+13:09:08 [progress] completed=23 available_at_start=791 advanced=14 slow=5 failed=4 pool=782 last=f9fda6bcc9fa5f8e outcome=incorrect
+13:09:08   [forward-start] 1a35124f50bfd90a hop=0 origin=syn_02525_4869043e
+13:09:44   [route] 1a35124f50bfd90a hop=0 -> leaf=460f36cf (memory) path=root/00dcb62e/460f36cf measured=5 cached=0 profile_ms=18077
+13:09:44 [llm-attempt] id=e057ef82 model=gpt-5.6-sol label=opt kernel=1a35124f50bfd90a round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:10:17 [log] run log -> output_headroom/_run/20260830T041908Z/train.log
+13:10:17 [init] run_id=20260830T041908Z resume=True checkpoint=latest n_train=999 n_holdout=0 source=['triton_seed']
+[init] tree_model=gpt-5.6-sol optimize_model=gpt-5.6-sol
+[init] artifacts -> output_headroom/_run/20260830T041908Z
+[init] kernel store -> output_headroom/kernels ({'n_kernels': 1284, 'n_origins': 998, 'n_routes': 462, 'by_status': {'pending': 782, 'optimization_failed': 120, 'terminal': 112, 'advanced': 246, 'slow': 24}, 'max_hop': 1})
+13:10:17 [seed] pool has 782 pending kernels (0 new)
+13:10:17 [checkpoint-save] id=000004 reason=periodic resume='--resume 20260830T041908Z --checkpoint 000004'
+13:10:17 
+========== ROUTING ROUND 19 (parallel) ==========
+13:10:17 [routing-start] sync bound=memory,latency,compute,algorithm available=782 pool=782
+13:10:17   [forward-start] 1a35124f50bfd90a hop=0 origin=syn_02525_4869043e
+13:10:17   [route] 1a35124f50bfd90a hop=0 -> leaf=460f36cf (memory) path=root/00dcb62e/460f36cf measured=0 cached=5 profile_ms=0
+13:10:17 [llm-attempt] id=dbc3122b model=gpt-5.6-sol label=opt kernel=1a35124f50bfd90a round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:11:28 [llm-done] id=dbc3122b model=gpt-5.6-sol label=opt kernel=1a35124f50bfd90a round=0 attempt=1/6 timeout_s=600 elapsed_s=71.2
+13:11:40     [opt] round 0 stage=ok ok=True cand_ms=6.273130886256695
+13:11:40   [slow] 1a35124f50bfd90a outcome=regressed spd=0.941185007162557 -> accumulates at 460f36cf
+13:11:40 [progress] completed=1 available_at_start=782 advanced=0 slow=1 failed=0 pool=781 last=1a35124f50bfd90a outcome=regressed
+13:11:40   [forward-start] c14eeb3c6ce44ace hop=0 origin=syn_05457_2e43659b
+13:12:14   [route] c14eeb3c6ce44ace hop=0 -> leaf=460f36cf (memory) path=root/00dcb62e/460f36cf measured=5 cached=0 profile_ms=16570
+13:12:14 [llm-attempt] id=269b43df model=gpt-5.6-sol label=opt kernel=c14eeb3c6ce44ace round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:12:54 [llm-done] id=269b43df model=gpt-5.6-sol label=opt kernel=c14eeb3c6ce44ace round=0 attempt=1/6 timeout_s=600 elapsed_s=40.1
+13:13:03     [opt] round 0 stage=ok ok=True cand_ms=6.341377273201942
+13:13:03   [slow] c14eeb3c6ce44ace outcome=regressed spd=0.6808279686215395 -> accumulates at 460f36cf
+13:13:03 [progress] completed=2 available_at_start=782 advanced=0 slow=2 failed=0 pool=780 last=c14eeb3c6ce44ace outcome=regressed
+13:13:03   [forward-start] ed3215b7213d8d69 hop=0 origin=syn_03803_734c60c0
+13:14:08   [route] ed3215b7213d8d69 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=4 cached=0 profile_ms=14136
+13:14:08 [llm-attempt] id=bd7edc11 model=gpt-5.6-sol label=opt kernel=ed3215b7213d8d69 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:14:40 [log] run log -> output_headroom/_run/20260830T041908Z/train.log
+13:14:40 [init] run_id=20260830T041908Z resume=True checkpoint=latest n_train=999 n_holdout=0 source=['triton_seed']
+[init] tree_model=gpt-5.6-sol optimize_model=gpt-5.6-sol
+[init] artifacts -> output_headroom/_run/20260830T041908Z
+[init] kernel store -> output_headroom/kernels ({'n_kernels': 1284, 'n_origins': 998, 'n_routes': 464, 'by_status': {'pending': 780, 'optimization_failed': 120, 'terminal': 112, 'advanced': 246, 'slow': 26}, 'max_hop': 1})
+13:14:40 [seed] pool has 780 pending kernels (0 new)
+13:14:40 [checkpoint-save] id=000005 reason=periodic resume='--resume 20260830T041908Z --checkpoint 000005'
+13:14:40 
+========== ROUTING ROUND 19 (parallel) ==========
+13:14:40 [routing-start] sync bound=memory,latency,compute,algorithm available=780 pool=780
+13:14:40   [forward-start] ed3215b7213d8d69 hop=0 origin=syn_03803_734c60c0
+13:14:40   [route] ed3215b7213d8d69 hop=0 -> leaf=9c244a15 (latency) path=root/9c244a15 measured=0 cached=4 profile_ms=0
+13:14:40 [llm-attempt] id=c55ed591 model=gpt-5.6-sol label=opt kernel=ed3215b7213d8d69 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:15:30 [llm-done] id=c55ed591 model=gpt-5.6-sol label=opt kernel=ed3215b7213d8d69 round=0 attempt=1/6 timeout_s=600 elapsed_s=49.4
+13:15:30 [llm-attempt] id=c1bd7f3b model=gpt-5.6-sol label=opt kernel=ed3215b7213d8d69 round=1 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:16:30 [llm-done] id=c1bd7f3b model=gpt-5.6-sol label=opt kernel=ed3215b7213d8d69 round=1 attempt=1/6 timeout_s=600 elapsed_s=60.2
+13:17:19     [opt] round 1 stage=ok ok=True cand_ms=188.1539598107338
+13:17:19   [slow] ed3215b7213d8d69 outcome=regressed spd=0.026636274824532916 -> accumulates at 9c244a15
+13:17:19 [progress] completed=1 available_at_start=780 advanced=0 slow=1 failed=0 pool=779 last=ed3215b7213d8d69 outcome=regressed
+13:17:19   [forward-start] 6f6f1b1fb1e84481 hop=0 origin=syn_01796_086b16c2
+13:18:26   [route] 6f6f1b1fb1e84481 hop=0 -> leaf=70f21b3a (compute) path=root/70f21b3a measured=5 cached=0 profile_ms=16125
+13:18:26 [llm-attempt] id=5b88faae model=gpt-5.6-sol label=opt kernel=6f6f1b1fb1e84481 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:20:00 [llm-done] id=5b88faae model=gpt-5.6-sol label=opt kernel=6f6f1b1fb1e84481 round=0 attempt=1/6 timeout_s=600 elapsed_s=94.3
+13:20:10     [opt] round 0 stage=ok ok=True cand_ms=14.389686286449432
+13:20:10   [advance] 6f6f1b1fb1e84481 -> a61ae17390c0c970 spd=1.265 wins=4
+13:20:10 [progress] completed=2 available_at_start=780 advanced=1 slow=1 failed=0 pool=779 last=6f6f1b1fb1e84481 outcome=win
+13:20:10   [forward-start] ca36d4a92709255b hop=0 origin=syn_04331_ee5f148e
+13:21:22   [route] ca36d4a92709255b hop=0 -> leaf=460f36cf (memory) path=root/00dcb62e/460f36cf measured=5 cached=0 profile_ms=21850
+13:21:22 [llm-attempt] id=09b93fd3 model=gpt-5.6-sol label=opt kernel=ca36d4a92709255b round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:22:06 [llm-done] id=09b93fd3 model=gpt-5.6-sol label=opt kernel=ca36d4a92709255b round=0 attempt=1/6 timeout_s=600 elapsed_s=43.4
+13:22:17     [opt] round 0 stage=ok ok=True cand_ms=18.830043263733387
+13:22:17   [slow] ca36d4a92709255b outcome=regressed spd=0.744255748603823 -> accumulates at 460f36cf
+13:22:17 [progress] completed=3 available_at_start=780 advanced=1 slow=2 failed=0 pool=778 last=ca36d4a92709255b outcome=regressed
+13:22:17   [forward-start] cd214084914c1e60 hop=0 origin=syn_05018_e5306ec7
+13:23:56   [route] cd214084914c1e60 hop=0 -> leaf=460f36cf (memory) path=root/00dcb62e/460f36cf measured=5 cached=0 profile_ms=81262
+13:23:56 [llm-attempt] id=568bd105 model=gpt-5.6-sol label=opt kernel=cd214084914c1e60 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:24:34 [llm-done] id=568bd105 model=gpt-5.6-sol label=opt kernel=cd214084914c1e60 round=0 attempt=1/6 timeout_s=600 elapsed_s=37.3
+13:25:18     [opt] round 0 stage=ok ok=True cand_ms=11.40560396015644
+13:25:18   [advance] cd214084914c1e60 -> 6364dd5fdfb52d6d spd=1.445 wins=81
+13:25:18 [progress] completed=4 available_at_start=780 advanced=2 slow=2 failed=0 pool=778 last=cd214084914c1e60 outcome=win
+13:25:18   [forward-start] 68cebcd30c5194a1 hop=0 origin=syn_01770_55e5c5f4
+13:25:52   [route] 68cebcd30c5194a1 hop=0 -> leaf=460f36cf (memory) path=root/00dcb62e/460f36cf measured=5 cached=0 profile_ms=16199
+13:25:52 [llm-attempt] id=dbb10c39 model=gpt-5.6-sol label=opt kernel=68cebcd30c5194a1 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:26:37 [llm-done] id=dbb10c39 model=gpt-5.6-sol label=opt kernel=68cebcd30c5194a1 round=0 attempt=1/6 timeout_s=600 elapsed_s=45.0
+13:26:46     [opt] round 0 stage=ok ok=True cand_ms=1.9810255616903305
+13:26:46   [advance] 68cebcd30c5194a1 -> db9311babe60007c spd=1.399 wins=82
+13:26:46 [progress] completed=5 available_at_start=780 advanced=3 slow=2 failed=0 pool=778 last=68cebcd30c5194a1 outcome=win
+13:26:46 [update] leaf=460f36cf (memory) op=free_carve slow=12 wins=82 stall=0
+13:26:46 [update-propose] leaf=460f36cf (memory) slow=12
+13:26:46 [llm-attempt] id=8a5d3e46 model=gpt-5.6-sol label=proposal leaf=460f36cf attempt=1/5 timeout_s=600 elapsed_s=0.0
+13:27:14 [llm-done] id=8a5d3e46 model=gpt-5.6-sol label=proposal leaf=460f36cf attempt=1/5 timeout_s=600 elapsed_s=28.4
+13:27:14 [update-proposal-ready] leaf=460f36cf (memory) elapsed_s=28.4 result={"added":["dram__bytes.sum","smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct"],"blind_spot":"The existing metrics cannot distinguish excessive total memory traffic from long-latency memory stalls that require greater latency hiding.","rationale":{"dram__bytes.sum":"HIGH -> reduce global-memory passes with fusion, reuse, tiling, or redundant-load/store elimination / LOW -> avoid speculative traffic-reduction changes and tune launch or computation overhead instead","smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct":"HIGH -> increase latency hiding through occupancy, independent work, or prefetching / LOW -> do not prioritize extra warps or prefetches and instead reduce instructions or memory traffic"},"rejected":[]}
+13:27:31 [llm-attempt] id=310593c5 model=gpt-5.6-sol label=opt kernel=1a35124f50bfd90a round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:28:38 [llm-done] id=310593c5 model=gpt-5.6-sol label=opt kernel=1a35124f50bfd90a round=0 attempt=1/6 timeout_s=600 elapsed_s=66.9
+13:28:48     [opt] round 0 stage=correctness ok=False cand_ms=None
+13:28:48 [llm-attempt] id=bf0b9549 model=gpt-5.6-sol label=opt kernel=1a35124f50bfd90a round=1 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:29:47 [llm-done] id=bf0b9549 model=gpt-5.6-sol label=opt kernel=1a35124f50bfd90a round=1 attempt=1/6 timeout_s=600 elapsed_s=59.3
+13:29:58     [opt] round 1 stage=ok ok=True cand_ms=5.976532585918903
+13:30:14 [llm-attempt] id=edf7976f model=gpt-5.6-sol label=opt kernel=5e1d5b6be6828113 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:31:15 [llm-done] id=edf7976f model=gpt-5.6-sol label=opt kernel=5e1d5b6be6828113 round=0 attempt=1/6 timeout_s=600 elapsed_s=60.3
+13:31:24     [opt] round 0 stage=run_candidate ok=False cand_ms=None
+13:31:24 [llm-attempt] id=9bbb37b0 model=gpt-5.6-sol label=opt kernel=5e1d5b6be6828113 round=1 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:31:49 [llm-done] id=9bbb37b0 model=gpt-5.6-sol label=opt kernel=5e1d5b6be6828113 round=1 attempt=1/6 timeout_s=600 elapsed_s=25.0
+13:31:58     [opt] round 1 stage=ok ok=True cand_ms=8.544469252228737
+13:32:14 [llm-attempt] id=44e95b09 model=gpt-5.6-sol label=opt kernel=68cebcd30c5194a1 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:33:09 [llm-done] id=44e95b09 model=gpt-5.6-sol label=opt kernel=68cebcd30c5194a1 round=0 attempt=1/6 timeout_s=600 elapsed_s=54.9
+13:33:18     [opt] round 0 stage=ok ok=True cand_ms=10.305305942893028
+13:33:33 [llm-attempt] id=277743d4 model=gpt-5.6-sol label=opt kernel=a75a30865d36b834 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:34:36 [llm-done] id=277743d4 model=gpt-5.6-sol label=opt kernel=a75a30865d36b834 round=0 attempt=1/6 timeout_s=600 elapsed_s=63.0
+13:34:45     [opt] round 0 stage=ok ok=True cand_ms=9.959118440747261
+13:35:33 [llm-attempt] id=93241922 model=gpt-5.6-sol label=opt kernel=b9795af037350e5a round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:36:34 [llm-done] id=93241922 model=gpt-5.6-sol label=opt kernel=b9795af037350e5a round=0 attempt=1/6 timeout_s=600 elapsed_s=61.2
+13:36:42     [opt] round 0 stage=run_candidate ok=False cand_ms=None
+13:36:42 [llm-attempt] id=d3aa1e9f model=gpt-5.6-sol label=opt kernel=b9795af037350e5a round=1 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:37:13 [llm-done] id=d3aa1e9f model=gpt-5.6-sol label=opt kernel=b9795af037350e5a round=1 attempt=1/6 timeout_s=600 elapsed_s=31.0
+13:37:21     [opt] round 1 stage=run_candidate ok=False cand_ms=None
+13:37:21 [llm-attempt] id=4b89b914 model=gpt-5.6-sol label=opt kernel=b9795af037350e5a round=2 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:37:52 [llm-done] id=4b89b914 model=gpt-5.6-sol label=opt kernel=b9795af037350e5a round=2 attempt=1/6 timeout_s=600 elapsed_s=30.5
+13:38:00     [opt] round 2 stage=ok ok=True cand_ms=1.2776106595993042
+13:38:16 [llm-attempt] id=e275e223 model=gpt-5.6-sol label=opt kernel=c14eeb3c6ce44ace round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:39:07 [llm-done] id=e275e223 model=gpt-5.6-sol label=opt kernel=c14eeb3c6ce44ace round=0 attempt=1/6 timeout_s=600 elapsed_s=50.7
+13:39:48     [opt] round 0 stage=ok ok=True cand_ms=6.34196400642395
+13:40:07 [llm-attempt] id=d56579e6 model=gpt-5.6-sol label=opt kernel=ca36d4a92709255b round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:41:04 [llm-done] id=d56579e6 model=gpt-5.6-sol label=opt kernel=ca36d4a92709255b round=0 attempt=1/6 timeout_s=600 elapsed_s=57.3
+13:41:17     [opt] round 0 stage=ok ok=True cand_ms=7.063283585011959
+13:41:39 [llm-attempt] id=296a9dd3 model=gpt-5.6-sol label=opt kernel=cd214084914c1e60 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:42:42 [llm-done] id=296a9dd3 model=gpt-5.6-sol label=opt kernel=cd214084914c1e60 round=0 attempt=1/6 timeout_s=600 elapsed_s=62.7
+13:42:54     [opt] round 0 stage=ok ok=True cand_ms=4.68183308839798
+13:43:17 [llm-attempt] id=39bf5892 model=gpt-5.6-sol label=opt kernel=d663edec2548abe1 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:44:18 [llm-done] id=39bf5892 model=gpt-5.6-sol label=opt kernel=d663edec2548abe1 round=0 attempt=1/6 timeout_s=600 elapsed_s=60.8
+13:44:34     [opt] round 0 stage=ok ok=True cand_ms=14.252406544983387
+13:44:50 [llm-attempt] id=fe925708 model=gpt-5.6-sol label=opt kernel=fb7c5f8d7dd03d81 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:45:30 [llm-done] id=fe925708 model=gpt-5.6-sol label=opt kernel=fb7c5f8d7dd03d81 round=0 attempt=1/6 timeout_s=600 elapsed_s=39.8
+13:45:30 [llm-attempt] id=b43ab5b4 model=gpt-5.6-sol label=opt kernel=fb7c5f8d7dd03d81 round=1 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:46:15 [llm-done] id=b43ab5b4 model=gpt-5.6-sol label=opt kernel=fb7c5f8d7dd03d81 round=1 attempt=1/6 timeout_s=600 elapsed_s=45.2
+13:46:15 [llm-attempt] id=ad66db01 model=gpt-5.6-sol label=opt kernel=fb7c5f8d7dd03d81 round=2 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:47:10 [llm-done] id=ad66db01 model=gpt-5.6-sol label=opt kernel=fb7c5f8d7dd03d81 round=2 attempt=1/6 timeout_s=600 elapsed_s=55.2
+13:47:28 [llm-attempt] id=28c37ccd model=gpt-5.6-sol label=opt kernel=fb8cf15023e4b744 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:48:02 [llm-done] id=28c37ccd model=gpt-5.6-sol label=opt kernel=fb8cf15023e4b744 round=0 attempt=1/6 timeout_s=600 elapsed_s=34.0
+13:48:02   [opt-skip] fb8cf15023e4b744 service error: LLM optimization failed: TypeError: 'Call' object is not iterable
+13:48:55 [llm-attempt] id=9cfbb901 model=gpt-5.6-sol label=opt kernel=fc176878c1f26172 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+13:49:47 [llm-done] id=9cfbb901 model=gpt-5.6-sol label=opt kernel=fc176878c1f26172 round=0 attempt=1/6 timeout_s=600 elapsed_s=52.6
+13:50:00     [opt] round 0 stage=ok ok=True cand_ms=18.41393206268549

@@ -1,0 +1,449 @@
+{
+  "routing_round": 26,
+  "bounds": [
+    "memory",
+    "latency",
+    "compute",
+    "algorithm"
+  ],
+  "steps": [],
+  "updates": [
+    {
+      "action": "update",
+      "leaf_id": "9c244a15",
+      "proposal": {
+        "leaf_id": "9c244a15",
+        "inherited": [
+          "sm__throughput.avg.pct_of_peak_sustained_elapsed",
+          "dram__throughput.avg.pct_of_peak_sustained_elapsed"
+        ],
+        "old_owned": [
+          "sm__warps_active.avg.pct_of_peak_sustained_active",
+          "smsp__issue_active.avg.pct_of_peak_sustained_active",
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct",
+          "smsp__warp_issue_stalled_barrier_per_warp_active.pct"
+        ],
+        "new_owned": [
+          "sm__warps_active.avg.pct_of_peak_sustained_active",
+          "smsp__issue_active.avg.pct_of_peak_sustained_active",
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct",
+          "smsp__warp_issue_stalled_barrier_per_warp_active.pct",
+          "launch__waves_per_multiprocessor",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct"
+        ],
+        "added": [
+          "launch__waves_per_multiprocessor",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct"
+        ],
+        "blind_spot": "The current metrics cannot tell whether these latency-bound kernels suffer from a grid that does not fill the GPU versus too many tiny blocks, nor whether their global loads are uncoalesced, so the optimizer cannot choose between exposing more parallelism, doing more work per block, or rewriting the data layout.",
+        "rationale": {
+          "launch__waves_per_multiprocessor": "HIGH -> keep grid saturated and give each program more work (process multiple rows/channels per program, larger BLOCK) / LOW -> split the reduction into more programs (two-stage/tree partials) to fill the SMs instead of serializing into fewer blocks",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct": "LOW -> fix uncoalesced loads: remap threads to consecutive addresses, avoid movedim/transpose materialization, load along the contiguous dim / HIGH -> leave layout alone and attack latency with more ILP and concurrent blocks rather than rewriting the access pattern"
+        },
+        "rejected": [],
+        "prompt_version": "metric_rewrite_v1"
+      },
+      "validation": {
+        "accepted": false,
+        "margin": 0.8892,
+        "epsilon": 0.015,
+        "incumbent_mean": 1.5994,
+        "candidate_mean": 2.4886,
+        "time_cost": 0.0,
+        "n_scorable_incumbent": 23,
+        "n_scorable_candidate": 22,
+        "compile_fail_delta": 0.0,
+        "reason": "guard_regression",
+        "guard_ids": [
+          "72870b3cc2f85451",
+          "82a545d366c870ea",
+          "a0c95e2bcab2469f",
+          "b9e5b4fd6f6887e7",
+          "d28555f78425a67f",
+          "8ece344f6a649385",
+          "55313684b2d7c1ee",
+          "b1d32ec5c203cdf7",
+          "bd7666af87abd8c3",
+          "b888250fc1e7389b",
+          "64a9c4e69d2dc33d"
+        ],
+        "regressed_guards": [
+          "b1d32ec5c203cdf7"
+        ],
+        "per_sample": {
+          "0a57c1db0dd9e8d8": {
+            "kernel_id": "0a57c1db0dd9e8d8",
+            "outcome": "no_speedup",
+            "reward": 0.0071,
+            "rel_speedup": 1.0070699381888597,
+            "latency_ms": 3.041018731892109,
+            "profile_ms": 7030.101731419563,
+            "kernel_ms": 3.062518546357751,
+            "child_kernel_id": ""
+          },
+          "179d9685fd4fdf93": {
+            "kernel_id": "179d9685fd4fdf93",
+            "outcome": "win",
+            "reward": 0.4439,
+            "rel_speedup": 1.4438591099761482,
+            "latency_ms": 2.388056367635727,
+            "profile_ms": 6871.950214728713,
+            "kernel_ms": 3.448016941547394,
+            "child_kernel_id": ""
+          },
+          "37fe1f2f863ad2d7": {
+            "kernel_id": "37fe1f2f863ad2d7",
+            "outcome": "win",
+            "reward": 7.0,
+            "rel_speedup": 9.314456228891496,
+            "latency_ms": 4.9895029515028,
+            "profile_ms": 24012.761564925313,
+            "kernel_ms": 46.47450684569776,
+            "child_kernel_id": ""
+          },
+          "44a5b4b0c6f08ab4": {
+            "kernel_id": "44a5b4b0c6f08ab4",
+            "outcome": "win",
+            "reward": 5.3373,
+            "rel_speedup": 6.337300483692422,
+            "latency_ms": 0.34157373011112213,
+            "profile_ms": 6060.853200033307,
+            "kernel_ms": 2.164655365049839,
+            "child_kernel_id": ""
+          },
+          "50f987b500cf5eca": {
+            "kernel_id": "50f987b500cf5eca",
+            "outcome": "win",
+            "reward": 2.2238,
+            "rel_speedup": 3.22381858666637,
+            "latency_ms": 1.003403216600418,
+            "profile_ms": 6917.425069957972,
+            "kernel_ms": 3.234789939597249,
+            "child_kernel_id": ""
+          },
+          "5f5b8f0add094f12": {
+            "kernel_id": "5f5b8f0add094f12",
+            "outcome": "win",
+            "reward": 0.4468,
+            "rel_speedup": 1.4467567571826085,
+            "latency_ms": 1.1821426451206207,
+            "profile_ms": 6259.381387382746,
+            "kernel_ms": 1.7102728597819805,
+            "child_kernel_id": ""
+          },
+          "8dc6f3ed7894c859": {
+            "kernel_id": "8dc6f3ed7894c859",
+            "outcome": "regressed",
+            "reward": -0.46,
+            "rel_speedup": 0.1770478080228024,
+            "latency_ms": 14.314071275293827,
+            "profile_ms": 6601.99167765677,
+            "kernel_ms": 2.5342749431729317,
+            "child_kernel_id": ""
+          },
+          "ac95ed98de29ab3f": {
+            "kernel_id": "ac95ed98de29ab3f",
+            "outcome": "win",
+            "reward": 1.42,
+            "rel_speedup": 2.420009750066751,
+            "latency_ms": 5.887828767299652,
+            "profile_ms": 11253.378190100193,
+            "kernel_ms": 14.248603023588657,
+            "child_kernel_id": ""
+          },
+          "bc45a51063daf21e": {
+            "kernel_id": "bc45a51063daf21e",
+            "outcome": "win",
+            "reward": 0.5815,
+            "rel_speedup": 1.5814581150436173,
+            "latency_ms": 2.6016468182206154,
+            "profile_ms": 6425.4969991743565,
+            "kernel_ms": 4.114395473152399,
+            "child_kernel_id": ""
+          },
+          "d2e5bd5f0821b378": {
+            "kernel_id": "d2e5bd5f0821b378",
+            "outcome": "win",
+            "reward": 6.4551,
+            "rel_speedup": 7.455061420322479,
+            "latency_ms": 5.2825212478637695,
+            "profile_ms": 15798.94689656794,
+            "kernel_ms": 39.381520356982946,
+            "child_kernel_id": ""
+          },
+          "ed3215b7213d8d69": {
+            "kernel_id": "ed3215b7213d8d69",
+            "outcome": "win",
+            "reward": 5.9823,
+            "rel_speedup": 6.982264382536081,
+            "latency_ms": 0.7177786901593208,
+            "profile_ms": 6799.3082869797945,
+            "kernel_ms": 5.011720582842827,
+            "child_kernel_id": ""
+          },
+          "ff33ea75fb634f39": {
+            "kernel_id": "ff33ea75fb634f39",
+            "outcome": "win",
+            "reward": 6.313,
+            "rel_speedup": 7.312989498530003,
+            "latency_ms": 9.809001348912716,
+            "profile_ms": 29890.823187306523,
+            "kernel_ms": 71.73312385566533,
+            "child_kernel_id": ""
+          },
+          "72870b3cc2f85451": {
+            "kernel_id": "72870b3cc2f85451",
+            "outcome": "win",
+            "reward": 7.0,
+            "rel_speedup": 425.3612367310113,
+            "latency_ms": 0.08361134678125381,
+            "profile_ms": 39569.46017034352,
+            "kernel_ms": 35.56502587161958,
+            "child_kernel_id": ""
+          },
+          "82a545d366c870ea": {
+            "kernel_id": "82a545d366c870ea",
+            "outcome": "win",
+            "reward": 7.0,
+            "rel_speedup": 111.86573653612935,
+            "latency_ms": 0.1712525263428688,
+            "profile_ms": 17637.56912201643,
+            "kernel_ms": 19.157289993017912,
+            "child_kernel_id": ""
+          },
+          "a0c95e2bcab2469f": {
+            "kernel_id": "a0c95e2bcab2469f",
+            "outcome": "win",
+            "reward": 0.4879,
+            "rel_speedup": 1.4878992297024356,
+            "latency_ms": 4.249542951583862,
+            "profile_ms": 8829.991729930043,
+            "kernel_ms": 6.3228916842490435,
+            "child_kernel_id": ""
+          },
+          "b9e5b4fd6f6887e7": {
+            "kernel_id": "b9e5b4fd6f6887e7",
+            "outcome": "win",
+            "reward": 0.424,
+            "rel_speedup": 1.4239571779161284,
+            "latency_ms": 1.5289736911654472,
+            "profile_ms": 6770.630216225982,
+            "kernel_ms": 2.1771930623799562,
+            "child_kernel_id": ""
+          },
+          "d28555f78425a67f": {
+            "kernel_id": "d28555f78425a67f",
+            "outcome": "win",
+            "reward": 0.4216,
+            "rel_speedup": 1.421616811754069,
+            "latency_ms": 3.370426595211029,
+            "profile_ms": 7488.791331648827,
+            "kernel_ms": 4.791455110535026,
+            "child_kernel_id": ""
+          },
+          "8ece344f6a649385": {
+            "kernel_id": "8ece344f6a649385",
+            "outcome": "win",
+            "reward": 0.5218,
+            "rel_speedup": 1.5218452785657905,
+            "latency_ms": 2.3834221065044403,
+            "profile_ms": 8341.74670651555,
+            "kernel_ms": 3.6271996796131134,
+            "child_kernel_id": ""
+          },
+          "55313684b2d7c1ee": {
+            "kernel_id": "55313684b2d7c1ee",
+            "outcome": "incorrect",
+            "reward": null,
+            "rel_speedup": null,
+            "latency_ms": null,
+            "profile_ms": 6769.965512678027,
+            "kernel_ms": 5.967841250821948,
+            "child_kernel_id": ""
+          },
+          "b1d32ec5c203cdf7": {
+            "kernel_id": "b1d32ec5c203cdf7",
+            "outcome": "regressed",
+            "reward": -0.3045,
+            "rel_speedup": 0.6954560262587492,
+            "latency_ms": 8.413371630012989,
+            "profile_ms": 7396.985599771142,
+            "kernel_ms": 5.851130001246929,
+            "child_kernel_id": ""
+          },
+          "bd7666af87abd8c3": {
+            "kernel_id": "bd7666af87abd8c3",
+            "outcome": "win",
+            "reward": 0.4566,
+            "rel_speedup": 1.4566067417524247,
+            "latency_ms": 1.866636797785759,
+            "profile_ms": 6849.150218069553,
+            "kernel_ms": 2.7189557440578938,
+            "child_kernel_id": ""
+          },
+          "b888250fc1e7389b": {
+            "kernel_id": "b888250fc1e7389b",
+            "outcome": "win",
+            "reward": 1.1022,
+            "rel_speedup": 2.102195655011812,
+            "latency_ms": 1.1058012023568153,
+            "profile_ms": 7066.609306260943,
+            "kernel_ms": 2.3246104829013348,
+            "child_kernel_id": ""
+          },
+          "64a9c4e69d2dc33d": {
+            "kernel_id": "64a9c4e69d2dc33d",
+            "outcome": "win",
+            "reward": 1.8884,
+            "rel_speedup": 2.8883687649646554,
+            "latency_ms": 0.5713934078812599,
+            "profile_ms": 6577.521616593003,
+            "kernel_ms": 1.6503948718309402,
+            "child_kernel_id": ""
+          }
+        }
+      },
+      "split": {
+        "action": "split",
+        "leaf_id": "9c244a15",
+        "search_reason": "found",
+        "condition": {
+          "subset": [
+            "sm__throughput.avg.pct_of_peak_sustained_elapsed",
+            "sm__warps_active.avg.pct_of_peak_sustained_active"
+          ],
+          "thresholds": {
+            "sm__throughput.avg.pct_of_peak_sustained_elapsed": 50.58544,
+            "sm__warps_active.avg.pct_of_peak_sustained_active": 59.251796
+          },
+          "gain": 2.97923,
+          "branch_sizes": {
+            "0": 3,
+            "1": 6,
+            "2": 0,
+            "3": 3
+          }
+        },
+        "chosen_by": "llm_tiebreak:It combines SM utilization with achieved occupancy: high SM throughput with few active warps is physically implausible, so the ~59% warps-active cutoff separates occupancy-limited kernels from stall-bound ones in a way that should generalize.",
+        "objective": 2.9792,
+        "incumbent_mean": 1.6204,
+        "margin": 1.3588,
+        "epsilon": 0.015,
+        "accepted": true,
+        "reason": "accepted",
+        "children": [
+          "d8be48e6",
+          "82032fd9",
+          "fb0511b8",
+          "cc7c22b0"
+        ]
+      },
+      "accepted": true,
+      "resolution": "split",
+      "children": [
+        "d8be48e6",
+        "82032fd9",
+        "fb0511b8",
+        "cc7c22b0"
+      ]
+    }
+  ],
+  "n_retired_pool": 0,
+  "n_steps": 0,
+  "pool_size": 899,
+  "diagnostics": {
+    "outcome_counts": {},
+    "slow_share": 0.0,
+    "compile_fail_rate": 0.0,
+    "mean_profile_time_ratio": null,
+    "reward_sources": {
+      "n_positive_reward": 0,
+      "from_real_speedup": 0,
+      "from_failure_to_success": 0,
+      "real_speedup_share": null
+    },
+    "tree": {
+      "n_leaves": 13,
+      "depth": 3,
+      "branching": [
+        4,
+        4,
+        4,
+        4
+      ]
+    },
+    "store": {
+      "n_kernels": 1424,
+      "n_origins": 998,
+      "n_routes": 494,
+      "by_status": {
+        "pending": 899,
+        "optimization_failed": 121,
+        "terminal": 115,
+        "advanced": 271,
+        "slow": 18
+      },
+      "max_hop": 1
+    },
+    "origin_coverage": {
+      "total": 998,
+      "attempted": 525,
+      "remaining": 473,
+      "ratio": 0.5260521042084169
+    },
+    "gpu_queue": {
+      "submitted": 195,
+      "completed": 195,
+      "failed": 0,
+      "queue_depth": 0,
+      "active": false,
+      "busy_time_s": 4706.153590461938,
+      "utilization": 0.09355498147952589,
+      "journal_done": 106
+    },
+    "branch_share_alerts": [
+      {
+        "node_id": "root",
+        "child_id": "70f21b3a",
+        "label": "sm=high,dram=low",
+        "share": 0.0223,
+        "n": 11
+      },
+      {
+        "node_id": "root",
+        "child_id": "64953ed1",
+        "label": "sm=high,dram=high",
+        "share": 0.002,
+        "n": 1
+      },
+      {
+        "node_id": "00dcb62e",
+        "child_id": "7eca260d",
+        "label": "lts=low,smsp=low",
+        "share": 0.0312,
+        "n": 8
+      },
+      {
+        "node_id": "460f36cf",
+        "child_id": "9def774c",
+        "label": "dram=low,lts=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "460f36cf",
+        "child_id": "9cd06263",
+        "label": "dram=high,lts=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "460f36cf",
+        "child_id": "53764045",
+        "label": "dram=high,lts=high",
+        "share": 0.0,
+        "n": 0
+      }
+    ]
+  }
+}

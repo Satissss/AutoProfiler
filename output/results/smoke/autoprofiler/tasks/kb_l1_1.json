@@ -1,0 +1,166 @@
+{
+  "task_id": "kb_l1_1",
+  "group": "level1",
+  "method": "autoprofiler",
+  "correct": true,
+  "speedup": 1.4225896231505275,
+  "baseline_ms": 2.793136052787304,
+  "candidate_ms": 1.9634165801107883,
+  "error": "",
+  "wall_s": 621.1,
+  "trajectory": {
+    "task_id": "kb_l1_1",
+    "method": "autoprofiler",
+    "best_code": "import torch\nimport torch.nn as nn\nimport triton\nimport triton.language as tl\n\n@triton.jit\ndef _matmul_abs_kernel(\n    a_ptr, b_ptr, c_ptr,\n    M, N, K,\n    stride_am, stride_ak,\n    stride_bk, stride_bn,\n    stride_cm, stride_cn,\n    BLOCK_M: tl.constexpr, BLOCK_N: tl.constexpr, BLOCK_K: tl.constexpr,\n    ACCUMULATOR_DTYPE: tl.constexpr = tl.float32\n):\n    pid = tl.program_id(axis=0)\n    grid_m = tl.cdiv(M, BLOCK_M)\n    grid_n = tl.cdiv(N, BLOCK_N)\n    pid_m = pid // grid_n\n    pid_n = pid % grid_n\n    offs_am = pid_m * BLOCK_M + tl.arange(0, BLOCK_M)\n    offs_bn = pid_n * BLOCK_N + tl.arange(0, BLOCK_N)\n    offs_k = tl.arange(0, BLOCK_K)\n    a_ptrs = a_ptr + (offs_am[:, None] * stride_am + offs_k[None, :] * stride_ak)\n    b_ptrs = b_ptr + (offs_k[:, None] * stride_bk + offs_bn[None, :] * stride_bn)\n    accumulator = tl.zeros((BLOCK_M, BLOCK_N), dtype=ACCUMULATOR_DTYPE)\n    for k in range(0, tl.cdiv(K, BLOCK_K)):\n        k_remaining = min(BLOCK_K, K - k * BLOCK_K)\n        a = tl.load(a_ptrs, mask=(offs_am[:, None] < M) & (offs_k[None, :] < k_remaining), other=0.0)\n        b = tl.load(b_ptrs, mask=(offs_k[:, None] < k_remaining) & (offs_bn[None, :] < N), other=0.0)\n        accumulator += tl.dot(a, b)\n        a_ptrs += BLOCK_K * stride_ak\n        b_ptrs += BLOCK_K * stride_bk\n    c = tl.where(accumulator >= 0, accumulator, -accumulator)\n    offs_cm = pid_m * BLOCK_M + tl.arange(0, BLOCK_M)\n    offs_cn = pid_n * BLOCK_N + tl.arange(0, BLOCK_N)\n    c_ptrs = c_ptr + stride_cm * offs_cm[:, None] + stride_cn * offs_cn[None, :]\n    c_mask = (offs_cm[:, None] < M) & (offs_cn[None, :] < N)\n    tl.store(c_ptrs, c, mask=c_mask)\n\ndef _matmul_abs_launcher(A, B):\n    assert A.dim() == 2 and B.dim() == 2, \"Only 2D tensors supported\"\n    assert A.shape[1] == B.shape[0], f\"Incompatible dimensions: A {A.shape}, B {B.shape}\"\n    M, K = A.shape\n    _, N = B.shape\n    C = torch.empty((M, N), device=A.device, dtype=torch.float32)\n    BLOCK_M, BLOCK_N, BLOCK_K = 64, 64, 32\n    grid = lambda META: (triton.cdiv(M, META['BLOCK_M']) * triton.cdiv(N, META['BLOCK_N']),)\n    _matmul_abs_kernel[grid](\n        A, B, C,\n        M, N, K,\n        A.stride(0), A.stride(1),\n        B.stride(0), B.stride(1),\n        C.stride(0), C.stride(1),\n        BLOCK_M=BLOCK_M, BLOCK_N=BLOCK_N, BLOCK_K=BLOCK_K\n    )\n    return C\n\nclass ModelNew(nn.Module):\n    def __init__(self):\n        super(ModelNew, self).__init__()\n    \n    def forward(self, A: torch.Tensor, B: torch.Tensor) -> torch.Tensor:\n        return _matmul_abs_launcher(A, B)",
+    "best_language": "triton",
+    "best_result": {
+      "ok": true,
+      "stage": "ok",
+      "error": "",
+      "baseline_ms": 2.763934899121523,
+      "candidate_ms": 2.0697754807770252,
+      "speedup": 1.3353790905300993
+    },
+    "rounds": [
+      {
+        "round": 0,
+        "result": {
+          "ok": true,
+          "stage": "ok",
+          "error": "",
+          "baseline_ms": 2.7748350985348225,
+          "candidate_ms": 2.8791867662221193,
+          "speedup": 0.9637565478865339
+        },
+        "usage": {
+          "llm": {
+            "calls": 1,
+            "total_tokens": 6115,
+            "prompt_tokens": 2231,
+            "completion_tokens": 3884
+          },
+          "gpu_seconds": 18.62,
+          "n_evals": 1
+        },
+        "profile": {}
+      },
+      {
+        "round": 1,
+        "result": {
+          "ok": false,
+          "stage": "run_candidate",
+          "error": "CompilationError: at 43:4:\n    for k in range(0, tl.cdiv(K, BLOCK_K)):\n        a = tl.load(A, mask=(rm[:, None] < M) & (rk[None, :] < K - k * BLOCK_K), other=0.0)\n        b = tl.load(B, mask=(rk[:, None] < K - k * BLOCK_K) & (rn[None, :] < N), other=0.0)\n        # Manual dot: sum over K dim\n        acc += tl.sum(a * b, axis=1)\n        A += BLOCK_K * stride_ak\n        B += BLOCK_K * stride_bk\n\n    c = tl.where(acc >= 0, acc, -acc)\n    c_ptr += pid_m * BLOCK_M * stride_cm + pid_n * BLOCK_N * strid",
+          "baseline_ms": 2.7628743555396795,
+          "candidate_ms": null,
+          "speedup": null
+        },
+        "usage": {},
+        "profile": {
+          "leaf_id": "abfa4d62",
+          "bound": "compute",
+          "node_path": [
+            "root",
+            "fa55efca",
+            "abfa4d62"
+          ],
+          "profile_ms": 19235.49290932715
+        }
+      },
+      {
+        "round": 1,
+        "result": {
+          "ok": true,
+          "stage": "ok",
+          "error": "",
+          "baseline_ms": 2.764053177088499,
+          "candidate_ms": 8.795680478215218,
+          "speedup": 0.31425120363733006
+        },
+        "usage": {
+          "llm": {
+            "calls": 6,
+            "total_tokens": 24709,
+            "prompt_tokens": 12349,
+            "completion_tokens": 12360
+          },
+          "gpu_seconds": 28.14,
+          "n_evals": 4
+        },
+        "profile": {
+          "leaf_id": "abfa4d62",
+          "bound": "compute",
+          "node_path": [
+            "root",
+            "fa55efca",
+            "abfa4d62"
+          ],
+          "profile_ms": 19235.49290932715
+        }
+      },
+      {
+        "round": 2,
+        "result": {
+          "ok": true,
+          "stage": "ok",
+          "error": "",
+          "baseline_ms": 2.763934899121523,
+          "candidate_ms": 2.0697754807770252,
+          "speedup": 1.3353790905300993
+        },
+        "usage": {},
+        "profile": {
+          "leaf_id": "abfa4d62",
+          "bound": "compute",
+          "node_path": [
+            "root",
+            "fa55efca",
+            "abfa4d62"
+          ],
+          "profile_ms": 19235.49290932715
+        }
+      },
+      {
+        "round": 2,
+        "result": {
+          "ok": false,
+          "stage": "run_candidate",
+          "error": "CompilationError: at 40:19:\n        # Load with static BLOCK_K shape \u2014 mask only on M/N, never on K\n        # Pad K to multiple of BLOCK_K implicitly via zero-mask on out-of-bounds K\n        k_remaining = K - k * BLOCK_K\n        a_mask = (offs_am[:, None] < M) & (offs_k[None, :] < k_remaining)\n        b_mask = (offs_k[:, None] < k_remaining) & (offs_bn[None, :] < N)\n        a = tl.load(a_ptrs, mask=a_mask, other=0.0)\n        b = tl.load(b_ptrs, mask=b_mask, other=0.0)\n        if FP16:\n          ",
+          "baseline_ms": 2.762307645753026,
+          "candidate_ms": null,
+          "speedup": null
+        },
+        "usage": {
+          "llm": {
+            "calls": 11,
+            "total_tokens": 43633,
+            "prompt_tokens": 22674,
+            "completion_tokens": 20959
+          },
+          "gpu_seconds": 27.99,
+          "n_evals": 4
+        },
+        "profile": {
+          "leaf_id": "abfa4d62",
+          "bound": "compute",
+          "node_path": [
+            "root",
+            "fa55efca",
+            "abfa4d62"
+          ],
+          "profile_ms": 19235.49290932715
+        }
+      }
+    ],
+    "usage": {
+      "llm": {
+        "calls": 11,
+        "total_tokens": 43633,
+        "prompt_tokens": 22674,
+        "completion_tokens": 20959
+      },
+      "gpu_seconds": 74.75,
+      "n_evals": 9
+    },
+    "error": ""
+  }
+}

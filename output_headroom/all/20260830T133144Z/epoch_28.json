@@ -1,0 +1,327 @@
+{
+  "routing_round": 28,
+  "bounds": [
+    "latency",
+    "memory",
+    "compute",
+    "algorithm"
+  ],
+  "steps": [],
+  "updates": [
+    {
+      "action": "update",
+      "leaf_id": "baba1218",
+      "proposal": {
+        "leaf_id": "baba1218",
+        "inherited": [
+          "sm__throughput.avg.pct_of_peak_sustained_elapsed",
+          "dram__throughput.avg.pct_of_peak_sustained_elapsed",
+          "l1tex__t_sector_hit_rate.pct",
+          "lts__t_sector_hit_rate.pct",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct",
+          "dram__bytes_read.sum",
+          "dram__bytes_write.sum",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_st.pct",
+          "l1tex__throughput.avg.pct_of_peak_sustained_elapsed"
+        ],
+        "old_owned": [
+          "launch__waves_per_multiprocessor",
+          "sm__warps_active.avg.pct_of_peak_sustained_active"
+        ],
+        "new_owned": [
+          "launch__waves_per_multiprocessor",
+          "sm__warps_active.avg.pct_of_peak_sustained_active",
+          "lts__throughput.avg.pct_of_peak_sustained_elapsed",
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct"
+        ],
+        "added": [
+          "lts__throughput.avg.pct_of_peak_sustained_elapsed",
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct"
+        ],
+        "blind_spot": "DRAM at 78-95% with idle compute cannot distinguish DRAM-bandwidth saturation from L2-bandwidth saturation from load-latency stalls, so the optimizer cannot choose between cutting DRAM bytes, keeping tiles in SMEM/registers, or adding memory-level parallelism.",
+        "rationale": {
+          "lts__throughput.avg.pct_of_peak_sustained_elapsed": "HIGH -> L2 bandwidth is the real ceiling (likely where lts hit ~50%): fuse passes so intermediates stay in registers/shared memory instead of round-tripping through L2 / LOW -> L2 has headroom: keep reducing DRAM bytes and swizzle scheduling so unavoidable re-reads are served from L2",
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct": "HIGH -> warps stall on global-load latency and DRAM is under-saturated: increase in-flight loads via 128-bit vectorization, more elements per thread, higher num_warps or num_stages pipelining / LOW -> latency is hidden and bandwidth is the true wall: only fewer bytes (fusion, removing materialized intermediates) will help, skip occupancy tuning"
+        },
+        "rejected": [],
+        "prompt_version": "metric_rewrite_v1"
+      },
+      "validation": {
+        "accepted": true,
+        "margin": 0.4122,
+        "epsilon": 0.015,
+        "incumbent_mean": 2.0928,
+        "candidate_mean": 2.505,
+        "time_cost": 0.0,
+        "n_scorable_incumbent": 12,
+        "n_scorable_candidate": 11,
+        "compile_fail_delta": 0.0833,
+        "reason": "accepted",
+        "guard_ids": [
+          "63014ea83ae0ac1b",
+          "e6f5487075c5c9d5",
+          "7870c9f19aad9b57",
+          "a74e71a6175be948",
+          "32a7cad6347e2c89",
+          "f62c58313d100d29",
+          "c97cf3a4df2b6829",
+          "c78427a3467d865b",
+          "9016eea9f5ed37f7",
+          "3f333a15b23d7f30",
+          "db1583cc5ee66f66"
+        ],
+        "regressed_guards": [],
+        "per_sample": {
+          "32a7cad6347e2c89": {
+            "kernel_id": "32a7cad6347e2c89",
+            "outcome": "win",
+            "reward": 0.7474,
+            "rel_speedup": 1.7474302015297363,
+            "latency_ms": 1.8906062468886375,
+            "profile_ms": 7990.428406745195,
+            "kernel_ms": 3.3037024550139904,
+            "child_kernel_id": ""
+          },
+          "3f333a15b23d7f30": {
+            "kernel_id": "3f333a15b23d7f30",
+            "outcome": "win",
+            "reward": 7.0,
+            "rel_speedup": 19.55182776026673,
+            "latency_ms": 0.4500029608607292,
+            "profile_ms": 6954.670870676637,
+            "kernel_ms": 8.798380382359028,
+            "child_kernel_id": ""
+          },
+          "63014ea83ae0ac1b": {
+            "kernel_id": "63014ea83ae0ac1b",
+            "outcome": "compile_fail",
+            "reward": null,
+            "rel_speedup": null,
+            "latency_ms": null,
+            "profile_ms": 9591.201031580567,
+            "kernel_ms": 13.434253633022308,
+            "child_kernel_id": ""
+          },
+          "7870c9f19aad9b57": {
+            "kernel_id": "7870c9f19aad9b57",
+            "outcome": "win",
+            "reward": 1.4811,
+            "rel_speedup": 2.4811352071221573,
+            "latency_ms": 0.9454768151044846,
+            "profile_ms": 7454.11972515285,
+            "kernel_ms": 2.345855813473463,
+            "child_kernel_id": ""
+          },
+          "9016eea9f5ed37f7": {
+            "kernel_id": "9016eea9f5ed37f7",
+            "outcome": "win",
+            "reward": 1.8493,
+            "rel_speedup": 2.8493020354775696,
+            "latency_ms": 1.3535553589463234,
+            "profile_ms": 7889.010865241289,
+            "kernel_ms": 3.8566880393773317,
+            "child_kernel_id": ""
+          },
+          "a74e71a6175be948": {
+            "kernel_id": "a74e71a6175be948",
+            "outcome": "win",
+            "reward": 1.2537,
+            "rel_speedup": 2.2536983058557913,
+            "latency_ms": 2.984871156513691,
+            "profile_ms": 8838.40755932033,
+            "kernel_ms": 6.726999068632722,
+            "child_kernel_id": ""
+          },
+          "bc675c9203b6d7e0": {
+            "kernel_id": "bc675c9203b6d7e0",
+            "outcome": "win",
+            "reward": 2.2412,
+            "rel_speedup": 3.24123133400799,
+            "latency_ms": 0.5807047709822655,
+            "profile_ms": 7015.6876761466265,
+            "kernel_ms": 1.8821984995156527,
+            "child_kernel_id": ""
+          },
+          "c78427a3467d865b": {
+            "kernel_id": "c78427a3467d865b",
+            "outcome": "win",
+            "reward": 3.5464,
+            "rel_speedup": 4.546416400703931,
+            "latency_ms": 0.7493644952774048,
+            "profile_ms": 7487.701002508402,
+            "kernel_ms": 3.4069230314344168,
+            "child_kernel_id": ""
+          },
+          "c97cf3a4df2b6829": {
+            "kernel_id": "c97cf3a4df2b6829",
+            "outcome": "win",
+            "reward": 1.8423,
+            "rel_speedup": 2.842316553119114,
+            "latency_ms": 7.123342715203762,
+            "profile_ms": 24198.24559800327,
+            "kernel_ms": 20.246794912964106,
+            "child_kernel_id": ""
+          },
+          "db1583cc5ee66f66": {
+            "kernel_id": "db1583cc5ee66f66",
+            "outcome": "win",
+            "reward": 0.8644,
+            "rel_speedup": 1.8644234679640932,
+            "latency_ms": 1.254945993423462,
+            "profile_ms": 8257.622115314007,
+            "kernel_ms": 2.339750761166215,
+            "child_kernel_id": ""
+          },
+          "e6f5487075c5c9d5": {
+            "kernel_id": "e6f5487075c5c9d5",
+            "outcome": "win",
+            "reward": 5.7379,
+            "rel_speedup": 6.73794776389698,
+            "latency_ms": 1.2342371046543121,
+            "profile_ms": 34667.45256818831,
+            "kernel_ms": 8.316225139424205,
+            "child_kernel_id": ""
+          },
+          "f62c58313d100d29": {
+            "kernel_id": "f62c58313d100d29",
+            "outcome": "win",
+            "reward": 0.9914,
+            "rel_speedup": 1.9913578790775868,
+            "latency_ms": 1.1212462559342384,
+            "profile_ms": 7221.610421314836,
+            "kernel_ms": 2.23280256614089,
+            "child_kernel_id": ""
+          }
+        }
+      },
+      "accepted": true,
+      "resolution": "rewrite"
+    }
+  ],
+  "n_retired_pool": 0,
+  "n_steps": 0,
+  "pool_size": 921,
+  "diagnostics": {
+    "outcome_counts": {},
+    "slow_share": 0.0,
+    "compile_fail_rate": 0.0,
+    "mean_profile_time_ratio": null,
+    "reward_sources": {
+      "n_positive_reward": 0,
+      "from_real_speedup": 0,
+      "from_failure_to_success": 0,
+      "real_speedup_share": null
+    },
+    "tree": {
+      "n_leaves": 13,
+      "depth": 3,
+      "branching": [
+        4,
+        4,
+        4,
+        4
+      ]
+    },
+    "store": {
+      "n_kernels": 1459,
+      "n_origins": 998,
+      "n_routes": 507,
+      "by_status": {
+        "pending": 921,
+        "optimization_failed": 121,
+        "terminal": 115,
+        "advanced": 284,
+        "slow": 18
+      },
+      "max_hop": 1
+    },
+    "origin_coverage": {
+      "total": 998,
+      "attempted": 538,
+      "remaining": 460,
+      "ratio": 0.5390781563126252
+    },
+    "gpu_queue": {
+      "submitted": 265,
+      "completed": 265,
+      "failed": 0,
+      "queue_depth": 0,
+      "active": false,
+      "busy_time_s": 6191.538516211964,
+      "utilization": 0.07757820815551233,
+      "journal_done": 142
+    },
+    "branch_share_alerts": [
+      {
+        "node_id": "root",
+        "child_id": "70f21b3a",
+        "label": "sm=high,dram=low",
+        "share": 0.0217,
+        "n": 11
+      },
+      {
+        "node_id": "root",
+        "child_id": "64953ed1",
+        "label": "sm=high,dram=high",
+        "share": 0.002,
+        "n": 1
+      },
+      {
+        "node_id": "00dcb62e",
+        "child_id": "7eca260d",
+        "label": "lts=low,smsp=low",
+        "share": 0.0336,
+        "n": 9
+      },
+      {
+        "node_id": "00dcb62e",
+        "child_id": "834bcebe",
+        "label": "lts=high,smsp=low",
+        "share": 0.0485,
+        "n": 13
+      },
+      {
+        "node_id": "460f36cf",
+        "child_id": "9def774c",
+        "label": "dram=low,lts=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "460f36cf",
+        "child_id": "9cd06263",
+        "label": "dram=high,lts=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "460f36cf",
+        "child_id": "53764045",
+        "label": "dram=high,lts=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "9c244a15",
+        "child_id": "d8be48e6",
+        "label": "sm=low,sm=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "9c244a15",
+        "child_id": "fb0511b8",
+        "label": "sm=high,sm=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "9c244a15",
+        "child_id": "cc7c22b0",
+        "label": "sm=high,sm=high",
+        "share": 0.0,
+        "n": 0
+      }
+    ]
+  }
+}

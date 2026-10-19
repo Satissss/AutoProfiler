@@ -1,0 +1,10 @@
+# Run workers in a Kubernetes pod that owns the GPU, via `kubectl exec`.
+# Copy to configs/backends/k8s.yaml and fill in. Keep kubeconfigs out of git.
+backend: k8s
+k8s:
+  kubeconfig: ~/.kube/config
+  namespace: default
+  deployment: my-gpu-pod
+  conda_env: ""                       # optional: activated before each worker
+  remote_workdir: /workspace/autoprofiler
+  python: python

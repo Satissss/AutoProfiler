@@ -1,0 +1,110 @@
+{
+  "routing_round": 2,
+  "bounds": [
+    "compute",
+    "latency",
+    "memory",
+    "algorithm"
+  ],
+  "steps": [
+    {
+      "kernel_id": "02c14bcb68077455",
+      "origin_uid": "syn_01825_8cf7b5fa",
+      "hop": 1,
+      "leaf_id": "fba8e0d4",
+      "bound": "memory",
+      "route_id": "8b0e0614138d",
+      "profile_ms": 15692.483713850379,
+      "ok": true,
+      "outcome": "no_speedup",
+      "latency_ms": 4.14983369410038,
+      "parent_latency_ms": 4.150289110839367,
+      "rel_speedup": 1.000109743371074,
+      "reward": 0.0001,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_softmax_kernel"
+        ],
+        "n_lines": 71,
+        "optimizer_summary": "STEP 1 - Read the measurements. For EACH counter you were given, state in one short line what its actual value implies. Quote the numbers. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 81.417 → DRAM bandwidth is heavily saturated (81% of peak), indicating memory-bound behavior dominated by global load/store traffic. - l1tex__t_sector_hit_rate.pct = 2.06971 → Extremely low L1/TEX cache hit rate (~2%), confirming most loads miss L1 and go straight to L2/dram. - lts__t_sector_hit_rate.pct = 52.1573 → Moderate L2 (LTS) hit rate (~52%), meaning nearly half the sectors still miss L2 and hit DRAM — consistent with poor spatial locality or scattered access. - sm__throughput.avg.pct_of_peak_",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 3.6069341003894806,
+        "seed": 1339727946
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    }
+  ],
+  "updates": [],
+  "n_retired_pool": 0,
+  "n_steps": 1,
+  "pool_size": 0,
+  "diagnostics": {
+    "outcome_counts": {
+      "no_speedup": 1
+    },
+    "slow_share": 1.0,
+    "compile_fail_rate": 0.0,
+    "mean_profile_time_ratio": 3781.0579684355253,
+    "reward_sources": {
+      "n_positive_reward": 1,
+      "from_real_speedup": 1,
+      "from_failure_to_success": 0,
+      "real_speedup_share": 1.0
+    },
+    "tree": {
+      "n_leaves": 5,
+      "depth": 2,
+      "branching": [
+        4,
+        2
+      ]
+    },
+    "store": {
+      "n_kernels": 24,
+      "n_origins": 19,
+      "n_routes": 24,
+      "by_status": {
+        "slow": 10,
+        "optimization_failed": 10,
+        "advanced": 4
+      },
+      "max_hop": 1
+    },
+    "origin_coverage": {
+      "total": 19,
+      "attempted": 19,
+      "remaining": 0,
+      "ratio": 1.0
+    },
+    "gpu_queue": {
+      "submitted": 78,
+      "completed": 78,
+      "failed": 0,
+      "queue_depth": 0,
+      "active": false,
+      "busy_time_s": 1230.2546534604626,
+      "utilization": 0.2435514465823498,
+      "journal_done": 60
+    },
+    "branch_share_alerts": [
+      {
+        "node_id": "root",
+        "child_id": "fba8e0d4",
+        "label": "sm=low,dram=high",
+        "share": 0.0417,
+        "n": 1
+      },
+      {
+        "node_id": "fa55efca",
+        "child_id": "abfa4d62",
+        "label": "sm=high",
+        "share": 0.0,
+        "n": 0
+      }
+    ]
+  }
+}

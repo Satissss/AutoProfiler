@@ -1,0 +1,172 @@
+{
+  "task_id": "kb_l1_1",
+  "group": "level1",
+  "method": "autoprofiler",
+  "correct": true,
+  "speedup": 1.4138512739379903,
+  "baseline_ms": 2.794189378619194,
+  "candidate_ms": 1.9762965384870768,
+  "error": "",
+  "wall_s": 578.8,
+  "trajectory": {
+    "task_id": "kb_l1_1",
+    "method": "autoprofiler",
+    "best_code": "import torch\nimport torch.nn as nn\nimport triton\nimport triton.language as tl\n\n@triton.jit\ndef _matmul_add_epsilon_kernel(\n    a_ptr, b_ptr, c_ptr,\n    M, N, K,\n    stride_am, stride_ak,\n    stride_bk, stride_bn,\n    stride_cm, stride_cn,\n    BLOCK_M: tl.constexpr, BLOCK_N: tl.constexpr, BLOCK_K: tl.constexpr,\n    FP16: tl.constexpr, TF32: tl.constexpr\n):\n    # 2D grid\n    pid_m = tl.program_id(0)\n    pid_n = tl.program_id(1)\n    \n    # Compute offsets (scalar, constexpr-safe)\n    offs_m = pid_m * BLOCK_M\n    offs_n = pid_n * BLOCK_N\n    offs_k = 0\n    \n    # Block pointers \u2014 offsets must be scalars, so use offs_m, offs_n directly\n    a_block_ptr = tl.make_block_ptr(\n        base=a_ptr,\n        shape=(M, K),\n        strides=(stride_am, stride_ak),\n        offsets=(offs_m, 0),\n        block_shape=(BLOCK_M, BLOCK_K),\n        order=(1, 0)\n    )\n    b_block_ptr = tl.make_block_ptr(\n        base=b_ptr,\n        shape=(K, N),\n        strides=(stride_bk, stride_bn),\n        offsets=(0, offs_n),\n        block_shape=(BLOCK_K, BLOCK_N),\n        order=(0, 1)\n    )\n    \n    # Allocate accumulator\n    acc = tl.zeros((BLOCK_M, BLOCK_N), dtype=tl.float32)\n    \n    # Loop over K dimension\n    for k in range(0, tl.cdiv(K, BLOCK_K)):\n        # Load tiles\n        a_tile = tl.load(a_block_ptr, boundary_check=(0, 1), padding_option=\"zero\")\n        b_tile = tl.load(b_block_ptr, boundary_check=(0, 1), padding_option=\"zero\")\n        \n        # Cast if needed\n        if FP16:\n            a_tile = a_tile.to(tl.float16)\n            b_tile = b_tile.to(tl.float16)\n        \n        # Compute dot\n        if TF32:\n            acc += tl.dot(a_tile, b_tile, input_precision=\"tf32\", out_dtype=tl.float32)\n        else:\n            acc += tl.dot(a_tile, b_tile)\n        \n        # Advance block pointers\n        a_block_ptr = tl.advance(a_block_ptr, (0, BLOCK_K))\n        b_block_ptr = tl.advance(b_block_ptr, (BLOCK_K, 0))\n    \n    # Convert and add epsilon\n    c = acc.to(c_ptr.dtype.element_ty) + 1e-10\n    \n    # Store output\n    offs_m = pid_m * BLOCK_M + tl.arange(0, BLOCK_M)\n    offs_n = pid_n * BLOCK_N + tl.arange(0, BLOCK_N)\n    c_ptrs = c_ptr + stride_cm * offs_m[:, None] + stride_cn * offs_n[None, :]\n    c_mask = (offs_m[:, None] < M) & (offs_n[None, :] < N)\n    tl.store(c_ptrs, c, mask=c_mask)\n\ndef _matmul_add_epsilon_launcher(A, B):\n    A = A.contiguous()\n    B = B.contiguous()\n    assert A.shape[0] == A.shape[1] and B.shape[0] == B.shape[1] and A.shape[0] == B.shape[0], \"Square matrices only\"\n    N = A.shape[0]\n    C = torch.empty((N, N), device=A.device, dtype=A.dtype)\n    \n    BLOCK_M = 64\n    BLOCK_N = 64\n    BLOCK_K = 32\n    FP16 = A.dtype == torch.float16\n    TF32 = A.dtype == torch.float32\n    \n    grid = lambda META: (triton.cdiv(N, BLOCK_M), triton.cdiv(N, BLOCK_N))\n    \n    _matmul_add_epsilon_kernel[grid](\n        A, B, C,\n        N, N, N,\n        A.stride(0), A.stride(1),\n        B.stride(0), B.stride(1),\n        C.stride(0), C.stride(1),\n        BLOCK_M, BLOCK_N, BLOCK_K,\n        FP16, TF32\n    )\n    return C\n\nclass ModelNew(nn.Module):\n    \"\"\"\n    Simple model that performs a single square matrix multiplication (C = A * B)\n    and then adds a tiny epsilon elementwise via Triton.\n    \"\"\"\n    def __init__(self):\n        super(ModelNew, self).__init__()\n    \n    def forward(self, A: torch.Tensor, B: torch.Tensor) -> torch.Tensor:\n        \"\"\"\n        Performs the matrix multiplication and adds epsilon via Triton.\n\n        Args:\n            A (torch.Tensor): Input matrix A of shape (N, N).\n            B (torch.Tensor): Input matrix B of shape (N, N).\n\n        Returns:\n            torch.Tensor: Output matrix C of shape (N, N) with epsilon added.\n        \"\"\"\n        return _matmul_add_epsilon_launcher(A, B)",
+    "best_language": "triton",
+    "best_result": {
+      "ok": true,
+      "stage": "ok",
+      "error": "",
+      "baseline_ms": 2.762059448286891,
+      "candidate_ms": 2.065683715045452,
+      "speedup": 1.3371163398197754
+    },
+    "rounds": [
+      {
+        "round": 0,
+        "result": {
+          "ok": true,
+          "stage": "ok",
+          "error": "",
+          "baseline_ms": 2.7620685286819935,
+          "candidate_ms": 2.8787755873054266,
+          "speedup": 0.9594594802255244
+        },
+        "usage": {
+          "llm": {
+            "calls": 0,
+            "total_tokens": 0,
+            "prompt_tokens": 0,
+            "completion_tokens": 0
+          },
+          "gpu_seconds": 0.0,
+          "n_evals": 0
+        },
+        "profile": {}
+      },
+      {
+        "round": 1,
+        "result": {
+          "ok": false,
+          "stage": "run_candidate",
+          "error": "CompilationError: at 38:15:\n\n    # Loop over K dimension in blocks \u2014 now K is padded to multiple of BLOCK_K\n    for k in range(0, K, BLOCK_K):\n        # Load A block: shape (BLOCK_M, BLOCK_K) \u2014 fully static, no mask needed if padded\n        a = tl.load(a_ptrs, mask=(offs_am[:, None] < M) & (offs_k[None, :] < K - k), other=0.0)\n        # Load B block: shape (BLOCK_K, BLOCK_N) \u2014 fully static\n        b = tl.load(b_ptrs, mask=(offs_k[:, None] < K - k) & (offs_bn[None, :] < N), other=0.0)\n        # Cast to fp32 for TF32 dot\n        a = a.to(tl.float32)\n        b = b.to(tl.float32)\n        # Now safe: both have static shape (BLOCK_M, BLOCK_K) and (BLOCK_K, BLOCK_N)\n        acc += tl.dot(a, b, input_precision=\"tf32\", allow_tf32=True)\n               ^",
+          "baseline_ms": 2.7624894864857197,
+          "candidate_ms": null,
+          "speedup": null
+        },
+        "usage": {},
+        "profile": {
+          "leaf_id": "abfa4d62",
+          "bound": "compute",
+          "node_path": [
+            "root",
+            "fa55efca",
+            "abfa4d62"
+          ],
+          "profile_ms": 19141.152704600245
+        }
+      },
+      {
+        "round": 1,
+        "result": {
+          "ok": true,
+          "stage": "ok",
+          "error": "",
+          "baseline_ms": 2.7621081098914146,
+          "candidate_ms": 2.0815005991607904,
+          "speedup": 1.3269792528549011
+        },
+        "usage": {
+          "llm": {
+            "calls": 4,
+            "total_tokens": 15846,
+            "prompt_tokens": 8375,
+            "completion_tokens": 7471
+          },
+          "gpu_seconds": 31.49,
+          "n_evals": 4
+        },
+        "profile": {
+          "leaf_id": "abfa4d62",
+          "bound": "compute",
+          "node_path": [
+            "root",
+            "fa55efca",
+            "abfa4d62"
+          ],
+          "profile_ms": 19141.152704600245
+        }
+      },
+      {
+        "round": 2,
+        "result": {
+          "ok": true,
+          "stage": "ok",
+          "error": "",
+          "baseline_ms": 2.762632444500923,
+          "candidate_ms": 8.849288104102015,
+          "speedup": 0.31218697052255845
+        },
+        "usage": {},
+        "profile": {
+          "leaf_id": "ff8ac540",
+          "bound": "latency",
+          "node_path": [
+            "root",
+            "9c244a15",
+            "16d2e3b2",
+            "15c33ae4",
+            "24adc724",
+            "ff8ac540"
+          ],
+          "profile_ms": 32085.269547533244
+        }
+      },
+      {
+        "round": 2,
+        "result": {
+          "ok": true,
+          "stage": "ok",
+          "error": "",
+          "baseline_ms": 2.762059448286891,
+          "candidate_ms": 2.065683715045452,
+          "speedup": 1.3371163398197754
+        },
+        "usage": {
+          "llm": {
+            "calls": 8,
+            "total_tokens": 33578,
+            "prompt_tokens": 18184,
+            "completion_tokens": 15394
+          },
+          "gpu_seconds": 63.84,
+          "n_evals": 4
+        },
+        "profile": {
+          "leaf_id": "ff8ac540",
+          "bound": "latency",
+          "node_path": [
+            "root",
+            "9c244a15",
+            "16d2e3b2",
+            "15c33ae4",
+            "24adc724",
+            "ff8ac540"
+          ],
+          "profile_ms": 32085.269547533244
+        }
+      }
+    ],
+    "usage": {
+      "llm": {
+        "calls": 8,
+        "total_tokens": 33578,
+        "prompt_tokens": 18184,
+        "completion_tokens": 15394
+      },
+      "gpu_seconds": 95.33,
+      "n_evals": 8
+    },
+    "error": ""
+  }
+}

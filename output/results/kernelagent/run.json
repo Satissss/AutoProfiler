@@ -1,0 +1,63 @@
+{
+  "config": {
+    "name": "kernelagent",
+    "benchmark": "kernelbench",
+    "groups": [
+      "level1",
+      "level2",
+      "level3"
+    ],
+    "ids": null,
+    "limit": 3,
+    "methods": {
+      "kernelagent": {
+        "seeder": {
+          "type": "llm_triton",
+          "attempts": 4,
+          "temperature": 0.2
+        },
+        "profiler": {
+          "type": "ncu_fixed",
+          "metric_set": "roofline"
+        },
+        "optimizer": {
+          "type": "judge_coder",
+          "language": "triton",
+          "gpu": "RTX-4090",
+          "n_samples": 2,
+          "temperature": 0.7
+        }
+      }
+    },
+    "llm": {
+      "model": "qwen-plus",
+      "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "api_key_env": "QWEN_API_KEY"
+    },
+    "backend": "configs/backends/k8s.yaml",
+    "rounds": 2,
+    "fast": [
+      3,
+      10
+    ],
+    "final": [
+      10,
+      100
+    ],
+    "output": "output/results"
+  },
+  "tasks": [
+    {
+      "id": "kb_l1_1",
+      "group": "level1"
+    },
+    {
+      "id": "kb_l1_2",
+      "group": "level1"
+    },
+    {
+      "id": "kb_l1_3",
+      "group": "level1"
+    }
+  ]
+}

@@ -1,0 +1,369 @@
+{
+  "routing_round": 38,
+  "bounds": [
+    "latency",
+    "memory",
+    "compute",
+    "algorithm"
+  ],
+  "steps": [],
+  "updates": [
+    {
+      "action": "update",
+      "leaf_id": "589f5c02",
+      "proposal": {
+        "leaf_id": "589f5c02",
+        "inherited": [
+          "sm__throughput.avg.pct_of_peak_sustained_elapsed",
+          "dram__throughput.avg.pct_of_peak_sustained_elapsed",
+          "l1tex__t_sector_hit_rate.pct",
+          "lts__t_sector_hit_rate.pct",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct",
+          "dram__bytes_read.sum",
+          "dram__bytes_write.sum",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_st.pct",
+          "l1tex__throughput.avg.pct_of_peak_sustained_elapsed",
+          "launch__waves_per_multiprocessor",
+          "sm__warps_active.avg.pct_of_peak_sustained_active",
+          "lts__throughput.avg.pct_of_peak_sustained_elapsed",
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct"
+        ],
+        "old_owned": [
+          "launch__occupancy_limit_registers",
+          "launch__occupancy_limit_shared_mem"
+        ],
+        "new_owned": [
+          "launch__occupancy_limit_registers",
+          "launch__occupancy_limit_shared_mem",
+          "smsp__warp_issue_stalled_barrier_per_warp_active.pct",
+          "smsp__warp_issue_stalled_short_scoreboard_per_warp_active.pct"
+        ],
+        "added": [
+          "smsp__warp_issue_stalled_barrier_per_warp_active.pct",
+          "smsp__warp_issue_stalled_short_scoreboard_per_warp_active.pct"
+        ],
+        "blind_spot": "long_scoreboard is the only measured stall reason, so for these reduction/normalization kernels the optimizer cannot tell whether non-DRAM time is lost to cross-warp barrier synchronization or to shared-memory latency, and defaults to byte-cutting even when sync/smem restructuring is the available win.",
+        "rationale": {
+          "smsp__warp_issue_stalled_barrier_per_warp_active.pct": "HIGH -> restructure the reduction to avoid __syncthreads: warp-width tiles, warp-shuffle reductions, or more/smaller CTAs to hide barrier latency / LOW -> barriers are cheap, leave reduction structure alone and focus on DRAM traffic.",
+          "smsp__warp_issue_stalled_short_scoreboard_per_warp_active.pct": "HIGH -> smem load latency stalls warps: keep reduction partials in registers, use shuffle-based reductions, pad/vectorize smem, or raise occupancy / LOW -> smem path is fine, do not spend rewrites on it."
+        },
+        "rejected": [],
+        "prompt_version": "metric_rewrite_v1"
+      },
+      "validation": {
+        "accepted": true,
+        "margin": 0.2113,
+        "epsilon": 0.015,
+        "incumbent_mean": 1.1148,
+        "candidate_mean": 1.3261,
+        "time_cost": 0.0,
+        "n_scorable_incumbent": 12,
+        "n_scorable_candidate": 12,
+        "compile_fail_delta": 0.0,
+        "reason": "accepted",
+        "guard_ids": [
+          "83ec62db1cbaf87a",
+          "0cb0204f65e4cde5",
+          "733da9598a2fad09",
+          "2f288839b3d40820",
+          "c980590de1e8c5f4",
+          "49f6d227528f5c86",
+          "98234ab98d2f2a4c",
+          "2e778010e3e9253e",
+          "ac32e1c2cb4459c6",
+          "52db32c48cfc66dc",
+          "242f751b690332fb"
+        ],
+        "regressed_guards": [],
+        "per_sample": {
+          "026b4f19bbc2a83d": {
+            "kernel_id": "026b4f19bbc2a83d",
+            "outcome": "win",
+            "reward": 1.8671,
+            "rel_speedup": 2.8670979348337284,
+            "latency_ms": 2.3505771532654762,
+            "profile_ms": 8502.645045518875,
+            "kernel_ms": 6.739334901794791,
+            "child_kernel_id": ""
+          },
+          "0cb0204f65e4cde5": {
+            "kernel_id": "0cb0204f65e4cde5",
+            "outcome": "win",
+            "reward": 2.0847,
+            "rel_speedup": 3.084706442255394,
+            "latency_ms": 0.6164237856864929,
+            "profile_ms": 6580.428941175342,
+            "kernel_ms": 1.9014864228665829,
+            "child_kernel_id": ""
+          },
+          "242f751b690332fb": {
+            "kernel_id": "242f751b690332fb",
+            "outcome": "win",
+            "reward": 1.3956,
+            "rel_speedup": 2.39559198242503,
+            "latency_ms": 0.6948234513401985,
+            "profile_ms": 6121.577518060803,
+            "kernel_ms": 1.6645134892314672,
+            "child_kernel_id": ""
+          },
+          "2e778010e3e9253e": {
+            "kernel_id": "2e778010e3e9253e",
+            "outcome": "win",
+            "reward": 0.2571,
+            "rel_speedup": 1.2571189652859112,
+            "latency_ms": 8.100478909909725,
+            "profile_ms": 8213.563887402415,
+            "kernel_ms": 10.18326566554606,
+            "child_kernel_id": ""
+          },
+          "2f288839b3d40820": {
+            "kernel_id": "2f288839b3d40820",
+            "outcome": "win",
+            "reward": 0.4722,
+            "rel_speedup": 1.4722359272116163,
+            "latency_ms": 2.314245328307152,
+            "profile_ms": 7169.613908976316,
+            "kernel_ms": 3.407115116715431,
+            "child_kernel_id": ""
+          },
+          "49f6d227528f5c86": {
+            "kernel_id": "49f6d227528f5c86",
+            "outcome": "win",
+            "reward": 0.4976,
+            "rel_speedup": 1.4976158396471055,
+            "latency_ms": 3.5321665927767754,
+            "profile_ms": 10745.42616866529,
+            "kernel_ms": 5.289828637614846,
+            "child_kernel_id": ""
+          },
+          "52db32c48cfc66dc": {
+            "kernel_id": "52db32c48cfc66dc",
+            "outcome": "win",
+            "reward": 0.8599,
+            "rel_speedup": 1.8599405666344146,
+            "latency_ms": 1.606491394340992,
+            "profile_ms": 6987.7542443573475,
+            "kernel_ms": 2.9879785142838955,
+            "child_kernel_id": ""
+          },
+          "733da9598a2fad09": {
+            "kernel_id": "733da9598a2fad09",
+            "outcome": "win",
+            "reward": 1.2433,
+            "rel_speedup": 2.243317242766806,
+            "latency_ms": 3.541293554008007,
+            "profile_ms": 10674.127036705613,
+            "kernel_ms": 7.944244891405106,
+            "child_kernel_id": ""
+          },
+          "83ec62db1cbaf87a": {
+            "kernel_id": "83ec62db1cbaf87a",
+            "outcome": "win",
+            "reward": 2.5968,
+            "rel_speedup": 3.5967559809288803,
+            "latency_ms": 6.851826794445515,
+            "profile_ms": 11080.403424799442,
+            "kernel_ms": 24.644349003210664,
+            "child_kernel_id": ""
+          },
+          "98234ab98d2f2a4c": {
+            "kernel_id": "98234ab98d2f2a4c",
+            "outcome": "win",
+            "reward": 0.7843,
+            "rel_speedup": 1.7843030703596912,
+            "latency_ms": 1.527463085949421,
+            "profile_ms": 8752.617975696921,
+            "kernel_ms": 2.7254570741206408,
+            "child_kernel_id": ""
+          },
+          "ac32e1c2cb4459c6": {
+            "kernel_id": "ac32e1c2cb4459c6",
+            "outcome": "win",
+            "reward": 3.402,
+            "rel_speedup": 4.40198726197421,
+            "latency_ms": 0.6593381986021996,
+            "profile_ms": 6801.776193082333,
+            "kernel_ms": 2.9023983515799046,
+            "child_kernel_id": ""
+          },
+          "c980590de1e8c5f4": {
+            "kernel_id": "c980590de1e8c5f4",
+            "outcome": "win",
+            "reward": 0.4523,
+            "rel_speedup": 1.4522841515062643,
+            "latency_ms": 2.362646162509918,
+            "profile_ms": 7523.661566898227,
+            "kernel_ms": 3.4312335774302483,
+            "child_kernel_id": ""
+          }
+        }
+      },
+      "accepted": true,
+      "resolution": "rewrite"
+    }
+  ],
+  "n_retired_pool": 0,
+  "n_steps": 0,
+  "pool_size": 981,
+  "diagnostics": {
+    "outcome_counts": {},
+    "slow_share": 0.0,
+    "compile_fail_rate": 0.0,
+    "mean_profile_time_ratio": null,
+    "reward_sources": {
+      "n_positive_reward": 0,
+      "from_real_speedup": 0,
+      "from_failure_to_success": 0,
+      "real_speedup_share": null
+    },
+    "tree": {
+      "n_leaves": 20,
+      "depth": 5,
+      "branching": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        2
+      ]
+    },
+    "store": {
+      "n_kernels": 1584,
+      "n_origins": 998,
+      "n_routes": 571,
+      "by_status": {
+        "pending": 981,
+        "optimization_failed": 123,
+        "advanced": 343,
+        "terminal": 116,
+        "slow": 21
+      },
+      "max_hop": 1
+    },
+    "origin_coverage": {
+      "total": 998,
+      "attempted": 603,
+      "remaining": 395,
+      "ratio": 0.6042084168336673
+    },
+    "gpu_queue": {
+      "submitted": 575,
+      "completed": 575,
+      "failed": 0,
+      "queue_depth": 0,
+      "active": false,
+      "busy_time_s": 13400.593147499312,
+      "utilization": 0.07992262180829862,
+      "journal_done": 286
+    },
+    "branch_share_alerts": [
+      {
+        "node_id": "root",
+        "child_id": "70f21b3a",
+        "label": "sm=high,dram=low",
+        "share": 0.0228,
+        "n": 13
+      },
+      {
+        "node_id": "root",
+        "child_id": "64953ed1",
+        "label": "sm=high,dram=high",
+        "share": 0.0018,
+        "n": 1
+      },
+      {
+        "node_id": "00dcb62e",
+        "child_id": "7eca260d",
+        "label": "lts=low,smsp=low",
+        "share": 0.0346,
+        "n": 11
+      },
+      {
+        "node_id": "460f36cf",
+        "child_id": "9def774c",
+        "label": "dram=low,lts=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "460f36cf",
+        "child_id": "9cd06263",
+        "label": "dram=high,lts=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "460f36cf",
+        "child_id": "53764045",
+        "label": "dram=high,lts=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "9c244a15",
+        "child_id": "fb0511b8",
+        "label": "sm=high,sm=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "9c244a15",
+        "child_id": "cc7c22b0",
+        "label": "sm=high,sm=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "baba1218",
+        "child_id": "e1127e8b",
+        "label": "sm=low,lts=high",
+        "share": 0.04,
+        "n": 1
+      },
+      {
+        "node_id": "baba1218",
+        "child_id": "0f4066ec",
+        "label": "sm=high,lts=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "baba1218",
+        "child_id": "477c7834",
+        "label": "sm=high,lts=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "2a031de2",
+        "child_id": "1ddd25e6",
+        "label": "l1tex=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "4b3866c0",
+        "child_id": "5ecd7cd4",
+        "label": "l1tex=low,l1tex=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "4b3866c0",
+        "child_id": "305065a6",
+        "label": "l1tex=high,l1tex=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "4b3866c0",
+        "child_id": "5f324c75",
+        "label": "l1tex=high,l1tex=high",
+        "share": 0.0,
+        "n": 0
+      }
+    ]
+  }
+}

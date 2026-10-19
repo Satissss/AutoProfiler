@@ -1,0 +1,1669 @@
+{
+  "routing_round": 1,
+  "bounds": [
+    "memory",
+    "latency",
+    "compute",
+    "algorithm"
+  ],
+  "steps": [
+    {
+      "kernel_id": "3749e2bc2b84e910",
+      "origin_uid": "syn_05168_c95a4194",
+      "hop": 0,
+      "action": "terminal",
+      "outcome": "profile_failed",
+      "reason": "sample_ncu_error",
+      "error": "NCU failed for 3749e2bc2b84e910 after 3 attempts: error=parse: ncu CSV header not found missing=['sm__throughput.avg.pct_of_peak_sustained_elapsed', 'dram__throughput.avg.pct_of_peak_sustained_elapsed']",
+      "advanced": false
+    },
+    {
+      "kernel_id": "75e17c96353c59c9",
+      "origin_uid": "syn_02739_542f0da8",
+      "hop": 0,
+      "action": "terminal",
+      "outcome": "profile_failed",
+      "reason": "sample_ncu_error",
+      "error": "NCU failed for 75e17c96353c59c9 after 3 attempts: error=parse: ncu CSV header not found missing=['sm__warps_active.avg.pct_of_peak_sustained_active', 'smsp__issue_active.avg.pct_of_peak_sustained_active']",
+      "advanced": false
+    },
+    {
+      "kernel_id": "bc3e39e9b2c0c906",
+      "origin_uid": "syn_04139_28e5b17a",
+      "hop": 0,
+      "action": "terminal",
+      "outcome": "profile_failed",
+      "reason": "sample_ncu_error",
+      "error": "NCU failed for bc3e39e9b2c0c906 after 3 attempts: error=parse: ncu CSV header not found missing=['sm__throughput.avg.pct_of_peak_sustained_elapsed', 'dram__throughput.avg.pct_of_peak_sustained_elapsed']",
+      "advanced": false
+    },
+    {
+      "kernel_id": "9fd323e7f7d60d2d",
+      "origin_uid": "syn_00065_35f07a35",
+      "hop": 0,
+      "action": "terminal",
+      "outcome": "profile_failed",
+      "reason": "sample_ncu_error",
+      "error": "NCU failed for 9fd323e7f7d60d2d after 3 attempts: error=parse: ncu CSV header not found missing=['sm__throughput.avg.pct_of_peak_sustained_elapsed', 'dram__throughput.avg.pct_of_peak_sustained_elapsed']",
+      "advanced": false
+    },
+    {
+      "kernel_id": "139395206082da6a",
+      "origin_uid": "syn_03104_2451dec5",
+      "hop": 0,
+      "leaf_id": "9c244a15",
+      "bound": "latency",
+      "route_id": "ed233d07f8f2",
+      "profile_ms": 160235.82774866372,
+      "ok": false,
+      "outcome": "compile_fail",
+      "latency_ms": null,
+      "parent_latency_ms": 24.95352434925735,
+      "rel_speedup": null,
+      "reward": null,
+      "stage": "baseline",
+      "error": "RuntimeError: CUDA error: out of memory\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\n",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_bias_add_kernel"
+        ],
+        "n_lines": 84,
+        "optimizer_summary": "STEP 1 - Read the measurements. dram__throughput.avg.pct_of_peak_sustained_elapsed = 41.21: DRAM bandwidth is moderately utilized, not saturated. sm__throughput.avg.pct_of_peak_sustained_elapsed = 22.11: SM compute/memory pipeline is underutilized. sm__warps_active.avg.pct_of_peak_sustained_active = 38.61: Occupancy is low, far from peak. smsp__issue_active.avg.pct_of_peak_sustained_active = 23.55: Issue rate is low; warps are often not issuing instructions. STEP 2 - Name the bottleneck. The low warp occupancy (38.6%) and low issue rate (23.6%) with moderate DRAM traffic indicate the kernel is latency-bound: too few warps active to hide memory latency. The launch configuration (BLOCK=1024, o",
+        "prompt_version": "leaf_triton_optimize_v1"
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "0f19bd439d6e3c18",
+      "origin_uid": "syn_04389_3a8a9eaf",
+      "hop": 0,
+      "leaf_id": "70f21b3a",
+      "bound": "compute",
+      "route_id": "a09231293c1d",
+      "profile_ms": 28664.93925685063,
+      "ok": false,
+      "outcome": "compile_fail",
+      "latency_ms": null,
+      "parent_latency_ms": 14.067098964005709,
+      "rel_speedup": null,
+      "reward": null,
+      "stage": "baseline",
+      "error": "RuntimeError: CUDA error: out of memory\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\n",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_cumsum_last_dim_kernel"
+        ],
+        "n_lines": 96,
+        "optimizer_summary": "STEP 1 - Read the measurements. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 6.71: DRAM is nearly idle; memory bandwidth is not the bottleneck. - sm__pipe_fma_cycles_active.avg.pct_of_peak_sustained_active = 10.2: FMA pipe is barely active; the kernel is not compute bound in a normal arithmetic sense. - sm__pipe_tensor_op_hmma_cycles_active.avg.pct_of_peak_sustained_active = 0: No tensor core activity; irrelevant. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 64.7: SM is moderately busy, but this likely reflects many short, inefficient instructions, not real work. - smsp__issue_active.avg.pct_of_peak_sustained_active = 37.6: Issue rate is low; threads are stalled, not issuin",
+        "prompt_version": "leaf_triton_optimize_v1"
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "4ddaf3ee825df5a1",
+      "origin_uid": "syn_04550_635cdf81",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "81c0ceb6b59b",
+      "profile_ms": 15144.12721293047,
+      "ok": false,
+      "outcome": "compile_fail",
+      "latency_ms": null,
+      "parent_latency_ms": 5.148095544427633,
+      "rel_speedup": null,
+      "reward": null,
+      "stage": "baseline",
+      "error": "RuntimeError: CUDA error: out of memory\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\n",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_fused_bn_in_kernel"
+        ],
+        "n_lines": 84,
+        "optimizer_summary": "STEP 1 - Read the measurements dram__throughput at 91.85%: The kernel is nearly saturating DRAM bandwidth. This is the dominant bottleneck. l1tex hit rate at 2.69%: Essentially no L1 cache reuse; all loads go to DRAM. lts hit rate at 42.49%: Moderate L2 reuse, but still far from enough to hide DRAM traffic. sm__throughput at 9.83%: Compute units are nearly idle; this is not a compute-bound kernel. data bytes per sector at 88.44%: Loads are well-coalesced and efficient, but the volume of traffic is the problem. STEP 2 - Name the bottleneck The kernel is memory-bandwidth-bound: dram__throughput is 91.85%, while sm__throughput is only 9.83%. The work is dominated by reading and writing the acti",
+        "prompt_version": "leaf_triton_optimize_v1"
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "c66f9f445a18b089",
+      "origin_uid": "syn_00854_ff3cb759",
+      "hop": 0,
+      "action": "terminal",
+      "outcome": "profile_failed",
+      "reason": "sample_ncu_error",
+      "error": "NCU failed for c66f9f445a18b089 after 3 attempts: error=parse: ncu CSV header not found missing=['dram__bytes_read.sum', 'launch__waves_per_multiprocessor']",
+      "advanced": false
+    },
+    {
+      "kernel_id": "61d246179cc4267c",
+      "origin_uid": "syn_00789_9375afa9",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "36b7a4762f82",
+      "profile_ms": 114063.98556102067,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 13.529547955840826,
+      "parent_latency_ms": 27.214770205318928,
+      "rel_speedup": 2.011506245008731,
+      "reward": 1.0115,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "channel_mean_kernel"
+        ],
+        "n_lines": 57,
+        "optimizer_summary": "STEP 1 - Read the measurements dram__throughput.avg.pct_of_peak_sustained_elapsed = 94.23: DRAM bandwidth is nearly saturated, so the kernel is memory-bound on global memory traffic. l1tex__t_sector_hit_rate.pct = 32.14: L1 cache hit rate is low, so most loads go past L1 to DRAM. lts__t_sector_hit_rate.pct = 41.99: L2 hit rate is also low, confirming most traffic reaches DRAM. sm__throughput.avg.pct_of_peak_sustained_elapsed = 9.90: SM compute utilization is very low, so arithmetic is not the bottleneck. smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct = 70.46: Loads are only using about 70% of each sector's bytes, meaning the access pattern is only partially coalesced. STEP 2 -",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 13.507485389709473,
+        "seed": 1686946115
+      },
+      "child_kernel_id": "feb48c86d363625f",
+      "advanced": true
+    },
+    {
+      "kernel_id": "6eb9d22f65050683",
+      "origin_uid": "syn_02832_974e518e",
+      "hop": 0,
+      "leaf_id": "70f21b3a",
+      "bound": "compute",
+      "route_id": "f22c5df2fb15",
+      "profile_ms": 16589.76430213079,
+      "ok": false,
+      "outcome": "incorrect",
+      "latency_ms": null,
+      "parent_latency_ms": 6.2936777248978615,
+      "rel_speedup": null,
+      "reward": null,
+      "stage": "correctness",
+      "error": "correctness_failed: outputs differ beyond atol/rtol",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_gelu_kernel"
+        ],
+        "n_lines": 42,
+        "optimizer_summary": "STEP 1 - Read the measurements. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 36.6%: DRAM is not the bottleneck; plenty of headroom. - sm__pipe_fma_cycles_active.avg.pct_of_peak_sustained_active = 5.59%: FMA/compute is very low; this is not a compute-bound kernel. - sm__pipe_tensor_op_hmma_cycles_active.avg.pct_of_peak_sustained_active = 0%: No tensor-core work, as expected. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 75.2%: SM units are highly utilized, meaning instruction issue and ALU/address arithmetic dominate. - smsp__issue_active.avg.pct_of_peak_sustained_active = 33.2%: Issue slots are only a third active, but combined with the 75% SM throughput, this points to many",
+        "prompt_version": "leaf_triton_optimize_v1"
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "d9f38e8ce268dfb6",
+      "origin_uid": "syn_01988_2dd45f4b",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "b665dbf6a64e",
+      "profile_ms": 16399.472944438457,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 1.1991600040346384,
+      "parent_latency_ms": 1.4060104731470346,
+      "rel_speedup": 1.172496137643381,
+      "reward": 0.1725,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_frobenius_dim1_strided_kernel"
+        ],
+        "n_lines": 66,
+        "optimizer_summary": "STEP 1 - Read the measurements. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 72.1% → memory subsystem is the busiest resource; data movement dominates. - l1tex__t_sector_hit_rate.pct = 30.1% → poor L1 hit rate, consistent with many non‑coalesced accesses or streaming. - lts__t_sector_hit_rate.pct = 56.5% → moderate L2 hit rate, further indicating a memory‑intensive pattern. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 39.7% → SM compute is not the bottleneck. - smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct = 77.1% → sectors are being read efficiently once in the inner loop, but the overall traffic is excessive. STEP 2 - Name the bottleneck. The high DRAM uti",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 1.0214103385806084,
+        "seed": 997376987
+      },
+      "child_kernel_id": "613171f357c0ddbe",
+      "advanced": true
+    },
+    {
+      "kernel_id": "09a0a2fe1fce4134",
+      "origin_uid": "syn_04677_e445386d",
+      "hop": 0,
+      "leaf_id": "7eca260d",
+      "bound": "memory",
+      "route_id": "f73d2ec811f1",
+      "profile_ms": 30555.6643079035,
+      "ok": true,
+      "outcome": "no_speedup",
+      "latency_ms": 17.732954118400812,
+      "parent_latency_ms": 17.73939747363329,
+      "rel_speedup": 1.0003633548696655,
+      "reward": 0.0004,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_sum_last_dim_loop_kernel"
+        ],
+        "n_lines": 60,
+        "optimizer_summary": "STEP 1 - Read the measurements. - dram__throughput.avg.pct_of_ak_sustained_elapsed = 70.96% → the memory system is nearly saturated; the kernel is strongly DRAM‑bound. - l1tex__t_sector_hit_rate.pct = 2.57% → almost no data reuse in L1 (expected for a streaming reduction). - lts__t_sector_hit_rate.pct = 56.06% → moderate reuse in L2, not a bottleneck. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 8.22% → SM compute units are mostly idle; arithmetic is not a limitation. - smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct = 44.79% → each 32‑byte sector fetched from DRAM carries, on average, only ~14.3 bytes of useful data, implying poor memory‑transaction efficiency. STEP 2 ",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 4.441344644874334,
+        "seed": 3102823112
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "c4be8028694d1cc1",
+      "origin_uid": "syn_04693_68c78f27",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "520721b98eff",
+      "profile_ms": 18848.145806230605,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 15.554480254650116,
+      "parent_latency_ms": 16.45498746074736,
+      "rel_speedup": 1.0578937509550044,
+      "reward": 0.0579,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_channel_sum_nchw_kernel"
+        ],
+        "n_lines": 49,
+        "optimizer_summary": "STEP 1 - Read the measurements. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 77.7%: DRAM is heavily loaded; the kernel is memory-bandwidth bound. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 33.27%: compute units are mostly idle, not the bottleneck. - l1tex__t_sector_hit_rate.pct = 53.8%: moderate load-sector reuse; not great but not the main issue. - lts__t_sector_hit_rate.pct = 53.7%: similar, moderate L2-level reuse. - smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct = 70.8%: loads are reasonably coalesced; not a coalescing disaster. STEP 2 - Name the bottleneck. DRAM bandwidth is the dominant constraint (77.7% vs 33% SM). The main extra DRAM traffic is the ",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 11.967825703322887,
+        "seed": 1796908011
+      },
+      "child_kernel_id": "2ef81abec752a095",
+      "advanced": true
+    },
+    {
+      "kernel_id": "d3f263dde516dcfe",
+      "origin_uid": "syn_00902_77122bc1",
+      "hop": 0,
+      "leaf_id": "834bcebe",
+      "bound": "memory",
+      "route_id": "33f7938c230c",
+      "profile_ms": 53782.560136169195,
+      "ok": false,
+      "outcome": "compile_fail",
+      "latency_ms": null,
+      "parent_latency_ms": 4.544044844806194,
+      "rel_speedup": null,
+      "reward": null,
+      "stage": "local_check",
+      "error": "candidate uses only identity/no-op Triton kernels; the kernel must implement a real mathematical operation from the original forward",
+      "rounds_used": 3,
+      "meta": {
+        "local_reject": true,
+        "prompt_version": "leaf_triton_optimize_v1",
+        "optimizer_summary": "Step 1 - Read the measurements. - dram__throughput 63.3%: high DRAM utilization, memory traffic is the main cost. - l1tex hit rate 16.4%: low L1 hits, indicating poor data reuse. - lts hit rate 71.8%: moderate L2 hits, but DRAM is still the bottleneck. - sm throughput 19.5%: compute resources are underutilized, so arithmetic is not the problem. - average data bytes per sector 39%: indicates we are loading more data than strictly needed, consistent with wasting bandwidth on the expanded bias. Step 2 - Name the bottleneck. The kernel is memory-bandwidth bound, and the unnecessary materialization of a full expanded bias tensor (size equal to the feature map) plus its subsequent read is the sing"
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "d851bb4208050b26",
+      "origin_uid": "syn_05262_2657aabd",
+      "hop": 0,
+      "leaf_id": "2a031de2",
+      "bound": "memory",
+      "route_id": "b9d8c1a2f3b9",
+      "profile_ms": 24814.15338953957,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 0.9955186396837234,
+      "parent_latency_ms": 1.1948999017477036,
+      "rel_speedup": 1.2002787834563535,
+      "reward": 0.2003,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "conv_transpose2d_fused_kernel"
+        ],
+        "n_lines": 135,
+        "optimizer_summary": "STEP 1 - Read the measurements: - dram__bytes_read.sum = 1.2072e+08: ~115 MB read from DRAM, a lot of traffic. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 77.5%: DRAM is near saturation, the kernel is memory-bound. - l1tex__t_sector_hit_rate.pct = 14.9%: L1 hit rate is low, but this is expected for streaming reads. - lts__t_sector_hit_rate.pct = 60.98%: L2 hit rate is moderate, some reuse but not the main factor. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 28.7%: compute utilization is low. - launch__waves_per_multiprocessor = 59.7: many waves, but not a bottleneck. - smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct = 74.65%: memory requests are reasonably co",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 0.9124004282057285,
+        "seed": 998189827
+      },
+      "child_kernel_id": "0756caf7ca16ca34",
+      "advanced": true
+    },
+    {
+      "kernel_id": "bc48ac63d3761326",
+      "origin_uid": "syn_00892_9f8cc1d5",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "d4cd43d41ab2",
+      "profile_ms": 17471.060804091394,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 0.5636224523186684,
+      "parent_latency_ms": 5.245339125394821,
+      "rel_speedup": 9.306476531969563,
+      "reward": 7.0,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_softplus_scale_maxpool_kernel"
+        ],
+        "n_lines": 84,
+        "optimizer_summary": "STEP 1 - Read the measurements: - dram__throughput.avg.pct_of_peak_sustained_elapsed = 93.59%: DRAM bandwidth is nearly saturated; the kernel is memory-bound. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 14.41%: Compute (SM) throughput is very low; we are nowhere near compute-bound. - l1tex__t_sector_hit_rate.pct = 11.79%: L1 cache hit rate is low, consistent with streaming loads that bypass reuse. - lts__t_sector_hit_rate.pct = 47.60%: Moderate L2 hit rate, but DRAM is the bottleneck, not L2. - smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct = 86.44%: Global loads are already reasonably coalesced. STEP 2 - Name the bottleneck: DRAM throughput at 93.6% with SM throughpu",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 1.5937881544232368,
+        "seed": 2777580681
+      },
+      "child_kernel_id": "7f32df66b849751c",
+      "advanced": true
+    },
+    {
+      "kernel_id": "0abc0be407a00ff9",
+      "origin_uid": "syn_05296_61eafffb",
+      "hop": 0,
+      "leaf_id": "9c244a15",
+      "bound": "latency",
+      "route_id": "339157c4446b",
+      "profile_ms": 165270.24747431278,
+      "ok": false,
+      "outcome": "incorrect",
+      "latency_ms": null,
+      "parent_latency_ms": 14.749361667782068,
+      "rel_speedup": null,
+      "reward": null,
+      "stage": "correctness",
+      "error": "correctness_failed: outputs differ beyond atol/rtol",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_topk_kernel"
+        ],
+        "n_lines": 70,
+        "optimizer_summary": "STEP 1 - Read the measurements. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 13.732 → DRAM is only 13.7% utilized; memory bandwidth is not the bottleneck. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 54.09 → SM units are about half‑utilised; not compute saturated. - sm__warps_active.avg.pct_of_peak_sustained_active = 54.23 → occupancy is moderate; there is still headroom for more active warps. - smsp__issue_active.avg.pct_of_peak_sustained_active = 49.29 → issue slots are idle ~51% of the time. STEP 2 - Name the bottleneck. The low memory and moderate compute utilisation combined with less‑than‑full issue activity point to launch overhead and poor kernel‑level parallelism r",
+        "prompt_version": "leaf_triton_optimize_v1"
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "b7c45d01d41d1bf4",
+      "origin_uid": "syn_01426_526c4823",
+      "hop": 0,
+      "leaf_id": "2a031de2",
+      "bound": "memory",
+      "route_id": "8619617d2c86",
+      "profile_ms": 34330.16520366073,
+      "ok": false,
+      "outcome": "incorrect",
+      "latency_ms": null,
+      "parent_latency_ms": 16.34664973244071,
+      "rel_speedup": null,
+      "reward": null,
+      "stage": "correctness",
+      "error": "correctness_failed: outputs differ beyond atol/rtol",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_fused_gated_tanh_gelu_kernel"
+        ],
+        "n_lines": 55,
+        "optimizer_summary": "STEP 1 - Read the measurements. - `dram__bytes_read.sum = 2.148e9` bytes: the kernel moves over 2 GB from DRAM; this is a large memory footprint. - `dram__throughput.avg.pct_of_peak = 68%`: DRAM is the active resource - the kernel is pushing close to memory bandwidth limits. - `l1tex__t_sector_hit_rate.pct = 23%`: very low L1 hit rate - data is streamed, not reused in L1. - `lts__t_sector_hit_rate.pct = 61.9%`: moderate L2 hit rate. - `sm__throughput.avg.pct_of_peak = 13%`: compute/SM utilization is low, so ALU/FMA units are idle. - `smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct = 61.7%`: loads are mostly coalesced (a good fraction of each 32-byte sector is used). - `launch__",
+        "prompt_version": "leaf_triton_optimize_v1"
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "6546d1293ad88cba",
+      "origin_uid": "syn_05105_e1983d9a",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "f01d07fc6eb9",
+      "profile_ms": 18169.547551311553,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 2.7207995299249887,
+      "parent_latency_ms": 2.934460761025548,
+      "rel_speedup": 1.0785288400525597,
+      "reward": 0.0785,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_softmax_channel_kernel"
+        ],
+        "n_lines": 65,
+        "optimizer_summary": "STEP 1 - Read the measurements: - DRAM throughput 64.55%: memory subsystem used moderately, not saturated. - L1 hit rate 32.13%: low, indicating poor data reuse and likely many separate memory passes. - L2 hit rate 54.65%: moderate, still leaving room for improvement. - SM throughput 34.25%: compute units are underutilized, so the kernel is not compute‑bound. - Avg data bytes per sector 80.2%: loads are well‑coalesced, so the memory transactions themselves are efficient. STEP 2 - Name the bottleneck: The kernel is bound by excessive memory traffic and latency caused by multiple full tensor copies in the launcher (`permute`, `pad`, `contiguous`, and the reverse operations). The low SM and mod",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 1.705311005935073,
+        "seed": 2968141918
+      },
+      "child_kernel_id": "14b569c013f8aad4",
+      "advanced": true
+    },
+    {
+      "kernel_id": "cd5b0879d198800f",
+      "origin_uid": "syn_02623_4e6e7f2e",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "ce39ba070c0a",
+      "profile_ms": 16755.513705778867,
+      "ok": true,
+      "outcome": "regressed",
+      "latency_ms": 52.97314561903477,
+      "parent_latency_ms": 4.6471895184367895,
+      "rel_speedup": 0.08772727132079015,
+      "reward": -0.46,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 2,
+      "meta": {
+        "jit_kernels": [
+          "_affine_permute_kernel"
+        ],
+        "n_lines": 74,
+        "optimizer_summary": "STEP 1 - Read the measurements. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 68.85%: DRAM is heavily utilized, indicating the kernel is memory-bandwidth-bound. - l1tex__t_sector_hit_rate.pct = 13.0%: very low L1 hit ratio, showing almost no data reuse and purely streaming access. - lts__t_sector_hit_rate.pct = 31.1%: low L2 hit ratio as well, further confirming the workload is limited by off-chip memory traffic. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 14.7%: SM is largely idle, so compute is not the bottleneck. - smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct = 92.1%: loads are well coalesced, but the sheer volume of memory operations dominates. STEP 2 -",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 2.0668059587478638,
+        "seed": 378769447
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "7c3f22cc11e31c40",
+      "origin_uid": "syn_04102_22bb8d87",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "bbe206577d53",
+      "profile_ms": 19118.80207946524,
+      "ok": true,
+      "outcome": "regressed",
+      "latency_ms": 63.2161523681134,
+      "parent_latency_ms": 9.762461297214031,
+      "rel_speedup": 0.15442985584390415,
+      "reward": -0.46,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 2,
+      "meta": {
+        "jit_kernels": [
+          "log_softmax_kernel"
+        ],
+        "n_lines": 67,
+        "optimizer_summary": "STEP 1: The DRAM throughput is 72.7% of peak (high), L1 hit rate is 5.3% (no reuse), L2 hit rate 52.7%, SM throughput 16.1% (low), and the average data bytes per sector for global loads is 92.6% (excellent coalescing). The kernel is clearly memory‑bandwidth bound, and its access pattern is already optimal. STEP 2: The dominant bottleneck is DRAM traffic: the separate `_elementwise_log` kernel must write the softmax output to global memory and read it back, consuming a full memory pass. STEP 3: Because `dram__throughput` is 72.7% and the log kernel adds a complete memory round‑trip, fusing the log into the preceding softmax (using `log_softmax`) eliminates that kernel and its traffic. This di",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 7.518713129684329,
+        "seed": 3190292855
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "668e532487e7a49c",
+      "origin_uid": "syn_01193_82724803",
+      "hop": 0,
+      "leaf_id": "9c244a15",
+      "bound": "latency",
+      "route_id": "9093561210b3",
+      "profile_ms": 18496.8306357041,
+      "ok": true,
+      "outcome": "regressed",
+      "latency_ms": 1965.1466328650713,
+      "parent_latency_ms": 1196.211953414604,
+      "rel_speedup": 0.6087138401833126,
+      "reward": -0.3913,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_softmax_dim16_kernel"
+        ],
+        "n_lines": 75,
+        "optimizer_summary": "**STEP 1 - Read the measurements** - `dram__throughput.avg.pct_of_peak_sustained_elapsed = 42.47%` → memory subsystem is only about 40% utilized, so the kernel is not memory-bandwidth bound. - `sm__throughput.avg.pct_of_peak_sustained_elapsed = 41.04%` → streaming multiprocessors are also underutilized, so we are not compute bound either. - `sm__warps_active.avg.pct_of_peak_sustained_active = 75.71%` → high warp occupancy, many warps are resident and eligible to run. - `smsp__issue_active.avg.pct_of_peak_sustained_active = 26.35%` → only ~26% of cycles actually issue an instruction, meaning warps are frequently stalled and not hiding latency effectively. **STEP 2 - Name the bottleneck** The ",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 1831.6545798443258,
+        "seed": 633650620
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "debf338698ef00d7",
+      "origin_uid": "syn_02767_14558fbb",
+      "hop": 0,
+      "leaf_id": "9c244a15",
+      "bound": "latency",
+      "route_id": "b81e9058add6",
+      "profile_ms": 14130.830060690641,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 4.227335564792156,
+      "parent_latency_ms": 4.977681906893849,
+      "rel_speedup": 1.1774986467483295,
+      "reward": 0.1775,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_layer_norm_bias_add_kernel"
+        ],
+        "n_lines": 63,
+        "optimizer_summary": "STEP 1 - Read the measurements: - DRAM throughput 36.18%: memory system is only moderately utilized, so memory bandwidth is not saturated. - SM throughput 2.47%: compute units are almost idle. - Active warps 18.95%: occupancy is low, suggesting the kernel may be latency-bound or underutilized. - Issue activity 5.61%: the instruction issue is very low, consistent with a small, short kernel that is not compute- or memory-bound. STEP 2 - Name the bottleneck: The kernel is neither compute-bound nor memory-bandwidth-bound. The low utilization across all counters points to a latency/overhead bottleneck, likely caused by the unnecessary host-side expansion of the bias tensor (`bias.expand_as(x).con",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 3.728090552613139,
+        "seed": 3396782133
+      },
+      "child_kernel_id": "f57d8398583888e5",
+      "advanced": true
+    },
+    {
+      "kernel_id": "c2c6c3cb28332e76",
+      "origin_uid": "syn_04327_6201be93",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "ba4b5e7ba255",
+      "profile_ms": 15826.181782409549,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 2.9304272029548883,
+      "parent_latency_ms": 4.620257765054703,
+      "rel_speedup": 1.5766499029205976,
+      "reward": 0.5766,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_fmod_remainder_kernel"
+        ],
+        "n_lines": 72,
+        "optimizer_summary": "STEP 1 - Read the measurements: - dram__throughput.avg.pct_of_peak_sustained_elapsed = 91.5%: DRAM is nearly saturated, the kernel is memory-bandwidth bound. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 17.7%: shader/compute units idle, the arithmetic itself is trivially cheap. - l1tex__t_sector_hit_rate.pct = 25.4%: poor L1 hit rate, consistent with purely streaming memory access (no reuse of the quotient/input data). - lts__t_sector_hit_rate.pct = 54.6%: L2 hit moderate/low, expected when almost no data is re-read from the same coordinates. - smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct = 89.5%: loads bring in ~90% of a full sector of useful bytes, so the access pa",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 2.9352011624723673,
+        "seed": 3389594222
+      },
+      "child_kernel_id": "6e0358501b79a2a5",
+      "advanced": true
+    },
+    {
+      "kernel_id": "6f69e5cf2a0f3f86",
+      "origin_uid": "syn_03037_23982abb",
+      "hop": 0,
+      "leaf_id": "9c244a15",
+      "bound": "latency",
+      "route_id": "3fe0f888fe7b",
+      "profile_ms": 13387.460609897971,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 1.46966683678329,
+      "parent_latency_ms": 1.8801039550453424,
+      "rel_speedup": 1.279272218702567,
+      "reward": 0.2793,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_apply_triangular_mask_kernel"
+        ],
+        "n_lines": 62,
+        "optimizer_summary": "**STEP 1 - Read the measurements** - `dram__throughput.avg.pct_of_peak_sustained_elapsed = 33.75%`: DRAM bandwidth is only a third utilized; the kernel is not saturating memory bandwidth. - `sm__throughput.avg.pct_of_peak_sustained_elapsed = 9.42%`: Streaming multiprocessor (compute) utilization is very low; this is not a compute‑bound kernel. - `sm__warps_active.avg.pct_of_peak_sustained_active = 70.11%`: Occupancy is decent (70% of max active warps). - `smsp__issue_active.avg.pct_of_peak_sustained_active = 9.95%`: Only ~10% of issue slots are used, meaning warps are stalled waiting for memory most of the time. **STEP 2 - Name the bottleneck** The kernel is memory‑latency bound: compute and",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 1.3117603957653046,
+        "seed": 2707291271
+      },
+      "child_kernel_id": "aafbd625dcdb134a",
+      "advanced": true
+    },
+    {
+      "kernel_id": "14d9f2b3f64b9179",
+      "origin_uid": "syn_01046_f5622ec5",
+      "hop": 0,
+      "leaf_id": "2a031de2",
+      "bound": "memory",
+      "route_id": "12328b222cef",
+      "profile_ms": 30462.69685542211,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 4.825720563530922,
+      "parent_latency_ms": 5.159114953130484,
+      "rel_speedup": 1.0690869653993436,
+      "reward": 0.0691,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_log_softmax_sub_kernel"
+        ],
+        "n_lines": 93,
+        "optimizer_summary": "",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 4.107364220544696,
+        "seed": 710552246
+      },
+      "child_kernel_id": "fb30584c09a73485",
+      "advanced": true
+    },
+    {
+      "kernel_id": "1b1d64aacf45e9d5",
+      "origin_uid": "syn_05002_76293f6a",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "1b18d868d789",
+      "profile_ms": 17610.708354972303,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 1.1916935909539461,
+      "parent_latency_ms": 10.694742435589433,
+      "rel_speedup": 8.97440627085049,
+      "reward": 7.0,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 2,
+      "meta": {
+        "jit_kernels": [
+          "_sinc_batchnorm_kernel"
+        ],
+        "n_lines": 80,
+        "optimizer_summary": "STEP 1 - Read the measurements. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 93.2%: DRAM bandwidth is nearly saturated; the kernel is completely memory‑bound. - l1tex__t_sector_hit_rate.pct = 0.035%: no data reuse at L1, as expected for a purely streaming workload. - lts__t_sector_hit_rate.pct = 44.8%: moderate L2 caching, but nothing to exploit across distinct tensors. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 5.25%: compute units are idle >94% of the time; arithmetic is not a limiting factor. - smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct = 91.8%: global loads are already fully coalesced and efficient. STEP 2 - Name the bottleneck. The kernel is limite",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 2.3774453438818455,
+        "seed": 1871382889
+      },
+      "child_kernel_id": "32eacf99c7530703",
+      "advanced": true
+    },
+    {
+      "kernel_id": "b8933d62d09830fc",
+      "origin_uid": "syn_00125_101af8c7",
+      "hop": 0,
+      "leaf_id": "9c244a15",
+      "bound": "latency",
+      "route_id": "6745d81dacad",
+      "profile_ms": 15556.522498838603,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 2.304279012605548,
+      "parent_latency_ms": 2.579109976068139,
+      "rel_speedup": 1.1192698288528125,
+      "reward": 0.1193,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_batch_norm_bias_add_kernel"
+        ],
+        "n_lines": 119,
+        "optimizer_summary": "",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 2.01242882758379,
+        "seed": 2158554281
+      },
+      "child_kernel_id": "0c2424a517322648",
+      "advanced": true
+    },
+    {
+      "kernel_id": "6d9f0a1215023606",
+      "origin_uid": "syn_03619_e1983d9a",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "b64f59c37a87",
+      "profile_ms": 19103.944242931902,
+      "ok": true,
+      "outcome": "regressed",
+      "latency_ms": 5.259068915620446,
+      "parent_latency_ms": 2.7609653770923615,
+      "rel_speedup": 0.5249912905479833,
+      "reward": -0.46,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_fused_softmax_kernel"
+        ],
+        "n_lines": 86,
+        "optimizer_summary": "STEP 1 - Read the measurements. dram__throughput.avg.pct_of_peak_sustained_elapsed = 83.53%: DRAM bandwidth is nearly saturated, so the kernel is heavily memory-bound. l1tex__t_sector_hit_rate.pct = 13.26%: Very low L1 hit rate; data is streamed and not reused in cache, consistent with memory streaming. lts__t_sector_hit_rate.pct = 50.26%: Moderate L2 hit rate, further indicating that traffic to main memory dominates. sm__throughput.avg.pct_of_peak_sustained_elapsed = 22.17%: Compute units are mostly idle, confirming little arithmetic pressure. smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct = 89.45%: Loads are well coalesced (high bytes per sector), so access pattern is not th",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 1.7039850354194641,
+        "seed": 906024366
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "93a8e560624bf23f",
+      "origin_uid": "syn_01203_3c2eb99d",
+      "hop": 0,
+      "leaf_id": "2a031de2",
+      "bound": "memory",
+      "route_id": "f8fe0c14fcf7",
+      "profile_ms": 22016.36301772669,
+      "ok": true,
+      "outcome": "regressed",
+      "latency_ms": 3.6926609463989735,
+      "parent_latency_ms": 3.4708138555288315,
+      "rel_speedup": 0.9399221607154364,
+      "reward": -0.0601,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 2,
+      "meta": {
+        "jit_kernels": [
+          "_bias_add_kernel"
+        ],
+        "n_lines": 60,
+        "optimizer_summary": "STEP 1 - Read the measurements - dram__bytes_read.sum = 5.67e8: We are reading nearly 567 MB from DRAM, which is enormous for a simple bias add. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 73%: DRAM bandwidth is highly utilized; memory traffic is near saturation. - l1tex__t_sector_hit_rate.pct = 3.06%: L1 cache hit rate is essentially zero; every load goes to DRAM. - launch__waves_per_multiprocessor = 79.75: There are ~80 waves of blocks per SM, meaning a very large grid; likely launch/config overhead and many redundant loads. - lts__t_sector_hit_rate.pct = 58.99%: L2 hit rate is moderate; some reuse but still lots of DRAM traffic. - sm__throughput.avg.pct_of_peak_sustained_elapse",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 2.618405967950821,
+        "seed": 2777612404
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "dba3953a987ad56d",
+      "origin_uid": "syn_01117_c312caa1",
+      "hop": 0,
+      "leaf_id": "9c244a15",
+      "bound": "latency",
+      "route_id": "8cf6b579bfed",
+      "profile_ms": 12994.005216285586,
+      "ok": false,
+      "outcome": "incorrect",
+      "latency_ms": null,
+      "parent_latency_ms": 1.574716530740261,
+      "rel_speedup": null,
+      "reward": null,
+      "stage": "correctness",
+      "error": "correctness_failed: outputs differ beyond atol/rtol",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_mean_dim1_kernel"
+        ],
+        "n_lines": 50,
+        "optimizer_summary": "**STEP 1 – Read the measurements.** - `dram__throughput.avg.pct_of_peak_sustained_elapsed = 53.96%`: DRAM is only about half saturated, so there is headroom in memory bandwidth. - `sm__throughput.avg.pct_of_peak_sustained_elapsed = 4.97%`: SM compute is almost idle. - `sm__warps_active.avg.pct_of_peak_sustained_active = 44.87%`: Occupancy is moderate but not the limiter. - `smsp__issue_active.avg.pct_of_peak_sustained_active = 7.12%`: Warp issue rate is very low, meaning most warps are stalled (waiting on memory) rather than issuing instructions. **STEP 2 – Name the bottleneck.** The kernel is memory-latency bound. DRAM is not saturated and compute is negligible, but the low issue rate with ",
+        "prompt_version": "leaf_triton_optimize_v1"
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "a14293a1ac696abe",
+      "origin_uid": "syn_04927_5b132079",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "3a8cdf901aec",
+      "profile_ms": 67429.3067464605,
+      "ok": false,
+      "outcome": "incorrect",
+      "latency_ms": null,
+      "parent_latency_ms": 9.3573157209903,
+      "rel_speedup": null,
+      "reward": null,
+      "stage": "correctness",
+      "error": "correctness_failed: outputs differ beyond atol/rtol",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_bn_reduce_kernel",
+          "_bn_apply_kernel"
+        ],
+        "n_lines": 118,
+        "optimizer_summary": "STEP 1 - Read the measurements: - dram__throughput 88%: DRAM bandwidth is nearly saturated, so the kernel is memory-bandwidth-bound. - l1tex hit rate 0.02%: almost no data reuse is being exploited; loads miss L1. - lts hit rate 46.9%: L2 is only partially effective; significant traffic reaches DRAM. - sm__throughput 8.97%: the streaming multiprocessors are almost idle; compute is not a bottleneck. - smsp__average_data_bytes_per_sector 99.96%: loaded sectors are fully utilized, so inefficiency comes from repeated/duplicate traffic, not partial sectors. STEP 2 - Name the bottleneck: The kernel is bottlenecked on DRAM bandwidth due to repeatedly loading and storing the running cumulative sum an",
+        "prompt_version": "leaf_triton_optimize_v1"
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "4bd11cc9bdaaa440",
+      "origin_uid": "syn_05434_bb0b2962",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "b0cbefd5cf13",
+      "profile_ms": 15404.056249186397,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 2.344663254916668,
+      "parent_latency_ms": 4.046093672513962,
+      "rel_speedup": 1.7256608871356942,
+      "reward": 0.7257,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_ceil_kernel"
+        ],
+        "n_lines": 63,
+        "optimizer_summary": "STEP 1 - Read the measurements. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 92.97%: DRAM is nearly saturated; the kernel is memory-bandwidth bound. - l1tex__t_sector_hit_rate.pct = 0.56%: Negligible L1 reuse; every access goes to DRAM/L2. - lts__t_sector_hit_rate.pct = 45.51%: Moderate L2 hit, but not enough to relieve DRAM. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 4.10%: Compute is essentially idle; the bottleneck is not arithmetic. - smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct = 99.02%: Loads are perfectly coalesced; no wasted bytes per sector. STEP 2 - Name the bottleneck. DRAM bandwidth is the bottleneck: the kernel is memory-bound, and overall ru",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 2.341225976124406,
+        "seed": 2772775603
+      },
+      "child_kernel_id": "f4dea10b2b39d46a",
+      "advanced": true
+    },
+    {
+      "kernel_id": "f71d181ec6315403",
+      "origin_uid": "syn_03633_7a0b2db1",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "2da86781361a",
+      "profile_ms": 17225.36453511566,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 2.8893279377371073,
+      "parent_latency_ms": 4.284207476302981,
+      "rel_speedup": 1.4827695466297017,
+      "reward": 0.4828,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_fused_compare_multiply_kernel"
+        ],
+        "n_lines": 67,
+        "optimizer_summary": "",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 3.1834649853408337,
+        "seed": 290637068
+      },
+      "child_kernel_id": "2a3dea8b5d161a74",
+      "advanced": true
+    },
+    {
+      "kernel_id": "149a2df74374d2dd",
+      "origin_uid": "syn_03407_e26a6843",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "603c53278608",
+      "profile_ms": 18268.877337221056,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 4.039750434458256,
+      "parent_latency_ms": 4.700952675193548,
+      "rel_speedup": 1.1636740317162593,
+      "reward": 0.1637,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_log_softmax_sub_kernel"
+        ],
+        "n_lines": 59,
+        "optimizer_summary": "## STEP 1 – Read the measurements - **DRAM throughput = 64.4%** – Memory bandwidth is the dominant resource; kernel is heavily memory-bound. - **SM throughput = 5.1%** – Compute is negligible; arithmetic optimizations won’t help. - **L1 hit rate = 39.4%, L2 hit rate = 21.8%** – Poor cache reuse indicates that the kernel is streaming data with little temporal locality. - **Bytes per sector for global loads = 59.6%** – Accesses are reasonably coalesced but there is still room to reduce total bytes moved. ## STEP 2 – Name the bottleneck The kernel is **memory‑bandwidth bound** – it moves a large amount of data (reads of `x` and `logsumexp`, plus writes of `out`) while using almost no compute. T",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 2.703903242945671,
+        "seed": 1008244850
+      },
+      "child_kernel_id": "cc271b63dcb9cd6c",
+      "advanced": true
+    },
+    {
+      "kernel_id": "53fc88c1fc24029d",
+      "origin_uid": "syn_04777_b7a076ed",
+      "hop": 0,
+      "leaf_id": "9c244a15",
+      "bound": "latency",
+      "route_id": "82c5200dab83",
+      "profile_ms": 107789.49357243255,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 5.808566929772496,
+      "parent_latency_ms": 14.764127554371953,
+      "rel_speedup": 2.541784872736281,
+      "reward": 1.5418,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_all_splits_kernel"
+        ],
+        "n_lines": 88,
+        "optimizer_summary": "STEP 1 - Read the measurements. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 4.05%: DRAM is nearly idle, memory bandwidth is not the limit. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 1.31%: SM/compute units are almost completely idle, so this is not compute bound. - sm__warps_active.avg.pct_of_peak_sustained_active = 11.03%: Occupancy is low, few warps are resident. - smsp__issue_active.avg.pct_of_peak_sustained_active = 5.08%: Issue slots are mostly empty, confirming underutilization. STEP 2 - Name the bottleneck. All utilization counters are below 12%, meaning the GPU is far from saturated on any resource. This pattern, coupled with the fact that the kernel is launched ",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 5.867105908691883,
+        "seed": 2856633152
+      },
+      "child_kernel_id": "1923feecd9f59823",
+      "advanced": true
+    },
+    {
+      "kernel_id": "e0a7bfe41ff5fdf1",
+      "origin_uid": "syn_04288_caa79a92",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "f8835fe6ef94",
+      "profile_ms": 15736.147859599441,
+      "ok": true,
+      "outcome": "no_speedup",
+      "latency_ms": 3.1883169431239367,
+      "parent_latency_ms": 3.1909674871712923,
+      "rel_speedup": 1.0008313301640452,
+      "reward": 0.0008,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_glu_sigmoid_multiply_kernel"
+        ],
+        "n_lines": 53,
+        "optimizer_summary": "## STEP 1 - Read the measurements - `dram__throughput.avg.pct_of_peak_sustained_elapsed = 93.68%` → The kernel is nearly saturating the DRAM bandwidth; almost all available memory bandwidth is being used. - `sm__throughput.avg.pct_of_peak_sustained_elapsed = 34.05%` → The compute units are mostly idle; the kernel is **not** compute-bound. - `l1tex__t_sector_hit_rate.pct = 12.44%` → Low L1 hit rate, consistent with purely streaming access patterns and no data reuse. - `lts__t_sector_hit_rate.pct = 46.71%` → Moderate L2 hit rate, still not the primary bottleneck. - `smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct = 91.76%` → Global loads are well-coalesced; close to full sector u",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 2.0320520270615816,
+        "seed": 162670233
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "b05b1147758b4fd5",
+      "origin_uid": "syn_03569_b6513e5c",
+      "hop": 0,
+      "leaf_id": "2a031de2",
+      "bound": "memory",
+      "route_id": "e80ea0c8ff55",
+      "profile_ms": 22133.498582057655,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 1.888500526547432,
+      "parent_latency_ms": 2.996946917846799,
+      "rel_speedup": 1.5869452381492501,
+      "reward": 0.5869,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_add_conv_bias_kernel"
+        ],
+        "n_lines": 81,
+        "optimizer_summary": "STEP 1 - Read the measurements. - dram__throughput.avg = 89.9%: the GPU is nearly saturating DRAM bandwidth — memory traffic is the dominant cost. - dram__bytes_read.sum = 5.17e8 (~517 MB): an enormous volume of data is crossing the DRAM interface; this is a pure streaming workload. - sm__throughput.avg = 21.9%: the SMs are mostly idle; this is not a compute-bound kernel. - lts__t_sector_hit_rate = 63.0% and l1tex__t_sector_hit_rate = 29.8%: low cache hit rates, consistent with data being streamed once and never reused. - launch__waves_per_multiprocessor = 181: many waves, not launch-bound. STEP 2 - Name the bottleneck. DRAM memory bandwidth. The pipeline streams the full activation tensor t",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 1.8707471899688244,
+        "seed": 1736404597
+      },
+      "child_kernel_id": "d6181764b77ba0e6",
+      "advanced": true
+    },
+    {
+      "kernel_id": "465952a36ba68285",
+      "origin_uid": "syn_00421_d7372bce",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "a566b178c131",
+      "profile_ms": 161056.62711896002,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 3.318667411804199,
+      "parent_latency_ms": 13.559653190895915,
+      "rel_speedup": 4.0858728845998415,
+      "reward": 3.0859,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_bitwise_xor_kernel"
+        ],
+        "n_lines": 69,
+        "optimizer_summary": "STEP 1 - Read the measurements: - dram__throughput.avg.pct_of_peak_sustained_elapsed = 76.2%: The kernel is memory-bound; DRAM bandwidth is nearly saturated. - l1tex__t_sector_hit_rate.pct = 1.27%: Almost no data reuse in L1, expected for a pure streaming workload. - lts__t_sector_hit_rate.pct = 54.0%: Moderate L2 cache reuse, likely from repeatedly loading `xor_tensor` for each batch. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 14.2%: Compute units are idle; the kernel is not compute-limited. - smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct = 98.0%: Global loads are perfectly coalesced, so there is no inefficiency in memory access patterns. STEP 2 - Name the bottlene",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 3.2933796755969524,
+        "seed": 3406717575
+      },
+      "child_kernel_id": "4f76a9aa58eef072",
+      "advanced": true
+    },
+    {
+      "kernel_id": "634fab7c013a4d2e",
+      "origin_uid": "syn_05941_c8e36d3b",
+      "hop": 0,
+      "leaf_id": "2a031de2",
+      "bound": "memory",
+      "route_id": "008b7a98b8e5",
+      "profile_ms": 26332.686176057905,
+      "ok": false,
+      "outcome": "incorrect",
+      "latency_ms": null,
+      "parent_latency_ms": 11.236166814342141,
+      "rel_speedup": null,
+      "reward": null,
+      "stage": "correctness",
+      "error": "correctness_failed: outputs differ beyond atol/rtol",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_add_bias_kernel"
+        ],
+        "n_lines": 35,
+        "optimizer_summary": "### STEP 1 - Read the measurements - **dram__throughput.avg.pct_of_peak_sustained_elapsed = 94.68%**: DRAM is nearly saturated; the kernel is bandwidth-bound. - **l1tex__t_sector_hit_rate.pct = 20.27%**: Low L1 hit rate; streaming access pattern with poor reuse. - **lts__t_sector_hit_rate.pct = 66.23%**: Moderate L2 hit rate; some reuse but not the bottleneck. - **sm__throughput.avg.pct_of_peak_sustained_elapsed = 14.77%**: Compute is far from the limit. - **dram__bytes_read.sum = 2.17e9 bytes**: Large amount of data read from DRAM, consistent with materializing an expanded bias tensor. ### STEP 2 - Name the bottleneck The kernel is **DRAM bandwidth limited**. The extremely high DRAM through",
+        "prompt_version": "leaf_triton_optimize_v1"
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "ab1be55f0954f315",
+      "origin_uid": "syn_05030_3162207f",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "61e1d3f8a6fb",
+      "profile_ms": 15450.965762138367,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 1.0623426642268896,
+      "parent_latency_ms": 1.3087051920592785,
+      "rel_speedup": 1.2319049550849743,
+      "reward": 0.2319,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_elementwise_div_scalar_kernel"
+        ],
+        "n_lines": 59,
+        "optimizer_summary": "STEP 1 - Read the measurements. - `dram__throughput.avg.pct_of_peak_sustained_elapsed = 90.0%` — the kernel is saturating DRAM bandwidth; it is heavily memory-bound. - `sm__throughput.avg.pct_of_peak_sustained_elapsed = 31.4%` — compute is not the bottleneck at all. - `smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct = 60.5%` — loads are only ~60% of peak bytes-per-sector efficiency, meaning we are loading lots of bytes that provide little value. - `lts__t_sector_hit_rate.pct = 34.2%` and `l1tex__t_sector_hit_rate.pct = 50.5%` — low cache hit rates, consistent with pure streaming traffic. STEP 2 - Name the bottleneck. DRAM bandwidth saturation at 90%. The kernel is reading 3 ful",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 1.0187446605414152,
+        "seed": 1529866939
+      },
+      "child_kernel_id": "10f85e8c1411d839",
+      "advanced": true
+    },
+    {
+      "kernel_id": "b7e9485f51eb5e23",
+      "origin_uid": "syn_04630_64355f69",
+      "hop": 0,
+      "leaf_id": "2a031de2",
+      "bound": "memory",
+      "route_id": "40f9e127da94",
+      "profile_ms": 32247.175459749997,
+      "ok": true,
+      "outcome": "no_speedup",
+      "latency_ms": 12.997827026993036,
+      "parent_latency_ms": 12.993105221539736,
+      "rel_speedup": 0.9996367234735857,
+      "reward": -0.0004,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_glu_fused_sigmoid_kernel"
+        ],
+        "n_lines": 51,
+        "optimizer_summary": "STEP 1 - Read the measurements. - dram__bytes_read.sum = 1.39e9: large volume of data read from DRAM. - dram__throughput = 65.3%: DRAM bandwidth is heavily utilized. - sm__throughput = 28.0%: compute units are mostly idle. - l1tex hit rate = 0.018%: no data reuse in L1. - lts hit rate = 68.3%: moderate L2 reuse. - launch waves per MP = 329.5: kernel launches many waves, but still memory‑bound. - global load sector utilization = 100%: loads are perfectly coalesced. STEP 2 - Name the bottleneck. DRAM bandwidth is the bottleneck. The kernel is memory‑bound (high DRAM throughput, low SM throughput). The high DRAM read bytes and 65% throughput indicate the kernel is limited by how fast data can b",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 8.417011005803943,
+        "seed": 4177099923
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "82a545d366c870ea",
+      "origin_uid": "syn_01214_b02bdf02",
+      "hop": 0,
+      "leaf_id": "9c244a15",
+      "bound": "latency",
+      "route_id": "a0c890edcbff",
+      "profile_ms": 132536.379117053,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 0.11903839185833931,
+      "parent_latency_ms": 19.157289993017912,
+      "rel_speedup": 160.9337096540744,
+      "reward": 7.0,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 2,
+      "meta": {
+        "jit_kernels": [
+          "_bias_add_fwd_kernel"
+        ],
+        "n_lines": 98,
+        "optimizer_summary": "We need to craft the joke. Also this is the final output is a humor. Need format with Haiku and link leading, no markdown markup for headings, and the if compatible marked with proper Markdown text. block time, every line the with the code in the exact markdown. Let me reproduce the reference text from the provided document: you are the second model to understand the assistant that the user asks a machine learning model is a language model that can generate a model from the paper. The architecture is not the same as the previous state of the art in the field of computer vision for the paper on the same way to the top of the paper and the other hand, the same as the previous work on a large-s",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 8.527289377525449,
+        "seed": 2467624150
+      },
+      "child_kernel_id": "0196786b82c3167c",
+      "advanced": true
+    },
+    {
+      "kernel_id": "6d54ad17b59957c1",
+      "origin_uid": "syn_01263_01263488",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "a61abec79228",
+      "profile_ms": 15722.674733027816,
+      "ok": true,
+      "outcome": "no_speedup",
+      "latency_ms": 2.9355830047279596,
+      "parent_latency_ms": 2.9364116489887238,
+      "rel_speedup": 1.0002822758748193,
+      "reward": 0.0003,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_all_channels_contiguous_kernel"
+        ],
+        "n_lines": 66,
+        "optimizer_summary": "STEP 1 - Read the measurements: - dram_throughput 94.06%: DRAM bandwidth is nearly saturated. The kernel is memory-bound. - l1tex_sector_hit_rate 21.5%: Very low L1 hit rate. Each load is fetching data not already in L1. - lts_sector_hit_rate 54.08%: L2 hit rate is moderate. - sm_throughput 13.79%: Compute units are mostly idle. Not arithmetic-bound. - smsp_sass_average_data_bytes_per_sector_mem_global_op_ld 64.72%: On average, only about 65% of the bytes in each loaded sector are actually used. This indicates wasted DRAM traffic. STEP 2 - Name the bottleneck: The kernel is DRAM-bandwidth-bound (94% dram utilization). The low data-bytes-per-sector (64.7%) means we are fetching more memory th",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 1.970207318663597,
+        "seed": 4173152018
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "e060af03674e5c25",
+      "origin_uid": "syn_05915_546a3d4a",
+      "hop": 0,
+      "leaf_id": "70f21b3a",
+      "bound": "compute",
+      "route_id": "3dba2c898f02",
+      "profile_ms": 17056.356012821198,
+      "ok": true,
+      "outcome": "no_speedup",
+      "latency_ms": 1.3328746426850557,
+      "parent_latency_ms": 1.3325861655175686,
+      "rel_speedup": 0.9997835676677695,
+      "reward": -0.0002,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_nan_sanitize_kernel"
+        ],
+        "n_lines": 88,
+        "optimizer_summary": "STEP 1 - Read the measurements: - dram__throughput.avg.pct_of_peak_sustained_elapsed = 22.74% : DRAM bandwidth is far from saturated, so we are not memory bound. - sm__pipe_fma_cycles_active.avg.pct_of_peak_sustained_active = 10.28% : the FMA pipe is mostly idle, so arithmetic is not the bottleneck. - sm__pipe_tensor_op_hmma_cycles_active.avg.pct_of_peak_sustained_active = 0% : no tensor core activity, as expected. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 60.3% : the streaming multiprocessors are moderately busy; there is still headroom. - smsp__issue_active.avg.pct_of_peak_sustained_active = 48.6% : warps are issuing instructions only about half the time, indicating scheduling/o",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 1.0421255137771368,
+        "seed": 2418892575
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "edff8ca289e5e956",
+      "origin_uid": "syn_04999_e3231636",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "0231fc11162a",
+      "profile_ms": 239471.62709385157,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 3.529500449076295,
+      "parent_latency_ms": 34.21078436076641,
+      "rel_speedup": 9.692812015286671,
+      "reward": 7.0,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_batchnorm_affine_kernel"
+        ],
+        "n_lines": 115,
+        "optimizer_summary": "## STEP 1 - Read the measurements - DRAM throughput 64.94%: The kernel is heavily memory bound; DRAM is the primary bottleneck. - L1 hit rate 0.93%: Essentially no data reuse, expected for streaming elementwise work. - L2 hit rate 51.59%: Moderate L2 utilization, not the main constraint. - SM throughput 7.11%: Compute units are almost idle; the kernel is not compute limited. - Sectors per load 97.98%: Memory accesses are perfectly coalesced, no waste in memory transactions. ## STEP 2 - Name the bottleneck The kernel is DRAM bound and suffers from excessive launch overhead: the nested `for n, for c` loop launches `batch_size * channels` separate kernels, each touching a tiny contiguous chunk ",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 2.3796269670128822,
+        "seed": 837423945
+      },
+      "child_kernel_id": "b101a885aaf31f57",
+      "advanced": true
+    },
+    {
+      "kernel_id": "2a88cc8bc5e3c73e",
+      "origin_uid": "syn_01223_4427a6b7",
+      "hop": 0,
+      "leaf_id": "7eca260d",
+      "bound": "memory",
+      "route_id": "8d935b43aba9",
+      "profile_ms": 26792.625681031495,
+      "ok": true,
+      "outcome": "no_speedup",
+      "latency_ms": 10.931287659332156,
+      "parent_latency_ms": 10.943979024887085,
+      "rel_speedup": 1.0011610128605566,
+      "reward": 0.0012,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 2,
+      "meta": {
+        "jit_kernels": [
+          "_mean_last_dim_kernel"
+        ],
+        "n_lines": 63,
+        "optimizer_summary": "STEP 1 - Read the measurements: - dram__throughput.avg.pct_of_peak_sustained_elapsed = 92.4%: DRAM is nearly saturated; the kernel is memory-bandwidth bound. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 11.6%: compute units are mostly idle; not compute bound. - smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct = 55.7%: each sector fetched from DRAM is only ~56% useful bytes on average, indicating memory transactions are not fully utilized. - l1tex__t_sector_hit_rate.pct = 30.7% and lts__t_sector_hit_rate.pct = 38.5%: low cache hit rates, consistent with a streaming workload where each element is read once. STEP 2 - Name the bottleneck: The kernel is DRAM-bandwidth bound, ",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 3.6794182378798723,
+        "seed": 2623334702
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "02d0f4df76a81c19",
+      "origin_uid": "syn_05970_2b54c0af",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "e36fcdf341d7",
+      "profile_ms": 16571.464924607426,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 1.0807220824062824,
+      "parent_latency_ms": 1.4452654868364334,
+      "rel_speedup": 1.3373146624509389,
+      "reward": 0.3373,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_batch_norm_affine_kernel"
+        ],
+        "n_lines": 130,
+        "optimizer_summary": "STEP 1 - Read the measurements. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 87.0% → DRAM is nearly saturated; the kernel is memory‑bandwidth bound. - l1tex__t_sector_hit_rate.pct = 24.9% → L1 hit rate is low; most loads stream from DRAM, no reuse. - lts__t_sector_hit_rate.pct = 42.0% → L2 hit rate is moderate, not a concern. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 34.8% → Compute is not the bottleneck. - smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct = 73.2% → Loads are wide, so the main issue is the total amount of DRAM traffic. STEP 2 - Name the bottleneck. The kernel is memory‑bandwidth bound (DRAM at 87%). The dominant cost is the redundant traffic ",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 0.9108239319175482,
+        "seed": 987414535
+      },
+      "child_kernel_id": "5e50e9204dfb522d",
+      "advanced": true
+    },
+    {
+      "kernel_id": "225cbeee87fbdf1a",
+      "origin_uid": "syn_01058_627c4a72",
+      "hop": 0,
+      "leaf_id": "2a031de2",
+      "bound": "memory",
+      "route_id": "084cf8519b01",
+      "profile_ms": 20980.1724255085,
+      "ok": true,
+      "outcome": "no_speedup",
+      "latency_ms": 3.613960463553667,
+      "parent_latency_ms": 3.6263209767639637,
+      "rel_speedup": 1.0034202126268261,
+      "reward": 0.0034,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_multiply_kernel"
+        ],
+        "n_lines": 46,
+        "optimizer_summary": "## STEP 1 - Read the measurements - dram__bytes_read.sum = 4.1e+08: the kernel reads ~410 MB from DRAM, confirming this is a data-movement-bound operation. - dram__throughput = 84.5%: the memory controller is nearly saturated and is the active limiter of this kernel. - sm__throughput = 16.7%: the compute/SM side is mostly idle; there is zero point optimizing arithmetic. - smsp__avg_data_bytes_per_sector = 86.9%: loads are already well coalesced (near-full 32-byte sectors). - l1tex hit 37% / lts hit 58.5%: pure streaming access with no data reuse; consistent with an elementwise multiply over two contiguous tensors. - launch__waves_per_multiprocessor = 76.6: grid is dense; no occupancy/tail-la",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 2.4836359079927206,
+        "seed": 1782268934
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "f3b31262fbf5c653",
+      "origin_uid": "syn_01331_7f0a3bac",
+      "hop": 0,
+      "leaf_id": "2a031de2",
+      "bound": "memory",
+      "route_id": "526d9bdcaa05",
+      "profile_ms": 23204.51038191095,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 2.1342243999242783,
+      "parent_latency_ms": 2.873628633096814,
+      "rel_speedup": 1.3464510260489806,
+      "reward": 0.3465,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 2,
+      "meta": {
+        "jit_kernels": [
+          "add_bias_kernel"
+        ],
+        "n_lines": 87,
+        "optimizer_summary": "STEP 1 - Read the measurements. - dram__bytes_read.sum = 3.25e+08: about 309 MB read, roughly twice the size of the activation tensor, indicating both `x` and the materialized `expanded_bias` are being read from DRAM. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 84.1%: DRAM bandwidth is nearly saturated; the kernel is heavily memory-bound. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 21.6%: compute utilization is low; we are not compute-bound. - lts__t_sector_hit_rate.pct = 61.4% and l1tex__t_sector_hit_rate.pct = 33.1%: moderate to low cache hit rates, but the primary issue is the sheer volume of DRAM traffic. - launch__waves_per_multiprocessor = 124.7: many kernel waves; ",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 2.1251020953059196,
+        "seed": 2497257803
+      },
+      "child_kernel_id": "17dc4d640f2f35de",
+      "advanced": true
+    },
+    {
+      "kernel_id": "6201ded6e4ac9791",
+      "origin_uid": "syn_02887_28512aea",
+      "hop": 0,
+      "leaf_id": "9c244a15",
+      "bound": "latency",
+      "route_id": "9bdcf49add65",
+      "profile_ms": 14436.56883854419,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 1.9684291910380125,
+      "parent_latency_ms": 2.5235998909920454,
+      "rel_speedup": 1.2820374248063628,
+      "reward": 0.282,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_bias_add_kernel"
+        ],
+        "n_lines": 57,
+        "optimizer_summary": "STEP 1 - Read the measurements. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 54.316: DRAM is moderately used, about half of peak bandwidth. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 31.5626: Streaming multiprocessors are not busy, compute is not the limiter. - sm__warps_active.avg.pct_of_peak_sustained_active = 49.3108: Occupancy is around half, not a serious problem. - smsp__issue_active.avg.pct_of_peak_sustained_active = 31.8287: Issue slots idle, kernel is not instruction-bound. STEP 2 - Name the bottleneck. The kernel is neither compute-bound nor fully memory-bound; however, the metric that stands out is the moderate DRAM utilization combined with the existence of a ",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 1.9684841390699148,
+        "seed": 987453396
+      },
+      "child_kernel_id": "2b120795a6acb906",
+      "advanced": true
+    },
+    {
+      "kernel_id": "795fbadd80398004",
+      "origin_uid": "syn_01009_00e3ac29",
+      "hop": 0,
+      "leaf_id": "2a031de2",
+      "bound": "memory",
+      "route_id": "9ee11807760c",
+      "profile_ms": 20802.169560920447,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 2.4686534889042377,
+      "parent_latency_ms": 4.186677513644099,
+      "rel_speedup": 1.6959356720016796,
+      "reward": 0.6959,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_channel_product_kernel"
+        ],
+        "n_lines": 56,
+        "optimizer_summary": "STEP 1 - Read the measurements. - dram__bytes_read.sum = 5.58542e+08: about 558 MB read from DRAM, which is large relative to the input size. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 85.4689: DRAM bandwidth is nearly saturated at 85.5%. - l1tex__t_sector_hit_rate.pct = 44.9864: L1 hit rate is moderate, not great. - launch__waves_per_multiprocessor = 212.603: Many waves, the grid is large. - lts__t_sector_hit_rate.pct = 57.6658: L2 hit rate is moderate. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 16.9421: SM/compute throughput is very low. - smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct = 65.6394: Each load sector carries 65.6% useful bytes, meaning some",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 2.474159700796008,
+        "seed": 1619384371
+      },
+      "child_kernel_id": "78bdbb35d87ef68f",
+      "advanced": true
+    },
+    {
+      "kernel_id": "f308f37e65ad2544",
+      "origin_uid": "syn_01607_967b05cc",
+      "hop": 0,
+      "leaf_id": "70f21b3a",
+      "bound": "compute",
+      "route_id": "8b5347ca76ed",
+      "profile_ms": 16906.417868100107,
+      "ok": false,
+      "outcome": "incorrect",
+      "latency_ms": null,
+      "parent_latency_ms": 5.412570899352431,
+      "rel_speedup": null,
+      "reward": null,
+      "stage": "correctness",
+      "error": "correctness_failed: outputs differ beyond atol/rtol",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_sqrt_forward"
+        ],
+        "n_lines": 39,
+        "optimizer_summary": "STEP 1 - Read the measurements. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 49.35%: memory bandwidth is moderately used, not saturated. - sm__pipe_fma_cycles_active.avg.pct_of_peak_sustained_active = 7.51%: FMA pipe is almost idle; arithmetic is not the bottleneck. - sm__pipe_tensor_op_hmma_cycles_active.avg.pct_of_peak_sustained_active = 0%: no tensor cores used. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 65.32%: high SM sub‑partition utilization, likely from memory latency, sorting, or redundant work. - smsp__issue_active.avg.pct_of_peak_sustained_active = 35.10%: issue rate is moderate, supporting that we are not compute‑bound but rather latency/launch‑bound. STEP 2 -",
+        "prompt_version": "leaf_triton_optimize_v1"
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "e407dbdb65d44d7f",
+      "origin_uid": "syn_04773_824208e5",
+      "hop": 0,
+      "leaf_id": "2a031de2",
+      "bound": "memory",
+      "route_id": "13e15f86175d",
+      "profile_ms": 23370.569155085832,
+      "ok": true,
+      "outcome": "regressed",
+      "latency_ms": 7.848015520721674,
+      "parent_latency_ms": 2.751366002485156,
+      "rel_speedup": 0.3505811112657115,
+      "reward": -0.46,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_fused_softmax_exp_norm_kernel"
+        ],
+        "n_lines": 69,
+        "optimizer_summary": "## STEP 1 - Read the measurements - dram__throughput.avg.pct_of_peak_sustained_elapsed = 80.13% — the memory system is nearly saturated; we are firmly DRAM-bandwidth-bound. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 13.6% — the compute units are almost idle; this is not an ALU/SFU bound kernel. - dram__bytes_read.sum = 3.55e8 bytes — lots of bytes are moved relative to the (small) input, consistent with multiple full passes over the tensor. - l1tex__t_sector_hit_rate.pct = 0.72% — streaming access with no reuse; expected and not a problem. - lts__t_sector_hit_rate.pct = 62.7% — moderate L2 reuse; not worth optimizing. - smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct ",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 1.8999248277395964,
+        "seed": 3601057211
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "4f4e806c0d5de25c",
+      "origin_uid": "syn_05373_e3231636",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "fa1afb218030",
+      "profile_ms": 16474.33160012588,
+      "ok": false,
+      "outcome": "compile_fail",
+      "latency_ms": null,
+      "parent_latency_ms": 4.635652061551809,
+      "rel_speedup": null,
+      "reward": null,
+      "stage": "init_candidate",
+      "error": "TypeError: ModelNew.__init__() takes from 2 to 4 positional arguments but 5 were given",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "layernorm_kernel"
+        ],
+        "n_lines": 56,
+        "optimizer_summary": "We need to optimize this Triton kernel. The current code has a batch norm path that does several operations, and a custom kernel `_batchnorm_bias_add` that adds the batchnorm bias (which is not actually used in the forward? Wait, the forward function always calls `F.batch_norm` with bias? Let's analyze. The `ModelNew` class defines a `self.batchnorm` which is an instance of `nn.BatchNorm2d`. In the forward, it does a bunch of setup, then calls `F.batch_norm` with weight and bias parameters? Actually, look: `F.batch_norm(x, running_mean, running_var, weight, bias, ...)` – the 4th argument is weight, 5th is bias. Here they pass `self.batchnorm.weight` and `None` for bias, so the batch norm bia",
+        "prompt_version": "leaf_triton_optimize_v1"
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "bff2f274e87c2085",
+      "origin_uid": "syn_00121_23f4d84c",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "dd8e69e660d5",
+      "profile_ms": 17573.182130698115,
+      "ok": true,
+      "outcome": "no_speedup",
+      "latency_ms": 6.380759412422776,
+      "parent_latency_ms": 6.380759412422776,
+      "rel_speedup": 1.0,
+      "reward": 0.0,
+      "stage": "identity",
+      "error": "optimizer returned the input kernel unchanged",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_add_kernel"
+        ],
+        "n_lines": 71,
+        "optimizer_summary": "STEP 1 - Read the measurements dram__throughput.avg.pct_of_peak_sustained_elapsed = 92.4835: DRAM bandwidth is nearly saturated (92.5%), meaning the kernel is memory-bound at the DRAM level. l1tex__t_sector_hit_rate.pct = 18.6608: L1 sector hit rate is low (~19%), suggesting poor locality in L1, but that's expected for a streaming memory-bound kernel. lts__t_sector_hit_rate.pct = 56.5376: L2 sector hit rate is moderate (~57%), far from perfect, indicating some reuse may exist but not fully exploited (likely due to bias expansion). sm__throughput.avg.pct_of_peak_sustained_elapsed = 18.9329: SM (compute) throughput is very low (~19%), confirming that compute is not the bottleneck. smsp__sass_a"
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    }
+  ],
+  "updates": [
+    {
+      "action": "free_carve",
+      "leaf_id": "460f36cf",
+      "proposal": {
+        "leaf_id": "460f36cf",
+        "inherited": [
+          "sm__throughput.avg.pct_of_peak_sustained_elapsed",
+          "dram__throughput.avg.pct_of_peak_sustained_elapsed",
+          "l1tex__t_sector_hit_rate.pct",
+          "lts__t_sector_hit_rate.pct",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct"
+        ],
+        "old_owned": [],
+        "new_owned": [],
+        "added": [],
+        "blind_spot": "",
+        "rationale": {},
+        "rejected": [],
+        "prompt_version": "metric_rewrite_v1"
+      },
+      "accepted": false,
+      "reason": "no_new_metrics"
+    }
+  ],
+  "n_retired_pool": 0,
+  "n_steps": 56,
+  "pool_size": 904,
+  "diagnostics": {
+    "outcome_counts": {
+      "profile_failed": 5,
+      "compile_fail": 5,
+      "win": 25,
+      "incorrect": 7,
+      "no_speedup": 8,
+      "regressed": 6
+    },
+    "slow_share": 0.25,
+    "compile_fail_rate": 0.08928571428571429,
+    "mean_profile_time_ratio": 5838.439220665893,
+    "reward_sources": {
+      "n_positive_reward": 30,
+      "from_real_speedup": 30,
+      "from_failure_to_success": 0,
+      "real_speedup_share": 1.0
+    },
+    "tree": {
+      "n_leaves": 7,
+      "depth": 2,
+      "branching": [
+        4,
+        4
+      ]
+    },
+    "store": {
+      "n_kernels": 1105,
+      "n_origins": 998,
+      "n_routes": 206,
+      "by_status": {
+        "pending": 904,
+        "slow": 36,
+        "terminal": 8,
+        "advanced": 100,
+        "optimization_failed": 57
+      },
+      "max_hop": 1
+    },
+    "origin_coverage": {
+      "total": 998,
+      "attempted": 201,
+      "remaining": 797,
+      "ratio": 0.20140280561122245
+    },
+    "gpu_queue": {
+      "submitted": 96,
+      "completed": 96,
+      "failed": 0,
+      "queue_depth": 0,
+      "active": false,
+      "busy_time_s": 1504.8741440410668,
+      "utilization": 0.200885949708255,
+      "journal_done": 225
+    },
+    "branch_share_alerts": [
+      {
+        "node_id": "root",
+        "child_id": "70f21b3a",
+        "label": "sm=high,dram=low",
+        "share": 0.0291,
+        "n": 6
+      },
+      {
+        "node_id": "root",
+        "child_id": "64953ed1",
+        "label": "sm=high,dram=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "00dcb62e",
+        "child_id": "7eca260d",
+        "label": "lts=low,smsp=low",
+        "share": 0.0462,
+        "n": 3
+      }
+    ]
+  }
+}

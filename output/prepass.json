@@ -1,0 +1,1410 @@
+{
+  "samples": {
+    "kb_l1_100": {
+      "bound": "memory",
+      "sm_pct": 5.791042771508632,
+      "mem_pct": 93.8576249930327,
+      "ok": true,
+      "kernel_count": 4
+    },
+    "kb_l1_10": {
+      "bound": "compute",
+      "sm_pct": 74.21,
+      "mem_pct": 29.34,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_11": {
+      "bound": "compute",
+      "sm_pct": 71.88282051521114,
+      "mem_pct": 41.10117592946536,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_12": {
+      "bound": "memory",
+      "sm_pct": 20.52,
+      "mem_pct": 92.92,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_13": {
+      "bound": "compute",
+      "sm_pct": 75.79,
+      "mem_pct": 10.929999999999998,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_14": {
+      "bound": "compute",
+      "sm_pct": 75.57304125627206,
+      "mem_pct": 12.691093972619711,
+      "ok": true,
+      "kernel_count": 2
+    },
+    "kb_l1_15": {
+      "bound": "compute",
+      "sm_pct": 75.17575390320862,
+      "mem_pct": 12.63837325328853,
+      "ok": true,
+      "kernel_count": 2
+    },
+    "kb_l1_16": {
+      "bound": "compute",
+      "sm_pct": 79.56,
+      "mem_pct": 14.91,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_17": {
+      "bound": "compute",
+      "sm_pct": 63.63,
+      "mem_pct": 8.88,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_18": {
+      "bound": "compute",
+      "sm_pct": 75.6,
+      "mem_pct": 13.85,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_19": {
+      "bound": "memory",
+      "sm_pct": 1.8699999999999999,
+      "mem_pct": 93.12248574651522,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_1": {
+      "bound": "compute",
+      "sm_pct": 75.87,
+      "mem_pct": 11.06,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_20": {
+      "bound": "memory",
+      "sm_pct": 1.78,
+      "mem_pct": 93.03234033442423,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_21": {
+      "bound": "memory",
+      "sm_pct": 8.294995064328642,
+      "mem_pct": 93.15990529165224,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_22": {
+      "bound": "memory",
+      "sm_pct": 8.822484384781575,
+      "mem_pct": 93.06236574677693,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_23": {
+      "bound": "memory",
+      "sm_pct": 6.36,
+      "mem_pct": 94.49,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_24": {
+      "bound": "memory",
+      "sm_pct": 3.2400000000000007,
+      "mem_pct": 94.36,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_25": {
+      "bound": "memory",
+      "sm_pct": 4.338900541903032,
+      "mem_pct": 93.91239621889359,
+      "ok": true,
+      "kernel_count": 2
+    },
+    "kb_l1_26": {
+      "bound": "memory",
+      "sm_pct": 10.027499676370834,
+      "mem_pct": 93.06749849953749,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_27": {
+      "bound": "memory",
+      "sm_pct": 3.03,
+      "mem_pct": 93.11995426617463,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_28": {
+      "bound": "memory",
+      "sm_pct": 3.03,
+      "mem_pct": 93.10249587383956,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_29": {
+      "bound": "memory",
+      "sm_pct": 19.302477765722852,
+      "mem_pct": 93.05736805936358,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_2": {
+      "bound": "compute",
+      "sm_pct": 79.44,
+      "mem_pct": 14.819999999999999,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_30": {
+      "bound": "memory",
+      "sm_pct": 2.6572387158998274,
+      "mem_pct": 93.69295033570828,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_31": {
+      "bound": "memory",
+      "sm_pct": 3.03,
+      "mem_pct": 93.09744412112309,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_32": {
+      "bound": "memory",
+      "sm_pct": 2.497497904146493,
+      "mem_pct": 93.11747640398636,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_33": {
+      "bound": "memory",
+      "sm_pct": 5.95,
+      "mem_pct": 86.79,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_34": {
+      "bound": "memory",
+      "sm_pct": 10.362598885532368,
+      "mem_pct": 89.8689314176733,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_35": {
+      "bound": "memory",
+      "sm_pct": 26.810447336005605,
+      "mem_pct": 94.66408736839956,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_36": {
+      "bound": "memory",
+      "sm_pct": 10.214224037684135,
+      "mem_pct": 93.82525788524758,
+      "ok": true,
+      "kernel_count": 5
+    },
+    "kb_l1_37": {
+      "bound": "memory",
+      "sm_pct": 10.4281082205167,
+      "mem_pct": 94.28511942994511,
+      "ok": true,
+      "kernel_count": 2
+    },
+    "kb_l1_38": {
+      "bound": "memory",
+      "sm_pct": 8.581816894243909,
+      "mem_pct": 94.30594109826976,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_39": {
+      "bound": "memory",
+      "sm_pct": 13.199906363883175,
+      "mem_pct": 95.08800431522687,
+      "ok": true,
+      "kernel_count": 2
+    },
+    "kb_l1_3": {
+      "bound": "compute",
+      "sm_pct": 73.9,
+      "mem_pct": 28.58,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_40": {
+      "bound": "latency",
+      "sm_pct": 0.77,
+      "mem_pct": 13.47,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_41": {
+      "bound": "memory",
+      "sm_pct": 56.58,
+      "mem_pct": 91.53999999999999,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_42": {
+      "bound": "memory",
+      "sm_pct": 74.55,
+      "mem_pct": 80.79,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_43": {
+      "bound": "memory",
+      "sm_pct": 49.519999999999996,
+      "mem_pct": 95.40999999999998,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_44": {
+      "bound": "algorithm",
+      "sm_pct": 51.5,
+      "mem_pct": 52.72,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_45": {
+      "bound": "memory",
+      "sm_pct": 5.76,
+      "mem_pct": 87.35,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_46": {
+      "bound": "memory",
+      "sm_pct": 55.21000000000001,
+      "mem_pct": 95.0,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_47": {
+      "bound": "memory",
+      "sm_pct": 5.579948566938909,
+      "mem_pct": 88.18169309846229,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_48": {
+      "bound": "memory",
+      "sm_pct": 5.571944931337146,
+      "mem_pct": 88.02033807559503,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_49": {
+      "bound": "memory",
+      "sm_pct": 20.104373952676685,
+      "mem_pct": 88.32969929633093,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_4": {
+      "bound": "memory",
+      "sm_pct": 16.63230780720065,
+      "mem_pct": 97.23296958503185,
+      "ok": true,
+      "kernel_count": 2
+    },
+    "kb_l1_50": {
+      "bound": "algorithm",
+      "sm_pct": 36.179666955642254,
+      "mem_pct": 57.58779367143476,
+      "ok": true,
+      "kernel_count": 4
+    },
+    "kb_l1_51": {
+      "bound": "memory",
+      "sm_pct": 20.5739290025038,
+      "mem_pct": 88.84464705745437,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_52": {
+      "bound": "memory",
+      "sm_pct": 20.486737011482074,
+      "mem_pct": 88.46918764650572,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_53": {
+      "bound": "memory",
+      "sm_pct": 20.244295553976986,
+      "mem_pct": 88.72166614662517,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_54": {
+      "bound": "memory",
+      "sm_pct": 27.310415206005732,
+      "mem_pct": 77.91395525964037,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_55": {
+      "bound": "algorithm",
+      "sm_pct": 41.37112993314149,
+      "mem_pct": 44.27178872817794,
+      "ok": true,
+      "kernel_count": 2
+    },
+    "kb_l1_56": {
+      "bound": "algorithm",
+      "sm_pct": 44.54250762324377,
+      "mem_pct": 12.456856983787208,
+      "ok": true,
+      "kernel_count": 2
+    },
+    "kb_l1_57": {
+      "bound": "compute",
+      "sm_pct": 67.78949834252518,
+      "mem_pct": 24.689507135787842,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_58": {
+      "bound": "algorithm",
+      "sm_pct": 46.88902076135535,
+      "mem_pct": 2.308876192589305,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_59": {
+      "bound": "memory",
+      "sm_pct": 21.51448408056072,
+      "mem_pct": 88.09218994184758,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_5": {
+      "bound": "memory",
+      "sm_pct": 1.78,
+      "mem_pct": 93.02499714987438,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_60": {
+      "bound": "algorithm",
+      "sm_pct": 31.774873554446728,
+      "mem_pct": 49.34413613149398,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_61": {
+      "bound": "algorithm",
+      "sm_pct": 43.216187314124575,
+      "mem_pct": 17.414338277744168,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_62": {
+      "bound": "latency",
+      "sm_pct": 28.821845178249127,
+      "mem_pct": 21.352794780322945,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_63": {
+      "bound": "compute",
+      "sm_pct": 67.20583438579922,
+      "mem_pct": 54.55475592224312,
+      "ok": true,
+      "kernel_count": 2
+    },
+    "kb_l1_64": {
+      "bound": "memory",
+      "sm_pct": 25.450408306573298,
+      "mem_pct": 76.68616353928888,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_65": {
+      "bound": "compute",
+      "sm_pct": 67.43573698554351,
+      "mem_pct": 10.395047638207384,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_66": {
+      "bound": "algorithm",
+      "sm_pct": 32.00002210210211,
+      "mem_pct": 48.039116036036035,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_67": {
+      "bound": "memory",
+      "sm_pct": 31.277524559676184,
+      "mem_pct": 89.97156799037305,
+      "ok": true,
+      "kernel_count": 2
+    },
+    "kb_l1_68": {
+      "bound": "algorithm",
+      "sm_pct": 44.56150762861106,
+      "mem_pct": 10.108328420207595,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_69": {
+      "bound": "latency",
+      "sm_pct": 36.742358652456645,
+      "mem_pct": 39.718651048750424,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_6": {
+      "bound": "compute",
+      "sm_pct": 66.98955775196595,
+      "mem_pct": 60.70836159007286,
+      "ok": true,
+      "kernel_count": 2
+    },
+    "kb_l1_70": {
+      "bound": "algorithm",
+      "sm_pct": 43.645302555876825,
+      "mem_pct": 13.759270171049957,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_71": {
+      "bound": "compute",
+      "sm_pct": 67.79080357332766,
+      "mem_pct": 23.590546634052963,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_72": {
+      "bound": "latency",
+      "sm_pct": 14.384244478884153,
+      "mem_pct": 3.0095884380552844,
+      "ok": true,
+      "kernel_count": 2
+    },
+    "kb_l1_73": {
+      "bound": "algorithm",
+      "sm_pct": 22.14083340942775,
+      "mem_pct": 47.872817858071045,
+      "ok": true,
+      "kernel_count": 7
+    },
+    "kb_l1_74": {
+      "bound": "compute",
+      "sm_pct": 64.17505132475756,
+      "mem_pct": 57.969094817912286,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_75": {
+      "bound": "latency",
+      "sm_pct": 5.98856082050595,
+      "mem_pct": 12.524596977259657,
+      "ok": true,
+      "kernel_count": 2
+    },
+    "kb_l1_76": {
+      "bound": "memory",
+      "sm_pct": 18.385547008689624,
+      "mem_pct": 90.3996290919743,
+      "ok": true,
+      "kernel_count": 2
+    },
+    "kb_l1_77": {
+      "bound": "memory",
+      "sm_pct": 20.784901089613268,
+      "mem_pct": 60.49822726545903,
+      "ok": true,
+      "kernel_count": 7
+    },
+    "kb_l1_78": {
+      "bound": "compute",
+      "sm_pct": 74.26339151691465,
+      "mem_pct": 11.153512059287992,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_79": {
+      "bound": "memory",
+      "sm_pct": 21.26451640926641,
+      "mem_pct": 73.36457239382239,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_7": {
+      "bound": "memory",
+      "sm_pct": 56.49000000000001,
+      "mem_pct": 82.85,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_80": {
+      "bound": "latency",
+      "sm_pct": 28.843512801459166,
+      "mem_pct": 21.43144620562171,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_81": {
+      "bound": "memory",
+      "sm_pct": 16.245719457616577,
+      "mem_pct": 84.48871034015569,
+      "ok": true,
+      "kernel_count": 7
+    },
+    "kb_l1_82": {
+      "bound": "memory",
+      "sm_pct": 49.84,
+      "mem_pct": 63.1,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_83": {
+      "bound": "algorithm",
+      "sm_pct": 48.07,
+      "mem_pct": 50.77,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_84": {
+      "bound": "memory",
+      "sm_pct": 49.51,
+      "mem_pct": 63.56,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_85": {
+      "bound": "algorithm",
+      "sm_pct": 55.14,
+      "mem_pct": 35.87,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_86": {
+      "bound": "memory",
+      "sm_pct": 32.10693986395839,
+      "mem_pct": 77.44127502530186,
+      "ok": true,
+      "kernel_count": 2
+    },
+    "kb_l1_87": {
+      "bound": "memory",
+      "sm_pct": 14.759999999999998,
+      "mem_pct": 90.92000000000002,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_88": {
+      "bound": "memory",
+      "sm_pct": 2.7213071948371073,
+      "mem_pct": 94.0758495686338,
+      "ok": true,
+      "kernel_count": 6
+    },
+    "kb_l1_89": {
+      "bound": "memory",
+      "sm_pct": 28.4,
+      "mem_pct": 71.76,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_8": {
+      "bound": "compute",
+      "sm_pct": 75.41,
+      "mem_pct": 8.54,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_90": {
+      "bound": "memory",
+      "sm_pct": 28.34,
+      "mem_pct": 71.72,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_91": {
+      "bound": "memory",
+      "sm_pct": 19.990875003877946,
+      "mem_pct": 84.97311335479307,
+      "ok": true,
+      "kernel_count": 2
+    },
+    "kb_l1_92": {
+      "bound": "memory",
+      "sm_pct": 16.01470872616307,
+      "mem_pct": 77.7225062870649,
+      "ok": true,
+      "kernel_count": 4
+    },
+    "kb_l1_93": {
+      "bound": "memory",
+      "sm_pct": 26.157245284926933,
+      "mem_pct": 81.38785089461786,
+      "ok": true,
+      "kernel_count": 2
+    },
+    "kb_l1_94": {
+      "bound": "memory",
+      "sm_pct": 1.8351677551702437,
+      "mem_pct": 94.32730917412384,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l1_95": {
+      "bound": "algorithm",
+      "sm_pct": 13.781122755045361,
+      "mem_pct": 59.09385669320496,
+      "ok": true,
+      "kernel_count": 2
+    },
+    "kb_l1_96": {
+      "bound": "memory",
+      "sm_pct": 4.926334806245146,
+      "mem_pct": 94.91366076609266,
+      "ok": true,
+      "kernel_count": 2
+    },
+    "kb_l1_97": {
+      "bound": "latency",
+      "sm_pct": 38.68,
+      "mem_pct": 13.65,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l1_98": {
+      "bound": "memory",
+      "sm_pct": 5.493747436174057,
+      "mem_pct": 94.28098445717079,
+      "ok": true,
+      "kernel_count": 6
+    },
+    "kb_l1_99": {
+      "bound": "memory",
+      "sm_pct": 3.2094958754967773,
+      "mem_pct": 94.463823264202,
+      "ok": true,
+      "kernel_count": 5
+    },
+    "kb_l1_9": {
+      "bound": "memory",
+      "sm_pct": 34.3,
+      "mem_pct": 82.76,
+      "ok": true,
+      "kernel_count": 1
+    },
+    "kb_l2_100": {
+      "bound": "memory",
+      "sm_pct": 13.905040673218723,
+      "mem_pct": 85.09814958930654,
+      "ok": true,
+      "kernel_count": 10
+    },
+    "kb_l2_10": {
+      "bound": "algorithm",
+      "sm_pct": 50.34766722765183,
+      "mem_pct": 50.04668137988343,
+      "ok": true,
+      "kernel_count": 8
+    },
+    "kb_l2_11": {
+      "bound": "algorithm",
+      "sm_pct": 33.14101787562247,
+      "mem_pct": 48.94225846681821,
+      "ok": true,
+      "kernel_count": 10
+    },
+    "kb_l2_12": {
+      "bound": "compute",
+      "sm_pct": 71.06624932403587,
+      "mem_pct": 17.08997656657654,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l2_13": {
+      "bound": "algorithm",
+      "sm_pct": 30.216221749110066,
+      "mem_pct": 50.53603515005463,
+      "ok": true,
+      "kernel_count": 8
+    },
+    "kb_l2_14": {
+      "bound": "compute",
+      "sm_pct": 64.7071856010186,
+      "mem_pct": 13.368239894835183,
+      "ok": true,
+      "kernel_count": 4
+    },
+    "kb_l2_15": {
+      "bound": "memory",
+      "sm_pct": 15.324218813119167,
+      "mem_pct": 70.5540094257959,
+      "ok": true,
+      "kernel_count": 10
+    },
+    "kb_l2_16": {
+      "bound": "memory",
+      "sm_pct": 12.966588634521417,
+      "mem_pct": 87.66537621300313,
+      "ok": true,
+      "kernel_count": 8
+    },
+    "kb_l2_17": {
+      "bound": "memory",
+      "sm_pct": 24.504931939492238,
+      "mem_pct": 72.05433279266019,
+      "ok": true,
+      "kernel_count": 7
+    },
+    "kb_l2_18": {
+      "bound": "compute",
+      "sm_pct": 70.60169061778885,
+      "mem_pct": 15.906061103502614,
+      "ok": true,
+      "kernel_count": 12
+    },
+    "kb_l2_19": {
+      "bound": "algorithm",
+      "sm_pct": 45.03511833279874,
+      "mem_pct": 57.397091599362305,
+      "ok": true,
+      "kernel_count": 8
+    },
+    "kb_l2_1": {
+      "bound": "memory",
+      "sm_pct": 26.59874129325948,
+      "mem_pct": 70.46858822177475,
+      "ok": true,
+      "kernel_count": 4
+    },
+    "kb_l2_20": {
+      "bound": "memory",
+      "sm_pct": 11.124932341767035,
+      "mem_pct": 86.36496027806966,
+      "ok": true,
+      "kernel_count": 10
+    },
+    "kb_l2_21": {
+      "bound": "memory",
+      "sm_pct": 24.21220184238133,
+      "mem_pct": 92.43898280319209,
+      "ok": true,
+      "kernel_count": 8
+    },
+    "kb_l2_22": {
+      "bound": "compute",
+      "sm_pct": 67.52923111020488,
+      "mem_pct": 20.713940105851997,
+      "ok": true,
+      "kernel_count": 14
+    },
+    "kb_l2_23": {
+      "bound": "memory",
+      "sm_pct": 41.585324570632196,
+      "mem_pct": 68.96885857164328,
+      "ok": true,
+      "kernel_count": 6
+    },
+    "kb_l2_24": {
+      "bound": "algorithm",
+      "sm_pct": 49.50120780338529,
+      "mem_pct": 57.350025054987086,
+      "ok": true,
+      "kernel_count": 4
+    },
+    "kb_l2_25": {
+      "bound": "memory",
+      "sm_pct": 39.787679361370934,
+      "mem_pct": 77.17097974738259,
+      "ok": true,
+      "kernel_count": 5
+    },
+    "kb_l2_26": {
+      "bound": "memory",
+      "sm_pct": 10.753393045250084,
+      "mem_pct": 85.78154826804044,
+      "ok": true,
+      "kernel_count": 11
+    },
+    "kb_l2_27": {
+      "bound": "memory",
+      "sm_pct": 28.386092772851807,
+      "mem_pct": 72.24670674396799,
+      "ok": true,
+      "kernel_count": 9
+    },
+    "kb_l2_28": {
+      "bound": "compute",
+      "sm_pct": 68.05170726933001,
+      "mem_pct": 20.283316131328412,
+      "ok": true,
+      "kernel_count": 6
+    },
+    "kb_l2_29": {
+      "bound": "compute",
+      "sm_pct": 71.81416413287488,
+      "mem_pct": 17.069956712417,
+      "ok": true,
+      "kernel_count": 2
+    },
+    "kb_l2_2": {
+      "bound": "memory",
+      "sm_pct": 11.786757020168453,
+      "mem_pct": 88.37577054884844,
+      "ok": true,
+      "kernel_count": 7
+    },
+    "kb_l2_30": {
+      "bound": "compute",
+      "sm_pct": 71.64013775579654,
+      "mem_pct": 17.316714642225147,
+      "ok": true,
+      "kernel_count": 4
+    },
+    "kb_l2_31": {
+      "bound": "memory",
+      "sm_pct": 22.890117091034842,
+      "mem_pct": 73.93395979179874,
+      "ok": true,
+      "kernel_count": 5
+    },
+    "kb_l2_32": {
+      "bound": "memory",
+      "sm_pct": 27.258952154251645,
+      "mem_pct": 68.47870259341788,
+      "ok": true,
+      "kernel_count": 5
+    },
+    "kb_l2_33": {
+      "bound": "compute",
+      "sm_pct": 71.28086329580965,
+      "mem_pct": 16.997802981815443,
+      "ok": true,
+      "kernel_count": 4
+    },
+    "kb_l2_34": {
+      "bound": "memory",
+      "sm_pct": 27.55188863469398,
+      "mem_pct": 69.58434560671319,
+      "ok": true,
+      "kernel_count": 11
+    },
+    "kb_l2_35": {
+      "bound": "memory",
+      "sm_pct": 24.40054306675041,
+      "mem_pct": 74.23204584510975,
+      "ok": true,
+      "kernel_count": 7
+    },
+    "kb_l2_36": {
+      "bound": "memory",
+      "sm_pct": 27.014252714530635,
+      "mem_pct": 76.52501308388727,
+      "ok": true,
+      "kernel_count": 7
+    },
+    "kb_l2_37": {
+      "bound": "algorithm",
+      "sm_pct": 46.094100625599616,
+      "mem_pct": 45.835107955908214,
+      "ok": true,
+      "kernel_count": 6
+    },
+    "kb_l2_38": {
+      "bound": "memory",
+      "sm_pct": 15.522066911285252,
+      "mem_pct": 82.27428285084825,
+      "ok": true,
+      "kernel_count": 12
+    },
+    "kb_l2_39": {
+      "bound": "compute",
+      "sm_pct": 68.096087045271,
+      "mem_pct": 22.430202414867274,
+      "ok": true,
+      "kernel_count": 4
+    },
+    "kb_l2_3": {
+      "bound": "memory",
+      "sm_pct": 32.74978311167537,
+      "mem_pct": 62.24893553881268,
+      "ok": true,
+      "kernel_count": 11
+    },
+    "kb_l2_40": {
+      "bound": "compute",
+      "sm_pct": 66.1906063480034,
+      "mem_pct": 23.960138757165105,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l2_41": {
+      "bound": "compute",
+      "sm_pct": 65.45155413908779,
+      "mem_pct": 25.01643958559727,
+      "ok": true,
+      "kernel_count": 5
+    },
+    "kb_l2_42": {
+      "bound": "memory",
+      "sm_pct": 44.15302486856835,
+      "mem_pct": 62.772799855016224,
+      "ok": true,
+      "kernel_count": 14
+    },
+    "kb_l2_43": {
+      "bound": "algorithm",
+      "sm_pct": 33.834295678414854,
+      "mem_pct": 49.051114986050216,
+      "ok": true,
+      "kernel_count": 13
+    },
+    "kb_l2_44": {
+      "bound": "memory",
+      "sm_pct": 20.017632864517996,
+      "mem_pct": 80.4840843626363,
+      "ok": true,
+      "kernel_count": 7
+    },
+    "kb_l2_45": {
+      "bound": "compute",
+      "sm_pct": 67.11640785340005,
+      "mem_pct": 19.07431117712588,
+      "ok": true,
+      "kernel_count": 11
+    },
+    "kb_l2_46": {
+      "bound": "memory",
+      "sm_pct": 22.59313606484655,
+      "mem_pct": 75.31021651812719,
+      "ok": true,
+      "kernel_count": 6
+    },
+    "kb_l2_47": {
+      "bound": "algorithm",
+      "sm_pct": 29.410282223472652,
+      "mem_pct": 55.930899296170914,
+      "ok": true,
+      "kernel_count": 5
+    },
+    "kb_l2_48": {
+      "bound": "memory",
+      "sm_pct": 36.562802120225335,
+      "mem_pct": 69.3030992845428,
+      "ok": true,
+      "kernel_count": 5
+    },
+    "kb_l2_49": {
+      "bound": "memory",
+      "sm_pct": 16.38806671208056,
+      "mem_pct": 71.24608166159236,
+      "ok": true,
+      "kernel_count": 10
+    },
+    "kb_l2_4": {
+      "bound": "memory",
+      "sm_pct": 29.447355670693668,
+      "mem_pct": 70.48055878196887,
+      "ok": true,
+      "kernel_count": 4
+    },
+    "kb_l2_50": {
+      "bound": "latency",
+      "sm_pct": 10.82989062205544,
+      "mem_pct": 32.93139071122224,
+      "ok": true,
+      "kernel_count": 5
+    },
+    "kb_l2_51": {
+      "bound": "compute",
+      "sm_pct": 70.20429733353747,
+      "mem_pct": 14.892359682455728,
+      "ok": true,
+      "kernel_count": 12
+    },
+    "kb_l2_52": {
+      "bound": "memory",
+      "sm_pct": 20.595542824311266,
+      "mem_pct": 76.89909246274554,
+      "ok": true,
+      "kernel_count": 7
+    },
+    "kb_l2_53": {
+      "bound": "compute",
+      "sm_pct": 69.98051970180047,
+      "mem_pct": 15.192979007464322,
+      "ok": true,
+      "kernel_count": 4
+    },
+    "kb_l2_54": {
+      "bound": "memory",
+      "sm_pct": 21.877977757026834,
+      "mem_pct": 74.11428095120792,
+      "ok": true,
+      "kernel_count": 6
+    },
+    "kb_l2_55": {
+      "bound": "compute",
+      "sm_pct": 67.80427029572002,
+      "mem_pct": 65.00079976683185,
+      "ok": true,
+      "kernel_count": 4
+    },
+    "kb_l2_56": {
+      "bound": "compute",
+      "sm_pct": 67.5711327979291,
+      "mem_pct": 65.26391805348948,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l2_57": {
+      "bound": "memory",
+      "sm_pct": 10.089479841732611,
+      "mem_pct": 91.38592324031654,
+      "ok": true,
+      "kernel_count": 7
+    },
+    "kb_l2_58": {
+      "bound": "algorithm",
+      "sm_pct": 9.582979675507838,
+      "mem_pct": 41.234494511621804,
+      "ok": true,
+      "kernel_count": 16
+    },
+    "kb_l2_59": {
+      "bound": "compute",
+      "sm_pct": 67.31896029959208,
+      "mem_pct": 65.16775662602261,
+      "ok": true,
+      "kernel_count": 4
+    },
+    "kb_l2_5": {
+      "bound": "memory",
+      "sm_pct": 17.708303032324018,
+      "mem_pct": 79.42625718237983,
+      "ok": true,
+      "kernel_count": 5
+    },
+    "kb_l2_60": {
+      "bound": "algorithm",
+      "sm_pct": 9.830399581058778,
+      "mem_pct": 45.907375934286534,
+      "ok": true,
+      "kernel_count": 9
+    },
+    "kb_l2_61": {
+      "bound": "latency",
+      "sm_pct": 35.392026320926455,
+      "mem_pct": 39.091530545076516,
+      "ok": true,
+      "kernel_count": 7
+    },
+    "kb_l2_62": {
+      "bound": "compute",
+      "sm_pct": 68.33270311490242,
+      "mem_pct": 17.483285597346086,
+      "ok": true,
+      "kernel_count": 5
+    },
+    "kb_l2_63": {
+      "bound": "compute",
+      "sm_pct": 71.04946618913618,
+      "mem_pct": 17.073357115109484,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l2_64": {
+      "bound": "compute",
+      "sm_pct": 69.65170305475716,
+      "mem_pct": 18.510764978996242,
+      "ok": true,
+      "kernel_count": 12
+    },
+    "kb_l2_65": {
+      "bound": "memory",
+      "sm_pct": 29.692030841599287,
+      "mem_pct": 87.70213374744209,
+      "ok": true,
+      "kernel_count": 6
+    },
+    "kb_l2_66": {
+      "bound": "compute",
+      "sm_pct": 65.45252253016751,
+      "mem_pct": 64.76401554623988,
+      "ok": true,
+      "kernel_count": 2
+    },
+    "kb_l2_67": {
+      "bound": "memory",
+      "sm_pct": 22.43369738767261,
+      "mem_pct": 89.31637316914143,
+      "ok": true,
+      "kernel_count": 5
+    },
+    "kb_l2_68": {
+      "bound": "compute",
+      "sm_pct": 65.6076381577834,
+      "mem_pct": 65.01124879402853,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l2_69": {
+      "bound": "memory",
+      "sm_pct": 18.09754139159805,
+      "mem_pct": 88.91633838893961,
+      "ok": true,
+      "kernel_count": 5
+    },
+    "kb_l2_6": {
+      "bound": "algorithm",
+      "sm_pct": 52.72532678483236,
+      "mem_pct": 48.0702952313011,
+      "ok": true,
+      "kernel_count": 4
+    },
+    "kb_l2_70": {
+      "bound": "compute",
+      "sm_pct": 69.58271264729568,
+      "mem_pct": 18.877423332191686,
+      "ok": true,
+      "kernel_count": 4
+    },
+    "kb_l2_71": {
+      "bound": "memory",
+      "sm_pct": 17.618532892503197,
+      "mem_pct": 88.91591968053288,
+      "ok": true,
+      "kernel_count": 5
+    },
+    "kb_l2_72": {
+      "bound": "latency",
+      "sm_pct": 10.023945295935055,
+      "mem_pct": 31.805855455261405,
+      "ok": true,
+      "kernel_count": 5
+    },
+    "kb_l2_73": {
+      "bound": "memory",
+      "sm_pct": 18.892843016267328,
+      "mem_pct": 88.38293164516386,
+      "ok": true,
+      "kernel_count": 5
+    },
+    "kb_l2_74": {
+      "bound": "memory",
+      "sm_pct": 15.70204950929671,
+      "mem_pct": 75.0532997836516,
+      "ok": true,
+      "kernel_count": 11
+    },
+    "kb_l2_75": {
+      "bound": "compute",
+      "sm_pct": 69.09411742339135,
+      "mem_pct": 16.59155948080679,
+      "ok": true,
+      "kernel_count": 5
+    },
+    "kb_l2_76": {
+      "bound": "compute",
+      "sm_pct": 64.76593579257592,
+      "mem_pct": 13.408026755852843,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l2_77": {
+      "bound": "algorithm",
+      "sm_pct": 42.34937741519084,
+      "mem_pct": 13.309012567214246,
+      "ok": true,
+      "kernel_count": 7
+    },
+    "kb_l2_78": {
+      "bound": "memory",
+      "sm_pct": 27.880323352735573,
+      "mem_pct": 65.56169430097299,
+      "ok": true,
+      "kernel_count": 10
+    },
+    "kb_l2_79": {
+      "bound": "memory",
+      "sm_pct": 37.62637653463054,
+      "mem_pct": 67.41879565284535,
+      "ok": true,
+      "kernel_count": 8
+    },
+    "kb_l2_7": {
+      "bound": "memory",
+      "sm_pct": 16.82366489858429,
+      "mem_pct": 84.8974565574689,
+      "ok": true,
+      "kernel_count": 8
+    },
+    "kb_l2_80": {
+      "bound": "compute",
+      "sm_pct": 71.91175924511,
+      "mem_pct": 16.183077246332516,
+      "ok": true,
+      "kernel_count": 5
+    },
+    "kb_l2_81": {
+      "bound": "compute",
+      "sm_pct": 67.54134086716692,
+      "mem_pct": 21.160878539319807,
+      "ok": true,
+      "kernel_count": 6
+    },
+    "kb_l2_82": {
+      "bound": "memory",
+      "sm_pct": 18.450372115615533,
+      "mem_pct": 90.87487325464805,
+      "ok": true,
+      "kernel_count": 6
+    },
+    "kb_l2_83": {
+      "bound": "memory",
+      "sm_pct": 39.78500295396361,
+      "mem_pct": 67.4862687147481,
+      "ok": true,
+      "kernel_count": 7
+    },
+    "kb_l2_84": {
+      "bound": "compute",
+      "sm_pct": 70.92097181847922,
+      "mem_pct": 17.894396504182833,
+      "ok": true,
+      "kernel_count": 5
+    },
+    "kb_l2_85": {
+      "bound": "memory",
+      "sm_pct": 27.325040939133867,
+      "mem_pct": 90.05218494130413,
+      "ok": true,
+      "kernel_count": 9
+    },
+    "kb_l2_86": {
+      "bound": "compute",
+      "sm_pct": 71.2373635510386,
+      "mem_pct": 17.096941760919233,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l2_87": {
+      "bound": "memory",
+      "sm_pct": 17.231692479491734,
+      "mem_pct": 90.22948510260218,
+      "ok": true,
+      "kernel_count": 5
+    },
+    "kb_l2_88": {
+      "bound": "compute",
+      "sm_pct": 66.30128089371794,
+      "mem_pct": 22.13451934603515,
+      "ok": true,
+      "kernel_count": 6
+    },
+    "kb_l2_89": {
+      "bound": "latency",
+      "sm_pct": 11.309094391591566,
+      "mem_pct": 34.255388171599805,
+      "ok": true,
+      "kernel_count": 8
+    },
+    "kb_l2_8": {
+      "bound": "memory",
+      "sm_pct": 29.990220723787182,
+      "mem_pct": 66.82804792121125,
+      "ok": true,
+      "kernel_count": 8
+    },
+    "kb_l2_90": {
+      "bound": "memory",
+      "sm_pct": 17.334596861796363,
+      "mem_pct": 83.07940529019304,
+      "ok": true,
+      "kernel_count": 7
+    },
+    "kb_l2_91": {
+      "bound": "memory",
+      "sm_pct": 19.274248278361725,
+      "mem_pct": 66.32967613064314,
+      "ok": true,
+      "kernel_count": 7
+    },
+    "kb_l2_92": {
+      "bound": "memory",
+      "sm_pct": 15.041167801491131,
+      "mem_pct": 91.98446977462142,
+      "ok": true,
+      "kernel_count": 16
+    },
+    "kb_l2_93": {
+      "bound": "memory",
+      "sm_pct": 16.381435351452527,
+      "mem_pct": 85.50683122061083,
+      "ok": true,
+      "kernel_count": 9
+    },
+    "kb_l2_94": {
+      "bound": "compute",
+      "sm_pct": 69.16958521970119,
+      "mem_pct": 18.818418098541212,
+      "ok": true,
+      "kernel_count": 6
+    },
+    "kb_l2_95": {
+      "bound": "compute",
+      "sm_pct": 67.92039925916127,
+      "mem_pct": 20.816760418044716,
+      "ok": true,
+      "kernel_count": 7
+    },
+    "kb_l2_96": {
+      "bound": "latency",
+      "sm_pct": 9.661721656003333,
+      "mem_pct": 32.860311701279734,
+      "ok": true,
+      "kernel_count": 7
+    },
+    "kb_l2_97": {
+      "bound": "compute",
+      "sm_pct": 68.4114460513693,
+      "mem_pct": 20.423183159266568,
+      "ok": true,
+      "kernel_count": 7
+    },
+    "kb_l2_98": {
+      "bound": "compute",
+      "sm_pct": 71.50549928436698,
+      "mem_pct": 16.25072511161032,
+      "ok": true,
+      "kernel_count": 5
+    },
+    "kb_l2_99": {
+      "bound": "compute",
+      "sm_pct": 71.52292664572084,
+      "mem_pct": 16.96286822945083,
+      "ok": true,
+      "kernel_count": 3
+    },
+    "kb_l2_9": {
+      "bound": "compute",
+      "sm_pct": 70.30295062736376,
+      "mem_pct": 17.914116482258322,
+      "ok": true,
+      "kernel_count": 4
+    }
+  },
+  "bucket_counts": {
+    "memory": 107,
+    "compute": 55,
+    "latency": 12,
+    "algorithm": 26
+  }
+}

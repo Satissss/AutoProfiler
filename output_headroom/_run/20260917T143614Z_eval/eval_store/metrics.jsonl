@@ -1,0 +1,8 @@
+{"kernel_id": "82e59fb1e9374c54", "metrics": {"sm__throughput.avg.pct_of_peak_sustained_elapsed": 14.40256033375209, "dram__throughput.avg.pct_of_peak_sustained_elapsed": 13.808280751809866}, "profile_ms": 689561.1160390545}
+{"kernel_id": "82e59fb1e9374c54", "metrics": {"sm__warps_active.avg.pct_of_peak_sustained_active": 11.662888109152632, "smsp__issue_active.avg.pct_of_peak_sustained_active": 13.012362487812585}, "profile_ms": 98007.25527992472}
+{"kernel_id": "82e59fb1e9374c54", "metrics": {"smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct": 44.68356363284848, "smsp__warp_issue_stalled_barrier_per_warp_active.pct": 3.438204318319725}, "profile_ms": 471740.3803160414}
+{"kernel_id": "82e59fb1e9374c54", "metrics": {"smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct": 98.44285073670724, "launch__waves_per_multiprocessor": 0.12422005124920465}, "profile_ms": 79773.12915003859}
+{"kernel_id": "82e59fb1e9374c54", "metrics": {"launch__grid_size": 69.53555413196669, "launch__occupancy_limit_registers": 5.994554772581679}, "profile_ms": 142104.03653001413}
+{"kernel_id": "82e59fb1e9374c54", "metrics": {"lts__t_sector_hit_rate.pct": 60.873836174117066, "launch__occupancy_limit_shared_mem": 8.370821325564254}, "profile_ms": 121648.83518894203}
+{"kernel_id": "82e59fb1e9374c54", "metrics": {"launch__block_size": 190.97501601537476, "launch__registers_per_thread": 60.47565663036515}, "profile_ms": 143937.95580603182}
+{"kernel_id": "82e59fb1e9374c54", "metrics": {"smsp__warp_issue_stalled_short_scoreboard_per_warp_active.pct": 3.3154590221596965, "smsp__warps_eligible.avg.per_cycle_active": 0.1404970300662701}, "profile_ms": 97038.74026611447}

@@ -1,0 +1,390 @@
+{
+  "routing_round": 37,
+  "bounds": [
+    "latency",
+    "memory",
+    "compute",
+    "algorithm"
+  ],
+  "steps": [
+    {
+      "kernel_id": "c1062d234f45b04a",
+      "origin_uid": "syn_01284_86a279cc",
+      "hop": 0,
+      "leaf_id": "0062e6af",
+      "bound": "memory",
+      "route_id": "c5e65b397f66",
+      "profile_ms": 23662.83987648785,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 3.519752062857151,
+      "parent_latency_ms": 6.002080626785755,
+      "rel_speedup": 1.7052566543319472,
+      "reward": 0.7053,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_stack_pair_kernel"
+        ],
+        "n_lines": 73,
+        "optimizer_summary": "STEP 1 - Read the measurements. For EACH counter you were given, state in one short line what its actual value implies. Quote the numbers. - dram__bytes_read.sum = 1.02299e+09: Very high global memory read volume — kernel is memory-bound and reads ~1 GB. - dram__bytes_write.sum = 7.6929e+08: High global memory write volume — ~769 MB written, ~75% of reads, indicating substantial memory traffic for output. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 93.375: DRAM is saturated — kernel is hitting ~93% of peak DRAM bandwidth; memory bandwidth is the bottleneck. - l1tex__t_sector_hit_rate.pct = 10.767: Very low L1/texture cache hit rate — most loads miss L1 and go straight to L2/DRAM. ",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 3.518771380186081,
+        "seed": 766876140
+      },
+      "child_kernel_id": "50f3d75c1b2d2fab",
+      "advanced": true
+    },
+    {
+      "kernel_id": "9e76ac2059a3424d",
+      "origin_uid": "syn_00968_ff8130f0",
+      "hop": 0,
+      "leaf_id": "a73fcac1",
+      "bound": "memory",
+      "route_id": "f68ba5cbf3be",
+      "profile_ms": 22265.807826071978,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 1.3256333768367767,
+      "parent_latency_ms": 1.7465748824179173,
+      "rel_speedup": 1.3175399118160334,
+      "reward": 0.3175,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 2,
+      "meta": {
+        "jit_kernels": [
+          "_add_bias_kernel"
+        ],
+        "n_lines": 97,
+        "optimizer_summary": "STEP 1 - Read the measurements. For EACH counter you were given, state in one short line what its actual value implies. Quote the numbers. - dram__bytes_read.sum = 1.99866e+08 → very high global memory read volume (≈200 MB), indicating heavy DRAM traffic. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 84.5042% → DRAM bandwidth is nearly saturated — kernel is DRAM-bound. - l1tex__t_sector_hit_rate.pct = 14.3364% → extremely low L1/texture cache hit rate → most loads miss L1 and go to L2/DRAM. - launch__waves_per_multiprocessor = 99.8914 → near-maximum occupancy (almost full SM utilization in terms of concurrent waves), so not launch-bound or underutilized. - lts__t_sector_hit_rate.pct",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 1.322171650826931,
+        "seed": 3073001062
+      },
+      "child_kernel_id": "6f5499342f8351e7",
+      "advanced": true
+    },
+    {
+      "kernel_id": "81aeae81d9d1b24a",
+      "origin_uid": "syn_01327_ebf84e1a",
+      "hop": 0,
+      "leaf_id": "0062e6af",
+      "bound": "memory",
+      "route_id": "3e57e3da3f8c",
+      "profile_ms": 79881.78979791701,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 4.646247252821922,
+      "parent_latency_ms": 9.613120928406715,
+      "rel_speedup": 2.0690076109419566,
+      "reward": 1.069,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_prelu_fused_kernel"
+        ],
+        "n_lines": 89,
+        "optimizer_summary": "STEP 1 - Read the measurements. For EACH counter you were given, state in one short line what its actual value implies. Quote the numbers. - dram__bytes_read.sum = 8.22668e+08 and dram__bytes_write.sum = 7.88066e+08 → kernel moves ~1.6 GB total DRAM traffic (read + write), indicating memory-bound behavior. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 91.4081 → DRAM throughput is near saturation (91% of peak), confirming memory bandwidth is the bottleneck. - l1tex__t_sector_hit_rate.pct = 4.43749 → extremely low L1 texture cache hit rate — but this kernel uses generic global loads (not texture), so this reflects poor spatial locality or strided access; however, note the kernel *alre",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 4.5661404728889465,
+        "seed": 1733122016
+      },
+      "child_kernel_id": "dbe2a290ad600119",
+      "advanced": true
+    },
+    {
+      "kernel_id": "02979db32e491838",
+      "origin_uid": "syn_03713_10eb18b8",
+      "hop": 0,
+      "leaf_id": "0062e6af",
+      "bound": "memory",
+      "route_id": "e4b8b6011ded",
+      "profile_ms": 77462.55439147353,
+      "ok": false,
+      "outcome": "incorrect",
+      "latency_ms": null,
+      "parent_latency_ms": 7.438646862283349,
+      "rel_speedup": null,
+      "reward": null,
+      "stage": "correctness",
+      "error": "correctness_failed: outputs differ beyond atol/rtol",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_fused_channel_cumsum_kernel_blocked"
+        ],
+        "n_lines": 153,
+        "optimizer_summary": "STEP 1 - Read the measurements. For EACH counter you were given, state in one short line what its actual value implies. Quote the numbers. - dram__bytes_read.sum = 3.13756e+08: very high global memory read volume — kernel is memory-bound and reads ~314 MB per launch. - dram__bytes_write.sum = 2.12858e+08: high write volume (~213 MB), but ~32% less than reads → asymmetry suggests redundant loads or intermediate materialization. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 87.4838%: DRAM is heavily saturated — bottleneck is clearly off-chip memory bandwidth. - l1tex__t_sector_hit_rate.pct = 5.73946%: extremely low L1/texture cache hit rate → almost all loads miss L1 and go straight t",
+        "prompt_version": "leaf_triton_optimize_v1"
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "009d42472f428cad",
+      "origin_uid": "syn_04988_ace0d8a7",
+      "hop": 0,
+      "leaf_id": "a73fcac1",
+      "bound": "memory",
+      "route_id": "90ef16fefa51",
+      "profile_ms": 22652.60712429881,
+      "ok": false,
+      "outcome": "incorrect",
+      "latency_ms": null,
+      "parent_latency_ms": 4.289831500500441,
+      "rel_speedup": null,
+      "reward": null,
+      "stage": "correctness",
+      "error": "correctness_failed: outputs differ beyond atol/rtol",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_logsoftmax_kernel"
+        ],
+        "n_lines": 54,
+        "optimizer_summary": "STEP 1 - Read the measurements. For EACH counter you were given, state in one short line what its actual value implies. Quote the numbers. - dram__bytes_read.sum = 5.51008e+08: Very high global memory traffic — kernel reads ~551 MB per launch, indicating heavy memory bandwidth pressure. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 71.6912: DRAM throughput is high (71.7% of peak), confirming memory bandwidth is a major bottleneck. - l1tex__t_sector_hit_rate.pct = 0.355568: Only ~35.6% L1/texture cache hit rate — most loads miss L1 and go to L2/DRAM, worsening bandwidth pressure. - launch__waves_per_multiprocessor = 15.9694: Near-maximum wave occupancy (~16 waves/SM), so SMs are well",
+        "prompt_version": "leaf_triton_optimize_v1"
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "cb5afe9e8ebe9b1d",
+      "origin_uid": "syn_00921_180b1e84",
+      "hop": 0,
+      "leaf_id": "a73fcac1",
+      "bound": "memory",
+      "route_id": "735760cab052",
+      "profile_ms": 22735.70149205625,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 2.2640852257609367,
+      "parent_latency_ms": 2.794870873913169,
+      "rel_speedup": 1.234437132539408,
+      "reward": 0.2344,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_add_bias_kernel"
+        ],
+        "n_lines": 89,
+        "optimizer_summary": "STEP 1 - Read the measurements. For EACH counter you were given, state in one short line what its actual value implies. Quote the numbers. - dram__bytes_read.sum = 2.64763e+08: High global memory read volume (~265 MB), indicating heavy data movement. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 87.3624%: DRAM bandwidth is nearly saturated — memory bandwidth is the bottleneck. - l1tex__t_sector_hit_rate.pct = 12.3708%: Very low L1/texture cache hit rate → most loads miss L1 and go to L2/DRAM. - launch__waves_per_multiprocessor = 85.659: High occupancy (many concurrent warps per SM), so compute resources are *not* underutilized; kernel is not launch-bound. - lts__t_sector_hit_rate.pc",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 1.6529271379113197,
+        "seed": 706176547
+      },
+      "child_kernel_id": "47fc5ec038631bc8",
+      "advanced": true
+    },
+    {
+      "kernel_id": "f66dbd7c55f3ae2d",
+      "origin_uid": "syn_02106_120a5b82",
+      "hop": 0,
+      "leaf_id": "0062e6af",
+      "bound": "memory",
+      "route_id": "31306a8e06b6",
+      "profile_ms": 22797.925490885973,
+      "ok": true,
+      "outcome": "no_speedup",
+      "latency_ms": 4.197060130536556,
+      "parent_latency_ms": 4.169301595538855,
+      "rel_speedup": 0.9933861955429852,
+      "reward": -0.0066,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_safe_equal_reduce_kernel"
+        ],
+        "n_lines": 109,
+        "optimizer_summary": "STEP 1 - Read the measurements. For EACH counter you were given, state in one short line what its actual value implies. Quote the numbers. - dram__bytes_read.sum = 4.18782e+08: kernel reads ~419 MB from DRAM — very high memory traffic for a simple `x == x` check. - dram__bytes_write.sum = 4.25428e+08: writes ~425 MB — nearly equal read/write volume, indicating full materialization of boolean output tensor. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 87.9412%: DRAM bandwidth is saturated (~88% of peak), confirming memory-bound behavior. - l1tex__t_sector_hit_rate.pct = 26.152%: low L1/texture cache hit rate → poor spatial/temporal locality or small working set not benefiting from c",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 3.3030956983566284,
+        "seed": 1558690006
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    }
+  ],
+  "updates": [
+    {
+      "action": "update",
+      "leaf_id": "0062e6af",
+      "proposal": {
+        "leaf_id": "0062e6af",
+        "inherited": [
+          "sm__throughput.avg.pct_of_peak_sustained_elapsed",
+          "dram__throughput.avg.pct_of_peak_sustained_elapsed",
+          "l1tex__t_sector_hit_rate.pct",
+          "lts__t_sector_hit_rate.pct",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct",
+          "dram__bytes_read.sum",
+          "dram__bytes_write.sum"
+        ],
+        "old_owned": [],
+        "new_owned": [
+          "sm__warps_active.avg.pct_of_peak_sustained_active",
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct"
+        ],
+        "added": [
+          "sm__warps_active.avg.pct_of_peak_sustained_active",
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct"
+        ],
+        "blind_spot": "The current metrics show memory-boundness but cannot tell whether a kernel is truly DRAM-bandwidth-saturated (only fewer bytes helps) or latency/occupancy-limited with bandwidth headroom (more resident warps or loads-in-flight would speed it up).",
+        "rationale": {
+          "sm__warps_active.avg.pct_of_peak_sustained_active": "HIGH -> occupancy is fine; stop tuning launch config, cut DRAM bytes (fuse ops, drop intermediates, narrower dtype) or accept roofline / LOW -> raise occupancy via smaller tiles, fewer registers per thread, better block size, larger grid to convert DRAM headroom into speedup",
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct": "HIGH with DRAM ~90%+ -> warps wait on saturated bandwidth, ILP/launch changes are futile, reduce bytes moved / LOW (or HIGH with DRAM only ~70-80%) -> add memory-level parallelism (more warps, ILP, prefetch) or, if stalls are elsewhere, restructure the algorithm (warp-level reductions, fewer barriers)"
+        },
+        "rejected": [],
+        "prompt_version": "metric_rewrite_v1"
+      },
+      "validation": {
+        "accepted": false,
+        "margin": 0.0,
+        "epsilon": 0.015,
+        "incumbent_mean": null,
+        "candidate_mean": null,
+        "time_cost": 0.0,
+        "n_scorable_incumbent": 0,
+        "n_scorable_candidate": 0,
+        "compile_fail_delta": 0.0,
+        "reason": "missing_incumbent_baseline:1",
+        "guard_ids": [
+          "09fe15f8003c3e62",
+          "e6f5487075c5c9d5",
+          "d54ca767fba500d2",
+          "db1583cc5ee66f66",
+          "0cb0204f65e4cde5",
+          "a74e71a6175be948",
+          "9016eea9f5ed37f7",
+          "2f288839b3d40820",
+          "c1062d234f45b04a",
+          "e8e91d34c3a1aaad",
+          "81aeae81d9d1b24a"
+        ],
+        "regressed_guards": [],
+        "per_sample": {}
+      },
+      "split": {
+        "action": "split",
+        "leaf_id": "0062e6af",
+        "search_reason": "too_few_samples:0",
+        "accepted": false,
+        "reason": "too_few_samples:0"
+      },
+      "accepted": false,
+      "reason": "too_few_samples:0"
+    }
+  ],
+  "n_retired_pool": 0,
+  "n_steps": 7,
+  "pool_size": 761,
+  "diagnostics": {
+    "outcome_counts": {
+      "win": 4,
+      "incorrect": 2,
+      "no_speedup": 1
+    },
+    "slow_share": 0.14285714285714285,
+    "compile_fail_rate": 0.0,
+    "mean_profile_time_ratio": 7756.753418737309,
+    "reward_sources": {
+      "n_positive_reward": 4,
+      "from_real_speedup": 4,
+      "from_failure_to_success": 0,
+      "real_speedup_share": 1.0
+    },
+    "tree": {
+      "n_leaves": 10,
+      "depth": 3,
+      "branching": [
+        4,
+        2,
+        4,
+        2,
+        2
+      ]
+    },
+    "store": {
+      "n_kernels": 1391,
+      "n_origins": 998,
+      "n_routes": 598,
+      "by_status": {
+        "pending": 761,
+        "optimization_failed": 165,
+        "advanced": 293,
+        "terminal": 115,
+        "slow": 57
+      },
+      "max_hop": 1
+    },
+    "origin_coverage": {
+      "total": 998,
+      "attempted": 630,
+      "remaining": 368,
+      "ratio": 0.6312625250501002
+    },
+    "gpu_queue": {
+      "submitted": 734,
+      "completed": 734,
+      "failed": 0,
+      "queue_depth": 0,
+      "active": false,
+      "busy_time_s": 13774.303781657829,
+      "utilization": 0.33802284690381795,
+      "journal_done": 348
+    },
+    "branch_share_alerts": [
+      {
+        "node_id": "root",
+        "child_id": "70f21b3a",
+        "label": "sm=high,dram=low",
+        "share": 0.0217,
+        "n": 13
+      },
+      {
+        "node_id": "root",
+        "child_id": "64953ed1",
+        "label": "sm=high,dram=high",
+        "share": 0.0017,
+        "n": 1
+      },
+      {
+        "node_id": "00dcb62e",
+        "child_id": "7eca260d",
+        "label": "lts=low,smsp=low",
+        "share": 0.0296,
+        "n": 10
+      },
+      {
+        "node_id": "460f36cf",
+        "child_id": "fb19c5a4",
+        "label": "lts=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "2a031de2",
+        "child_id": "2bc99d41",
+        "label": "dram=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "9c244a15",
+        "child_id": "beea9d13",
+        "label": "dram=high",
+        "share": 0.0,
+        "n": 0
+      }
+    ]
+  }
+}

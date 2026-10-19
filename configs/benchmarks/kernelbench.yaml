@@ -1,0 +1,7 @@
+name: kernelbench
+root: data/benchmarks/kernelbench
+id_prefix: kb
+groups:
+  level1: {dir: level1, tag: l1}   # single operators
+  level2: {dir: level2, tag: l2}   # fusion patterns
+  level3: {dir: level3, tag: l3}   # full models

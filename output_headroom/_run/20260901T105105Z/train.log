@@ -1,0 +1,62 @@
+18:51:05 [log] run log -> output_headroom/_run/20260901T105105Z/train.log
+18:51:05 [init] run_id=20260901T105105Z resume=True checkpoint=000001 n_train=999 n_holdout=0 source=['triton_seed']
+[init] tree_model=kimi-k3 optimize_model=qwen-plus
+[init] artifacts -> output_headroom/_run/20260901T105105Z
+[init] kernel store -> output_headroom/_run/20260901T105105Z/kernels ({'n_kernels': 1510, 'n_origins': 998, 'n_routes': 737, 'by_status': {'pending': 731, 'slow': 94, 'optimization_failed': 230, 'terminal': 126, 'advanced': 329}, 'max_hop': 1})
+18:51:05 [seed] pool has 731 pending kernels (0 new)
+18:51:05 [checkpoint-save] id=000001 reason=periodic resume='--resume 20260901T105105Z --checkpoint 000001'
+18:51:05 
+========== ROUTING ROUND 44 (parallel) ==========
+18:51:05 [routing-start] sync bound=latency,compute,memory,algorithm available=731 pool=731
+18:51:05   [forward-start] 945dac17590a7ba1 hop=0 origin=syn_05564_61fdef82
+18:52:54   [route] 945dac17590a7ba1 hop=0 -> leaf=425fa8d3 (memory) path=root/00dcb62e/2a031de2/a73fcac1/3aa13df1/425fa8d3 measured=9 cached=0 profile_ms=27161
+18:52:54 [llm-attempt] id=5d0195ea model=qwen-plus label=opt kernel=945dac17590a7ba1 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+18:53:21 [llm-done] id=5d0195ea model=qwen-plus label=opt kernel=945dac17590a7ba1 round=0 attempt=1/6 timeout_s=600 elapsed_s=27.2
+18:53:22 [llm-attempt] id=967496b4 model=qwen-plus label=opt kernel=945dac17590a7ba1 round=1 attempt=1/6 timeout_s=600 elapsed_s=0.0
+18:54:18 [llm-done] id=967496b4 model=qwen-plus label=opt kernel=945dac17590a7ba1 round=1 attempt=1/6 timeout_s=600 elapsed_s=56.4
+18:54:30     [opt] round 1 stage=correctness ok=False cand_ms=None
+18:54:30 [llm-attempt] id=f264a054 model=qwen-plus label=opt kernel=945dac17590a7ba1 round=2 attempt=1/6 timeout_s=600 elapsed_s=0.0
+18:55:32 [llm-done] id=f264a054 model=qwen-plus label=opt kernel=945dac17590a7ba1 round=2 attempt=1/6 timeout_s=600 elapsed_s=62.2
+18:55:43     [opt] round 2 stage=correctness ok=False cand_ms=None
+18:55:43   [opt-failed] 945dac17590a7ba1 outcome=incorrect stage=correctness; excluded from leaf activation
+18:55:43 [progress] completed=1 available_at_start=731 advanced=0 slow=0 failed=1 pool=730 last=945dac17590a7ba1 outcome=incorrect
+18:55:43   [forward-start] 5af3e9505e22daed hop=0 origin=syn_04182_a47e26f9
+18:57:02   [route] 5af3e9505e22daed hop=0 -> leaf=425fa8d3 (memory) path=root/00dcb62e/2a031de2/a73fcac1/3aa13df1/425fa8d3 measured=9 cached=0 profile_ms=32345
+18:57:02 [llm-attempt] id=7ad57e46 model=qwen-plus label=opt kernel=5af3e9505e22daed round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+18:57:42 [llm-done] id=7ad57e46 model=qwen-plus label=opt kernel=5af3e9505e22daed round=0 attempt=1/6 timeout_s=600 elapsed_s=40.1
+18:57:51     [opt] round 0 stage=correctness ok=False cand_ms=None
+18:57:51 [llm-attempt] id=00f6b8cd model=qwen-plus label=opt kernel=5af3e9505e22daed round=1 attempt=1/6 timeout_s=600 elapsed_s=0.0
+18:58:26 [llm-done] id=00f6b8cd model=qwen-plus label=opt kernel=5af3e9505e22daed round=1 attempt=1/6 timeout_s=600 elapsed_s=34.2
+18:59:09     [opt] round 1 stage=correctness ok=False cand_ms=None
+18:59:09 [llm-attempt] id=c45e1061 model=qwen-plus label=opt kernel=5af3e9505e22daed round=2 attempt=1/6 timeout_s=600 elapsed_s=0.0
+18:59:52 [llm-done] id=c45e1061 model=qwen-plus label=opt kernel=5af3e9505e22daed round=2 attempt=1/6 timeout_s=600 elapsed_s=43.1
+19:00:02     [opt] round 2 stage=ok ok=True cand_ms=2.6862556114792824
+19:00:02   [slow] 5af3e9505e22daed outcome=no_speedup spd=0.9949114096961356 -> accumulates at 425fa8d3
+19:00:02 [progress] completed=2 available_at_start=731 advanced=0 slow=1 failed=1 pool=729 last=5af3e9505e22daed outcome=no_speedup
+19:00:02   [forward-start] efb297b266508edc hop=0 origin=syn_05856_a199b2b9
+19:01:49   [route] efb297b266508edc hop=0 -> leaf=425fa8d3 (memory) path=root/00dcb62e/2a031de2/a73fcac1/3aa13df1/425fa8d3 measured=9 cached=0 profile_ms=27775
+19:01:49 [llm-attempt] id=d5db0986 model=qwen-plus label=opt kernel=efb297b266508edc round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+19:02:21 [llm-done] id=d5db0986 model=qwen-plus label=opt kernel=efb297b266508edc round=0 attempt=1/6 timeout_s=600 elapsed_s=32.0
+19:02:21 [llm-attempt] id=6530dbcf model=qwen-plus label=opt kernel=efb297b266508edc round=1 attempt=1/6 timeout_s=600 elapsed_s=0.0
+19:03:03 [llm-done] id=6530dbcf model=qwen-plus label=opt kernel=efb297b266508edc round=1 attempt=1/6 timeout_s=600 elapsed_s=41.9
+19:03:12     [opt] round 1 stage=correctness ok=False cand_ms=None
+19:03:12 [llm-attempt] id=43f2ee70 model=qwen-plus label=opt kernel=efb297b266508edc round=2 attempt=1/6 timeout_s=600 elapsed_s=0.0
+19:04:10 [llm-done] id=43f2ee70 model=qwen-plus label=opt kernel=efb297b266508edc round=2 attempt=1/6 timeout_s=600 elapsed_s=58.1
+19:04:35     [opt] round 2 stage=correctness ok=False cand_ms=None
+19:04:35   [opt-failed] efb297b266508edc outcome=incorrect stage=correctness; excluded from leaf activation
+19:04:35 [progress] completed=3 available_at_start=731 advanced=0 slow=1 failed=2 pool=728 last=efb297b266508edc outcome=incorrect
+19:04:35   [forward-start] fb302d8d42f000a0 hop=0 origin=syn_04983_c97a4f4b
+19:12:40   [route] fb302d8d42f000a0 hop=0 -> leaf=fd3bf8fa (compute) path=root/fa55efca/fd3bf8fa measured=5 cached=0 profile_ms=460772
+19:12:40 [llm-attempt] id=2912cba2 model=qwen-plus label=opt kernel=fb302d8d42f000a0 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+19:13:18 [llm-done] id=2912cba2 model=qwen-plus label=opt kernel=fb302d8d42f000a0 round=0 attempt=1/6 timeout_s=600 elapsed_s=37.8
+19:13:29     [opt] round 0 stage=ok ok=True cand_ms=17.11094379425049
+19:13:29   [advance] fb302d8d42f000a0 -> 6c434553fd4ba0d6 spd=4.181 wins=2
+19:13:29 [progress] completed=4 available_at_start=731 advanced=1 slow=1 failed=2 pool=728 last=fb302d8d42f000a0 outcome=win
+19:13:29   [forward-start] 226a505e6778759a hop=0 origin=syn_05635_e339998e
+19:14:48   [route] 226a505e6778759a hop=0 -> leaf=ed2c4309 (memory) path=root/00dcb62e/460f36cf/0062e6af/708026f9/546c4ee9/8134c8f9/6c082e7a/ed2c4309 measured=9 cached=0 profile_ms=30123
+19:14:48 [llm-attempt] id=5af1959c model=qwen-plus label=opt kernel=226a505e6778759a round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0
+19:15:34 [llm-done] id=5af1959c model=qwen-plus label=opt kernel=226a505e6778759a round=0 attempt=1/6 timeout_s=600 elapsed_s=46.0
+19:15:44     [opt] round 0 stage=ok ok=True cand_ms=2.0760418847203255
+19:15:44   [advance] 226a505e6778759a -> e92b04b8cc6d9693 spd=1.522 wins=1
+19:15:44 [progress] completed=5 available_at_start=731 advanced=2 slow=1 failed=2 pool=728 last=226a505e6778759a outcome=win
+19:15:44   [forward-start] 105f0aabdf7f284a hop=0 origin=syn_05411_c7abd809

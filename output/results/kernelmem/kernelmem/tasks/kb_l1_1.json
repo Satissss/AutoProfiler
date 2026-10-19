@@ -1,0 +1,97 @@
+{
+  "task_id": "kb_l1_1",
+  "group": "level1",
+  "method": "kernelmem",
+  "correct": false,
+  "speedup": null,
+  "baseline_ms": null,
+  "candidate_ms": null,
+  "error": "no correct candidate",
+  "wall_s": 135.1,
+  "trajectory": {
+    "task_id": "kb_l1_1",
+    "method": "kernelmem",
+    "best_code": "",
+    "best_language": "",
+    "best_result": null,
+    "rounds": [
+      {
+        "round": 0,
+        "result": {
+          "ok": false,
+          "stage": "load_candidate",
+          "error": "FileNotFoundError: [Errno 2] No such file or directory: './build/main.cpp'",
+          "baseline_ms": 2.7630573604255915,
+          "candidate_ms": null,
+          "speedup": null
+        },
+        "usage": {
+          "llm": {
+            "calls": 0,
+            "total_tokens": 0,
+            "prompt_tokens": 0,
+            "completion_tokens": 0
+          },
+          "gpu_seconds": 0.0,
+          "n_evals": 0
+        },
+        "profile": {}
+      },
+      {
+        "round": 1,
+        "result": {
+          "ok": false,
+          "stage": "load_candidate",
+          "error": "ImportError: /tmp/torch_ext_3wzin0l8/build/matmul_cuda.so: undefined symbol: _Z20launch_matmul_kernelPKfS0_PfiP11CUstream_st",
+          "baseline_ms": 2.7688248082995415,
+          "candidate_ms": null,
+          "speedup": null
+        },
+        "usage": {
+          "llm": {
+            "calls": 2,
+            "total_tokens": 4975,
+            "prompt_tokens": 3561,
+            "completion_tokens": 1414
+          },
+          "gpu_seconds": 35.9,
+          "n_evals": 1
+        },
+        "profile": {}
+      },
+      {
+        "round": 2,
+        "result": {
+          "ok": false,
+          "stage": "load_candidate",
+          "error": "ImportError: /tmp/torch_ext_vb5r94u8/build/matmul_cuda.so: undefined symbol: _Z20launch_matmul_kernelPKfS0_PfiP11CUstream_st",
+          "baseline_ms": 2.7621984481811523,
+          "candidate_ms": null,
+          "speedup": null
+        },
+        "usage": {
+          "llm": {
+            "calls": 4,
+            "total_tokens": 10101,
+            "prompt_tokens": 7235,
+            "completion_tokens": 2866
+          },
+          "gpu_seconds": 34.66,
+          "n_evals": 1
+        },
+        "profile": {}
+      }
+    ],
+    "usage": {
+      "llm": {
+        "calls": 4,
+        "total_tokens": 10101,
+        "prompt_tokens": 7235,
+        "completion_tokens": 2866
+      },
+      "gpu_seconds": 70.56,
+      "n_evals": 2
+    },
+    "error": ""
+  }
+}

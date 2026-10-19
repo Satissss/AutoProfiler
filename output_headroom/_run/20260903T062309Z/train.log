@@ -1,0 +1,13 @@
+14:23:09 [log] run log -> output_headroom/_run/20260903T062309Z/train.log
+14:23:09 [init] run_id=20260903T062309Z resume=True checkpoint=000006 n_train=999 n_holdout=0 source=['triton_seed']
+[init] tree_model=kimi-k3 optimize_model=qwen-plus
+[init] artifacts -> output_headroom/_run/20260903T062309Z
+[init] kernel store -> output_headroom/_run/20260903T062309Z/kernels ({'n_kernels': 1553, 'n_origins': 998, 'n_routes': 829, 'by_status': {'slow': 119, 'optimization_failed': 266, 'advanced': 360, 'terminal': 126, 'pending': 682}, 'max_hop': 1})
+14:23:09 [seed] pool has 682 pending kernels (0 new)
+14:23:09 [checkpoint-save] id=000001 reason=periodic resume='--resume 20260903T062309Z --checkpoint 000001'
+14:23:09 
+========== ROUTING ROUND 46 (parallel) ==========
+14:23:09 [routing-start] sync bound=latency,memory,compute,algorithm available=682 pool=682
+14:23:09   [forward-start] 60d103ed4870f121 hop=0 origin=syn_01946_fffa3e83
+14:23:09   [route] 60d103ed4870f121 hop=0 -> leaf=ed2c4309 (memory) path=root/00dcb62e/460f36cf/0062e6af/708026f9/546c4ee9/8134c8f9/6c082e7a/ed2c4309 measured=9 cached=0 profile_ms=27496
+14:23:09 [llm-attempt] id=b0c4f09a model=qwen-plus label=opt kernel=60d103ed4870f121 round=0 attempt=1/6 timeout_s=600 elapsed_s=0.0

@@ -1,0 +1,410 @@
+{
+  "routing_round": 24,
+  "bounds": [
+    "memory",
+    "latency",
+    "compute",
+    "algorithm"
+  ],
+  "steps": [],
+  "updates": [
+    {
+      "action": "update",
+      "leaf_id": "460f36cf",
+      "proposal": {
+        "leaf_id": "460f36cf",
+        "inherited": [
+          "sm__throughput.avg.pct_of_peak_sustained_elapsed",
+          "dram__throughput.avg.pct_of_peak_sustained_elapsed",
+          "l1tex__t_sector_hit_rate.pct",
+          "lts__t_sector_hit_rate.pct",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct"
+        ],
+        "old_owned": [
+          "dram__bytes_read.sum",
+          "dram__bytes_write.sum",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_st.pct",
+          "l1tex__throughput.avg.pct_of_peak_sustained_elapsed"
+        ],
+        "new_owned": [
+          "dram__bytes_read.sum",
+          "dram__bytes_write.sum",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_st.pct",
+          "l1tex__throughput.avg.pct_of_peak_sustained_elapsed",
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct",
+          "sm__warps_active.avg.pct_of_peak_sustained_active"
+        ],
+        "added": [
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct",
+          "sm__warps_active.avg.pct_of_peak_sustained_active"
+        ],
+        "blind_spot": "The optimizer cannot distinguish DRAM-bandwidth-saturated kernels from memory-latency/occupancy-limited ones, so it always prescribes byte reduction and never parallelism/occupancy tuning.",
+        "rationale": {
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct": "HIGH -> warps wait on global-load latency: increase memory-level parallelism via unrolling, vectorized loads, num_stages prefetching, more warps / LOW -> truly bandwidth-saturated: only cut bytes via fusion, avoiding materialized intermediates, dtype narrowing, shared-memory reuse",
+          "sm__warps_active.avg.pct_of_peak_sustained_active": "HIGH -> occupancy maxed, no latency-hiding headroom: pursue byte reduction and per-thread ILP only / LOW -> raise occupancy by shrinking tiles/registers, retuning num_warps/num_stages, or enlarging the grid to push DRAM utilization toward peak"
+        },
+        "rejected": [],
+        "prompt_version": "metric_rewrite_v1"
+      },
+      "validation": {
+        "accepted": false,
+        "margin": 0.7682,
+        "epsilon": 0.015,
+        "incumbent_mean": 1.0764,
+        "candidate_mean": 1.8446,
+        "time_cost": 0.0,
+        "n_scorable_incumbent": 22,
+        "n_scorable_candidate": 21,
+        "compile_fail_delta": 0.0,
+        "reason": "guard_regression",
+        "guard_ids": [
+          "a2c58753782788af",
+          "edff8ca289e5e956",
+          "c4be8028694d1cc1",
+          "e3b0b6c9c9f72daa",
+          "6546d1293ad88cba",
+          "48af0f98079c6b34",
+          "3f5ccd0930f7dd89",
+          "fb64ef0a6ce2e0f4",
+          "ee0f7f01ccbc03c1",
+          "f71d181ec6315403",
+          "1408e2e92ca90c7f"
+        ],
+        "regressed_guards": [
+          "a2c58753782788af"
+        ],
+        "per_sample": {
+          "4f8b943deae3626d": {
+            "kernel_id": "4f8b943deae3626d",
+            "outcome": "win",
+            "reward": 4.9896,
+            "rel_speedup": 5.989589199797318,
+            "latency_ms": 1.1873450130224228,
+            "profile_ms": 6794.092271476984,
+            "kernel_ms": 7.111708866432309,
+            "child_kernel_id": ""
+          },
+          "5e1d5b6be6828113": {
+            "kernel_id": "5e1d5b6be6828113",
+            "outcome": "win",
+            "reward": 0.851,
+            "rel_speedup": 1.8509535216557211,
+            "latency_ms": 4.587648436427116,
+            "profile_ms": 7436.9706474244595,
+            "kernel_ms": 8.491524029523134,
+            "child_kernel_id": ""
+          },
+          "68cebcd30c5194a1": {
+            "kernel_id": "68cebcd30c5194a1",
+            "outcome": "win",
+            "reward": 0.3179,
+            "rel_speedup": 1.317898930541424,
+            "latency_ms": 2.1034162491559982,
+            "profile_ms": 7109.866611659527,
+            "kernel_ms": 2.7720900252461433,
+            "child_kernel_id": ""
+          },
+          "a75a30865d36b834": {
+            "kernel_id": "a75a30865d36b834",
+            "outcome": "win",
+            "reward": 1.5144,
+            "rel_speedup": 2.5144435432775456,
+            "latency_ms": 2.991301007568836,
+            "profile_ms": 6912.464031949639,
+            "kernel_ms": 7.521457504481077,
+            "child_kernel_id": ""
+          },
+          "b9795af037350e5a": {
+            "kernel_id": "b9795af037350e5a",
+            "outcome": "win",
+            "reward": 1.2759,
+            "rel_speedup": 2.2759029972254488,
+            "latency_ms": 1.2852651998400688,
+            "profile_ms": 6140.357114374638,
+            "kernel_ms": 2.925138920545578,
+            "child_kernel_id": ""
+          },
+          "c14eeb3c6ce44ace": {
+            "kernel_id": "c14eeb3c6ce44ace",
+            "outcome": "win",
+            "reward": 1.635,
+            "rel_speedup": 2.635001989427613,
+            "latency_ms": 1.6384758055210114,
+            "profile_ms": 7410.592148080468,
+            "kernel_ms": 4.317387007176876,
+            "child_kernel_id": ""
+          },
+          "ca36d4a92709255b": {
+            "kernel_id": "ca36d4a92709255b",
+            "outcome": "win",
+            "reward": 0.9843,
+            "rel_speedup": 1.9842925364592572,
+            "latency_ms": 7.06265214830637,
+            "profile_ms": 8781.093003228307,
+            "kernel_ms": 14.014367945492268,
+            "child_kernel_id": ""
+          },
+          "cd214084914c1e60": {
+            "kernel_id": "cd214084914c1e60",
+            "outcome": "win",
+            "reward": 1.3543,
+            "rel_speedup": 2.354282271122802,
+            "latency_ms": 6.999755278229713,
+            "profile_ms": 12332.175057381392,
+            "kernel_ms": 16.47939975373447,
+            "child_kernel_id": ""
+          },
+          "d663edec2548abe1": {
+            "kernel_id": "d663edec2548abe1",
+            "outcome": "win",
+            "reward": 0.6204,
+            "rel_speedup": 1.6203907723174178,
+            "latency_ms": 14.40301351249218,
+            "profile_ms": 13671.222127974033,
+            "kernel_ms": 23.338510189205408,
+            "child_kernel_id": ""
+          },
+          "fb7c5f8d7dd03d81": {
+            "kernel_id": "fb7c5f8d7dd03d81",
+            "outcome": "win",
+            "reward": 2.9178,
+            "rel_speedup": 3.9178355331636943,
+            "latency_ms": 1.9720159471035004,
+            "profile_ms": 7065.056353807449,
+            "kernel_ms": 7.72603414952755,
+            "child_kernel_id": ""
+          },
+          "fc176878c1f26172": {
+            "kernel_id": "fc176878c1f26172",
+            "outcome": "win",
+            "reward": 2.9382,
+            "rel_speedup": 3.93824659990519,
+            "latency_ms": 4.660043865442276,
+            "profile_ms": 9850.50681233406,
+            "kernel_ms": 18.35240190848708,
+            "child_kernel_id": ""
+          },
+          "a2c58753782788af": {
+            "kernel_id": "a2c58753782788af",
+            "outcome": "regressed",
+            "reward": -0.46,
+            "rel_speedup": 0.17697067399804123,
+            "latency_ms": 848.0633087456226,
+            "profile_ms": 10977.546503767371,
+            "kernel_ms": 150.08233534172177,
+            "child_kernel_id": ""
+          },
+          "edff8ca289e5e956": {
+            "kernel_id": "edff8ca289e5e956",
+            "outcome": "win",
+            "reward": 7.0,
+            "rel_speedup": 12.890520820758717,
+            "latency_ms": 2.653948962688446,
+            "profile_ms": 20289.21145386994,
+            "kernel_ms": 34.21078436076641,
+            "child_kernel_id": ""
+          },
+          "c4be8028694d1cc1": {
+            "kernel_id": "c4be8028694d1cc1",
+            "outcome": "win",
+            "reward": 0.3372,
+            "rel_speedup": 1.337172222334483,
+            "latency_ms": 12.305810116231441,
+            "profile_ms": 7515.22964797914,
+            "kernel_ms": 16.45498746074736,
+            "child_kernel_id": ""
+          },
+          "e3b0b6c9c9f72daa": {
+            "kernel_id": "e3b0b6c9c9f72daa",
+            "outcome": "win",
+            "reward": 4.9191,
+            "rel_speedup": 5.91909350844488,
+            "latency_ms": 4.751577042043209,
+            "profile_ms": 13448.201823979616,
+            "kernel_ms": 28.125028824433684,
+            "child_kernel_id": ""
+          },
+          "6546d1293ad88cba": {
+            "kernel_id": "6546d1293ad88cba",
+            "outcome": "win",
+            "reward": 0.8509,
+            "rel_speedup": 1.8509399641308606,
+            "latency_ms": 1.5853894874453545,
+            "profile_ms": 6015.8846490085125,
+            "kernel_ms": 2.934460761025548,
+            "child_kernel_id": ""
+          },
+          "48af0f98079c6b34": {
+            "kernel_id": "48af0f98079c6b34",
+            "outcome": "win",
+            "reward": 0.7933,
+            "rel_speedup": 1.793271839912554,
+            "latency_ms": 1.4569563791155815,
+            "profile_ms": 7161.899330094457,
+            "kernel_ms": 2.6127188466489315,
+            "child_kernel_id": ""
+          },
+          "3f5ccd0930f7dd89": {
+            "kernel_id": "3f5ccd0930f7dd89",
+            "outcome": "win",
+            "reward": 1.2289,
+            "rel_speedup": 2.2289369631229397,
+            "latency_ms": 0.11470727622509003,
+            "profile_ms": 6604.005269706249,
+            "kernel_ms": 0.25567528791725636,
+            "child_kernel_id": ""
+          },
+          "fb64ef0a6ce2e0f4": {
+            "kernel_id": "fb64ef0a6ce2e0f4",
+            "outcome": "win",
+            "reward": 1.539,
+            "rel_speedup": 2.538961396809948,
+            "latency_ms": 2.4420106783509254,
+            "profile_ms": 7429.582852870226,
+            "kernel_ms": 6.2001708429306746,
+            "child_kernel_id": ""
+          },
+          "f71d181ec6315403": {
+            "kernel_id": "f71d181ec6315403",
+            "outcome": "win",
+            "reward": 0.4769,
+            "rel_speedup": 1.4768909357150402,
+            "latency_ms": 2.90082860738039,
+            "profile_ms": 7444.78802382946,
+            "kernel_ms": 4.284207476302981,
+            "child_kernel_id": ""
+          },
+          "1408e2e92ca90c7f": {
+            "kernel_id": "1408e2e92ca90c7f",
+            "outcome": "win",
+            "reward": 2.6522,
+            "rel_speedup": 3.6522312692393784,
+            "latency_ms": 1.2607024982571602,
+            "profile_ms": 6483.394119888544,
+            "kernel_ms": 4.604377085343003,
+            "child_kernel_id": ""
+          }
+        }
+      },
+      "split": {
+        "action": "split",
+        "leaf_id": "460f36cf",
+        "search_reason": "found",
+        "condition": {
+          "subset": [
+            "dram__throughput.avg.pct_of_peak_sustained_elapsed",
+            "lts__t_sector_hit_rate.pct"
+          ],
+          "thresholds": {
+            "dram__throughput.avg.pct_of_peak_sustained_elapsed": 93.240065,
+            "lts__t_sector_hit_rate.pct": 41.321688
+          },
+          "gain": 1.77247,
+          "branch_sizes": {
+            "0": 3,
+            "1": 6,
+            "2": 0,
+            "3": 3
+          }
+        },
+        "chosen_by": "llm_tiebreak:The DRAM throughput cut at ~93% of peak corresponds to a genuine hardware saturation regime (bandwidth-bound vs not), and combined with the L2 hit-rate split it captures the classic memory-hierarchy classification that should transfer to unseen kernels.",
+        "objective": 1.7725,
+        "incumbent_mean": 0.6621,
+        "margin": 1.1104,
+        "epsilon": 0.015,
+        "accepted": true,
+        "reason": "accepted",
+        "children": [
+          "baba1218",
+          "9def774c",
+          "9cd06263",
+          "53764045"
+        ]
+      },
+      "accepted": true,
+      "resolution": "split",
+      "children": [
+        "baba1218",
+        "9def774c",
+        "9cd06263",
+        "53764045"
+      ]
+    }
+  ],
+  "n_retired_pool": 0,
+  "n_steps": 0,
+  "pool_size": 867,
+  "diagnostics": {
+    "outcome_counts": {},
+    "slow_share": 0.0,
+    "compile_fail_rate": 0.0,
+    "mean_profile_time_ratio": null,
+    "reward_sources": {
+      "n_positive_reward": 0,
+      "from_real_speedup": 0,
+      "from_failure_to_success": 0,
+      "real_speedup_share": null
+    },
+    "tree": {
+      "n_leaves": 10,
+      "depth": 3,
+      "branching": [
+        4,
+        4,
+        4
+      ]
+    },
+    "store": {
+      "n_kernels": 1379,
+      "n_origins": 998,
+      "n_routes": 481,
+      "by_status": {
+        "pending": 867,
+        "optimization_failed": 121,
+        "terminal": 115,
+        "advanced": 258,
+        "slow": 18
+      },
+      "max_hop": 1
+    },
+    "origin_coverage": {
+      "total": 998,
+      "attempted": 512,
+      "remaining": 486,
+      "ratio": 0.5130260521042084
+    },
+    "gpu_queue": {
+      "submitted": 88,
+      "completed": 88,
+      "failed": 0,
+      "queue_depth": 0,
+      "active": false,
+      "busy_time_s": 1855.0363333801506,
+      "utilization": 0.07411436681032141,
+      "journal_done": 44
+    },
+    "branch_share_alerts": [
+      {
+        "node_id": "root",
+        "child_id": "70f21b3a",
+        "label": "sm=high,dram=low",
+        "share": 0.0229,
+        "n": 11
+      },
+      {
+        "node_id": "root",
+        "child_id": "64953ed1",
+        "label": "sm=high,dram=high",
+        "share": 0.0021,
+        "n": 1
+      },
+      {
+        "node_id": "00dcb62e",
+        "child_id": "7eca260d",
+        "label": "lts=low,smsp=low",
+        "share": 0.0321,
+        "n": 8
+      }
+    ]
+  }
+}

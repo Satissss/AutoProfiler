@@ -1,0 +1,247 @@
+{
+  "routing_round": 31,
+  "bounds": [
+    "latency",
+    "memory",
+    "compute",
+    "algorithm"
+  ],
+  "steps": [
+    {
+      "kernel_id": "e1ba42894e51c130",
+      "origin_uid": "syn_00226_244b2518",
+      "hop": 0,
+      "leaf_id": "0062e6af",
+      "bound": "memory",
+      "route_id": "3c3035927762",
+      "profile_ms": 21810.08245423436,
+      "ok": false,
+      "outcome": "compile_fail",
+      "latency_ms": null,
+      "parent_latency_ms": 3.4740930423140526,
+      "rel_speedup": null,
+      "reward": null,
+      "stage": "run_candidate",
+      "error": "ValueError: Unsupported input dimension",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_fused_batchnorm_bias_add_kernel"
+        ],
+        "n_lines": 182,
+        "optimizer_summary": "STEP 1 - Read the measurements. For EACH counter you were given, state in one short line what its actual value implies. Quote the numbers. - dram__bytes_read.sum = 6.52406e+08 → Very high global memory read volume (~652 MB), indicating heavy data movement from DRAM. - dram__bytes_write.sum = 4.85958e+08 → Very high global memory write volume (~486 MB), confirming large memory traffic footprint. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 88.9248 → DRAM is saturated (nearly 89% of peak sustained throughput), confirming memory bandwidth is the bottleneck. - l1tex__t_sector_hit_rate.pct = 2.30893 → Extremely low L1/TEX cache hit rate (<2.3%), meaning almost all loads miss L1 and go t",
+        "prompt_version": "leaf_triton_optimize_v1"
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "50a37e66c4967a11",
+      "origin_uid": "syn_02731_7e31df62",
+      "hop": 0,
+      "action": "terminal",
+      "outcome": "service_error",
+      "reason": "optimization_service_error",
+      "error": "LLM optimization failed: TypeError: 'Attribute' object is not iterable",
+      "advanced": false
+    },
+    {
+      "kernel_id": "a9da0f4fdedaddbe",
+      "origin_uid": "syn_00118_745e7007",
+      "hop": 0,
+      "leaf_id": "16d2e3b2",
+      "bound": "latency",
+      "route_id": "062e62bffe3d",
+      "profile_ms": 13040.141988545656,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 0.3454452380537987,
+      "parent_latency_ms": 2.5945049710571766,
+      "rel_speedup": 7.510611481212879,
+      "reward": 6.5106,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_channel_sum_kernel_fused"
+        ],
+        "n_lines": 74,
+        "optimizer_summary": "STEP 1 - Read the measurements. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 14.67% → DRAM bandwidth is underutilized; memory bandwidth is NOT the bottleneck. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 21.37% → SM compute throughput is low, suggesting underutilization of arithmetic units. - sm__warps_active.avg.pct_of_peak_sustained_active = 46.85% → ~47% warp occupancy — moderate, but not saturated; indicates some resource pressure (e.g., registers, shared memory, or launch config mismatch), or insufficient work per thread. - smsp__issue_active.avg.pct_of_peak_sustained_active = 15.44% → very low instruction issue rate — threads are stalled frequently, likely waiting for",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 0.2502594143152237,
+        "seed": 2832048645
+      },
+      "child_kernel_id": "b44c7c699fb3330c",
+      "advanced": true
+    }
+  ],
+  "updates": [
+    {
+      "action": "update",
+      "leaf_id": "16d2e3b2",
+      "proposal": {
+        "leaf_id": "16d2e3b2",
+        "inherited": [
+          "sm__throughput.avg.pct_of_peak_sustained_elapsed",
+          "dram__throughput.avg.pct_of_peak_sustained_elapsed",
+          "sm__warps_active.avg.pct_of_peak_sustained_active",
+          "smsp__issue_active.avg.pct_of_peak_sustained_active"
+        ],
+        "old_owned": [],
+        "new_owned": [
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct",
+          "smsp__warp_issue_stalled_barrier_per_warp_active.pct"
+        ],
+        "added": [
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct",
+          "smsp__warp_issue_stalled_barrier_per_warp_active.pct"
+        ],
+        "blind_spot": "The current metrics show resident warps rarely issue but cannot distinguish whether the stalls come from global-memory latency (long scoreboard) or from reduction synchronization barriers, which require opposite rewrites.",
+        "rationale": {
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct": "HIGH -> fix memory access: coalesced/vectorized contiguous loads, avoid movedim-induced strided reads, add independent accumulators to hide latency / LOW -> memory latency is not the stall, do not rewrite the load path, look at sync/dependency structure",
+          "smsp__warp_issue_stalled_barrier_per_warp_active.pct": "HIGH -> restructure the reduction: warp-shuffle reduction, fewer warps per block (one warp per row), more serial per-thread work to cut barrier count / LOW -> leave synchronization structure alone; jointly LOW with the other metric points to fixed-latency dependency chains, so increase ILP/unroll"
+        },
+        "rejected": [],
+        "prompt_version": "metric_rewrite_v1"
+      },
+      "validation": {
+        "accepted": false,
+        "margin": 0.0,
+        "epsilon": 0.015,
+        "incumbent_mean": null,
+        "candidate_mean": null,
+        "time_cost": 0.0,
+        "n_scorable_incumbent": 0,
+        "n_scorable_candidate": 0,
+        "compile_fail_delta": 0.0,
+        "reason": "missing_incumbent_baseline:7",
+        "guard_ids": [
+          "a9da0f4fdedaddbe",
+          "1793659b9c71b23b"
+        ],
+        "regressed_guards": [],
+        "per_sample": {}
+      },
+      "split": {
+        "action": "split",
+        "leaf_id": "16d2e3b2",
+        "search_reason": "too_few_samples:0",
+        "accepted": false,
+        "reason": "too_few_samples:0"
+      },
+      "accepted": false,
+      "reason": "too_few_samples:0"
+    }
+  ],
+  "n_retired_pool": 0,
+  "n_steps": 3,
+  "pool_size": 785,
+  "diagnostics": {
+    "outcome_counts": {
+      "compile_fail": 1,
+      "service_error": 1,
+      "win": 1
+    },
+    "slow_share": 0.0,
+    "compile_fail_rate": 0.3333333333333333,
+    "mean_profile_time_ratio": 5651.991448573495,
+    "reward_sources": {
+      "n_positive_reward": 1,
+      "from_real_speedup": 1,
+      "from_failure_to_success": 0,
+      "real_speedup_share": 1.0
+    },
+    "tree": {
+      "n_leaves": 10,
+      "depth": 3,
+      "branching": [
+        4,
+        2,
+        4,
+        2,
+        2
+      ]
+    },
+    "store": {
+      "n_kernels": 1380,
+      "n_origins": 998,
+      "n_routes": 563,
+      "by_status": {
+        "pending": 785,
+        "optimization_failed": 152,
+        "advanced": 282,
+        "terminal": 115,
+        "slow": 46
+      },
+      "max_hop": 1
+    },
+    "origin_coverage": {
+      "total": 998,
+      "attempted": 595,
+      "remaining": 403,
+      "ratio": 0.5961923847695391
+    },
+    "gpu_queue": {
+      "submitted": 572,
+      "completed": 572,
+      "failed": 0,
+      "queue_depth": 0,
+      "active": false,
+      "busy_time_s": 10421.295713200408,
+      "utilization": 0.32888137665504547,
+      "journal_done": 278
+    },
+    "branch_share_alerts": [
+      {
+        "node_id": "root",
+        "child_id": "70f21b3a",
+        "label": "sm=high,dram=low",
+        "share": 0.0231,
+        "n": 13
+      },
+      {
+        "node_id": "root",
+        "child_id": "64953ed1",
+        "label": "sm=high,dram=high",
+        "share": 0.0018,
+        "n": 1
+      },
+      {
+        "node_id": "00dcb62e",
+        "child_id": "7eca260d",
+        "label": "lts=low,smsp=low",
+        "share": 0.0319,
+        "n": 10
+      },
+      {
+        "node_id": "00dcb62e",
+        "child_id": "834bcebe",
+        "label": "lts=high,smsp=low",
+        "share": 0.0479,
+        "n": 15
+      },
+      {
+        "node_id": "460f36cf",
+        "child_id": "fb19c5a4",
+        "label": "lts=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "2a031de2",
+        "child_id": "2bc99d41",
+        "label": "dram=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "9c244a15",
+        "child_id": "beea9d13",
+        "label": "dram=high",
+        "share": 0.0,
+        "n": 0
+      }
+    ]
+  }
+}

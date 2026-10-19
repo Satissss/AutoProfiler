@@ -1,0 +1,170 @@
+{
+  "task_id": "kb_l1_3",
+  "group": "level1",
+  "method": "autoprofiler",
+  "correct": true,
+  "speedup": 0.8888084533879236,
+  "baseline_ms": 6.515962537378073,
+  "candidate_ms": 7.331121247261763,
+  "error": "",
+  "wall_s": 868.2,
+  "trajectory": {
+    "task_id": "kb_l1_3",
+    "method": "autoprofiler",
+    "best_code": "import torch\nimport torch.nn as nn\nimport triton\nimport triton.language as tl\n\n@triton.jit\ndef _abs_kernel(\n    x_ptr,\n    y_ptr,\n    n_elements,\n    BLOCK_SIZE: tl.constexpr,\n):\n    # Simple 1D elementwise abs\n    pid = tl.program_id(0)\n    block_start = pid * BLOCK_SIZE\n    offsets = block_start + tl.arange(0, BLOCK_SIZE)\n    mask = offsets < n_elements\n    x = tl.load(x_ptr + offsets, mask=mask, other=0.0)\n    y = tl.abs(x)\n    tl.store(y_ptr + offsets, y, mask=mask)\n\ndef _abs_launcher(x):\n    n_elements = x.numel()\n    BLOCK_SIZE = 1024\n    grid = (triton.cdiv(n_elements, BLOCK_SIZE),)\n    y = torch.empty_like(x)\n    _abs_kernel[grid](x, y, n_elements, BLOCK_SIZE)\n    return y\n\nclass ModelNew(nn.Module):\n    \"\"\"\n    Performs batched matrix multiplication (C = A * B) where A, B, and C have the same batch dimension.\n    \"\"\"\n    def __init__(self):\n        super(ModelNew, self).__init__()\n    \n    def forward(self, A: torch.Tensor, B: torch.Tensor) -> torch.Tensor:\n        \"\"\"\n        Performs batched matrix multiplication.\n\n        Args:\n            A: Input tensor of shape (batch_size, m, k).\n            B: Input tensor of shape (batch_size, k, n).\n\n        Returns:\n            C: Output tensor of shape (batch_size, m, n).\n        \"\"\"\n        C = torch.bmm(A, B)\n        return _abs_launcher(C)",
+    "best_language": "triton",
+    "best_result": {
+      "ok": true,
+      "stage": "ok",
+      "error": "",
+      "baseline_ms": 6.6997455433011055,
+      "candidate_ms": 7.2557064704597,
+      "speedup": 0.9233760448521328
+    },
+    "rounds": [
+      {
+        "round": 0,
+        "result": {
+          "ok": true,
+          "stage": "ok",
+          "error": "",
+          "baseline_ms": 6.044302135705948,
+          "candidate_ms": 7.1798935532569885,
+          "speedup": 0.8418372906049691
+        },
+        "usage": {
+          "llm": {
+            "calls": 22,
+            "total_tokens": 90425,
+            "prompt_tokens": 47883,
+            "completion_tokens": 42542
+          },
+          "gpu_seconds": 9.76,
+          "n_evals": 1
+        },
+        "profile": {}
+      },
+      {
+        "round": 1,
+        "result": {
+          "ok": true,
+          "stage": "ok",
+          "error": "",
+          "baseline_ms": 6.6997455433011055,
+          "candidate_ms": 7.2557064704597,
+          "speedup": 0.9233760448521328
+        },
+        "usage": {},
+        "profile": {
+          "leaf_id": "7da55f84",
+          "bound": "compute",
+          "node_path": [
+            "root",
+            "fa55efca",
+            "fd3bf8fa",
+            "7da55f84"
+          ],
+          "profile_ms": 25013.866536319256
+        }
+      },
+      {
+        "round": 1,
+        "result": {
+          "ok": true,
+          "stage": "ok",
+          "error": "",
+          "baseline_ms": 6.309675285592675,
+          "candidate_ms": 32.91355725377798,
+          "speedup": 0.1917044468011254
+        },
+        "usage": {
+          "llm": {
+            "calls": 27,
+            "total_tokens": 110073,
+            "prompt_tokens": 58341,
+            "completion_tokens": 51732
+          },
+          "gpu_seconds": 82.49,
+          "n_evals": 5
+        },
+        "profile": {
+          "leaf_id": "7da55f84",
+          "bound": "compute",
+          "node_path": [
+            "root",
+            "fa55efca",
+            "fd3bf8fa",
+            "7da55f84"
+          ],
+          "profile_ms": 25013.866536319256
+        }
+      },
+      {
+        "round": 2,
+        "result": {
+          "ok": false,
+          "stage": "correctness",
+          "error": "correctness_failed: outputs differ beyond atol/rtol",
+          "baseline_ms": 5.9702524449676275,
+          "candidate_ms": null,
+          "speedup": null
+        },
+        "usage": {},
+        "profile": {
+          "leaf_id": "7da55f84",
+          "bound": "compute",
+          "node_path": [
+            "root",
+            "fa55efca",
+            "fd3bf8fa",
+            "7da55f84"
+          ],
+          "profile_ms": 26636.322122532874
+        }
+      },
+      {
+        "round": 2,
+        "result": {
+          "ok": false,
+          "stage": "correctness",
+          "error": "correctness_failed: outputs differ beyond atol/rtol",
+          "baseline_ms": 6.601853528991342,
+          "candidate_ms": null,
+          "speedup": null
+        },
+        "usage": {
+          "llm": {
+            "calls": 33,
+            "total_tokens": 132007,
+            "prompt_tokens": 70512,
+            "completion_tokens": 61495
+          },
+          "gpu_seconds": 49.8,
+          "n_evals": 5
+        },
+        "profile": {
+          "leaf_id": "7da55f84",
+          "bound": "compute",
+          "node_path": [
+            "root",
+            "fa55efca",
+            "fd3bf8fa",
+            "7da55f84"
+          ],
+          "profile_ms": 26636.322122532874
+        }
+      }
+    ],
+    "usage": {
+      "llm": {
+        "calls": 33,
+        "total_tokens": 132007,
+        "prompt_tokens": 70512,
+        "completion_tokens": 61495
+      },
+      "gpu_seconds": 142.06,
+      "n_evals": 11
+    },
+    "error": ""
+  }
+}

@@ -1,0 +1,2 @@
+{"kernel_id": "2b97feabff1a0946", "metrics": {"sm__throughput.avg.pct_of_peak_sustained_elapsed": 49.348204526092765, "dram__throughput.avg.pct_of_peak_sustained_elapsed": 95.20519091723278}, "profile_ms": 13477.512144017965}
+{"kernel_id": "2b97feabff1a0946", "metrics": {"l1tex__t_sector_hit_rate.pct": 67.50462121088012, "lts__t_sector_hit_rate.pct": 57.615254173424425, "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct": 45.381146770203635}, "profile_ms": 13491.980731952935}

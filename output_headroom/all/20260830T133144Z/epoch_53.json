@@ -1,0 +1,394 @@
+{
+  "routing_round": 53,
+  "bounds": [
+    "latency",
+    "memory",
+    "compute",
+    "algorithm"
+  ],
+  "steps": [
+    {
+      "kernel_id": "67abeb849e1c5d9f",
+      "origin_uid": "syn_00118_745e7007",
+      "hop": 1,
+      "leaf_id": "4a2324bd",
+      "bound": "latency",
+      "route_id": "4914fed81639",
+      "profile_ms": 19417.333524674177,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 0.14139898121356964,
+      "parent_latency_ms": 0.3064516931772232,
+      "rel_speedup": 2.1672836009642618,
+      "reward": 1.1673,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_bn_channel_sum_nchw_kernel",
+          "_channel_sum_nchw_kernel"
+        ],
+        "n_lines": 168,
+        "optimizer_summary": "STEP 1 - Reading each counter: - dram__throughput.avg.pct_of_peak_sustained_elapsed = 49.8737: DRAM is only half utilized, yet it is by far the busiest resource; total bytes moved still dominate runtime. - launch__occupancy_limit_registers = 8.59111 and launch__waves_per_multiprocessor = 5.43585: the grid has several waves and register limits are not starving the machine; launch shape is not the primary problem. - lts__t_sector_hit_rate.pct = 43.5708: over half of all sectors miss L2 and go to DRAM, so every byte of global traffic costs real time. - sm__throughput.avg = 10.9208 and smsp__issue_active.avg = 11.5678: compute/issue pipes are nearly idle; this is not a compute-bound kernel. - sm",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 0.25555212050676346,
+        "seed": 1394729794
+      },
+      "child_kernel_id": "ade7a4785ea6e77f",
+      "advanced": true
+    },
+    {
+      "kernel_id": "b084d8f368b723e8",
+      "origin_uid": "syn_00235_0b5d4c02",
+      "hop": 1,
+      "action": "terminal",
+      "outcome": "service_error",
+      "reason": "optimization_service_error",
+      "error": "LLM optimization failed: RuntimeError: LLM timeout: The read operation timed out",
+      "advanced": false
+    },
+    {
+      "kernel_id": "118b10d56f220a38",
+      "origin_uid": "syn_02068_8b6a2d89",
+      "hop": 1,
+      "leaf_id": "7528ba5f",
+      "bound": "memory",
+      "route_id": "87383d9cedb9",
+      "profile_ms": 29320.12022472918,
+      "ok": false,
+      "outcome": "compile_fail",
+      "latency_ms": null,
+      "parent_latency_ms": 0.867137685418129,
+      "rel_speedup": null,
+      "reward": null,
+      "stage": "local_check",
+      "error": "candidate contains no top-level @triton.jit kernel",
+      "rounds_used": 3,
+      "meta": {
+        "local_reject": true,
+        "prompt_version": "leaf_triton_optimize_v1",
+        "optimizer_summary": "STEP 1 - What each counter says - dram__bytes_read.sum = 1.99905e+07 (about 20 MB): total reads are tiny. The input x and the re-read of the conv output slice are negligible compared to writes. - dram__bytes_write.sum = 5.65339e+08 (about 565 MB): writes are ~28x reads. Traffic is dominated by stores: the conv output tensor, plus an extra in-place rewrite of its channel 0 by the Triton kernel, plus the x[:, 0, :L].contiguous() copy. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 82.6714: DRAM bandwidth is nearly saturated. This kernel/model is memory-bound. - sm__throughput.avg.pct_of_peak_sustained_elapsed = 23.7522: compute is far from the limit; doing less arithmetic is pointless."
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "e1a74c738b87eabf",
+      "origin_uid": "syn_00753_6c7d3ba6",
+      "hop": 1,
+      "leaf_id": "7528ba5f",
+      "bound": "memory",
+      "route_id": "8df77a4a7279",
+      "profile_ms": 26177.64163762331,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 0.6424905732274055,
+      "parent_latency_ms": 1.4626234769821167,
+      "rel_speedup": 2.2764901742214825,
+      "reward": 1.2765,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_softmax_over_channels_maxpool_kernel"
+        ],
+        "n_lines": 126,
+        "optimizer_summary": "STEP 1 - Reading each counter: - dram__bytes_read.sum = 2.78e8 and dram__bytes_write.sum = 2.73e8: about 551 MB total is moved. Read and write are nearly equal, which is the signature of materializing the full softmax output (write X), then having the separate MaxPool kernel read it back (read X) and write the pooled result, on top of the softmax kernel's own input read. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 79.47: DRAM bandwidth is essentially saturated. This is the limiting resource. - sm__throughput.avg = 24.44: the SMs are mostly idle; this is not a compute problem. - l1tex hit rate 22.88, lts hit rate 61.99: the second softmax pass is partially cache-served, but the bul",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 1.5132548287510872,
+        "seed": 789819649
+      },
+      "child_kernel_id": "40561fb94514ea1d",
+      "advanced": true
+    }
+  ],
+  "updates": [
+    {
+      "action": "update",
+      "leaf_id": "7528ba5f",
+      "proposal": {
+        "leaf_id": "7528ba5f",
+        "inherited": [
+          "sm__throughput.avg.pct_of_peak_sustained_elapsed",
+          "dram__throughput.avg.pct_of_peak_sustained_elapsed",
+          "l1tex__t_sector_hit_rate.pct",
+          "lts__t_sector_hit_rate.pct",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct",
+          "dram__bytes_read.sum",
+          "launch__waves_per_multiprocessor"
+        ],
+        "old_owned": [
+          "dram__bytes_write.sum",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_st.pct"
+        ],
+        "new_owned": [
+          "dram__bytes_write.sum",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_st.pct",
+          "lts__throughput.avg.pct_of_peak_sustained_elapsed",
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct"
+        ],
+        "added": [
+          "lts__throughput.avg.pct_of_peak_sustained_elapsed",
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct"
+        ],
+        "blind_spot": "The optimizer can see the kernels are memory-bound but cannot tell whether the limiter is L2 bandwidth (broadcast re-reads served at 60-72% L2 hit), DRAM bandwidth, or memory latency/insufficient MLP - so it both misses L2-traffic fixes and restructures already-roofline kernels into regressions.",
+        "rationale": {
+          "lts__throughput.avg.pct_of_peak_sustained_elapsed": "HIGH with only moderate DRAM -> L2 is the real bottleneck: stage re-read/broadcast operands (expanded bias, scale) in registers/shared and cut L2 request volume instead of chasing DRAM bytes / LOW -> L2 has headroom, treat DRAM traffic or latency as the limit.",
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct": "HIGH with saturated DRAM -> pure bandwidth stall: only remove bytes (fuse, drop materialized tensors), do not restructure compute or tiling / HIGH with moderate DRAM -> latency-bound: add memory-level parallelism via more independent vectorized loads per program or more warps / LOW -> not memory-stalled, leave the memory path alone."
+        },
+        "rejected": [],
+        "prompt_version": "metric_rewrite_v1"
+      },
+      "validation": {
+        "accepted": false,
+        "margin": 0.0,
+        "epsilon": 0.015,
+        "incumbent_mean": null,
+        "candidate_mean": null,
+        "time_cost": 0.0,
+        "n_scorable_incumbent": 0,
+        "n_scorable_candidate": 0,
+        "compile_fail_delta": 0.0,
+        "reason": "missing_incumbent_baseline:5",
+        "guard_ids": [
+          "f518e73f5b80a80b",
+          "33cdb76e3d3bce93",
+          "ba81a88572fa600a",
+          "eb5b78f26a9997b3",
+          "5ce8680503704f00",
+          "f8d44d816dd32642",
+          "b6e81561dd89d6da",
+          "613c1c31eb14b510",
+          "34f93ba51b161d43",
+          "732286407d480446",
+          "4932cf49c59dbeec"
+        ],
+        "regressed_guards": [],
+        "per_sample": {}
+      },
+      "split": {
+        "action": "split",
+        "leaf_id": "7528ba5f",
+        "search_reason": "too_few_samples:0",
+        "accepted": false,
+        "reason": "too_few_samples:0"
+      },
+      "accepted": false,
+      "reason": "too_few_samples:0"
+    }
+  ],
+  "n_retired_pool": 0,
+  "n_steps": 4,
+  "pool_size": 613,
+  "diagnostics": {
+    "outcome_counts": {
+      "win": 2,
+      "service_error": 1,
+      "compile_fail": 1
+    },
+    "slow_share": 0.0,
+    "compile_fail_rate": 0.25,
+    "mean_profile_time_ratio": 38357.357020389376,
+    "reward_sources": {
+      "n_positive_reward": 2,
+      "from_real_speedup": 2,
+      "from_failure_to_success": 0,
+      "real_speedup_share": 1.0
+    },
+    "tree": {
+      "n_leaves": 26,
+      "depth": 6,
+      "branching": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        2
+      ]
+    },
+    "store": {
+      "n_kernels": 1682,
+      "n_origins": 998,
+      "n_routes": 653,
+      "by_status": {
+        "terminal": 508,
+        "optimization_failed": 126,
+        "advanced": 388,
+        "slow": 47,
+        "pending": 613
+      },
+      "max_hop": 2
+    },
+    "origin_coverage": {
+      "total": 998,
+      "attempted": 998,
+      "remaining": 0,
+      "ratio": 1.0
+    },
+    "gpu_queue": {
+      "submitted": 2210,
+      "completed": 2210,
+      "failed": 0,
+      "queue_depth": 0,
+      "active": false,
+      "busy_time_s": 49847.54564853123,
+      "utilization": 0.12908156770512058,
+      "journal_done": 431
+    },
+    "branch_share_alerts": [
+      {
+        "node_id": "root",
+        "child_id": "70f21b3a",
+        "label": "sm=high,dram=low",
+        "share": 0.0214,
+        "n": 14
+      },
+      {
+        "node_id": "root",
+        "child_id": "64953ed1",
+        "label": "sm=high,dram=high",
+        "share": 0.0015,
+        "n": 1
+      },
+      {
+        "node_id": "00dcb62e",
+        "child_id": "7eca260d",
+        "label": "lts=low,smsp=low",
+        "share": 0.0343,
+        "n": 13
+      },
+      {
+        "node_id": "00dcb62e",
+        "child_id": "834bcebe",
+        "label": "lts=high,smsp=low",
+        "share": 0.0449,
+        "n": 17
+      },
+      {
+        "node_id": "460f36cf",
+        "child_id": "9def774c",
+        "label": "dram=low,lts=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "460f36cf",
+        "child_id": "9cd06263",
+        "label": "dram=high,lts=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "460f36cf",
+        "child_id": "53764045",
+        "label": "dram=high,lts=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "9c244a15",
+        "child_id": "fb0511b8",
+        "label": "sm=high,sm=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "9c244a15",
+        "child_id": "cc7c22b0",
+        "label": "sm=high,sm=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "baba1218",
+        "child_id": "e1127e8b",
+        "label": "sm=low,lts=high",
+        "share": 0.0476,
+        "n": 3
+      },
+      {
+        "node_id": "baba1218",
+        "child_id": "0f4066ec",
+        "label": "sm=high,lts=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "baba1218",
+        "child_id": "477c7834",
+        "label": "sm=high,lts=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "2a031de2",
+        "child_id": "1ddd25e6",
+        "label": "l1tex=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "4b3866c0",
+        "child_id": "5ecd7cd4",
+        "label": "l1tex=low,l1tex=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "4b3866c0",
+        "child_id": "305065a6",
+        "label": "l1tex=high,l1tex=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "4b3866c0",
+        "child_id": "5f324c75",
+        "label": "l1tex=high,l1tex=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "589f5c02",
+        "child_id": "f13c94bf",
+        "label": "smsp=high,launch=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "589f5c02",
+        "child_id": "598c3889",
+        "label": "smsp=high,launch=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "d8be48e6",
+        "child_id": "19bac416",
+        "label": "smsp=low,smsp=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "d8be48e6",
+        "child_id": "19df72fa",
+        "label": "smsp=high,smsp=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "d8be48e6",
+        "child_id": "029499c0",
+        "label": "smsp=high,smsp=high",
+        "share": 0.0,
+        "n": 0
+      }
+    ]
+  }
+}

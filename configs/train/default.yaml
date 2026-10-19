@@ -1,0 +1,179 @@
+# Training a profiling tree.
+#   scripts/train.sh                      # this config
+#   scripts/train.sh configs/train/my.yaml --out output/trees/my_tree.json
+# Every key below is validated; a misspelt one is an error, never a silent default.
+
+# ── Corpus ───────────────────────────────────────────────────────────────────
+data:
+  # Each row of <path>/seed_index.jsonl is a verified Triton port + its PyTorch reference.
+  #   data/train/example  100 programs, shipped in git, enough to smoke-test the loop
+  #   data/train/full     the full 999-program corpus (download it; see README)
+  # KernelBench is the held-out test set and cannot be loaded here.
+  datasets:
+    - {id: triton_seed, path: data/train/example}
+  limit: null           # cap programs loaded per slice; null = all
+  uid_manifest: ""      # yaml with a `uids:` list, to train on a named subset
+  holdout_enabled: false
+  holdout_ratio: 0.15
+  holdout_seed: 42
+
+# ── Models ───────────────────────────────────────────────────────────────────
+# Two stages call an LLM. Each names where (endpoint + key) and how (sampling). They can
+# run on entirely different models. Give the endpoint directly, or write `profile: <name>`
+# to take it from configs/llm/<name>.yaml (explicit fields override the profile).
+
+propose:                # tree reasoning: REWRITE metric proposals, SPLIT branch conditions
+  model: kimi-k3
+  base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+  api_style: openai
+  api_key_env: QWEN_API_KEY
+  temperature: 1.0
+  max_tokens: 4096
+  attempts: 5
+
+optimize:               # leaf kernel optimizer: profiling readings -> optimized kernel
+  model: qwen-plus
+  base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+  api_style: openai
+  api_key_env: QWEN_API_KEY
+  temperature: 1.0
+  max_tokens: 12000
+  attempts: 6
+  max_repair_rounds: 2
+  n_samples: 1          # best-of-N; 1 while training so frozen-prompt assumption holds
+  strong: false         # stronger prompt (tl.dot, combined moves) off during training
+  paired_seed: true     # same draw for metric sets, cuts optimizer noise
+
+# ── The fixed root ───────────────────────────────────────────────────────────
+# The root measures two SOL metrics; their high/low 2x2 gives the four subtrees
+# (latency / memory / compute / algorithm). These thresholds are that decision.
+bucketize:
+  mode: rule            # rule = thresholds below; llm = one classify call
+  sm_hi: 60.0
+  mem_hi: 60.0
+  sm_lo: 40.0
+  mem_lo: 40.0
+
+# Controlled vocabulary of NCU counters REWRITE may propose from.
+metric_catalog: configs/train/metric_catalog.yaml
+
+# Where each subtree starts; the update operators evolve it from here. The two root
+# metrics are stripped automatically (ancestor readings come from cache).
+seed_metrics:
+  compute:
+    - sm__throughput.avg.pct_of_peak_sustained_elapsed
+    - sm__pipe_tensor_op_hmma_cycles_active.avg.pct_of_peak_sustained_active
+    - sm__pipe_fma_cycles_active.avg.pct_of_peak_sustained_active
+    - smsp__issue_active.avg.pct_of_peak_sustained_active
+  memory:
+    - dram__throughput.avg.pct_of_peak_sustained_elapsed
+    - l1tex__t_sector_hit_rate.pct
+    - lts__t_sector_hit_rate.pct
+    - smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct
+  latency:
+    - sm__warps_active.avg.pct_of_peak_sustained_active
+    - smsp__issue_active.avg.pct_of_peak_sustained_active
+    - sm__throughput.avg.pct_of_peak_sustained_elapsed
+    - dram__throughput.avg.pct_of_peak_sustained_elapsed
+  algorithm:
+    - sm__throughput.avg.pct_of_peak_sustained_elapsed
+    - dram__throughput.avg.pct_of_peak_sustained_elapsed
+    - sm__warps_active.avg.pct_of_peak_sustained_active
+
+# ── Measurement ──────────────────────────────────────────────────────────────
+training:
+  warmup: 5
+  repeats: 30           # KernelBench uses ~100; 30 trades stability for GPU time
+
+# ── The Markov chain ─────────────────────────────────────────────────────────
+markov:
+  speedup_threshold: 1.03   # a hop counts as progress above this, vs the PREVIOUS hop
+  max_hops: 6
+  min_rel_gain: 0.01        # a hop gaining less is converged
+
+# reward = (speedup vs the previous hop) - 1, clamped. Failed builds are excluded from
+# every mean, not scored: a failed build is the optimizer's problem, not the metric set's.
+reward:
+  floor: -0.46          # ~0.54x
+  hi: 7.0               # ~8x
+
+# ── When a leaf may propose an update ────────────────────────────────────────
+# Kernels that sped up leave the leaf, so what remains is its slow set.
+activation:
+  min_slow_samples: 12
+  min_slow_samples_by_bound:   # sparse bounds activate sooner
+    memory: 24
+    latency: 16
+    compute: 8
+    algorithm: 6
+  replenish_count: 3    # new samples a rejected leaf needs before re-proposing
+  update_test_min_samples: 4
+  update_test_min_margin: 0.0
+
+# Accept when the paired reward margin beats epsilon.
+accept:
+  rewrite_epsilon: 0.015
+  rewrite_epsilon_depth_decay: 0.75
+  rewrite_epsilon_floor: 0.015
+  split_epsilon: 0.015
+  split_epsilon_depth_decay: 0.75
+  split_epsilon_floor: 0.015
+
+# ── Update operators ─────────────────────────────────────────────────────────
+rewrite:                # add metrics to a leaf (additive only)
+  enabled: true
+  n_max_new_metrics: 2
+  compile_fail_noise_tol: 0.15   # reject if compile failures rise more than this
+  guard:                # anti-forgetting: re-run past wins at their pre-optimization state
+    top_k: 2
+    marginal_k: 6       # the real regression detector; raise this one first
+    random_k: 3
+
+split:                  # separate the two populations a leaf serves
+  enabled: true
+  n_min: 3
+  max_subset_size: 2    # at most 4 branches, like the root
+  threshold_quantiles: [25.0, 50.0, 75.0]
+  min_gain: 0.02        # below this, emit UNSEPARABLE_HINT back to REWRITE
+  llm_tiebreak_top_n: 3
+  llm_tiebreak_rel_tol: 0.15
+
+# ── Scheduling ───────────────────────────────────────────────────────────────
+schedule:
+  bucket_mode: parallel       # serial = one subtree to convergence; parallel = interleave
+  execution_mode: asynchronous
+  forward_concurrency: 4
+  verify_batch_size: 8
+  verify_batch_wait_ms: 100
+  ncu_batch_size: 8
+  ncu_batch_wait_ms: 100
+  ncu_max_retries: 2
+  min_leaf_size: 16
+  max_active_pool: 6000       # kernels awaiting routing; lowest-gain evicted
+  checkpoint_interval_forwards: 20   # reporting only; never stops routing
+  max_routing_rounds: 0       # 0 = until converged or pool empty
+  top_k: 4                    # (parallel) subtrees advanced per round
+  release_ratio: 0.5
+  value_ema_alpha: 0.5
+  value_decay: 0.9
+
+monitor:
+  min_branch_share: 0.05      # alert when a branch starves; thresholds are never recalibrated
+
+# ── Output ───────────────────────────────────────────────────────────────────
+# <dir>/kernels/              append-only kernel states, routes and metric cache
+# <dir>/_run/<run_id>/        train.log, tree.json, progress.json, summaries
+checkpoint:
+  enabled: true
+  dir: ./output/train
+  tree_out: output/trees/trained.json   # where the finished tree is published
+
+logging:
+  to_file: true
+  dir: ""               # empty = checkpoint.dir
+  per_epoch_json: true
+  level: normal
+
+cache:
+  forward: true         # reuse measured verdicts across restarts
+  dir: ""               # empty = <checkpoint.dir>/forward_cache

@@ -1,0 +1,348 @@
+{
+  "routing_round": 39,
+  "bounds": [
+    "latency",
+    "memory",
+    "compute",
+    "algorithm"
+  ],
+  "steps": [],
+  "updates": [
+    {
+      "action": "update",
+      "leaf_id": "589f5c02",
+      "proposal": {
+        "leaf_id": "589f5c02",
+        "inherited": [
+          "sm__throughput.avg.pct_of_peak_sustained_elapsed",
+          "dram__throughput.avg.pct_of_peak_sustained_elapsed",
+          "l1tex__t_sector_hit_rate.pct",
+          "lts__t_sector_hit_rate.pct",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct",
+          "dram__bytes_read.sum",
+          "dram__bytes_write.sum",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_st.pct",
+          "l1tex__throughput.avg.pct_of_peak_sustained_elapsed",
+          "launch__waves_per_multiprocessor",
+          "sm__warps_active.avg.pct_of_peak_sustained_active",
+          "lts__throughput.avg.pct_of_peak_sustained_elapsed",
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct"
+        ],
+        "old_owned": [
+          "launch__occupancy_limit_registers",
+          "launch__occupancy_limit_shared_mem",
+          "smsp__warp_issue_stalled_barrier_per_warp_active.pct",
+          "smsp__warp_issue_stalled_short_scoreboard_per_warp_active.pct"
+        ],
+        "new_owned": [
+          "launch__occupancy_limit_registers",
+          "launch__occupancy_limit_shared_mem",
+          "smsp__warp_issue_stalled_barrier_per_warp_active.pct",
+          "smsp__warp_issue_stalled_short_scoreboard_per_warp_active.pct",
+          "smsp__warps_eligible.avg.per_cycle_active",
+          "launch__registers_per_thread"
+        ],
+        "added": [
+          "smsp__warps_eligible.avg.per_cycle_active",
+          "launch__registers_per_thread"
+        ],
+        "blind_spot": "Current metrics cannot distinguish DRAM truly saturated (only byte reduction helps) from DRAM below the wall with all warps stalled on memory (more memory-level parallelism via occupancy/registers would raise bandwidth).",
+        "rationale": {
+          "smsp__warps_eligible.avg.per_cycle_active": "HIGH -> memory system already fed; stop occupancy tuning and cut DRAM bytes via fusion/eliminating materialized intermediates / LOW (~0 with DRAM <90%) -> latency-bound; add memory-level parallelism: more resident warps, more independent loads per thread, wider vectorized loads, prefetch",
+          "launch__registers_per_thread": "HIGH with register-bound occupancy limit -> shrink BLOCK tiles, reduce live temporaries, recompute instead of caching to free registers and fit more warps / LOW -> register tuning is pointless; treat occupancy as fixed and focus purely on byte reduction"
+        },
+        "rejected": [],
+        "prompt_version": "metric_rewrite_v1"
+      },
+      "validation": {
+        "accepted": false,
+        "margin": -0.0015,
+        "epsilon": 0.015,
+        "incumbent_mean": 1.1317,
+        "candidate_mean": 1.1302,
+        "time_cost": 0.0,
+        "n_scorable_incumbent": 12,
+        "n_scorable_candidate": 7,
+        "compile_fail_delta": 0.0,
+        "reason": "below_epsilon",
+        "guard_ids": [
+          "83ec62db1cbaf87a",
+          "0cb0204f65e4cde5",
+          "733da9598a2fad09",
+          "2f288839b3d40820",
+          "c980590de1e8c5f4",
+          "49f6d227528f5c86",
+          "98234ab98d2f2a4c",
+          "2e778010e3e9253e",
+          "ac32e1c2cb4459c6",
+          "52db32c48cfc66dc",
+          "242f751b690332fb"
+        ],
+        "regressed_guards": [],
+        "per_sample": {
+          "026b4f19bbc2a83d": {
+            "kernel_id": "026b4f19bbc2a83d",
+            "outcome": "win",
+            "reward": 1.8636,
+            "rel_speedup": 2.863570538760644,
+            "latency_ms": 2.3534726351499557,
+            "profile_ms": 8436.942920088768,
+            "kernel_ms": 6.739334901794791,
+            "child_kernel_id": ""
+          },
+          "0cb0204f65e4cde5": {
+            "kernel_id": "0cb0204f65e4cde5",
+            "outcome": "win",
+            "reward": 2.0964,
+            "rel_speedup": 3.096420706850113,
+            "latency_ms": 0.6140917539596558,
+            "profile_ms": 6557.322656735778,
+            "kernel_ms": 1.9014864228665829,
+            "child_kernel_id": ""
+          },
+          "242f751b690332fb": {
+            "kernel_id": "242f751b690332fb",
+            "outcome": "win",
+            "reward": 1.3813,
+            "rel_speedup": 2.381276763849251,
+            "latency_ms": 0.6990004330873489,
+            "profile_ms": 6010.095411911607,
+            "kernel_ms": 1.6645134892314672,
+            "child_kernel_id": ""
+          },
+          "2e778010e3e9253e": {
+            "kernel_id": "2e778010e3e9253e",
+            "outcome": "win",
+            "reward": 0.743,
+            "rel_speedup": 1.742979192228118,
+            "latency_ms": 5.842448212206364,
+            "profile_ms": 8477.091828361154,
+            "kernel_ms": 10.18326566554606,
+            "child_kernel_id": ""
+          },
+          "2f288839b3d40820": {
+            "kernel_id": "2f288839b3d40820",
+            "outcome": "win",
+            "reward": 0.4722,
+            "rel_speedup": 1.4721677960351982,
+            "latency_ms": 2.3143524304032326,
+            "profile_ms": 7193.808905780315,
+            "kernel_ms": 3.407115116715431,
+            "child_kernel_id": ""
+          },
+          "49f6d227528f5c86": {
+            "kernel_id": "49f6d227528f5c86",
+            "outcome": "win",
+            "reward": 0.496,
+            "rel_speedup": 1.4960285477310447,
+            "latency_ms": 3.535914234817028,
+            "profile_ms": 11005.33290952444,
+            "kernel_ms": 5.289828637614846,
+            "child_kernel_id": ""
+          },
+          "52db32c48cfc66dc": {
+            "kernel_id": "52db32c48cfc66dc",
+            "outcome": "win",
+            "reward": 0.8589,
+            "rel_speedup": 1.8588521680889611,
+            "latency_ms": 1.6074320301413536,
+            "profile_ms": 7181.654062122107,
+            "kernel_ms": 2.9879785142838955,
+            "child_kernel_id": ""
+          }
+        }
+      },
+      "split": {
+        "action": "split",
+        "leaf_id": "589f5c02",
+        "search_reason": "found",
+        "condition": {
+          "subset": [
+            "launch__occupancy_limit_registers"
+          ],
+          "thresholds": {
+            "launch__occupancy_limit_registers": 17.0
+          },
+          "gain": 1.13387,
+          "branch_sizes": {
+            "0": 4,
+            "1": 8
+          }
+        },
+        "chosen_by": "llm_tiebreak:fallback_top_gain",
+        "objective": 1.1339,
+        "incumbent_mean": 1.1317,
+        "margin": 0.0022,
+        "epsilon": 0.015,
+        "accepted": false,
+        "reason": "below_epsilon"
+      },
+      "accepted": false,
+      "reason": "below_epsilon"
+    }
+  ],
+  "n_retired_pool": 0,
+  "n_steps": 0,
+  "pool_size": 988,
+  "diagnostics": {
+    "outcome_counts": {},
+    "slow_share": 0.0,
+    "compile_fail_rate": 0.0,
+    "mean_profile_time_ratio": null,
+    "reward_sources": {
+      "n_positive_reward": 0,
+      "from_real_speedup": 0,
+      "from_failure_to_success": 0,
+      "real_speedup_share": null
+    },
+    "tree": {
+      "n_leaves": 20,
+      "depth": 5,
+      "branching": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        2
+      ]
+    },
+    "store": {
+      "n_kernels": 1591,
+      "n_origins": 998,
+      "n_routes": 571,
+      "by_status": {
+        "pending": 988,
+        "optimization_failed": 123,
+        "advanced": 338,
+        "terminal": 121,
+        "slow": 21
+      },
+      "max_hop": 1
+    },
+    "origin_coverage": {
+      "total": 998,
+      "attempted": 603,
+      "remaining": 395,
+      "ratio": 0.6042084168336673
+    },
+    "gpu_queue": {
+      "submitted": 594,
+      "completed": 594,
+      "failed": 0,
+      "queue_depth": 0,
+      "active": false,
+      "busy_time_s": 13708.221649499435,
+      "utilization": 0.07910223563461678,
+      "journal_done": 293
+    },
+    "branch_share_alerts": [
+      {
+        "node_id": "root",
+        "child_id": "70f21b3a",
+        "label": "sm=high,dram=low",
+        "share": 0.0228,
+        "n": 13
+      },
+      {
+        "node_id": "root",
+        "child_id": "64953ed1",
+        "label": "sm=high,dram=high",
+        "share": 0.0018,
+        "n": 1
+      },
+      {
+        "node_id": "00dcb62e",
+        "child_id": "7eca260d",
+        "label": "lts=low,smsp=low",
+        "share": 0.0346,
+        "n": 11
+      },
+      {
+        "node_id": "460f36cf",
+        "child_id": "9def774c",
+        "label": "dram=low,lts=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "460f36cf",
+        "child_id": "9cd06263",
+        "label": "dram=high,lts=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "460f36cf",
+        "child_id": "53764045",
+        "label": "dram=high,lts=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "9c244a15",
+        "child_id": "fb0511b8",
+        "label": "sm=high,sm=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "9c244a15",
+        "child_id": "cc7c22b0",
+        "label": "sm=high,sm=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "baba1218",
+        "child_id": "e1127e8b",
+        "label": "sm=low,lts=high",
+        "share": 0.04,
+        "n": 1
+      },
+      {
+        "node_id": "baba1218",
+        "child_id": "0f4066ec",
+        "label": "sm=high,lts=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "baba1218",
+        "child_id": "477c7834",
+        "label": "sm=high,lts=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "2a031de2",
+        "child_id": "1ddd25e6",
+        "label": "l1tex=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "4b3866c0",
+        "child_id": "5ecd7cd4",
+        "label": "l1tex=low,l1tex=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "4b3866c0",
+        "child_id": "305065a6",
+        "label": "l1tex=high,l1tex=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "4b3866c0",
+        "child_id": "5f324c75",
+        "label": "l1tex=high,l1tex=high",
+        "share": 0.0,
+        "n": 0
+      }
+    ]
+  }
+}

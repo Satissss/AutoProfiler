@@ -1,0 +1,19 @@
+{
+  "format": 1,
+  "checkpoint_id": "000013",
+  "run_id": "20260826T050045Z",
+  "reason": "periodic",
+  "epoch": 4,
+  "next_epoch": 5,
+  "bound_index": 0,
+  "leaf_updates": {},
+  "store": {
+    "format": 1,
+    "root": "/Users/satis/Desktop/AutoProfiler/output_headroom/_run/20260826T050045Z/checkpoint_store",
+    "files": {
+      "kernels.jsonl": 3586108,
+      "routes.jsonl": 144237,
+      "metrics.jsonl": 102666
+    }
+  }
+}

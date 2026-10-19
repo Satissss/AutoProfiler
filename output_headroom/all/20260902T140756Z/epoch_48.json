@@ -1,0 +1,517 @@
+{
+  "routing_round": 48,
+  "bounds": [
+    "latency",
+    "memory",
+    "compute",
+    "algorithm"
+  ],
+  "steps": [
+    {
+      "kernel_id": "8e1eace92b97f93a",
+      "origin_uid": "syn_04350_2b97b4fd",
+      "hop": 0,
+      "leaf_id": "8d349c6a",
+      "bound": "latency",
+      "route_id": "444e409e859e",
+      "profile_ms": 78544.26952451468,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 12.609467841684818,
+      "parent_latency_ms": 16.40846603550017,
+      "rel_speedup": 1.3012814054893331,
+      "reward": 0.3013,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_group_mean_kernel"
+        ],
+        "n_lines": 109,
+        "optimizer_summary": "STEP 1 - Read the measurements. For EACH counter you were given, state in one short line what its actual value implies. Quote the numbers. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 33.7223 → DRAM bandwidth is moderately utilized (~1/3 of peak), not saturated. - launch__waves_per_multiprocessor = 6.50337 → ~6.5 concurrent wavefronts per SM, suggesting decent occupancy but room for more (max is typically 64 waves/SM; this implies ~10% occupancy if each wave is 32-warps → actually indicates low *per-SM* concurrency — wait: launch__waves_per_multiprocessor is *average active waves per SM*, and 6.5 is low; typical full occupancy is ~32–64 depending on register usage, so this signals ",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 12.620965018868446,
+        "seed": 3588373233
+      },
+      "child_kernel_id": "26da2aa1d5dca6f9",
+      "advanced": true
+    },
+    {
+      "kernel_id": "d75652cebbad3a7c",
+      "origin_uid": "syn_01499_825a4264",
+      "hop": 0,
+      "leaf_id": "fd3bf8fa",
+      "bound": "compute",
+      "route_id": "35aa70d633e0",
+      "profile_ms": 52543.775755912066,
+      "ok": true,
+      "outcome": "regressed",
+      "latency_ms": 124.90493804216385,
+      "parent_latency_ms": 74.34876635670662,
+      "rel_speedup": 0.5952428104292313,
+      "reward": -0.4048,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_argmax_rows_kernel"
+        ],
+        "n_lines": 66,
+        "optimizer_summary": "STEP 1 - Read the measurements. For EACH counter you were given, state in one short line what its actual value implies. Quote the numbers. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 25.7471 → DRAM bandwidth utilization is moderate (~26% of peak), not saturated — memory bandwidth is *not* the bottleneck. - sm__pipe_fma_cycles_active.avg.pct_of_peak_sustained_active = 6.75267 → FMA (arithmetic) pipe utilization is very low (<7% of peak) — compute is severely underutilized. - sm__pipe_tensor_op_hmma_cycles_active.avg.pct_of_peak_sustained_active = 0 → No tensor cores used — expected for argmax (no GEMM). - sm__throughput.avg.pct_of_peak_sustained_elapsed = 68.8703 → Overall SM throu",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 6.609849631786346,
+        "seed": 2317957434
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    }
+  ],
+  "updates": [
+    {
+      "action": "update",
+      "leaf_id": "fd3bf8fa",
+      "proposal": {
+        "leaf_id": "fd3bf8fa",
+        "inherited": [
+          "sm__throughput.avg.pct_of_peak_sustained_elapsed",
+          "dram__throughput.avg.pct_of_peak_sustained_elapsed",
+          "sm__pipe_tensor_op_hmma_cycles_active.avg.pct_of_peak_sustained_active",
+          "sm__pipe_fma_cycles_active.avg.pct_of_peak_sustained_active",
+          "smsp__issue_active.avg.pct_of_peak_sustained_active"
+        ],
+        "old_owned": [],
+        "new_owned": [
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct",
+          "l1tex__data_bank_conflicts_pipe_lsu.sum"
+        ],
+        "added": [
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct",
+          "l1tex__data_bank_conflicts_pipe_lsu.sum"
+        ],
+        "blind_spot": "With FP pipes and DRAM far from saturated yet SMs moderately busy and issue low, the optimizer cannot tell whether the kernels are crippled by uncoalesced global loads or by shared-memory bank conflicts/atomic serialization - the two failure modes that distinguish the regressed reductions/gathers from the contiguous winners.",
+        "rationale": {
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct": "LOW -> loads are strided/gathered: remap thread-to-data indexing for coalescing, vectorize loads, stage tiles via shared memory, or hoist the permute/movedim out of the kernel / HIGH -> access pattern is fine, do not rewrite it; instead raise occupancy/ILP or prefetch to hide latency",
+          "l1tex__data_bank_conflicts_pipe_lsu.sum": "HIGH -> smem reduction trees/scans or smem atomics serialize: pad or swizzle shared arrays, use warp-shuffle reductions, privatize histogram copies / LOW -> smem path is clean, skip padding/privatization and focus on the global access pattern or occupancy"
+        },
+        "rejected": [],
+        "prompt_version": "metric_rewrite_v1"
+      },
+      "validation": {
+        "accepted": false,
+        "margin": -0.2601,
+        "epsilon": 0.015,
+        "incumbent_mean": 1.1405,
+        "candidate_mean": 0.8805,
+        "time_cost": 0.0,
+        "n_scorable_incumbent": 8,
+        "n_scorable_candidate": 6,
+        "compile_fail_delta": 0.125,
+        "reason": "below_epsilon",
+        "guard_ids": [
+          "5b646a87ffff5558",
+          "fb302d8d42f000a0",
+          "7888aa56c4393398"
+        ],
+        "regressed_guards": [],
+        "per_sample": {
+          "55e51c5e93505a38": {
+            "kernel_id": "55e51c5e93505a38",
+            "outcome": "no_speedup",
+            "reward": -0.0002,
+            "rel_speedup": 0.9997758774218192,
+            "latency_ms": 2.3187221959233284,
+            "profile_ms": 8303.175281733274,
+            "kernel_ms": 2.318202517926693,
+            "child_kernel_id": ""
+          },
+          "5b646a87ffff5558": {
+            "kernel_id": "5b646a87ffff5558",
+            "outcome": "win",
+            "reward": 5.7897,
+            "rel_speedup": 6.789737034298083,
+            "latency_ms": 7.097780704498291,
+            "profile_ms": 8188.27218003571,
+            "kernel_ms": 48.19206451065838,
+            "child_kernel_id": ""
+          },
+          "7888aa56c4393398": {
+            "kernel_id": "7888aa56c4393398",
+            "outcome": "win",
+            "reward": 0.0459,
+            "rel_speedup": 1.0459021064930594,
+            "latency_ms": 74.82981588691473,
+            "profile_ms": 451937.44193948805,
+            "kernel_ms": 78.26466206461191,
+            "child_kernel_id": ""
+          },
+          "a8e529c4c86f9669": {
+            "kernel_id": "a8e529c4c86f9669",
+            "outcome": "incorrect",
+            "reward": null,
+            "rel_speedup": null,
+            "latency_ms": null,
+            "profile_ms": 10760.214792564511,
+            "kernel_ms": 2.4441115092486143,
+            "child_kernel_id": ""
+          },
+          "d75652cebbad3a7c": {
+            "kernel_id": "d75652cebbad3a7c",
+            "outcome": "regressed",
+            "reward": -0.4234,
+            "rel_speedup": 0.5766227483904736,
+            "latency_ms": 128.93831636756659,
+            "profile_ms": 26582.162961363792,
+            "kernel_ms": 74.34876635670662,
+            "child_kernel_id": ""
+          },
+          "e060af03674e5c25": {
+            "kernel_id": "e060af03674e5c25",
+            "outcome": "regressed",
+            "reward": -0.0553,
+            "rel_speedup": 0.9447140445361745,
+            "latency_ms": 1.410570926964283,
+            "profile_ms": 8086.871519684792,
+            "kernel_ms": 1.3325861655175686,
+            "child_kernel_id": ""
+          },
+          "f9ff180b0baad7e4": {
+            "kernel_id": "f9ff180b0baad7e4",
+            "outcome": "regressed",
+            "reward": -0.0739,
+            "rel_speedup": 0.9260925777389778,
+            "latency_ms": 2.521935850381851,
+            "profile_ms": 7010.2589800953865,
+            "kernel_ms": 2.3355460725724697,
+            "child_kernel_id": ""
+          },
+          "fb302d8d42f000a0": {
+            "kernel_id": "fb302d8d42f000a0",
+            "outcome": "compile_fail",
+            "reward": null,
+            "rel_speedup": null,
+            "latency_ms": null,
+            "profile_ms": 191663.50105404854,
+            "kernel_ms": 71.5427331160754,
+            "child_kernel_id": ""
+          }
+        }
+      },
+      "split": {
+        "action": "split",
+        "leaf_id": "fd3bf8fa",
+        "search_reason": "found",
+        "condition": {
+          "subset": [
+            "sm__pipe_fma_cycles_active.avg.pct_of_peak_sustained_active"
+          ],
+          "thresholds": {
+            "sm__pipe_fma_cycles_active.avg.pct_of_peak_sustained_active": 9.944585
+          },
+          "gain": 1.14052,
+          "branch_sizes": {
+            "0": 5,
+            "1": 3
+          }
+        },
+        "chosen_by": "llm_tiebreak:A ~10% cut on FMA pipe active cycles separates kernels whose FP math pipe is essentially idle (bound by memory or other units) from those that meaningfully engage it — a real idle-vs-active hardware regime — whereas 24% DRAM and 66% SM throughput are arbitrary mid-range cuts that mark neither saturation nor idleness.",
+        "objective": 1.1405,
+        "incumbent_mean": 1.1405,
+        "margin": 0.0,
+        "epsilon": 0.015,
+        "accepted": false,
+        "reason": "below_epsilon"
+      },
+      "accepted": false,
+      "reason": "below_epsilon"
+    }
+  ],
+  "n_retired_pool": 0,
+  "n_steps": 2,
+  "pool_size": 632,
+  "diagnostics": {
+    "outcome_counts": {
+      "win": 1,
+      "regressed": 1
+    },
+    "slow_share": 0.5,
+    "compile_fail_rate": 0.0,
+    "mean_profile_time_ratio": 2746.7669399485953,
+    "reward_sources": {
+      "n_positive_reward": 1,
+      "from_real_speedup": 1,
+      "from_failure_to_success": 0,
+      "real_speedup_share": 1.0
+    },
+    "tree": {
+      "n_leaves": 39,
+      "depth": 10,
+      "branching": [
+        4,
+        2,
+        4,
+        2,
+        2,
+        4,
+        2,
+        4,
+        2,
+        4,
+        2,
+        2,
+        2,
+        2,
+        4,
+        4,
+        2,
+        2,
+        2,
+        2,
+        4,
+        2
+      ]
+    },
+    "store": {
+      "n_kernels": 1610,
+      "n_origins": 998,
+      "n_routes": 935,
+      "by_status": {
+        "slow": 143,
+        "optimization_failed": 314,
+        "advanced": 394,
+        "terminal": 127,
+        "pending": 632
+      },
+      "max_hop": 1
+    },
+    "origin_coverage": {
+      "total": 998,
+      "attempted": 976,
+      "remaining": 22,
+      "ratio": 0.9779559118236473
+    },
+    "gpu_queue": {
+      "submitted": 595,
+      "completed": 595,
+      "failed": 0,
+      "queue_depth": 0,
+      "active": false,
+      "busy_time_s": 10553.543809571653,
+      "utilization": 0.31644265878607436,
+      "journal_done": 295
+    },
+    "branch_share_alerts": [
+      {
+        "node_id": "root",
+        "child_id": "fa55efca",
+        "label": "sm=high,dram=low",
+        "share": 0.0235,
+        "n": 22
+      },
+      {
+        "node_id": "root",
+        "child_id": "64953ed1",
+        "label": "sm=high,dram=high",
+        "share": 0.0043,
+        "n": 4
+      },
+      {
+        "node_id": "00dcb62e",
+        "child_id": "7eca260d",
+        "label": "lts=low,smsp=low",
+        "share": 0.0391,
+        "n": 23
+      },
+      {
+        "node_id": "00dcb62e",
+        "child_id": "834bcebe",
+        "label": "lts=high,smsp=low",
+        "share": 0.0493,
+        "n": 29
+      },
+      {
+        "node_id": "460f36cf",
+        "child_id": "fb19c5a4",
+        "label": "lts=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "2a031de2",
+        "child_id": "2bc99d41",
+        "label": "dram=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "0062e6af",
+        "child_id": "c91e0708",
+        "label": "l1tex=low,smsp=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "0062e6af",
+        "child_id": "912751f5",
+        "label": "l1tex=high,smsp=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "0062e6af",
+        "child_id": "b96021dc",
+        "label": "l1tex=high,smsp=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "9c244a15",
+        "child_id": "beea9d13",
+        "label": "dram=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "16d2e3b2",
+        "child_id": "6337de31",
+        "label": "smsp=high,smsp=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "16d2e3b2",
+        "child_id": "52acb804",
+        "label": "smsp=high,smsp=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "708026f9",
+        "child_id": "f88c6f90",
+        "label": "l1tex=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "a73fcac1",
+        "child_id": "47fd6f1d",
+        "label": "smsp=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "3aa13df1",
+        "child_id": "ab5485ae",
+        "label": "dram=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "546c4ee9",
+        "child_id": "583c88bc",
+        "label": "dram=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "15c33ae4",
+        "child_id": "3f7018f2",
+        "label": "smsp=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "8134c8f9",
+        "child_id": "ca88e62d",
+        "label": "l1tex=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "24adc724",
+        "child_id": "ff8ac540",
+        "label": "sm=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "692bb5d7",
+        "child_id": "fbc81c4a",
+        "label": "smsp=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "fa55efca",
+        "child_id": "abfa4d62",
+        "label": "sm=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "834bcebe",
+        "child_id": "43f54e0e",
+        "label": "smsp=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "425fa8d3",
+        "child_id": "101802ae",
+        "label": "sm=low,smsp=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "425fa8d3",
+        "child_id": "8abd7a2a",
+        "label": "sm=high,smsp=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "425fa8d3",
+        "child_id": "ac850a44",
+        "label": "sm=high,smsp=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "0dd9e976",
+        "child_id": "f51a6163",
+        "label": "dram=high,lts=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "0dd9e976",
+        "child_id": "899b11b7",
+        "label": "dram=high,lts=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "ed2c4309",
+        "child_id": "d5d5ce8d",
+        "label": "dram=low,dram=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "ed2c4309",
+        "child_id": "6dcf0679",
+        "label": "dram=high,dram=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "ed2c4309",
+        "child_id": "159371c0",
+        "label": "dram=high,dram=high",
+        "share": 0.0,
+        "n": 0
+      }
+    ]
+  }
+}

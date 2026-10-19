@@ -1,0 +1,106 @@
+{
+  "routing_round": 1,
+  "bounds": [
+    "latency",
+    "memory",
+    "compute",
+    "algorithm"
+  ],
+  "steps": [],
+  "updates": [
+    {
+      "action": "rewrite",
+      "leaf_id": "ddb9cddd",
+      "proposal": {
+        "leaf_id": "ddb9cddd",
+        "inherited": [
+          "sm__throughput.avg.pct_of_peak_sustained_elapsed",
+          "dram__throughput.avg.pct_of_peak_sustained_elapsed"
+        ],
+        "old_owned": [
+          "l1tex__t_sector_hit_rate.pct",
+          "lts__t_sector_hit_rate.pct",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct"
+        ],
+        "new_owned": [
+          "l1tex__t_sector_hit_rate.pct",
+          "lts__t_sector_hit_rate.pct",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct"
+        ],
+        "added": [],
+        "blind_spot": "",
+        "rationale": {},
+        "rejected": [],
+        "prompt_version": "metric_rewrite_v1"
+      },
+      "accepted": false,
+      "reason": "no_new_metrics"
+    }
+  ],
+  "n_retired_pool": 0,
+  "n_steps": 0,
+  "pool_size": 986,
+  "diagnostics": {
+    "outcome_counts": {},
+    "slow_share": 0.0,
+    "compile_fail_rate": 0.0,
+    "mean_profile_time_ratio": null,
+    "reward_sources": {
+      "n_positive_reward": 0,
+      "from_real_speedup": 0,
+      "from_failure_to_success": 0,
+      "real_speedup_share": null
+    },
+    "tree": {
+      "n_leaves": 4,
+      "depth": 1,
+      "branching": [
+        4
+      ]
+    },
+    "store": {
+      "n_kernels": 1010,
+      "n_origins": 998,
+      "n_routes": 24,
+      "by_status": {
+        "pending": 986,
+        "advanced": 12,
+        "optimization_failed": 6,
+        "slow": 6
+      },
+      "max_hop": 1
+    },
+    "origin_coverage": {
+      "total": 998,
+      "attempted": 24,
+      "remaining": 974,
+      "ratio": 0.02404809619238477
+    },
+    "gpu_queue": {
+      "submitted": 40,
+      "completed": 40,
+      "failed": 0,
+      "queue_depth": 0,
+      "active": false,
+      "busy_time_s": 862.1509514190839,
+      "utilization": 0.2079879262347378,
+      "journal_done": 40
+    },
+    "branch_share_alerts": [
+      {
+        "node_id": "root",
+        "child_id": "8135e04a",
+        "label": "sm=high,dram=low",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "root",
+        "child_id": "383ba0b8",
+        "label": "sm=high,dram=high",
+        "share": 0.0,
+        "n": 0
+      }
+    ]
+  }
+}

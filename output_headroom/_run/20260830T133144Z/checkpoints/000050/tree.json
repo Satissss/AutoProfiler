@@ -1,0 +1,620 @@
+{
+  "version": 2,
+  "root": {
+    "node_id": "root",
+    "profiler": {
+      "ncu_metrics": [
+        "sm__throughput.avg.pct_of_peak_sustained_elapsed",
+        "dram__throughput.avg.pct_of_peak_sustained_elapsed"
+      ]
+    },
+    "bound": "",
+    "stall_counter": 0,
+    "version": 0,
+    "evolution_depth": 0,
+    "split_attempts": 0,
+    "converged": false,
+    "last_proposal_size": 0,
+    "history_wins": 0,
+    "router": {
+      "subset": [
+        "sm__throughput.avg.pct_of_peak_sustained_elapsed",
+        "dram__throughput.avg.pct_of_peak_sustained_elapsed"
+      ],
+      "thresholds": {
+        "sm__throughput.avg.pct_of_peak_sustained_elapsed": 60.0,
+        "dram__throughput.avg.pct_of_peak_sustained_elapsed": 60.0
+      },
+      "kind": "roofline_root",
+      "gain": 0.0,
+      "note": "fixed 2x2 roofline root: compute throughput x memory throughput"
+    },
+    "children": [
+      {
+        "node_id": "9c244a15",
+        "profiler": {
+          "ncu_metrics": [
+            "sm__warps_active.avg.pct_of_peak_sustained_active",
+            "smsp__issue_active.avg.pct_of_peak_sustained_active",
+            "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct",
+            "smsp__warp_issue_stalled_barrier_per_warp_active.pct"
+          ]
+        },
+        "bound": "latency",
+        "stall_counter": 0,
+        "version": 1,
+        "evolution_depth": 1,
+        "split_attempts": 0,
+        "converged": false,
+        "last_proposal_size": 0,
+        "history_wins": 75,
+        "router": {
+          "subset": [
+            "sm__throughput.avg.pct_of_peak_sustained_elapsed",
+            "sm__warps_active.avg.pct_of_peak_sustained_active"
+          ],
+          "thresholds": {
+            "sm__throughput.avg.pct_of_peak_sustained_elapsed": 50.58544049016058,
+            "sm__warps_active.avg.pct_of_peak_sustained_active": 59.251795757661036
+          },
+          "kind": "threshold",
+          "gain": 2.97923,
+          "note": "split:llm_tiebreak:It combines SM utilization with achieved occupancy: high SM throughput with few active warps is physically implausible, so the ~59% warps-active cutoff separates occupancy-limited kernels from stall-bound ones in a way that should generalize."
+        },
+        "children": [
+          {
+            "node_id": "d8be48e6",
+            "profiler": {
+              "ncu_metrics": [
+                "launch__waves_per_multiprocessor",
+                "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct",
+                "lts__t_sector_hit_rate.pct",
+                "launch__occupancy_limit_registers"
+              ]
+            },
+            "bound": "latency",
+            "stall_counter": 0,
+            "version": 1,
+            "evolution_depth": 3,
+            "split_attempts": 0,
+            "converged": false,
+            "last_proposal_size": 0,
+            "history_wins": 8
+          },
+          {
+            "node_id": "82032fd9",
+            "profiler": {
+              "ncu_metrics": [
+                "launch__waves_per_multiprocessor",
+                "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct"
+              ]
+            },
+            "bound": "latency",
+            "stall_counter": 4,
+            "version": 0,
+            "evolution_depth": 2,
+            "split_attempts": 0,
+            "converged": false,
+            "last_proposal_size": 21,
+            "history_wins": 16
+          },
+          {
+            "node_id": "fb0511b8",
+            "profiler": {
+              "ncu_metrics": []
+            },
+            "bound": "latency",
+            "stall_counter": 0,
+            "version": 0,
+            "evolution_depth": 2,
+            "split_attempts": 0,
+            "converged": false,
+            "last_proposal_size": 0,
+            "history_wins": 0
+          },
+          {
+            "node_id": "cc7c22b0",
+            "profiler": {
+              "ncu_metrics": [
+                "launch__waves_per_multiprocessor",
+                "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct"
+              ]
+            },
+            "bound": "latency",
+            "stall_counter": 0,
+            "version": 0,
+            "evolution_depth": 2,
+            "split_attempts": 0,
+            "converged": false,
+            "last_proposal_size": 0,
+            "history_wins": 0
+          }
+        ]
+      },
+      {
+        "node_id": "00dcb62e",
+        "profiler": {
+          "ncu_metrics": [
+            "l1tex__t_sector_hit_rate.pct",
+            "lts__t_sector_hit_rate.pct",
+            "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct"
+          ]
+        },
+        "bound": "memory",
+        "stall_counter": 0,
+        "version": 0,
+        "evolution_depth": 0,
+        "split_attempts": 0,
+        "converged": false,
+        "last_proposal_size": 0,
+        "history_wins": 43,
+        "router": {
+          "subset": [
+            "lts__t_sector_hit_rate.pct",
+            "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct"
+          ],
+          "thresholds": {
+            "lts__t_sector_hit_rate.pct": 57.16070603550952,
+            "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct": 59.13121376784467
+          },
+          "kind": "threshold",
+          "gain": 0.15427,
+          "note": "free_carve:llm_tiebreak:The split by L2 sector hit rate and global load bytes per sector reflects a cache-efficiency regime (hit vs miss) that directly maps to hardware behavior, whereas the first rule's high DRAM throughput threshold is a less interpretable aggregate condition."
+        },
+        "children": [
+          {
+            "node_id": "7eca260d",
+            "profiler": {
+              "ncu_metrics": []
+            },
+            "bound": "memory",
+            "stall_counter": 0,
+            "version": 0,
+            "evolution_depth": 1,
+            "split_attempts": 0,
+            "converged": false,
+            "last_proposal_size": 0,
+            "history_wins": 3
+          },
+          {
+            "node_id": "460f36cf",
+            "profiler": {
+              "ncu_metrics": [
+                "dram__bytes_read.sum",
+                "dram__bytes_write.sum",
+                "smsp__sass_average_data_bytes_per_sector_mem_global_op_st.pct",
+                "l1tex__throughput.avg.pct_of_peak_sustained_elapsed"
+              ]
+            },
+            "bound": "memory",
+            "stall_counter": 0,
+            "version": 2,
+            "evolution_depth": 3,
+            "split_attempts": 0,
+            "converged": false,
+            "last_proposal_size": 0,
+            "history_wins": 90,
+            "router": {
+              "subset": [
+                "dram__throughput.avg.pct_of_peak_sustained_elapsed",
+                "lts__t_sector_hit_rate.pct"
+              ],
+              "thresholds": {
+                "dram__throughput.avg.pct_of_peak_sustained_elapsed": 93.24006548090699,
+                "lts__t_sector_hit_rate.pct": 41.32168768155097
+              },
+              "kind": "threshold",
+              "gain": 1.77247,
+              "note": "split:llm_tiebreak:The DRAM throughput cut at ~93% of peak corresponds to a genuine hardware saturation regime (bandwidth-bound vs not), and combined with the L2 hit-rate split it captures the classic memory-hierarchy classification that should transfer to unseen kernels."
+            },
+            "children": [
+              {
+                "node_id": "baba1218",
+                "profiler": {
+                  "ncu_metrics": [
+                    "launch__waves_per_multiprocessor",
+                    "sm__warps_active.avg.pct_of_peak_sustained_active",
+                    "lts__throughput.avg.pct_of_peak_sustained_elapsed",
+                    "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct"
+                  ]
+                },
+                "bound": "memory",
+                "stall_counter": 0,
+                "version": 2,
+                "evolution_depth": 6,
+                "split_attempts": 0,
+                "converged": false,
+                "last_proposal_size": 0,
+                "history_wins": 12,
+                "router": {
+                  "subset": [
+                    "sm__throughput.avg.pct_of_peak_sustained_elapsed",
+                    "lts__throughput.avg.pct_of_peak_sustained_elapsed"
+                  ],
+                  "thresholds": {
+                    "sm__throughput.avg.pct_of_peak_sustained_elapsed": 16.132598443701557,
+                    "lts__throughput.avg.pct_of_peak_sustained_elapsed": 38.16939094161355
+                  },
+                  "kind": "threshold",
+                  "gain": 2.40713,
+                  "note": "split:llm_tiebreak:It splits kernels by normalized SM versus L2/LTS percent-of-peak throughput, which maps to real unit-saturation regimes and should generalize better than an absolute byte count or an arbitrary waves-per-SM cut."
+                },
+                "children": [
+                  {
+                    "node_id": "4b3866c0",
+                    "profiler": {
+                      "ncu_metrics": []
+                    },
+                    "bound": "memory",
+                    "stall_counter": 0,
+                    "version": 0,
+                    "evolution_depth": 7,
+                    "split_attempts": 0,
+                    "converged": false,
+                    "last_proposal_size": 0,
+                    "history_wins": 12,
+                    "router": {
+                      "subset": [
+                        "l1tex__t_sector_hit_rate.pct",
+                        "l1tex__throughput.avg.pct_of_peak_sustained_elapsed"
+                      ],
+                      "thresholds": {
+                        "l1tex__t_sector_hit_rate.pct": 22.294022639850965,
+                        "l1tex__throughput.avg.pct_of_peak_sustained_elapsed": 20.771818077504406
+                      },
+                      "kind": "threshold",
+                      "gain": 1.72917,
+                      "note": "split:llm_tiebreak:It splits on normalized L1 sector hit rate and L1 throughput as a percent of peak, which map to real cache-locality and L1 active-versus-idle regimes rather than an absolute byte count or a huge wave-count cutoff."
+                    },
+                    "children": [
+                      {
+                        "node_id": "589f5c02",
+                        "profiler": {
+                          "ncu_metrics": [
+                            "launch__occupancy_limit_registers",
+                            "launch__occupancy_limit_shared_mem",
+                            "smsp__warp_issue_stalled_barrier_per_warp_active.pct",
+                            "smsp__warp_issue_stalled_short_scoreboard_per_warp_active.pct"
+                          ]
+                        },
+                        "bound": "memory",
+                        "stall_counter": 0,
+                        "version": 2,
+                        "evolution_depth": 10,
+                        "split_attempts": 0,
+                        "converged": false,
+                        "last_proposal_size": 0,
+                        "history_wins": 20,
+                        "router": {
+                          "subset": [
+                            "smsp__sass_average_data_bytes_per_sector_mem_global_op_st.pct",
+                            "launch__occupancy_limit_shared_mem"
+                          ],
+                          "thresholds": {
+                            "smsp__sass_average_data_bytes_per_sector_mem_global_op_st.pct": 100.0,
+                            "launch__occupancy_limit_shared_mem": 24.2
+                          },
+                          "kind": "threshold",
+                          "gain": 1.61023,
+                          "note": "split:llm_tiebreak:The 100% threshold on bytes-per-sector for global stores is a true hardware boundary—perfectly coalesced, fully utilized sectors versus stores that waste sector bandwidth—whereas the other candidates' stall-percentage and occupancy-limit cuts (64.98, 16.49, 3.2, 24.2) are arbitrary fit values with no regime meaning."
+                        },
+                        "children": [
+                          {
+                            "node_id": "1fda168e",
+                            "profiler": {
+                              "ncu_metrics": []
+                            },
+                            "bound": "memory",
+                            "stall_counter": 1,
+                            "version": 0,
+                            "evolution_depth": 11,
+                            "split_attempts": 0,
+                            "converged": false,
+                            "last_proposal_size": 12,
+                            "history_wins": 10
+                          },
+                          {
+                            "node_id": "ea675d04",
+                            "profiler": {
+                              "ncu_metrics": []
+                            },
+                            "bound": "memory",
+                            "stall_counter": 0,
+                            "version": 0,
+                            "evolution_depth": 11,
+                            "split_attempts": 0,
+                            "converged": false,
+                            "last_proposal_size": 0,
+                            "history_wins": 6
+                          },
+                          {
+                            "node_id": "f13c94bf",
+                            "profiler": {
+                              "ncu_metrics": []
+                            },
+                            "bound": "memory",
+                            "stall_counter": 0,
+                            "version": 0,
+                            "evolution_depth": 11,
+                            "split_attempts": 0,
+                            "converged": false,
+                            "last_proposal_size": 0,
+                            "history_wins": 0
+                          },
+                          {
+                            "node_id": "598c3889",
+                            "profiler": {
+                              "ncu_metrics": [
+                                "smsp__warps_eligible.avg.per_cycle_active",
+                                "sm__inst_executed_pipe_lsu.avg.pct_of_peak_sustained_active"
+                              ]
+                            },
+                            "bound": "memory",
+                            "stall_counter": 0,
+                            "version": 0,
+                            "evolution_depth": 11,
+                            "split_attempts": 0,
+                            "converged": false,
+                            "last_proposal_size": 0,
+                            "history_wins": 0
+                          }
+                        ]
+                      },
+                      {
+                        "node_id": "5ecd7cd4",
+                        "profiler": {
+                          "ncu_metrics": []
+                        },
+                        "bound": "memory",
+                        "stall_counter": 0,
+                        "version": 0,
+                        "evolution_depth": 8,
+                        "split_attempts": 0,
+                        "converged": false,
+                        "last_proposal_size": 0,
+                        "history_wins": 0
+                      },
+                      {
+                        "node_id": "305065a6",
+                        "profiler": {
+                          "ncu_metrics": [
+                            "smsp__warps_eligible.avg.per_cycle_active",
+                            "launch__occupancy_limit_registers"
+                          ]
+                        },
+                        "bound": "memory",
+                        "stall_counter": 0,
+                        "version": 0,
+                        "evolution_depth": 8,
+                        "split_attempts": 0,
+                        "converged": false,
+                        "last_proposal_size": 0,
+                        "history_wins": 0
+                      },
+                      {
+                        "node_id": "5f324c75",
+                        "profiler": {
+                          "ncu_metrics": []
+                        },
+                        "bound": "memory",
+                        "stall_counter": 0,
+                        "version": 0,
+                        "evolution_depth": 8,
+                        "split_attempts": 0,
+                        "converged": false,
+                        "last_proposal_size": 0,
+                        "history_wins": 0
+                      }
+                    ]
+                  },
+                  {
+                    "node_id": "e1127e8b",
+                    "profiler": {
+                      "ncu_metrics": []
+                    },
+                    "bound": "memory",
+                    "stall_counter": 0,
+                    "version": 0,
+                    "evolution_depth": 7,
+                    "split_attempts": 0,
+                    "converged": false,
+                    "last_proposal_size": 0,
+                    "history_wins": 2
+                  },
+                  {
+                    "node_id": "0f4066ec",
+                    "profiler": {
+                      "ncu_metrics": [
+                        "smsp__warps_eligible.avg.per_cycle_active",
+                        "launch__occupancy_limit_registers"
+                      ]
+                    },
+                    "bound": "memory",
+                    "stall_counter": 0,
+                    "version": 0,
+                    "evolution_depth": 7,
+                    "split_attempts": 0,
+                    "converged": false,
+                    "last_proposal_size": 0,
+                    "history_wins": 0
+                  },
+                  {
+                    "node_id": "477c7834",
+                    "profiler": {
+                      "ncu_metrics": []
+                    },
+                    "bound": "memory",
+                    "stall_counter": 0,
+                    "version": 0,
+                    "evolution_depth": 7,
+                    "split_attempts": 0,
+                    "converged": false,
+                    "last_proposal_size": 0,
+                    "history_wins": 0
+                  }
+                ]
+              },
+              {
+                "node_id": "9def774c",
+                "profiler": {
+                  "ncu_metrics": [
+                    "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct",
+                    "sm__warps_active.avg.pct_of_peak_sustained_active"
+                  ]
+                },
+                "bound": "memory",
+                "stall_counter": 0,
+                "version": 0,
+                "evolution_depth": 4,
+                "split_attempts": 0,
+                "converged": false,
+                "last_proposal_size": 0,
+                "history_wins": 0
+              },
+              {
+                "node_id": "9cd06263",
+                "profiler": {
+                  "ncu_metrics": []
+                },
+                "bound": "memory",
+                "stall_counter": 0,
+                "version": 0,
+                "evolution_depth": 4,
+                "split_attempts": 0,
+                "converged": false,
+                "last_proposal_size": 0,
+                "history_wins": 0
+              },
+              {
+                "node_id": "53764045",
+                "profiler": {
+                  "ncu_metrics": [
+                    "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct",
+                    "sm__warps_active.avg.pct_of_peak_sustained_active"
+                  ]
+                },
+                "bound": "memory",
+                "stall_counter": 0,
+                "version": 0,
+                "evolution_depth": 4,
+                "split_attempts": 0,
+                "converged": false,
+                "last_proposal_size": 0,
+                "history_wins": 0
+              }
+            ]
+          },
+          {
+            "node_id": "834bcebe",
+            "profiler": {
+              "ncu_metrics": []
+            },
+            "bound": "memory",
+            "stall_counter": 0,
+            "version": 0,
+            "evolution_depth": 1,
+            "split_attempts": 0,
+            "converged": false,
+            "last_proposal_size": 0,
+            "history_wins": 7
+          },
+          {
+            "node_id": "2a031de2",
+            "profiler": {
+              "ncu_metrics": [
+                "dram__bytes_read.sum",
+                "launch__waves_per_multiprocessor"
+              ]
+            },
+            "bound": "memory",
+            "stall_counter": 0,
+            "version": 0,
+            "evolution_depth": 1,
+            "split_attempts": 0,
+            "converged": false,
+            "last_proposal_size": 0,
+            "history_wins": 51,
+            "router": {
+              "subset": [
+                "l1tex__t_sector_hit_rate.pct"
+              ],
+              "thresholds": {
+                "l1tex__t_sector_hit_rate.pct": 26.768801765174498
+              },
+              "kind": "threshold",
+              "gain": 1.02427,
+              "note": "split:llm_tiebreak:The L1 sector-hit split directly encodes cache locality/reuse, whereas the added SM-throughput cuts are far below any saturation point, create an empty quadrant, and just refit the same separation."
+            },
+            "children": [
+              {
+                "node_id": "7528ba5f",
+                "profiler": {
+                  "ncu_metrics": [
+                    "dram__bytes_write.sum",
+                    "smsp__sass_average_data_bytes_per_sector_mem_global_op_st.pct"
+                  ]
+                },
+                "bound": "memory",
+                "stall_counter": 10,
+                "version": 0,
+                "evolution_depth": 2,
+                "split_attempts": 0,
+                "converged": false,
+                "last_proposal_size": 39,
+                "history_wins": 30
+              },
+              {
+                "node_id": "1ddd25e6",
+                "profiler": {
+                  "ncu_metrics": []
+                },
+                "bound": "memory",
+                "stall_counter": 0,
+                "version": 0,
+                "evolution_depth": 2,
+                "split_attempts": 0,
+                "converged": false,
+                "last_proposal_size": 0,
+                "history_wins": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "node_id": "70f21b3a",
+        "profiler": {
+          "ncu_metrics": [
+            "sm__pipe_tensor_op_hmma_cycles_active.avg.pct_of_peak_sustained_active",
+            "sm__pipe_fma_cycles_active.avg.pct_of_peak_sustained_active",
+            "smsp__issue_active.avg.pct_of_peak_sustained_active"
+          ]
+        },
+        "bound": "compute",
+        "stall_counter": 0,
+        "version": 0,
+        "evolution_depth": 0,
+        "split_attempts": 0,
+        "converged": false,
+        "last_proposal_size": 0,
+        "history_wins": 6
+      },
+      {
+        "node_id": "64953ed1",
+        "profiler": {
+          "ncu_metrics": [
+            "sm__warps_active.avg.pct_of_peak_sustained_active"
+          ]
+        },
+        "bound": "algorithm",
+        "stall_counter": 0,
+        "version": 0,
+        "evolution_depth": 0,
+        "split_attempts": 0,
+        "converged": false,
+        "last_proposal_size": 0,
+        "history_wins": 0
+      }
+    ]
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "version": 2,
+  "root": {
+    "node_id": "root",
+    "profiler": {
+      "ncu_metrics": [
+        "sm__throughput.avg.pct_of_peak_sustained_elapsed",
+        "dram__throughput.avg.pct_of_peak_sustained_elapsed"
+      ]
+    },
+    "bound": "",
+    "stall_counter": 0,
+    "version": 0,
+    "evolution_depth": 0,
+    "split_attempts": 0,
+    "converged": false,
+    "last_proposal_size": 0,
+    "history_wins": 0,
+    "router": {
+      "subset": [
+        "sm__throughput.avg.pct_of_peak_sustained_elapsed",
+        "dram__throughput.avg.pct_of_peak_sustained_elapsed"
+      ],
+      "thresholds": {
+        "sm__throughput.avg.pct_of_peak_sustained_elapsed": 60.0,
+        "dram__throughput.avg.pct_of_peak_sustained_elapsed": 60.0
+      },
+      "kind": "roofline_root",
+      "gain": 0.0,
+      "note": "fixed 2x2 roofline root: compute throughput x memory throughput"
+    },
+    "children": [
+      {
+        "node_id": "62c55878",
+        "profiler": {
+          "ncu_metrics": [
+            "sm__warps_active.avg.pct_of_peak_sustained_active",
+            "smsp__issue_active.avg.pct_of_peak_sustained_active"
+          ]
+        },
+        "bound": "latency",
+        "stall_counter": 0,
+        "version": 0,
+        "evolution_depth": 0,
+        "split_attempts": 0,
+        "converged": false,
+        "last_proposal_size": 0,
+        "history_wins": 0
+      },
+      {
+        "node_id": "ca7dcbe6",
+        "profiler": {
+          "ncu_metrics": [
+            "l1tex__t_sector_hit_rate.pct",
+            "lts__t_sector_hit_rate.pct",
+            "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct"
+          ]
+        },
+        "bound": "memory",
+        "stall_counter": 0,
+        "version": 0,
+        "evolution_depth": 0,
+        "split_attempts": 0,
+        "converged": false,
+        "last_proposal_size": 0,
+        "history_wins": 0
+      },
+      {
+        "node_id": "a62cb106",
+        "profiler": {
+          "ncu_metrics": [
+            "sm__pipe_tensor_op_hmma_cycles_active.avg.pct_of_peak_sustained_active",
+            "sm__pipe_fma_cycles_active.avg.pct_of_peak_sustained_active",
+            "smsp__issue_active.avg.pct_of_peak_sustained_active"
+          ]
+        },
+        "bound": "compute",
+        "stall_counter": 0,
+        "version": 0,
+        "evolution_depth": 0,
+        "split_attempts": 0,
+        "converged": false,
+        "last_proposal_size": 0,
+        "history_wins": 0
+      },
+      {
+        "node_id": "60d3aaa4",
+        "profiler": {
+          "ncu_metrics": [
+            "sm__warps_active.avg.pct_of_peak_sustained_active"
+          ]
+        },
+        "bound": "algorithm",
+        "stall_counter": 0,
+        "version": 0,
+        "evolution_depth": 0,
+        "split_attempts": 0,
+        "converged": false,
+        "last_proposal_size": 0,
+        "history_wins": 0
+      }
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+model: claude-sonnet-4-5
+base_url: https://api.anthropic.com/v1
+api_style: anthropic
+api_key_env: ANTHROPIC_API_KEY
+max_tokens: 16384
+timeout_s: 600

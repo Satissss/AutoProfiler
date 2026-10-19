@@ -1,0 +1,621 @@
+{
+  "routing_round": 19,
+  "bounds": [
+    "memory",
+    "latency",
+    "compute",
+    "algorithm"
+  ],
+  "steps": [
+    {
+      "kernel_id": "d663edec2548abe1",
+      "origin_uid": "syn_04369_1200a2f8",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "9391023c0b28",
+      "profile_ms": 0.0,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 14.257559552788734,
+      "parent_latency_ms": 23.338510189205408,
+      "rel_speedup": 1.6369218099910001,
+      "reward": 0.6369,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_nan_zero_sum_dim0_kernel"
+        ],
+        "n_lines": 65,
+        "optimizer_summary": "STEP 1 - The DRAM throughput is 91.0715% of peak, indicating the kernel is strongly memory-bandwidth bound. STEP 1 - The L1 sector hit rate is only 3.20553%, so almost none of the accesses are served from L1 cache. STEP 1 - The L2 sector hit rate is 38.4527%, indicating substantial traffic reaches DRAM rather than being satisfied from cache. STEP 1 - SM throughput is only 4.41053% of peak, showing that arithmetic execution is not the limiting resource. STEP 1 - Global-load data bytes per sector are 98.7679%, indicating the global loads are already well coalesced and access-pattern changes are unlikely to help. STEP 2 - The dominant bottleneck is DRAM traffic caused by materializing the NaN-r",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 14.413337223231792,
+        "seed": 3190749621
+      },
+      "child_kernel_id": "9527b841cacf0b26",
+      "advanced": true
+    },
+    {
+      "kernel_id": "b9795af037350e5a",
+      "origin_uid": "syn_03446_1561f40e",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "f79aad42d56c",
+      "profile_ms": 0.0,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 1.280415803194046,
+      "parent_latency_ms": 2.925138920545578,
+      "rel_speedup": 2.2845226630667224,
+      "reward": 1.2845,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_batch_partial_sum_kernel",
+          "_batch_reduce_partials_kernel"
+        ],
+        "n_lines": 126,
+        "optimizer_summary": "STEP 1: dram__throughput is 75.4489% of peak, indicating substantial DRAM traffic and making global-memory movement a likely limiter. STEP 1: l1tex__t_sector_hit_rate is 46.0566%, indicating relatively poor L1 sector reuse for the post-convolution processing. STEP 1: lts__t_sector_hit_rate is 52.9774%, indicating only moderate L2 sector reuse. STEP 1: sm__throughput is 38.7719% of peak, so SM compute throughput is not saturated. STEP 1: smsp__sass_average_data_bytes_per_sector_mem_global_op_ld is 67.27%, indicating the global loads are not using every byte of the fetched sectors efficiently. STEP 2: The dominant bottleneck is memory traffic from materializing the NHWC contiguous tensor, writ",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 1.3192901387810707,
+        "seed": 889249806
+      },
+      "child_kernel_id": "1a203692db11d348",
+      "advanced": true
+    },
+    {
+      "kernel_id": "5e1d5b6be6828113",
+      "origin_uid": "syn_02428_e8e69fac",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "94cf15de9eda",
+      "profile_ms": 0.0,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 6.808572448790073,
+      "parent_latency_ms": 8.491524029523134,
+      "rel_speedup": 1.247181269405767,
+      "reward": 0.2472,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_cos_taylor_fused_sub_kernel"
+        ],
+        "n_lines": 63,
+        "optimizer_summary": "STEP 1: dram__throughput is 93.7168% of peak, indicating the kernel is strongly DRAM-bandwidth bound. STEP 1: l1tex__t_sector_hit_rate is 11.3302%, indicating very little L1 cache reuse. STEP 1: lts__t_sector_hit_rate is 50.0086%, indicating only moderate L2 sector reuse. STEP 1: sm__throughput is 7.60161% of peak, indicating the SM arithmetic pipelines are lightly utilized and computation is not the bottleneck. STEP 1: smsp__sass_average_data_bytes_per_sector_mem_global_op_ld is 100%, indicating global loads use full sectors and are already coalesced. STEP 2: The dominant bottleneck is DRAM traffic from the materialized intermediate and the separate subtraction pass; the low SM utilization ",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 3.418862819671631,
+        "seed": 1590174174
+      },
+      "child_kernel_id": "5ffea44427a3bc34",
+      "advanced": true
+    },
+    {
+      "kernel_id": "a75a30865d36b834",
+      "origin_uid": "syn_04724_03637f26",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "75947b4762e2",
+      "profile_ms": 0.0,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 4.1877506300807,
+      "parent_latency_ms": 7.521457504481077,
+      "rel_speedup": 1.7960614584961891,
+      "reward": 0.7961,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_fused_softmax_kernel"
+        ],
+        "n_lines": 101,
+        "optimizer_summary": "STEP 1: dram__throughput is 85.3579% of peak, indicating global-memory traffic is the dominant hardware pressure. STEP 1: l1tex__t_sector_hit_rate is 17.7307%, indicating poor L1 cache reuse and substantial global-memory traffic. STEP 1: lts__t_sector_hit_rate is 56.3589%, indicating only moderate L2 reuse. STEP 1: sm__throughput is 17.3766% of peak, indicating the SM arithmetic pipeline is lightly utilized and computation is not the limiting resource. STEP 1: smsp__sass_average_data_bytes_per_sector_mem_global_op_ld is 92.9912%, indicating global loads are using nearly full sector payloads; the issue is the volume of traffic rather than severely inefficient individual accesses. STEP 2: The ",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 3.8412660360336304,
+        "seed": 3400071338
+      },
+      "child_kernel_id": "05d015c5717aad77",
+      "advanced": true
+    },
+    {
+      "kernel_id": "1a35124f50bfd90a",
+      "origin_uid": "syn_02525_4869043e",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "5f573fdd6c72",
+      "profile_ms": 0.0,
+      "ok": false,
+      "outcome": "incorrect",
+      "latency_ms": null,
+      "parent_latency_ms": 5.904176738113165,
+      "rel_speedup": null,
+      "reward": null,
+      "stage": "correctness",
+      "error": "correctness_failed: outputs differ beyond atol/rtol",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_nan_to_num_flat_kernel"
+        ],
+        "n_lines": 66,
+        "optimizer_summary": "STEP 1: dram__throughput is 88.3867% of peak, indicating the kernel is strongly DRAM-bandwidth bound. STEP 1: l1tex__t_sector_hit_rate is only 0.141369%, indicating almost no L1 sector reuse. STEP 1: lts__t_sector_hit_rate is 38.5062%, indicating limited L2 reuse and substantial memory traffic reaching DRAM. STEP 1: sm__throughput is only 3.8267% of peak, indicating arithmetic/SM execution is not the bottleneck. STEP 1: smsp__sass_average_data_bytes_per_sector_mem_global_op_ld is 99.9328%, indicating global loads use nearly full sector utilization and are not suffering from poor coalescing. STEP 2: The dominant bottleneck is excessive DRAM memory traffic from materializing the cumsum, readin",
+        "prompt_version": "leaf_triton_optimize_v1"
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "c14eeb3c6ce44ace",
+      "origin_uid": "syn_05457_2e43659b",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "15e54dec368e",
+      "profile_ms": 0.0,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 2.9663294553756714,
+      "parent_latency_ms": 4.317387007176876,
+      "rel_speedup": 1.4554644290615721,
+      "reward": 0.4555,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_batchnorm_bias_add_kernel"
+        ],
+        "n_lines": 108,
+        "optimizer_summary": "STEP 1: dram__throughput.avg.pct_of_peak_sustained_elapsed is 92.8098%, indicating the kernel is strongly limited by global-memory bandwidth. STEP 1: l1tex__t_sector_hit_rate.pct is 2.87659%, indicating the expanded bias has very poor L1 locality and creates substantial streaming traffic. STEP 1: lts__t_sector_hit_rate.pct is 49.6678%, indicating only about half of requested sectors hit in the L2 cache. STEP 1: sm__throughput.avg.pct_of_peak_sustained_elapsed is 8.20062%, indicating the SM compute pipelines are lightly utilized and arithmetic throughput is not the bottleneck. STEP 1: smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct is 88.8389%, indicating global loads are using ",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 1.5101516619324684,
+        "seed": 746648972
+      },
+      "child_kernel_id": "859485db2a1534ad",
+      "advanced": true
+    },
+    {
+      "kernel_id": "ca36d4a92709255b",
+      "origin_uid": "syn_04331_ee5f148e",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "8258566aee16",
+      "profile_ms": 0.0,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 7.060685195028782,
+      "parent_latency_ms": 14.014367945492268,
+      "rel_speedup": 1.9848453171881062,
+      "reward": 0.9848,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_argmax_ncdhw_tiled_kernel"
+        ],
+        "n_lines": 119,
+        "optimizer_summary": "STEP 1 - The DRAM throughput is high at 78.7446%, indicating substantial global-memory pressure. STEP 1 - The L1 sector hit rate is low at 25.9866%, indicating poor L1 reuse for the current access pattern. STEP 1 - The L2 sector hit rate is also low at 40.807%, indicating that many accesses miss the cache hierarchy. STEP 1 - SM throughput is only 29.0529%, so arithmetic/SM issue capacity is not the dominant limit. STEP 1 - Global-load data bytes per sector are 80.0647%, showing that the current loads consume significant memory-sector bandwidth. STEP 2 - The dominant bottleneck is global-memory traffic caused by materializing the channels-last permutation and then rereading it for argmax, com",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 7.065131328999996,
+        "seed": 3965522845
+      },
+      "child_kernel_id": "6f394dc5de0c806f",
+      "advanced": true
+    },
+    {
+      "kernel_id": "4f8b943deae3626d",
+      "origin_uid": "syn_02769_a4533fbb",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "9f34990f49b2",
+      "profile_ms": 17809.883749112487,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 2.339249476790428,
+      "parent_latency_ms": 7.111708866432309,
+      "rel_speedup": 3.040166915497163,
+      "reward": 2.0402,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_layer_norm_flat_kernel"
+        ],
+        "n_lines": 87,
+        "optimizer_summary": "STEP 1: dram__throughput is 94.0415% of peak, indicating the kernel is strongly DRAM-throughput bound. STEP 1: l1tex__t_sector_hit_rate is 24.2331%, indicating poor L1 sector reuse and substantial global-memory traffic. STEP 1: lts__t_sector_hit_rate is 46.1667%, indicating only moderate L2 reuse, so the intermediate tensor traffic is not being served efficiently from cache. STEP 1: sm__throughput is 15.0168% of peak, indicating that SM arithmetic throughput is not the limiting resource. STEP 1: smsp__sass_average_data_bytes_per_sector_mem_global_op_ld is 85.4612%, indicating global loads are transferring relatively full sectors; changing coalescing is less promising than eliminating memory ",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 2.3162411525845528,
+        "seed": 1476855696
+      },
+      "child_kernel_id": "b100b5242b6c36ec",
+      "advanced": true
+    },
+    {
+      "kernel_id": "bc45a51063daf21e",
+      "origin_uid": "syn_05536_fc09619c",
+      "hop": 0,
+      "leaf_id": "9c244a15",
+      "bound": "latency",
+      "route_id": "3c2ed7322819",
+      "profile_ms": 14652.632912620902,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 2.6006055995821953,
+      "parent_latency_ms": 4.114395473152399,
+      "rel_speedup": 1.5820912920488228,
+      "reward": 0.5821,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_median_first_match_kernel"
+        ],
+        "n_lines": 88,
+        "optimizer_summary": "STEP 1 - dram__throughput is 42.6407%, so DRAM bandwidth is only moderately utilized and is not clearly saturated. STEP 1 - sm__throughput is 51.2729%, so overall SM throughput is moderate rather than near its limit. STEP 1 - sm__warps_active is 72.2661%, so active-warp occupancy is reasonably high and is not the primary limitation. STEP 1 - smsp__issue_active is 45.6865%, so issue activity is relatively low, indicating execution/launch overhead and unnecessary work rather than a saturated arithmetic pipeline. STEP 2 - The measurements do not identify a saturated hardware resource; the conservative bottleneck is excess work and launch/memory overhead from materializing the expanded median, w",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 2.1861428394913673,
+        "seed": 4223926314
+      },
+      "child_kernel_id": "d805a8a13317d0ed",
+      "advanced": true
+    },
+    {
+      "kernel_id": "ee0f7f01ccbc03c1",
+      "origin_uid": "syn_05049_99439b4e",
+      "hop": 0,
+      "leaf_id": "460f36cf",
+      "bound": "memory",
+      "route_id": "7342818bbd1f",
+      "profile_ms": 14840.77013656497,
+      "ok": true,
+      "outcome": "win",
+      "latency_ms": 1.2366846203804016,
+      "parent_latency_ms": 1.7792340368032455,
+      "rel_speedup": 1.4387128354971834,
+      "reward": 0.4387,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_batch_norm_bias_add_kernel"
+        ],
+        "n_lines": 105,
+        "optimizer_summary": "STEP 1: dram__throughput is 91.3997% of peak, indicating global-memory bandwidth is the dominant heavily utilized resource. STEP 1: l1tex__t_sector_hit_rate is 2.3099%, indicating the expanded bias has very poor L1 cache reuse and causes substantial global-memory traffic. STEP 1: lts__t_sector_hit_rate is 49.4471%, indicating only moderate L2 sector reuse. STEP 1: sm__throughput is 8.36683% of peak, indicating the SM compute pipelines are lightly utilized and arithmetic is not the bottleneck. STEP 1: smsp__sass_average_data_bytes_per_sector_mem_global_op_ld is 90.1078%, indicating global loads are using most of each sector and the main issue is the amount of memory traffic rather than severe",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 0.6375284865498543,
+        "seed": 3221826222
+      },
+      "child_kernel_id": "ee50d15898fc50c6",
+      "advanced": true
+    }
+  ],
+  "updates": [
+    {
+      "action": "free_carve",
+      "leaf_id": "460f36cf",
+      "proposal": {
+        "leaf_id": "460f36cf",
+        "inherited": [
+          "sm__throughput.avg.pct_of_peak_sustained_elapsed",
+          "dram__throughput.avg.pct_of_peak_sustained_elapsed",
+          "l1tex__t_sector_hit_rate.pct",
+          "lts__t_sector_hit_rate.pct",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct"
+        ],
+        "old_owned": [],
+        "new_owned": [
+          "dram__bytes_read.sum",
+          "dram__bytes_write.sum"
+        ],
+        "added": [
+          "dram__bytes_read.sum",
+          "dram__bytes_write.sum"
+        ],
+        "blind_spot": "The metrics could not reveal whether the high DRAM pressure came mainly from global reads, global writes, or materialized intermediate traffic.",
+        "rationale": {
+          "dram__bytes_read.sum": "HIGH -> fuse producer and consumer operations and reuse data to eliminate redundant global loads; LOW -> prioritize store reduction or launch-geometry changes instead of load elimination.",
+          "dram__bytes_write.sum": "HIGH -> avoid materializing intermediates and fuse output-producing passes to reduce global stores; LOW -> prioritize reducing global reads and improving scheduling or computation."
+        },
+        "rejected": [],
+        "prompt_version": "metric_rewrite_v1"
+      },
+      "probe": {
+        "accepted": false,
+        "margin": 0.0,
+        "epsilon": 0.037500000000000006,
+        "incumbent_mean": null,
+        "candidate_mean": null,
+        "time_cost": 0.0,
+        "n_scorable_incumbent": 0,
+        "n_scorable_candidate": 0,
+        "compile_fail_delta": 0.1667,
+        "reason": "compile_fail_rate_up:0.167",
+        "guard_ids": [],
+        "regressed_guards": [],
+        "per_sample": {
+          "4f8b943deae3626d": {
+            "kernel_id": "4f8b943deae3626d",
+            "outcome": "win",
+            "reward": 2.0393,
+            "rel_speedup": 3.039256983676033,
+            "latency_ms": 2.339949831366539,
+            "profile_ms": 7576.741414144635,
+            "kernel_ms": 7.111708866432309,
+            "child_kernel_id": ""
+          },
+          "5e1d5b6be6828113": {
+            "kernel_id": "5e1d5b6be6828113",
+            "outcome": "no_speedup",
+            "reward": -0.0097,
+            "rel_speedup": 0.990321891113414,
+            "latency_ms": 8.57450906187296,
+            "profile_ms": 7603.36328856647,
+            "kernel_ms": 8.491524029523134,
+            "child_kernel_id": ""
+          },
+          "68cebcd30c5194a1": {
+            "kernel_id": "68cebcd30c5194a1",
+            "outcome": "win",
+            "reward": 0.4006,
+            "rel_speedup": 1.400560504830778,
+            "latency_ms": 1.9792718812823296,
+            "profile_ms": 6959.565572440624,
+            "kernel_ms": 2.7720900252461433,
+            "child_kernel_id": ""
+          },
+          "a75a30865d36b834": {
+            "kernel_id": "a75a30865d36b834",
+            "outcome": "win",
+            "reward": 0.7973,
+            "rel_speedup": 1.797307744948475,
+            "latency_ms": 4.184846766293049,
+            "profile_ms": 6242.499828338623,
+            "kernel_ms": 7.521457504481077,
+            "child_kernel_id": ""
+          },
+          "b9795af037350e5a": {
+            "kernel_id": "b9795af037350e5a",
+            "outcome": "compile_fail",
+            "reward": null,
+            "rel_speedup": null,
+            "latency_ms": null,
+            "profile_ms": 6997.094806283712,
+            "kernel_ms": 2.925138920545578,
+            "child_kernel_id": ""
+          },
+          "c14eeb3c6ce44ace": {
+            "kernel_id": "c14eeb3c6ce44ace",
+            "outcome": "win",
+            "reward": 0.4552,
+            "rel_speedup": 1.455203549173589,
+            "latency_ms": 2.966861240565777,
+            "profile_ms": 7363.321240991354,
+            "kernel_ms": 4.317387007176876,
+            "child_kernel_id": ""
+          },
+          "ca36d4a92709255b": {
+            "kernel_id": "ca36d4a92709255b",
+            "outcome": "no_speedup",
+            "reward": 0.0187,
+            "rel_speedup": 1.0186825092449565,
+            "latency_ms": 13.757346197962761,
+            "profile_ms": 9728.053884580731,
+            "kernel_ms": 14.014367945492268,
+            "child_kernel_id": ""
+          },
+          "cd214084914c1e60": {
+            "kernel_id": "cd214084914c1e60",
+            "outcome": "win",
+            "reward": 0.4444,
+            "rel_speedup": 1.4443780694712174,
+            "latency_ms": 11.409339495003223,
+            "profile_ms": 13143.31654459238,
+            "kernel_ms": 16.47939975373447,
+            "child_kernel_id": ""
+          },
+          "d663edec2548abe1": {
+            "kernel_id": "d663edec2548abe1",
+            "outcome": "win",
+            "reward": 0.6373,
+            "rel_speedup": 1.637287471270984,
+            "latency_ms": 14.254375360906124,
+            "profile_ms": 13475.123103708029,
+            "kernel_ms": 23.338510189205408,
+            "child_kernel_id": ""
+          },
+          "ee0f7f01ccbc03c1": {
+            "kernel_id": "ee0f7f01ccbc03c1",
+            "outcome": "win",
+            "reward": 0.4387,
+            "rel_speedup": 1.4386564974712561,
+            "latency_ms": 1.2367330491542816,
+            "profile_ms": 6907.356671988964,
+            "kernel_ms": 1.7792340368032455,
+            "child_kernel_id": ""
+          },
+          "fb7c5f8d7dd03d81": {
+            "kernel_id": "fb7c5f8d7dd03d81",
+            "outcome": "compile_fail",
+            "reward": null,
+            "rel_speedup": null,
+            "latency_ms": null,
+            "profile_ms": 7236.753670498729,
+            "kernel_ms": 7.72603414952755,
+            "child_kernel_id": ""
+          },
+          "fc176878c1f26172": {
+            "kernel_id": "fc176878c1f26172",
+            "outcome": "no_speedup",
+            "reward": -0.0034,
+            "rel_speedup": 0.9965553757727059,
+            "latency_ms": 18.415837548673153,
+            "profile_ms": 11323.560012504458,
+            "kernel_ms": 18.35240190848708,
+            "child_kernel_id": ""
+          }
+        }
+      },
+      "search_reason": "found",
+      "condition": {
+        "subset": [
+          "dram__throughput.avg.pct_of_peak_sustained_elapsed",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct"
+        ],
+        "thresholds": {
+          "dram__throughput.avg.pct_of_peak_sustained_elapsed": 91.235629,
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct": 89.599839
+        },
+        "gain": 0.15278,
+        "branch_sizes": {
+          "0": 3,
+          "1": 3,
+          "2": 3,
+          "3": 3
+        }
+      },
+      "validation": {
+        "accepted": false,
+        "margin": -0.0999,
+        "epsilon": 0.015,
+        "incumbent_mean": 0.6435,
+        "pooled_mean": 0.6436,
+        "time_cost": 0.1,
+        "reason": "below_epsilon",
+        "branches": [
+          {
+            "index": 0,
+            "metrics": [],
+            "fallback": true,
+            "n_samples": 3,
+            "mean_reward": 0.8895333333333334
+          },
+          {
+            "index": 1,
+            "metrics": [
+              "dram__bytes_read.sum",
+              "dram__bytes_write.sum"
+            ],
+            "fallback": false,
+            "n_samples": 3,
+            "mean_reward": 0.4770666666666667
+          },
+          {
+            "index": 2,
+            "metrics": [],
+            "fallback": true,
+            "n_samples": 3,
+            "mean_reward": 0.9802
+          },
+          {
+            "index": 3,
+            "metrics": [],
+            "fallback": true,
+            "n_samples": 3,
+            "mean_reward": 0.2276
+          }
+        ]
+      },
+      "accepted": false,
+      "protected_branches": [
+        0,
+        3
+      ]
+    }
+  ],
+  "n_retired_pool": 0,
+  "n_steps": 10,
+  "pool_size": 795,
+  "diagnostics": {
+    "outcome_counts": {
+      "win": 9,
+      "incorrect": 1
+    },
+    "slow_share": 0.0,
+    "compile_fail_rate": 0.0,
+    "mean_profile_time_ratio": 4802.237947745317,
+    "reward_sources": {
+      "n_positive_reward": 9,
+      "from_real_speedup": 9,
+      "from_failure_to_success": 0,
+      "real_speedup_share": 1.0
+    },
+    "tree": {
+      "n_leaves": 7,
+      "depth": 2,
+      "branching": [
+        4,
+        4
+      ]
+    },
+    "store": {
+      "n_kernels": 1307,
+      "n_origins": 998,
+      "n_routes": 481,
+      "by_status": {
+        "pending": 795,
+        "optimization_failed": 121,
+        "terminal": 113,
+        "advanced": 258,
+        "slow": 20
+      },
+      "max_hop": 1
+    },
+    "origin_coverage": {
+      "total": 998,
+      "attempted": 512,
+      "remaining": 486,
+      "ratio": 0.5130260521042084
+    },
+    "gpu_queue": {
+      "submitted": 43,
+      "completed": 43,
+      "failed": 0,
+      "queue_depth": 0,
+      "active": false,
+      "busy_time_s": 521.7287060841336,
+      "utilization": 0.23246097350805495,
+      "journal_done": 28
+    },
+    "branch_share_alerts": [
+      {
+        "node_id": "root",
+        "child_id": "70f21b3a",
+        "label": "sm=high,dram=low",
+        "share": 0.0229,
+        "n": 11
+      },
+      {
+        "node_id": "root",
+        "child_id": "64953ed1",
+        "label": "sm=high,dram=high",
+        "share": 0.0021,
+        "n": 1
+      },
+      {
+        "node_id": "00dcb62e",
+        "child_id": "7eca260d",
+        "label": "lts=low,smsp=low",
+        "share": 0.0321,
+        "n": 8
+      }
+    ]
+  }
+}

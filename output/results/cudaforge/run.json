@@ -1,0 +1,61 @@
+{
+  "config": {
+    "name": "cudaforge",
+    "benchmark": "kernelbench",
+    "groups": [
+      "level1",
+      "level2",
+      "level3"
+    ],
+    "ids": null,
+    "limit": 3,
+    "methods": {
+      "cudaforge": {
+        "seeder": {
+          "type": "llm_cuda",
+          "gpu": "RTX-4090",
+          "attempts": 4
+        },
+        "profiler": {
+          "type": "ncu_fixed",
+          "metric_set": "cudaforge"
+        },
+        "optimizer": {
+          "type": "judge_coder",
+          "language": "cuda",
+          "gpu": "RTX-4090"
+        }
+      }
+    },
+    "llm": {
+      "model": "qwen-plus",
+      "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "api_key_env": "QWEN_API_KEY"
+    },
+    "backend": "configs/backends/k8s.yaml",
+    "rounds": 2,
+    "fast": [
+      3,
+      10
+    ],
+    "final": [
+      10,
+      100
+    ],
+    "output": "output/results"
+  },
+  "tasks": [
+    {
+      "id": "kb_l1_1",
+      "group": "level1"
+    },
+    {
+      "id": "kb_l1_2",
+      "group": "level1"
+    },
+    {
+      "id": "kb_l1_3",
+      "group": "level1"
+    }
+  ]
+}

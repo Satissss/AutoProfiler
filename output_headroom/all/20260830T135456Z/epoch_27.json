@@ -1,0 +1,296 @@
+{
+  "routing_round": 27,
+  "bounds": [
+    "latency",
+    "memory",
+    "compute",
+    "algorithm"
+  ],
+  "steps": [
+    {
+      "kernel_id": "613c1c31eb14b510",
+      "origin_uid": "syn_01012_ae580fea",
+      "hop": 0,
+      "leaf_id": "a73fcac1",
+      "bound": "memory",
+      "route_id": "514a939b1059",
+      "profile_ms": 20161.24032251537,
+      "ok": false,
+      "outcome": "compile_fail",
+      "latency_ms": null,
+      "parent_latency_ms": 1.7312692943960428,
+      "rel_speedup": null,
+      "reward": null,
+      "stage": "run_candidate",
+      "error": "AssertionError: Only dilation=1 supported",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_maxpool2d_add_kernel"
+        ],
+        "n_lines": 169,
+        "optimizer_summary": "STEP 1 - Read the measurements. For EACH counter you were given, state in one short line what its actual value implies. Quote the numbers. - dram__bytes_read.sum = 2.28467e+08 → very high global memory read volume (228 MB), indicating heavy DRAM traffic. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 86.6685 → DRAM bandwidth is saturated (~87% of peak), confirming memory bandwidth is the bottleneck. - l1tex__t_sector_hit_rate.pct = 46.4204 → low L1/texture cache hit rate (~46%), meaning most loads miss L1 and go to L2/DRAM. - launch__waves_per_multiprocessor = 210.387 → very high wave occupancy per SM, suggesting kernel is lightweight and launch-bound *or* many small waves — but comb",
+        "prompt_version": "leaf_triton_optimize_v1"
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "30d00698d048d9e0",
+      "origin_uid": "syn_05914_bb5bd697",
+      "hop": 0,
+      "leaf_id": "0062e6af",
+      "bound": "memory",
+      "route_id": "53c8f45ba9b1",
+      "profile_ms": 27563.368456438184,
+      "ok": false,
+      "outcome": "compile_fail",
+      "latency_ms": null,
+      "parent_latency_ms": 2.987033687531948,
+      "rel_speedup": null,
+      "reward": null,
+      "stage": "run_candidate",
+      "error": "RuntimeError: Sizes of tensors must match except in dimension 1. Expected size 24999 but got size 12499 for tensor number 1 in the list.",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_maxpool3_kernel"
+        ],
+        "n_lines": 81,
+        "optimizer_summary": "STEP 1 - Read the measurements. For EACH counter you were given, state in one short line what its actual value implies. Quote the numbers. - dram__bytes_read.sum = 2.41883e+08 → Very high global memory read volume (~242 MB), indicating heavy input traffic. - dram__bytes_write.sum = 1.77853e+08 → High write volume (~178 MB), consistent with materializing a full output tensor. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 92.2161 → DRAM is saturated — kernel is bound by memory bandwidth. - l1tex__t_sector_hit_rate.pct = 41.8603 → Low L1/texture cache hit rate → poor spatial/temporal locality; inputs likely not reused or poorly coalesced. - lts__t_sector_hit_rate.pct = 50.3233 → ~50% L",
+        "prompt_version": "leaf_triton_optimize_v1"
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "d498c7796b0a8417",
+      "origin_uid": "syn_04105_abaab77c",
+      "hop": 0,
+      "leaf_id": "0062e6af",
+      "bound": "memory",
+      "route_id": "d3a92d03ae24",
+      "profile_ms": 29027.56568416953,
+      "ok": true,
+      "outcome": "no_speedup",
+      "latency_ms": 2.077302895486355,
+      "parent_latency_ms": 2.060299040749669,
+      "rel_speedup": 0.9918144557668348,
+      "reward": -0.0082,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 3,
+      "meta": {
+        "jit_kernels": [
+          "_subtract_kernel"
+        ],
+        "n_lines": 72,
+        "optimizer_summary": "STEP 1 - Read the measurements. For EACH counter you were given, state in one short line what its actual value implies. Quote the numbers. - dram__bytes_read.sum = 1.20529e+08 → Very high global memory read volume (120.5 MB), indicating heavy data movement from DRAM. - dram__bytes_write.sum = 6.43064e+07 → High write volume (64.3 MB), ~53% of reads — consistent with a read-modify-write pattern. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 83.4157 → DRAM is 83.4% utilized — strongly suggests DRAM bandwidth is the bottleneck. - l1tex__t_sector_hit_rate.pct = 35.8002 → Very low L1/texture cache hit rate → most loads miss L1 and go straight to L2/DRAM. - lts__t_sector_hit_rate.pct = 50",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 1.0695923119783401,
+        "seed": 3003281037
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    },
+    {
+      "kernel_id": "5cbab322b36aef2e",
+      "origin_uid": "syn_04366_0bb20ae1",
+      "hop": 0,
+      "leaf_id": "0062e6af",
+      "bound": "memory",
+      "route_id": "2d06cb7980a8",
+      "profile_ms": 22343.900633975863,
+      "ok": true,
+      "outcome": "no_speedup",
+      "latency_ms": 4.120274446904659,
+      "parent_latency_ms": 4.085200140252709,
+      "rel_speedup": 0.9914873858273447,
+      "reward": -0.0085,
+      "stage": "ok",
+      "error": "",
+      "rounds_used": 1,
+      "meta": {
+        "jit_kernels": [
+          "_remainder_reconstruct_kernel"
+        ],
+        "n_lines": 53,
+        "optimizer_summary": "STEP 1 - Read the measurements. For EACH counter you were given, state in one short line what its actual value implies. Quote the numbers. - dram__bytes_read.sum = 6.8035e+08: Very high global memory read volume — kernel is memory-bound and reads ~680 MB per launch. - dram__bytes_write.sum = 4.99802e+08: High global memory write volume (~500 MB), confirming heavy memory traffic. - dram__throughput.avg.pct_of_peak_sustained_elapsed = 91.848: DRAM throughput is saturated at >91% of peak → kernel is strongly DRAM bandwidth-bound. - l1tex__t_sector_hit_rate.pct = 0.071957: Extremely low L1/TEX cache hit rate (<0.07%) → almost all loads miss L1 and go straight to L2/DRAM. - lts__t_sector_hit_rate",
+        "prompt_version": "leaf_triton_optimize_v1",
+        "origin_baseline_ms": 2.4014292284846306,
+        "seed": 4125300433
+      },
+      "child_kernel_id": "",
+      "advanced": false
+    }
+  ],
+  "updates": [
+    {
+      "action": "update",
+      "leaf_id": "0062e6af",
+      "proposal": {
+        "leaf_id": "0062e6af",
+        "inherited": [
+          "sm__throughput.avg.pct_of_peak_sustained_elapsed",
+          "dram__throughput.avg.pct_of_peak_sustained_elapsed",
+          "l1tex__t_sector_hit_rate.pct",
+          "lts__t_sector_hit_rate.pct",
+          "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct",
+          "dram__bytes_read.sum",
+          "dram__bytes_write.sum"
+        ],
+        "old_owned": [],
+        "new_owned": [
+          "sm__warps_active.avg.pct_of_peak_sustained_active"
+        ],
+        "added": [
+          "sm__warps_active.avg.pct_of_peak_sustained_active"
+        ],
+        "blind_spot": "The optimizer cannot tell whether warps are stalled on global-memory latency with too few resident warps to hide it (fixable via occupancy/ILP) versus DRAM being a hard wall where only reducing bytes moved helps.",
+        "rationale": {
+          "sm__warps_active.avg.pct_of_peak_sustained_active": "HIGH -> occupancy already maxed; skip block/num_warps tuning, attack DRAM byte volume (fuse multi-pass reductions, remove intermediates, narrow dtypes) and preserve current parallelism to avoid regressions / LOW -> raise occupancy: smaller tiles to cut registers, retune block size/num_warps, enlarge grid so more warps hide DRAM latency and lift the 78-84% DRAM kernels to saturation",
+          "smsp__warp_issue_stalled_long_scoreboard_per_warp_active": "HIGH -> warps wait on global loads: if occupancy is low add ILP (independent/vectorized loads, prefetch), if occupancy is high accept DRAM as the wall and only reduce traffic / LOW -> warps are not memory-stalled despite high DRAM counters; avoid memory-centric rewrites that caused regressions and examine issue/barrier structure instead"
+        },
+        "rejected": [
+          {
+            "metric": "smsp__warp_issue_stalled_long_scoreboard_per_warp_active",
+            "reason": "not_in_catalog"
+          }
+        ],
+        "prompt_version": "metric_rewrite_v1"
+      },
+      "validation": {
+        "accepted": false,
+        "margin": 0.0,
+        "epsilon": 0.015,
+        "incumbent_mean": null,
+        "candidate_mean": null,
+        "time_cost": 0.0,
+        "n_scorable_incumbent": 0,
+        "n_scorable_candidate": 0,
+        "compile_fail_delta": 0.0,
+        "reason": "missing_incumbent_baseline:1",
+        "guard_ids": [
+          "09fe15f8003c3e62",
+          "e6f5487075c5c9d5",
+          "db1583cc5ee66f66",
+          "a74e71a6175be948",
+          "9016eea9f5ed37f7"
+        ],
+        "regressed_guards": [],
+        "per_sample": {}
+      },
+      "split": {
+        "action": "split",
+        "leaf_id": "0062e6af",
+        "search_reason": "too_few_samples:0",
+        "accepted": false,
+        "reason": "too_few_samples:0"
+      },
+      "accepted": false,
+      "reason": "too_few_samples:0"
+    }
+  ],
+  "n_retired_pool": 0,
+  "n_steps": 4,
+  "pool_size": 807,
+  "diagnostics": {
+    "outcome_counts": {
+      "compile_fail": 2,
+      "no_speedup": 2
+    },
+    "slow_share": 0.5,
+    "compile_fail_rate": 0.5,
+    "mean_profile_time_ratio": 10107.87641237918,
+    "reward_sources": {
+      "n_positive_reward": 0,
+      "from_real_speedup": 0,
+      "from_failure_to_success": 0,
+      "real_speedup_share": null
+    },
+    "tree": {
+      "n_leaves": 10,
+      "depth": 3,
+      "branching": [
+        4,
+        2,
+        4,
+        2,
+        2
+      ]
+    },
+    "store": {
+      "n_kernels": 1365,
+      "n_origins": 998,
+      "n_routes": 527,
+      "by_status": {
+        "pending": 807,
+        "optimization_failed": 139,
+        "terminal": 114,
+        "advanced": 267,
+        "slow": 38
+      },
+      "max_hop": 1
+    },
+    "origin_coverage": {
+      "total": 998,
+      "attempted": 558,
+      "remaining": 440,
+      "ratio": 0.5591182364729459
+    },
+    "gpu_queue": {
+      "submitted": 411,
+      "completed": 411,
+      "failed": 0,
+      "queue_depth": 0,
+      "active": false,
+      "busy_time_s": 7134.854121410346,
+      "utilization": 0.3075490133303813,
+      "journal_done": 216
+    },
+    "branch_share_alerts": [
+      {
+        "node_id": "root",
+        "child_id": "70f21b3a",
+        "label": "sm=high,dram=low",
+        "share": 0.0209,
+        "n": 11
+      },
+      {
+        "node_id": "root",
+        "child_id": "64953ed1",
+        "label": "sm=high,dram=high",
+        "share": 0.0019,
+        "n": 1
+      },
+      {
+        "node_id": "00dcb62e",
+        "child_id": "7eca260d",
+        "label": "lts=low,smsp=low",
+        "share": 0.0315,
+        "n": 9
+      },
+      {
+        "node_id": "00dcb62e",
+        "child_id": "834bcebe",
+        "label": "lts=high,smsp=low",
+        "share": 0.049,
+        "n": 14
+      },
+      {
+        "node_id": "460f36cf",
+        "child_id": "fb19c5a4",
+        "label": "lts=high",
+        "share": 0.0,
+        "n": 0
+      },
+      {
+        "node_id": "2a031de2",
+        "child_id": "2bc99d41",
+        "label": "dram=high",
+        "share": 0.0,
+        "n": 0
+      }
+    ]
+  }
+}

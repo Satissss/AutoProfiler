@@ -1,0 +1,91 @@
+{
+  "routing_round": 18,
+  "bounds": [
+    "memory",
+    "latency",
+    "compute",
+    "algorithm"
+  ],
+  "steps": [],
+  "updates": [
+    {
+      "action": "converge",
+      "leaf_id": "9c244a15"
+    }
+  ],
+  "n_retired_pool": 0,
+  "n_steps": 0,
+  "pool_size": 773,
+  "diagnostics": {
+    "outcome_counts": {},
+    "slow_share": 0.0,
+    "compile_fail_rate": 0.0,
+    "mean_profile_time_ratio": null,
+    "reward_sources": {
+      "n_positive_reward": 0,
+      "from_real_speedup": 0,
+      "from_failure_to_success": 0,
+      "real_speedup_share": null
+    },
+    "tree": {
+      "n_leaves": 7,
+      "depth": 2,
+      "branching": [
+        4,
+        4
+      ]
+    },
+    "store": {
+      "n_kernels": 1263,
+      "n_origins": 998,
+      "n_routes": 436,
+      "by_status": {
+        "pending": 773,
+        "slow": 32,
+        "optimization_failed": 115,
+        "terminal": 112,
+        "advanced": 231
+      },
+      "max_hop": 1
+    },
+    "origin_coverage": {
+      "total": 998,
+      "attempted": 490,
+      "remaining": 508,
+      "ratio": 0.4909819639278557
+    },
+    "gpu_queue": {
+      "submitted": 134,
+      "completed": 134,
+      "failed": 0,
+      "queue_depth": 0,
+      "active": false,
+      "busy_time_s": 2606.1523102098145,
+      "utilization": 0.2856133447052074,
+      "journal_done": 625
+    },
+    "branch_share_alerts": [
+      {
+        "node_id": "root",
+        "child_id": "70f21b3a",
+        "label": "sm=high,dram=low",
+        "share": 0.0229,
+        "n": 10
+      },
+      {
+        "node_id": "root",
+        "child_id": "64953ed1",
+        "label": "sm=high,dram=high",
+        "share": 0.0023,
+        "n": 1
+      },
+      {
+        "node_id": "00dcb62e",
+        "child_id": "7eca260d",
+        "label": "lts=low,smsp=low",
+        "share": 0.0359,
+        "n": 8
+      }
+    ]
+  }
+}

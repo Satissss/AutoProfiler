@@ -1,0 +1,5 @@
+# Any OpenAI-compatible endpoint (vLLM, DashScope, ...): copy and edit.
+model: qwen3-coder-plus
+base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+api_style: openai
+api_key_env: DASHSCOPE_API_KEY

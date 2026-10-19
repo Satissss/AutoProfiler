@@ -1,0 +1,30 @@
+[project]
+name = "autoprofiler"
+version = "0.1.0"
+description = "Learned profiling trees for LLM-driven GPU kernel optimization"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "pydantic>=2.0",
+  "pyyaml>=6.0",
+  "numpy",
+]
+
+[project.optional-dependencies]
+# Needed on the machine that owns the GPU (the workers run there).
+gpu = ["torch", "triton"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+autoprofiler = "autoprofiler.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["autoprofiler*"]
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
