@@ -61,6 +61,7 @@ logs/
 # local scratch
 resource/
 output_headroom/
+docs/
 
 # upstream baseline checkouts from the old harness (baselines are now re-implemented in autoprofiler/baselines)
 external/
