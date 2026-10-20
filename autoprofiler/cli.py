@@ -59,7 +59,7 @@ def main(argv: list[str] | None = None) -> None:
     t.set_defaults(fn=_train)
 
     e = sub.add_parser("eval", help="run methods on a benchmark and write the results table")
-    e.add_argument("config", help="eval config, e.g. configs/eval/main_table.yaml")
+    e.add_argument("config", help="eval config, e.g. configs/eval/autoprofiler.yaml")
     e.add_argument("--methods", nargs="+", help="override the method list")
     e.add_argument("--limit", type=int, help="only the first N tasks")
     e.add_argument("--rounds", type=int, help="override the round budget")
