@@ -115,20 +115,6 @@ output/        Results, trees, checkpoints
 
 ---
 
-## License
-
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
-
-Third-party attributions: [NOTICE](NOTICE)
-
----
-
-## Acknowledgments
-
-This research was supported by [TODO]. We thank the authors of KernelBench, CudaForge, KernelMem, KernelAgent, and AutoKernel for their foundational work.
-
----
-
 <div align="center">
 Built with ❤️ for the GPU optimization community
 </div>
