@@ -50,6 +50,7 @@ data/train/*
 # outputs: only released trees are tracked
 output/*
 !output/trees/
+output/results/
 
 # logs
 *.log

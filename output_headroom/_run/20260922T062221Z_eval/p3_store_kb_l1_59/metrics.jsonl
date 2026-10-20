@@ -1,4 +1,0 @@
-{"kernel_id": "f04e091eb16b91a5", "metrics": {"sm__throughput.avg.pct_of_peak_sustained_elapsed": 10.788786176017997, "dram__throughput.avg.pct_of_peak_sustained_elapsed": 91.52512732289742}, "profile_ms": 8123.0582010466605}
-{"kernel_id": "f04e091eb16b91a5", "metrics": {"l1tex__t_sector_hit_rate.pct": 14.651722688815774, "lts__t_sector_hit_rate.pct": 57.54956783576182, "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.pct": 78.3162019147515}, "profile_ms": 7938.0176900886}
-{"kernel_id": "f04e091eb16b91a5", "metrics": {"dram__bytes_read.sum": 2948027362.6993556, "launch__waves_per_multiprocessor": 574.4421584601034}, "profile_ms": 6595.230682054535}
-{"kernel_id": "f04e091eb16b91a5", "metrics": {"dram__bytes_write.sum": 2377872889.2728314, "sm__warps_active.avg.pct_of_peak_sustained_active": 77.8414213570795}, "profile_ms": 6692.387238144875}

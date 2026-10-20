@@ -1,3 +1,0 @@
-{"kernel_id": "ee5784ab830ca177", "metrics": {"sm__throughput.avg.pct_of_peak_sustained_elapsed": 69.70013871875823, "dram__throughput.avg.pct_of_peak_sustained_elapsed": 15.06207010358838}, "profile_ms": 8507.039788877591}
-{"kernel_id": "ee5784ab830ca177", "metrics": {"sm__pipe_tensor_op_hmma_cycles_active.avg.pct_of_peak_sustained_active": 0.0, "sm__pipe_fma_cycles_active.avg.pct_of_peak_sustained_active": 60.81285391815098, "smsp__issue_active.avg.pct_of_peak_sustained_active": 70.29383167565706}, "profile_ms": 7392.70182303153}
-{"kernel_id": "ee5784ab830ca177", "metrics": {"smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct": 2.9315975148543516, "sm__warps_active.avg.pct_of_peak_sustained_active": 34.73679499846057}, "profile_ms": 7478.357753017917}

@@ -1,2 +1,0 @@
-{"kernel_id": "82219d51d472bcd9", "metrics": {"sm__throughput.avg.pct_of_peak_sustained_elapsed": 74.22959640452983, "dram__throughput.avg.pct_of_peak_sustained_elapsed": 80.30228114562382}, "profile_ms": 18454.439646098763}
-{"kernel_id": "82219d51d472bcd9", "metrics": {"sm__warps_active.avg.pct_of_peak_sustained_active": 89.79828198890607}, "profile_ms": 10772.279339842498}
