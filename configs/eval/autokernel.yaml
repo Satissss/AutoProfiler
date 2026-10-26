@@ -9,21 +9,13 @@ groups: [level1, level2, level3]
 
 methods:
   autokernel:
-    seeder:
-      type: llm_triton
-      attempts: 4
-      temperature: 0.2
-    # Swap in the learned tree to ask whether per-kernel counters beat fixed ones:
+    # Swap in the learned tree to test whether per-kernel counters beat fixed ones:
     #   profiler:
     #     type: tree
     #     path: output/trees/autoprofiler.json
     profiler:
       type: ncu_fixed
       metric_set: roofline
-    optimizer:
-      type: edit_loop                       # hypothesis -> one edit -> keep or revert
-      language: triton
-      temperature: 0.7
 
 llm:
   model: qwen-plus

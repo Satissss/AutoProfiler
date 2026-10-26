@@ -9,21 +9,13 @@ groups: [level1, level2, level3]
 
 methods:
   cudaforge:
-    seeder:
-      type: llm_cuda                        # PyTorch reference -> hand-written CUDA
-      gpu: RTX-4090
-      attempts: 4
-    # Swap in the learned tree to ask whether per-kernel counters beat fixed ones:
+    # Swap in the learned tree to test whether per-kernel counters beat fixed ones:
     #   profiler:
     #     type: tree
     #     path: output/trees/autoprofiler.json
     profiler:
       type: ncu_fixed
       metric_set: cudaforge                 # 24 counters, the same for every kernel
-    optimizer:
-      type: judge_coder
-      language: cuda
-      gpu: RTX-4090
 
 llm:
   model: qwen-plus

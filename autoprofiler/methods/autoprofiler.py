@@ -1,4 +1,4 @@
-"""AutoProfiler: Triton seed + learned profiling tree + leaf optimizer.
+"""AutoProfiler: learned profiling tree + leaf optimizer, from a PyTorch or Triton start.
 
 TreeProfiler (registered as "tree") and LeafOptimizer (registered as "leaf")
 are also available as standalone components for experiments.
@@ -9,7 +9,7 @@ import hashlib
 import tempfile
 from pathlib import Path
 
-from autoprofiler.components.seeders.llm_port import LLMPortSeeder
+from autoprofiler.components.seeders.torch_baseline import TorchBaselineSeeder
 from autoprofiler.config import REPO_ROOT
 from autoprofiler.core.env import Env
 from autoprofiler.core.interfaces import Method, Optimizer, Profiler, Seeder
@@ -112,7 +112,8 @@ class LeafOptimizer(Optimizer):
                 user = (build_optimize_repair(prev_code or code, profile.metrics, prev_err, prev_stage,
                                               hint=repair_hint(prev_err, prev_stage))
                         if prev_err else build_optimize_user(code, profile.metrics,
-                                                             parent.result.candidate_ms, seed=seed))
+                                                             parent.result.candidate_ms, seed=seed,
+                                                             source=parent.candidate.language))
                 tag = f"  leaf {si + 1}/{self.params.n_samples}"
                 if rnd:
                     tag += f" repair {rnd}"
@@ -129,7 +130,9 @@ class LeafOptimizer(Optimizer):
                     new_code = locals().get("new_code", "")
                     prev_code, prev_err, prev_stage = new_code, e.reason, e.stage
                     continue
-                cand = Candidate(new_code, parent.candidate.language, "leaf", {"sample": si, "repair": rnd})
+                # check_candidate guarantees a top-level @triton.jit kernel, so this is Triton
+                # even when the parent was the PyTorch program.
+                cand = Candidate(new_code, "triton", "leaf", {"sample": si, "repair": rnd})
                 with env.step(f"{tag} verify") as done:
                     cand.result = env.evaluator.evaluate(task, cand, tag=f"{task.id}_leaf{si}_{rnd}")
                     r = cand.result
@@ -152,7 +155,9 @@ class AutoProfiler(IterativeMethod):
         n_samples: int = 2                            # best-of-N at the leaf
 
     def make_seeder(self) -> Seeder:
-        return LLMPortSeeder(language="triton", attempts=4)
+        # No port step of its own: the method starts from the PyTorch program. A Triton
+        # starting point comes from the eval runner (``use_seed``), not from here.
+        return TorchBaselineSeeder()
 
     def make_profiler(self) -> Profiler:
         return TreeProfiler(path=self.params.tree)

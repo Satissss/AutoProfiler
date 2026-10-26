@@ -30,6 +30,10 @@ class EvalConfig(BaseModel):
     groups: list[str] | None = None      # e.g. [level1]; null = every group
     ids: list[str] | None = None         # explicit task ids, overriding groups
     limit: int | None = None             # first N tasks only
+    # false: start from the original PyTorch program and score against PyTorch.
+    # true:  start from the Triton port of it (the "seed"), read from data/seeds/ or
+    #        generated there when missing, and score against that seed instead.
+    use_seed: bool = False
 
     # ── which methods ────────────────────────────────────────────────────────
     # A bare list uses each method's own defaults:   methods: [autoprofiler, cudaforge]

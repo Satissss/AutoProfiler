@@ -225,16 +225,29 @@ def build_optimize_user(
     runtime_ms: float | None,
     *,
     seed: int | None = None,
+    source: str = "triton",
 ) -> str:
-    """User turn for one optimization attempt."""
+    """User turn for one optimization attempt.
+
+    ``source`` is the language of ``code``: "torch" when the starting point is the
+    original PyTorch program rather than a Triton kernel.
+    """
     rt = f"{runtime_ms:.4f} ms" if runtime_ms else "unknown"
     seed_line = (
         f"\nDeterminism token (ignore semantically, do not mention): {seed}\n"
         if seed is not None
         else ""
     )
+    task = (
+        "Optimize the following Triton kernel."
+        if source != "torch"
+        else "CURRENT_KERNEL is the original PyTorch program (Model; ModelNew is an alias of "
+             "it). Rewrite it as a Triton implementation: define class ModelNew(nn.Module) with "
+             "the same __init__ signature and parameter names as Model, whose forward calls "
+             "top-level @triton.jit kernels."
+    )
     return (
-        "Optimize the following Triton kernel.\n\n"
+        f"{task}\n\n"
         "CURRENT_KERNEL:\n"
         "```python\n"
         f"{code}\n"

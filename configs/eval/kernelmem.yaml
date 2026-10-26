@@ -9,21 +9,13 @@ groups: [level1, level2, level3]
 
 methods:
   kernelmem:
-    seeder:
-      type: llm_cuda
-      gpu: RTX-4090
-      attempts: 4
-    # Swap in the learned tree to ask whether per-kernel counters beat fixed ones:
+    # Swap in the learned tree to test whether per-kernel counters beat fixed ones:
     #   profiler:
     #     type: tree
     #     path: output/trees/autoprofiler.json
     profiler:
       type: ncu_fixed
       metric_set: kernelmem                 # CudaForge's 24 plus memory-system counters
-    optimizer:
-      type: memory_judge_coder              # judge_coder plus short- and long-term memory
-      language: cuda
-      gpu: RTX-4090
 
 llm:
   model: qwen-plus

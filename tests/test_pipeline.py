@@ -58,7 +58,7 @@ def test_kernelbench_has_250_tasks():
 
 
 @pytest.mark.parametrize("name,parts", [
-    ("autoprofiler", ("LLMPortSeeder", "TreeProfiler", "LeafOptimizer")),
+    ("autoprofiler", ("TorchBaselineSeeder", "TreeProfiler", "LeafOptimizer")),
     ("cudaforge", ("LLMCudaSeeder", "NCUFixedProfiler", "JudgeCoder")),
     ("kernelmem", ("LLMCudaSeeder", "NCUFixedProfiler", "MemoryJudgeCoder")),
     ("kernelagent", ("LLMTritonSeeder", "NCUFixedProfiler", "JudgeCoder")),
@@ -84,6 +84,52 @@ def test_run_eval_two_methods(fake_env, tmp_path):
         assert len(rec["trajectory"]["rounds"]) == 3 and rec["trajectory"]["usage"]["llm"]["calls"] > 0
         assert (out / m / "code" / "kb_l1_1.py").exists()
     assert (out / "results.md").read_text().startswith("# t")
+
+
+def _seed_run(tmp_path, seeder_cls, monkeypatch):
+    monkeypatch.setattr(runner_mod, "LLMPortSeeder", seeder_cls)
+    cfg = EvalConfig(name="s", groups=["level1"], limit=1, use_seed=True, rounds=1, output=str(tmp_path / "res"),
+                     methods={"autoprofiler": {"profiler": {"type": "ncu_fixed", "metric_set": "roofline"}}})
+    out = run_eval(cfg, log=lambda m: None)
+    return out, json.loads((out / "summary.json").read_text()), \
+        json.loads((out / "autoprofiler" / "tasks" / "kb_l1_1.json").read_text())
+
+
+def test_use_seed_starts_from_the_seed_and_scores_against_it(fake_env, tmp_path, monkeypatch):
+    from autoprofiler.core.types import Candidate
+
+    class Seeder:
+        def __init__(self, **kw): pass
+
+        def seed(self, task, env):
+            return Candidate("seed code", "triton", "fake", result=EvalResult(
+                ok=True, stage="ok", baseline_ms=2.0, candidate_ms=1.0, speedup=2.0))
+
+    out, summary, rec = _seed_run(tmp_path, Seeder, monkeypatch)
+    # nothing beat the seed, so the seed is what is scored: 1.0x over itself, not 2x over PyTorch
+    assert summary["baseline"] == "seed"
+    assert rec["trajectory"]["rounds"][0]["round"] == 0 and rec["speedup_vs_seed"] == pytest.approx(1.0)
+    assert summary["methods"]["autoprofiler"]["all"]["geomean_all"] == pytest.approx(1.0)
+    assert "over the seed kernel" in (out / "results.md").read_text()
+
+
+def test_use_seed_without_a_working_seed_fails_the_task(fake_env, tmp_path, monkeypatch):
+    class Seeder:
+        def __init__(self, **kw): pass
+
+        def seed(self, task, env):
+            return None
+
+    _, summary, rec = _seed_run(tmp_path, Seeder, monkeypatch)
+    assert rec["correct"] is False and "no working seed" in rec["error"]
+    assert summary["methods"]["autoprofiler"]["all"]["correct"] == 0.0
+
+
+def test_use_seed_is_only_for_autoprofiler(fake_env, tmp_path):
+    cfg = EvalConfig(name="x", groups=["level1"], limit=1, use_seed=True, methods=["cudaforge"],
+                     output=str(tmp_path / "res"))
+    with pytest.raises(ValueError, match="cudaforge"):
+        run_eval(cfg, log=lambda m: None)
 
 
 def test_resume_skips_finished_tasks(fake_env, tmp_path):

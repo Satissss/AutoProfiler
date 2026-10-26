@@ -6,21 +6,14 @@ name: autoprofiler
 
 benchmark: kernelbench
 groups: [level1, level2, level3]
+use_seed: false     # false: start from the PyTorch program, scored against PyTorch
+                    # true:  start from the Triton seed (data/seeds, generated if missing), scored against the seed
 
 methods:
   autoprofiler:
-    seeder:
-      type: llm_port                        # PyTorch reference -> Triton
-      language: triton
-      attempts: 4
     profiler:
       type: tree                            # counters chosen per kernel by the tree
       path: output/trees/autoprofiler.json
-    optimizer:
-      type: leaf                            # one LLM call at the leaf it routed to
-      strong: true
-      n_samples: 2
-      max_repair: 2
 
 llm:
   model: qwen-plus

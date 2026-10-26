@@ -12,8 +12,11 @@ token.json
 
 # API keys and configs with sensitive data
 configs/backends/k8s.yaml
-configs/llm/*_llmcenter.yaml
+configs/llm/*llmcenter*.yaml
 !configs/llm/openai_compatible.example.yaml
+
+# ad-hoc eval configs (scratch runs/experiments, not part of the repo's method configs)
+configs/eval/autoprofiler_*.yaml
 
 # Personal/internal configs
 *_internal.yaml
